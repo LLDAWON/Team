@@ -365,7 +365,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 110,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.TestRunner.UnityAdditionalFile.txt"
@@ -2498,7 +2498,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 53173,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.UnityAdditionalFile.txt"
@@ -3190,7 +3190,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 101286,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.TestRunner.UnityAdditionalFile.txt"
@@ -3893,7 +3893,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 160578,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.UnityAdditionalFile.txt"
@@ -4502,7 +4502,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 206175,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.EditorCoroutines.Editor.UnityAdditionalFile.txt"
@@ -5064,7 +5064,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 249362,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.Performance.Profile-Analyzer.Editor.UnityAdditionalFile.txt"
@@ -5637,7 +5637,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 295311,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.PlasticSCM.Editor.UnityAdditionalFile.txt"
@@ -6466,7 +6466,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 369140,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.Rider.Editor.UnityAdditionalFile.txt"
@@ -7026,7 +7026,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 414098,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.Settings.Editor.UnityAdditionalFile.txt"
@@ -7579,7 +7579,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 457978,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.UnityAdditionalFile.txt"
@@ -8134,7 +8134,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 502717,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.UnityAdditionalFile.txt"
@@ -8678,7 +8678,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 546226,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.TextMeshPro.UnityAdditionalFile.txt"
@@ -9262,7 +9262,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 592615,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.Timeline.UnityAdditionalFile.txt"
@@ -9860,7 +9860,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 640069,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VSCode.Editor.UnityAdditionalFile.txt"
@@ -10408,7 +10408,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 683571,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VisualScripting.Core.UnityAdditionalFile.txt"
@@ -11362,7 +11362,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 778562,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VisualStudio.Editor.UnityAdditionalFile.txt"
@@ -11927,7 +11927,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 823827,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.CollabProxy.Editor.UnityAdditionalFile.txt"
@@ -12490,7 +12490,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 866878,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.TestTools.CodeCoverage.Editor.UnityAdditionalFile.txt"
@@ -13125,7 +13125,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 913856,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.TextMeshPro.Editor.UnityAdditionalFile.txt"
@@ -13735,7 +13735,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 961204,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.Timeline.Editor.UnityAdditionalFile.txt"
@@ -14569,7 +14569,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1028167,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VisualScripting.Core.Editor.UnityAdditionalFile.txt"
@@ -15601,7 +15601,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1127639,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VisualScripting.Flow.UnityAdditionalFile.txt"
@@ -16532,7 +16532,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1218032,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VisualScripting.Flow.Editor.UnityAdditionalFile.txt"
@@ -17289,7 +17289,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1281552,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VisualScripting.State.UnityAdditionalFile.txt"
@@ -17853,7 +17853,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1326430,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VisualScripting.SettingsProvider.Editor.UnityAdditionalFile.txt"
@@ -18459,7 +18459,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1371388,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VisualScripting.State.Editor.UnityAdditionalFile.txt"
@@ -19087,7 +19087,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1423083,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VisualScripting.Shared.Editor.UnityAdditionalFile.txt"
@@ -19670,7 +19670,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1467072,
       "PayloadLength": 43,
-      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\te",
+      "PayloadDebugContentSnippet": "C:\\Users\\은지\\Desktop\\new\\Te",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aEDbg.dag/Assembly-CSharp.UnityAdditionalFile.txt"
@@ -19682,7 +19682,7 @@
       "DisplayName": "Writing Assembly-CSharp.rsp",
       "ActionType": "WriteFile",
       "PayloadOffset": 1467204,
-      "PayloadLength": 32866,
+      "PayloadLength": 32902,
       "PayloadDebugContentSnippet": "-target:library\n-out:\"Library/",
       "Inputs": [],
       "Outputs": [
@@ -19694,7 +19694,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aEDbg.dag/Assembly-CSharp.rsp2",
       "DisplayName": "Writing Assembly-CSharp.rsp2",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1500160,
+      "PayloadOffset": 1500196,
       "PayloadLength": 0,
       "PayloadDebugContentSnippet": "",
       "Inputs": [],
@@ -19941,6 +19941,7 @@
         "Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VSCode.Editor.ref.dll",
         "Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll",
         "Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll",
+        "Assets/Sprits/CharacterScripts.cs",
         "Assets/Sprits/New.cs",
         "C:/Program Files/Unity/Hub/Editor/2022.3.27f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll",
         "C:/Program Files/Unity/Hub/Editor/2022.3.27f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll",
@@ -20180,7 +20181,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aEDbg.dag/Assembly-CSharp.dll.mvfrm.rsp",
       "DisplayName": "Writing Assembly-CSharp.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-      "PayloadOffset": 1500259,
+      "PayloadOffset": 1500295,
       "PayloadLength": 9606,
       "PayloadDebugContentSnippet": "Library\\Bee\\artifacts\\mvdfrm\\U",
       "Inputs": [],
@@ -21270,7 +21271,7 @@
     {
       "Annotation": "BuildPlayerDataGenerator Library/BuildPlayerData/Editor/TypeDb-All.json",
       "DisplayName": "BuildPlayerDataGenerator TypeDb-All",
-      "Action": "\"C:/Program Files/Unity/Hub/Editor/2022.3.27f1/Editor/Data\\Tools\\netcorerun\\netcorerun.exe\" \"C:/Program Files/Unity/Hub/Editor/2022.3.27f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\ScriptAssemblies\\Assembly-CSharp.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\ScriptAssemblies\\Unity.TextMeshPro.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\ScriptAssemblies\\Unity.Timeline.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\ScriptAssemblies\\Unity.VisualScripting.Core.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\ScriptAssemblies\\Unity.VisualScripting.Flow.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\ScriptAssemblies\\Unity.VisualScripting.State.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\ScriptAssemblies\\UnityEngine.TestRunner.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\ScriptAssemblies\\UnityEngine.UI.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\\nunit.framework.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\PackageCache\\com.unity.testtools.codecoverage@1.2.5\\lib\\ReportGenerator\\ReportGeneratorMerged.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\PackageCache\\com.unity.visualscripting@1.9.4\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\\Unity.VisualScripting.Antlr3.Runtime.dll\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.27f1\\Editor\\Data\\Managed\\UnityEngine\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.27f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netfx\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.27f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netstandard\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.27f1\\Editor\\Data\\NetStandard\\Extensions\\2.0.0\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.27f1\\Editor\\Data\\NetStandard\\ref\\2.1.0\" -s=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\ScriptAssemblies\" -s=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\" -s=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\PackageCache\\com.unity.testtools.codecoverage@1.2.5\\lib\\ReportGenerator\" -s=\"C:\\Users\\은지\\Desktop\\new\\test\\My project\\Library\\PackageCache\\com.unity.visualscripting@1.9.4\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\" -o=\"Library/BuildPlayerData/Editor\" -rn=\"\" -tn=\"TypeDb-All.json\"",
+      "Action": "\"C:/Program Files/Unity/Hub/Editor/2022.3.27f1/Editor/Data\\Tools\\netcorerun\\netcorerun.exe\" \"C:/Program Files/Unity/Hub/Editor/2022.3.27f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\ScriptAssemblies\\Assembly-CSharp.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\ScriptAssemblies\\Unity.TextMeshPro.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\ScriptAssemblies\\Unity.Timeline.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\ScriptAssemblies\\Unity.VisualScripting.Core.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\ScriptAssemblies\\Unity.VisualScripting.Flow.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\ScriptAssemblies\\Unity.VisualScripting.State.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\ScriptAssemblies\\UnityEngine.TestRunner.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\ScriptAssemblies\\UnityEngine.UI.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\\nunit.framework.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\PackageCache\\com.unity.testtools.codecoverage@1.2.5\\lib\\ReportGenerator\\ReportGeneratorMerged.dll\" -a=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\PackageCache\\com.unity.visualscripting@1.9.4\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\\Unity.VisualScripting.Antlr3.Runtime.dll\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.27f1\\Editor\\Data\\Managed\\UnityEngine\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.27f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netfx\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.27f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netstandard\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.27f1\\Editor\\Data\\NetStandard\\Extensions\\2.0.0\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.27f1\\Editor\\Data\\NetStandard\\ref\\2.1.0\" -s=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\ScriptAssemblies\" -s=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\" -s=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\PackageCache\\com.unity.testtools.codecoverage@1.2.5\\lib\\ReportGenerator\" -s=\"C:\\Users\\은지\\Desktop\\new\\Team\\My project\\Library\\PackageCache\\com.unity.visualscripting@1.9.4\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\" -o=\"Library/BuildPlayerData/Editor\" -rn=\"\" -tn=\"TypeDb-All.json\"",
       "Inputs": [
         "C:/Program Files/Unity/Hub/Editor/2022.3.27f1/Editor/Data/Tools/netcorerun/netcorerun.exe",
         "C:/Program Files/Unity/Hub/Editor/2022.3.27f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe",
@@ -21556,6 +21557,6 @@
   "SharedResources": [],
   "Scanners": [],
   "Identifier": "Library/Bee/1900b0aEDbg.dag.json",
-  "PayloadsFile": "C:/Users/은지/Desktop/new/test/My project/Library/Bee/1900b0aEDbg.dag.payloads",
+  "PayloadsFile": "C:/Users/은지/Desktop/new/Team/My project/Library/Bee/1900b0aEDbg.dag.payloads",
   "RelativePathToRoot": "../.."
 }
