@@ -1,8 +1,0 @@
-Key,Name,WalkSpeed,RunSpeed,CrawlingSpeed,JumpPower,Stemina,Type,Room
-101,Player,3,5,1,450,100,1,0
-501,PatrolMonster,2,4.5,0,0,0,2,1
-502,DontSeeMonster,5,10,0,0,0,2,2
-503,SeeMonster,10,10,0,0,0,2,3
-504,DarkMonster,8,8,0,0,0,2,4
-505,MiniMonster,2,2,0,0,0,2,5
-506,EmptyMonster,0,0,0,0,0,2,6
