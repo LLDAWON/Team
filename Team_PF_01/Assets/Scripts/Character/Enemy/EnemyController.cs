@@ -40,7 +40,7 @@ public class EnemyController : MoveableCharactorController
             if (hit.collider.CompareTag("Player"))
             {
                 _velocity = direction.normalized * _characterData.RunSpeed;
-                _animator.SetFloat("Speed", _characterData.RunSpeed);
+                //_animator.SetFloat("Speed", _characterData.RunSpeed);
                 _isRotating = false; // 플레이어를 추적할 때는 회전하지 않음
                 return;
             }
@@ -50,20 +50,20 @@ public class EnemyController : MoveableCharactorController
                 _targetRotation = Quaternion.Euler(0, transform.eulerAngles.y + 90, 0);
                 _isRotating = true; // 회전 플래그 설정
                 _velocity = Vector3.zero;
-                _animator.SetFloat("Speed", 0);
+               // _animator.SetFloat("Speed", 0);
                 return;
             }
         }
 
         _velocity = Vector3.zero;
-        _animator.SetFloat("Speed", 0);
+        //_animator.SetFloat("Speed", 0);
         _isRotating = false; // 아무것도 없을 때는 회전하지 않음
     }
     private void SmoothRotate()
     {
         if (_isRotating)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, Time.deltaTime * _rotateSpeed);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, Time.deltaTime * _rotateSpeed);
             // 회전이 거의 완료되면 회전 플래그를 해제
             if (Quaternion.Angle(transform.rotation, _targetRotation) < 1.0f)
             {
