@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MoveableCharactorController
 {
     public float _rotateSpeed = 50.0f;
+    private float _curStemina = 0.0f;
 
     private bool _isJump = false;
     private Vector2 _mouseValue;
@@ -14,6 +16,8 @@ public class PlayerController : MoveableCharactorController
     private float _steminaDrainRate = 10.0f;
 
     private Transform _rotateObj;
+    private GameObject _prfSteminaBar;
+    private Image _curSteminaBar;
 
     protected override void Awake()
     {
@@ -24,8 +28,17 @@ public class PlayerController : MoveableCharactorController
 
     }
 
+    private void Start()
+    {
+        _prfSteminaBar = GameObject.Find("SteminaBar");
+        _curSteminaBar = _prfSteminaBar.transform.GetChild(0).GetComponent<Image>();
+        _curStemina = _characterData.Stemina;
+    }
+
     protected override void Update()
     {
+
+
         MoveController();
         RotateController();
 
@@ -35,25 +48,26 @@ public class PlayerController : MoveableCharactorController
 
     private void MoveController()
     {
-        // 
-
-        //
+        // 스태미너 관리
+        _curSteminaBar.fillAmount = _curStemina / _characterData.Stemina;
+        _curStemina = Mathf.Clamp(_curStemina, 0, _characterData.Stemina);
+        // 이동 조작 관리
         _velocity.x = Input.GetAxis("Horizontal");
         _velocity.z = Input.GetAxis("Vertical");
 
         if (Input.GetKey(KeyCode.LeftShift) && _characterData.Stemina > 0)
         {
-            DecreseStemina();
+            _curStemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
             _moveSpeed = _characterData.RunSpeed;
         }
         else if (Input.GetKey(KeyCode.LeftControl) )
         {
-            IncreseStemina();
+            _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
             _moveSpeed = _characterData.CrawlingSpeed;            
         }
         else
         {
-            IncreseStemina();
+            _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
             _moveSpeed = _characterData.WalkSpeed;            
         }
 
@@ -107,16 +121,6 @@ public class PlayerController : MoveableCharactorController
 
     }
 
-    private void DecreseStemina()
-    {
-        _characterData.Stemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
-        _characterData.Stemina = Mathf.Clamp(_characterData.Stemina, 0, _characterData.Stemina);
-    }
-    private void IncreseStemina()
-    {
-        _characterData.Stemina += Time.deltaTime*0.5f * _steminaDrainRate; // 스테미너 증가
-        _characterData.Stemina = Mathf.Clamp(_characterData.Stemina, 0, _characterData.Stemina);
-    }
 
 
 }
