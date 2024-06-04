@@ -22,15 +22,32 @@ public struct ItemData
     public float Value;
     public int ImagePath;
     public int Type;
-
+}
+public struct EventData
+{
+    public int Key;
+    public int Condition;
+    public string EventTag;
+    public int EventCount;
+    public int TextDataKey;
+    public int GetItemKey;
+    public int ItemKey;
 }
 
+public struct TextData
+{
+    public int Key;
+    public string Text;
+    public int Type;
+}
 
 public class DataManager : Singleton<DataManager>
 {   
 
     private Dictionary<int, CharacterData> characterDatas = new Dictionary<int, CharacterData>();
     private Dictionary<int, ItemData> itemDatas = new Dictionary<int, ItemData>();
+    private Dictionary<int, TextData> textDatas = new Dictionary<int, TextData>();
+    private Dictionary<string, EventData> eventDatas = new Dictionary<string, EventData>();
 
     public CharacterData GetCharacterData(int key)
     {
@@ -42,6 +59,24 @@ public class DataManager : Singleton<DataManager>
         return itemDatas[key];
     }
 
+    public TextData GetTextData(int key)
+    {
+        return textDatas[key];
+    }
+
+    public EventData GetEventData(string tag)
+    {
+        foreach(EventData data in eventDatas.Values)
+        {
+            if (data.EventTag == tag)
+            {
+                return eventDatas[tag];
+            }
+            else continue;
+        }
+
+        return eventDatas["Swich"];
+    }
 
     private void Awake()
     {
@@ -52,6 +87,8 @@ public class DataManager : Singleton<DataManager>
     {
         LoadCharacterDataTable();
         LoadItemDataTable();
+        LoadTextDataTable();
+        LoadEventDataTable();
     }
 
     private void LoadCharacterDataTable()
@@ -109,6 +146,62 @@ public class DataManager : Singleton<DataManager>
 
 
             itemDatas.Add(itemData.Key, itemData);
+        }
+    }
+
+    private void LoadEventDataTable()
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>("TextData/EventTable");
+
+        string temp = textAsset.text.Replace("\r\n", "\n");
+
+        string[] str = temp.Split('\n');
+
+        for (int i = 1; i < str.Length; i++)
+        {
+            string[] data = str[i].Split(',');
+
+            if (data.Length < 2) return;
+
+            EventData eventData;
+
+
+            eventData.Key = int.Parse(data[0]);
+            eventData.Condition = int.Parse(data[1]);
+            eventData.EventTag = data[2];
+            eventData.EventCount = int.Parse(data[3]);
+            eventData.TextDataKey = int.Parse(data[4]);
+            eventData.GetItemKey = int.Parse(data[5]);
+            eventData.ItemKey = int.Parse(data[6]);
+
+
+            eventDatas.Add(eventData.EventTag, eventData);
+        }
+    }
+
+    private void LoadTextDataTable()
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>("TextData/TextTable");
+
+        string temp = textAsset.text.Replace("\r\n", "\n");
+
+        string[] str = temp.Split('\n');
+
+        for (int i = 1; i < str.Length; i++)
+        {
+            string[] data = str[i].Split(',');
+
+            if (data.Length < 2) return;
+
+            TextData textData;
+
+
+            textData.Key = int.Parse(data[0]);
+            textData.Text = data[1];
+            textData.Type = int.Parse(data[2]);
+
+
+            textDatas.Add(textData.Key, textData);
         }
     }
 }
