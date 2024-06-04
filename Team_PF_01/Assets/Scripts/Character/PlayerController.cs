@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -17,6 +18,8 @@ public class PlayerController : MoveableCharactorController
         base.Awake();
 
         _rotateObj = transform.GetChild(0);
+
+
     }
 
     protected override void Update()
@@ -30,6 +33,8 @@ public class PlayerController : MoveableCharactorController
 
     private void MoveController()
     {
+        // 
+
         //
         _velocity.x = Input.GetAxis("Horizontal");
         _velocity.z = Input.GetAxis("Vertical");
@@ -52,11 +57,25 @@ public class PlayerController : MoveableCharactorController
 
     private void RotateController()
     {
+        Cursor.visible= false;
+        Cursor.lockState = CursorLockMode.Locked;
         _mouseValue.x = Input.GetAxis("Mouse X");
-        _mouseValue.y = Input.GetAxis("Mouse Y") * -1.0f;
+        _mouseValue.y = Input.GetAxis("Mouse Y");
 
         transform.Rotate(Vector3.up * _rotateSpeed * _mouseValue.x * Time.deltaTime);
-        _rotateObj.Rotate(Vector2.right * _rotateSpeed * _mouseValue.y * Time.deltaTime);
+        _rotateObj.Rotate(Vector3.left * _rotateSpeed * _mouseValue.y * Time.deltaTime);
+                
+        float rotX = _rotateObj.localEulerAngles.x;
+
+        if( rotX > 180.0f)
+        {
+            rotX -= 360.0f;
+        }
+
+        rotX = Mathf.Clamp(rotX, -30.0f, 30.0f);        
+        _rotateObj.localRotation = Quaternion.Euler(rotX, 0, 0);
+
+
     }
 
     private void JumpController()
