@@ -1,0 +1,10 @@
+key,condition,enentTag,eventCount,textKey,getItemKey,itemKey
+1,0,Swich,1,1,,
+2,1,ClassDoor1,1,2,,
+3,0,Locker1,0,3,,
+4,3,FlashLight,1,4,101,
+5,0,Locker2,0,0,,
+6,5,Battery,1,5,102,
+7,6,,,6,,
+8,7,Hint1,1,7,,
+9,0,Hint2,1,8,,
