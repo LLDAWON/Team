@@ -1,22 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MoveableCharactorController
 {
 
-    protected float _detectionRange = 5.0f;
-    protected Quaternion _targetRotation;
-    protected bool _isRotating = false;
-
+    protected enum EnemyState
+    {
+        Patrol,
+        Trace,
+        Attack,
+        Stop
+    }
+    //경로 관련
+    [SerializeField]
+    protected List<Vector3> pathes = new List<Vector3>();
+    protected Vector3 _destPos;
+    protected int _curPathNum = 0;
+    protected bool _isFind = false;
+    //타겟 네비게이션
     protected Transform _target;
-    protected Vector3 _destination;
-
     protected NavMeshAgent _navigation;
 
+    // 다 데이터화 시켜야함
+    protected float _detectionRange = 10.0f;
+
+    //State
+    protected EnemyState _enemyState = EnemyState.Patrol;
+
     
-    private void Awake()
+
+
+
+    protected override void Awake()
     {
         base.Awake();
         _navigation = GetComponent<NavMeshAgent>();
@@ -24,61 +42,94 @@ public class EnemyController : MoveableCharactorController
     protected void Start()
     {
         _target = GameObject.Find("Player").transform;
-        _targetRotation = transform.rotation; // 초기 목표 회전 설정
+        _destPos = pathes[0];
     }
 
     protected override void Update()
     {
-        MoveControl();
-        SmoothRotate();
+        CheckPath();
+        CheckForward();
+        SetPath();
+        EnemyAiPattern();
     }
 
 
-    virtual protected void MoveControl()
+    protected void CheckForward()
     {
-        //플레이어의 카메라가 바라보고있다면 멈춰야한다.
-        //안보고있다면 달려야한다.
-        //rayCast로 설정해보자
-
-        Vector3 direction = _target.transform.position - transform.position;
-        direction.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
+        Vector3 targetDirection = _target.transform.position - transform.position;
+        targetDirection.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, direction, out hit, _detectionRange))
+
+        if (Physics.Raycast(transform.position, targetDirection, out hit, _detectionRange))
         {
             if (hit.collider.CompareTag("Player"))
             {
-                _velocity = direction.normalized * _characterData.RunSpeed;
-                //_animator.SetFloat("Speed", _characterData.RunSpeed);
-                _isRotating = false; // 플레이어를 추적할 때는 회전하지 않음
-                return;
-            }
-            else if (hit.collider.CompareTag("Wall"))
-            { 
-                // 벽이 범위 내에 있다면 서서히 Y축으로 90도 회전
-                _targetRotation = Quaternion.Euler(0, transform.eulerAngles.y + 90, 0);
-                _isRotating = true; // 회전 플래그 설정
-                _velocity = Vector3.zero;
-               // _animator.SetFloat("Speed", 0);
-                return;
+                _isFind = true;
             }
         }
 
-        _velocity = Vector3.zero;
-        //_animator.SetFloat("Speed", 0);
-        _isRotating = false; // 아무것도 없을 때는 회전하지 않음
+        if(targetDirection.sqrMagnitude > _detectionRange * _detectionRange)
+            _isFind=false;
+
     }
-    private void SmoothRotate()
+    
+    protected void CheckPath()
     {
-        if (_isRotating)
+        Vector3 pos = transform.position;
+        pos.y = 0;
+        _destPos.y = 0;
+        Vector3 direction = _destPos - pos;
+
+        if (direction.sqrMagnitude < 0.01f)
         {
-            //transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, Time.deltaTime * _rotateSpeed);
-            // 회전이 거의 완료되면 회전 플래그를 해제
-            if (Quaternion.Angle(transform.rotation, _targetRotation) < 1.0f)
-            {
-                transform.rotation = _targetRotation;
-                _isRotating = false;
-            }
+            _curPathNum = (_curPathNum + 1) % pathes.Count;
+            _destPos = pathes[_curPathNum];
         }
     }
 
+    protected void SetPath()
+    {
+        if (_isFind)
+            SetState(1);
+        else
+            SetState(0);
+    }
+
+    protected void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere (transform.position, _detectionRange);
+    }
+
+    protected void EnemyAiPattern()
+    {
+
+        switch(_enemyState)
+        {
+            case EnemyState.Patrol:
+                {
+                    _navigation.SetDestination(_destPos);
+                }
+                break;
+            case EnemyState.Trace:
+                {
+                    _navigation.SetDestination(_target.position);
+                }
+                break;
+            case EnemyState.Attack:
+                {
+                }
+                break;
+            case EnemyState.Stop:
+                {
+                }
+                break;
+        }
+    }
+
+    private void SetState(int state)
+    {
+        _enemyState = (EnemyState)state;
+        print(_enemyState);
+    }
 }

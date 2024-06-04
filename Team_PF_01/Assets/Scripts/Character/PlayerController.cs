@@ -11,9 +11,11 @@ public class PlayerController : MoveableCharactorController
     private bool _isJump = false;
     private Vector2 _mouseValue;
 
+    private float _steminaDrainRate = 10.0f;
+
     private Transform _rotateObj;
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
 
@@ -39,16 +41,19 @@ public class PlayerController : MoveableCharactorController
         _velocity.x = Input.GetAxis("Horizontal");
         _velocity.z = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && _characterData.Stemina > 0)
         {
-            _moveSpeed = _characterData.RunSpeed;            
+            DecreseStemina();
+            _moveSpeed = _characterData.RunSpeed;
         }
-        else if (Input.GetKey(KeyCode.LeftControl))
+        else if (Input.GetKey(KeyCode.LeftControl) )
         {
+            IncreseStemina();
             _moveSpeed = _characterData.CrawlingSpeed;            
         }
         else
         {
+            IncreseStemina();
             _moveSpeed = _characterData.WalkSpeed;            
         }
 
@@ -100,6 +105,17 @@ public class PlayerController : MoveableCharactorController
             //
         }
 
+    }
+
+    private void DecreseStemina()
+    {
+        _characterData.Stemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
+        _characterData.Stemina = Mathf.Clamp(_characterData.Stemina, 0, _characterData.Stemina);
+    }
+    private void IncreseStemina()
+    {
+        _characterData.Stemina += Time.deltaTime*0.5f * _steminaDrainRate; // 스테미너 증가
+        _characterData.Stemina = Mathf.Clamp(_characterData.Stemina, 0, _characterData.Stemina);
     }
 
 
