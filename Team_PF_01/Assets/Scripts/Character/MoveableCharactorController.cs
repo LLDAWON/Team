@@ -34,12 +34,13 @@ public class MoveableCharactorController : MonoBehaviour
 
     virtual protected void Update()
     {
-        
     }
 
     protected void FixedUpdate()
     {
-        Move();        
+        Move();
+        CheckFoward();
+
     }
 
 
@@ -76,10 +77,15 @@ public class MoveableCharactorController : MonoBehaviour
         //Debug.Log("Floor");
     }
 
+    protected void CheckFoward()
+    {
+        Debug.DrawRay(transform.position, transform.forward * 2.5f, Color.red);
+    }
+
     protected void StopToWall()
     {
-
-        //Debug.DrawRay(transform.position, transform.forward * 2.5f, Color.red);
+        Debug.DrawRay(transform.position, transform.forward * 2.5f, Color.red);
+        //
         //
         //_isWallCollision = Physics.Raycast(transform.position, transform.forward, 2.5f, LayerMask.GetMask("Wall"));
     }

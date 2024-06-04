@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MoveableCharactorController
 {
@@ -9,10 +10,17 @@ public class EnemyController : MoveableCharactorController
     protected Quaternion _targetRotation;
     protected bool _isRotating = false;
 
-
     protected Transform _target;
+    protected Vector3 _destination;
 
+    protected NavMeshAgent _navigation;
 
+    
+    private void Awake()
+    {
+        base.Awake();
+        _navigation = GetComponent<NavMeshAgent>();
+    }
     protected void Start()
     {
         _target = GameObject.Find("Player").transform;
