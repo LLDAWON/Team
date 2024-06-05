@@ -18,7 +18,6 @@ public class MoveableCharactorController : MonoBehaviour
     protected bool _isPlay = true;
     protected float _moveSpeed = 0.0f;   
     protected int _playMove;
-    protected bool _isFind = false;
     protected bool _isAttack = false;
     protected CharacterData _characterData;
 
