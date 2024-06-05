@@ -77,7 +77,7 @@ public class DataManager : Singleton<DataManager>
             else continue;
         }
 
-        return eventDatas["Swich"];
+        return eventDatas["None"];
     }
 
     private void Awake()

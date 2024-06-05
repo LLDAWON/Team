@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class UIManager : MonoBehaviour
 
     private TextData _textData;
     private TextMeshProUGUI _text;
+    private Image _conditionKey;
+
+    public Image ConditionKey
+    { get { return _conditionKey; } }
 
     public void SetText(int key)
     {
@@ -26,6 +31,8 @@ public class UIManager : MonoBehaviour
     {
         _instance = this;
         _text = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        _conditionKey = transform.GetChild(1).GetComponent<Image>();
+        _conditionKey.gameObject.SetActive(false);
         _text.gameObject.SetActive(false);
     }
 

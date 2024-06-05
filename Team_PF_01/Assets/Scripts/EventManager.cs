@@ -7,29 +7,47 @@ public class EventManager : MonoBehaviour
     private EventData _eventData;
     private string _eventKey = null;
     private List<int> _preEventKey = new List<int>();
+    private Vector3 _size;
+    private Collider _collider;
+
+    private void Awake()
+    {
+        _collider = GetComponent<Collider>();
+        _size = _collider.bounds.size*2.0f;
+    }
 
     private void Update()
     {
-        ClickKey();
+        CheckCollision();
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void CheckCollision()
     {
-        _eventKey = other.tag;
-        _eventData = DataManager.Instance.GetEventData(_eventKey);
-    }
+        Collider[] colliders = Physics.OverlapBox(transform.position, _size);
 
-    private void OnTriggerExit(Collider other)
-    {
-        _eventKey = null;
+        if(colliders.Length == 0 )
+            _eventKey = null;
+        else
+        {
+            foreach (Collider collider in colliders)
+            {
+                _eventData = DataManager.Instance.GetEventData(collider.tag);
+                UIManager.Instance.ConditionKey.gameObject.SetActive(false);
+                if (_eventData.EventTag == "None")
+                    continue;
+                else
+                {
+                    UIManager.Instance.ConditionKey.gameObject.SetActive(true);
+                    _eventKey = collider.tag;
+                    ClickKey();
+                }
+            }
+        }       
     }
-
     private void ClickKey()
     {
         if(Input.GetKeyDown(KeyCode.F))
         {
-            if (_eventKey == null) return;
             CheckPreEvent();          
         }
     }
@@ -58,6 +76,12 @@ public class EventManager : MonoBehaviour
     {
         UIManager.Instance.SetText(_eventData.TextDataKey);
         _preEventKey.Add(_eventData.Key);
+        _eventKey = null;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawCube(transform.position, _size);
+    }
 }
