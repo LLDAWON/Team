@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,13 +20,11 @@ public class EnemyController : MoveableCharactorController
     protected List<Vector3> pathes = new List<Vector3>();
     protected Vector3 _destPos;
     protected int _curPathNum = 0;
-    protected bool _isFind = false;
     //타겟 네비게이션
     protected Transform _target;
     protected NavMeshAgent _navigation;
 
-    // 다 데이터화 시켜야함
-    protected float _detectionRange = 10.0f;
+
 
     //State
     protected EnemyState _enemyState = EnemyState.Patrol;
@@ -45,31 +44,36 @@ public class EnemyController : MoveableCharactorController
         _destPos = pathes[0];
     }
 
-    protected override void Update()
+     protected override void Update()
     {
         CheckPath();
-        CheckForward();
-        SetPath();
+        StateUpdate();
         EnemyAiPattern();
+        base.Update();
     }
 
 
-    protected void CheckForward()
+    virtual protected void StateUpdate()
     {
-        Vector3 targetDirection = _target.transform.position - transform.position;
-        targetDirection.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
-        RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, targetDirection, out hit, _detectionRange))
+        // 타겟에서 타겟이 바라보는 방향으로 레이저를 쐈을때 내가 걸리면 Stop으로 변경해주고 
+        //이거는 우는천사 몬스터일떄만 해야하니 자식으로 빼자
+       
+
+            Vector3 targetDirection = _target.transform.position - transform.position;
+        targetDirection.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
+
+        RaycastHit enemyHit;
+        if (Physics.Raycast(transform.position, targetDirection, out enemyHit, _characterData.DetectRange))
         {
-            if (hit.collider.CompareTag("Player"))
+            if (enemyHit.collider.CompareTag("Player"))
             {
-                _isFind = true;
+                SetState(1);
             }
         }
 
-        if(targetDirection.sqrMagnitude > _detectionRange * _detectionRange)
-            _isFind=false;
+        if(targetDirection.sqrMagnitude > _characterData.DetectRange * _characterData.DetectRange)
+            SetState(0);
 
     }
     
@@ -87,47 +91,53 @@ public class EnemyController : MoveableCharactorController
         }
     }
 
-    protected void SetPath()
-    {
-        if (_isFind)
-            SetState(1);
-        else
-            SetState(0);
-    }
-
     protected void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere (transform.position, _detectionRange);
+        Gizmos.DrawWireSphere (transform.position, _characterData.DetectRange);
     }
 
     protected void EnemyAiPattern()
     {
-
-        switch(_enemyState)
+        switch (_enemyState)
         {
             case EnemyState.Patrol:
                 {
                     _navigation.SetDestination(_destPos);
+                    _navigation.speed = _characterData.WalkSpeed;
                 }
                 break;
             case EnemyState.Trace:
                 {
                     _navigation.SetDestination(_target.position);
+                    _navigation.speed = _characterData.RunSpeed;
                 }
                 break;
             case EnemyState.Attack:
                 {
+                    //공격애니메이션 재생
+                    _navigation.speed = 0;
+                    _isAttack= true;
+
                 }
                 break;
             case EnemyState.Stop:
                 {
+                    // 특정 프레임에서 애니메이션 멈추기
+                    _navigation.speed = 0;
                 }
                 break;
         }
     }
 
-    private void SetState(int state)
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            SetState(2);
+        }
+    }
+    public void SetState(int state)
     {
         _enemyState = (EnemyState)state;
         print(_enemyState);

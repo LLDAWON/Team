@@ -12,12 +12,17 @@ public class MoveableCharactorController : MonoBehaviour
     [SerializeField]
     protected Vector3 _velocity;
 
-    
+
 
     // 움직임관련        
-    protected float _moveSpeed = 0.0f;    
+    protected bool _isPlay = true;
+    protected float _moveSpeed = 0.0f;   
+    protected int _playMove;
+    protected bool _isFind = false;
     protected bool _isAttack = false;
     protected CharacterData _characterData;
+
+    public CharacterData GetCharacterData() { return _characterData; }
 
     //받는 컴포넌트 
     protected CapsuleCollider _collider;
@@ -34,6 +39,7 @@ public class MoveableCharactorController : MonoBehaviour
 
     virtual protected void Update()
     {
+        _playMove = _isPlay ? 1 : 0;
     }
 
     protected void FixedUpdate()
@@ -46,63 +52,13 @@ public class MoveableCharactorController : MonoBehaviour
 
     protected void Move()
     {
-        transform.Translate(_velocity * Time.fixedDeltaTime);
-    }
-
-    protected void Turn()
-    {
-       
-
-        //// 방법 1
-        //if (_velocity.x <= _eliespedValue && _velocity.z <= _eliespedValue)
-        //    return;
-        //Vector3 dir = new Vector3(_velocity.x, 0, _velocity.z);
-        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.fixedDeltaTime * _rotateSpeed);
-
-
-        //방법 2
-        //if (_velocity.x <= _eliespedValue && _velocity.z <= _eliespedValue)
-        //    return;
-
-        //Quaternion turnRotation = Quaternion.LookRotation(_velocity);
-        //_rigidBody.rotation = Quaternion.Slerp(_rigidBody.rotation, turnRotation, _rotateSpeed);
-
-
-    }
-    protected void Floor()
-    {
-        //if (_velocity.y > 0.0f) return;
-        //_isJump = false;
-        //_velocity.y = 0.0f;
-        //Debug.Log("Floor");
+        transform.Translate(_velocity * _playMove * Time.fixedDeltaTime);
     }
 
     protected void CheckFoward()
     {
-        Debug.DrawRay(transform.position, transform.forward * 2.5f, Color.red);
+        Debug.DrawRay(transform.position, transform.forward * _characterData.DetectRange, Color.red);
+        
     }
-
-    protected void StopToWall()
-    {
-        Debug.DrawRay(transform.position, transform.forward * 2.5f, Color.red);
-        //
-        //
-        //_isWallCollision = Physics.Raycast(transform.position, transform.forward, 2.5f, LayerMask.GetMask("Wall"));
-    }
-
-    protected void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            //Floor();
-        }
-    }
-
-
-
-    //protected void GravityPress()
-    //{
-    //    _velocity.y -= _gravityScale * Time.fixedDeltaTime;
-    //}
 
 }

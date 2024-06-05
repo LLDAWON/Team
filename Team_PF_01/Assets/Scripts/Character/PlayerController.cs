@@ -7,9 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MoveableCharactorController
 {
-    public float _rotateSpeed = 50.0f;
     private float _curStemina = 0.0f;
-
     private bool _isJump = false;
     private Vector2 _mouseValue;
 
@@ -37,7 +35,7 @@ public class PlayerController : MoveableCharactorController
 
     protected override void Update()
     {
-
+        base.Update();
 
         MoveController();
         RotateController();
@@ -81,8 +79,8 @@ public class PlayerController : MoveableCharactorController
         _mouseValue.x = Input.GetAxis("Mouse X");
         _mouseValue.y = Input.GetAxis("Mouse Y");
 
-        transform.Rotate(Vector3.up * _rotateSpeed * _mouseValue.x * Time.deltaTime);
-        _rotateObj.Rotate(Vector3.left * _rotateSpeed * _mouseValue.y * Time.deltaTime);
+        transform.Rotate(Vector3.up * _characterData.RotateSpeed * _mouseValue.x * Time.deltaTime);
+        _rotateObj.Rotate(Vector3.left * _characterData.RotateSpeed * _mouseValue.y * Time.deltaTime);
                 
         float rotX = _rotateObj.localEulerAngles.x;
 
@@ -105,8 +103,6 @@ public class PlayerController : MoveableCharactorController
             _isJump = true;
         }
     }
-  
-
 
     private void ItemUseController()
     {

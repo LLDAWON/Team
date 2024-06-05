@@ -14,6 +14,8 @@ public struct CharacterData
     public float Stemina;
     public int Type;
     public int Room;
+    public float DetectRange;
+    public float RotateSpeed;
 }
 public struct ItemData
 {
@@ -116,6 +118,8 @@ public class DataManager : Singleton<DataManager>
             characterData.Stemina = float.Parse(data[6]);
             characterData.Type = int.Parse(data[7]);
             characterData.Room = int.Parse(data[8]);
+            characterData.DetectRange = float.Parse(data[9]);
+            characterData.RotateSpeed = float.Parse(data[10]);
 
             characterDatas.Add(characterData.Key, characterData);
         }
