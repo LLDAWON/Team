@@ -15,7 +15,9 @@ public class UIManager : MonoBehaviour
     private TextData _textData;
     private TextMeshProUGUI _text;
     private Image _conditionKey;
+    private Inventory _inventory;
 
+    public Inventory GetInventory() { return _inventory; }
     public Image ConditionKey
     { get { return _conditionKey; } }
 
@@ -24,6 +26,7 @@ public class UIManager : MonoBehaviour
         _textData = DataManager.Instance.GetTextData(key);
         _text.text = _textData.Text;
         _text.gameObject.SetActive(true);
+
         Invoke("Exposuretime", _textTime);        
     }
 
@@ -32,6 +35,7 @@ public class UIManager : MonoBehaviour
         _instance = this;
         _text = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         _conditionKey = transform.GetChild(1).GetComponent<Image>();
+        _inventory = transform.GetChild(2).GetComponent<Inventory>();
         _conditionKey.gameObject.SetActive(false);
         _text.gameObject.SetActive(false);
     }

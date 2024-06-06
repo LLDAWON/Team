@@ -26,18 +26,23 @@ public class EventManager : MonoBehaviour
         Collider[] colliders = Physics.OverlapBox(transform.position, _size);
 
         if(colliders.Length == 0 )
+        {
             _eventKey = null;
+        }            
         else
         {
             foreach (Collider collider in colliders)
             {
                 _eventData = DataManager.Instance.GetEventData(collider.tag);
+
                 UIManager.Instance.ConditionKey.gameObject.SetActive(false);
+
                 if (_eventData.EventTag == "None")
                     continue;
                 else
                 {
                     UIManager.Instance.ConditionKey.gameObject.SetActive(true);
+
                     _eventKey = collider.tag;
                     ClickKey();
                 }
@@ -61,6 +66,7 @@ public class EventManager : MonoBehaviour
                 if (_eventData.Condition == i)
                 {
                     SendText();
+                    return;
                 }
                 else
                     return;
@@ -74,7 +80,13 @@ public class EventManager : MonoBehaviour
 
     private void SendText()
     {
+        if(_eventData.GetItemKey > 0)
+        {
+            ItemManager.Instance.GetItem(_eventData.GetItemKey);
+        }
+
         UIManager.Instance.SetText(_eventData.TextDataKey);
+
         _preEventKey.Add(_eventData.Key);
         _eventKey = null;
     }

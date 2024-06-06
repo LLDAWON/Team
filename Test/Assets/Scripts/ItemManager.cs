@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemManager : Singleton<ItemManager>
@@ -7,12 +8,12 @@ public class ItemManager : Singleton<ItemManager>
     private ItemData _itemData;
     private int _itemDataKey;
 
-    private void GetItem(int key)
+    public void GetItem(int key)
     {
         _itemDataKey = key;
         _itemData = DataManager.Instance.GetItemData(_itemDataKey);
+        UIManager.Instance.GetInventory().AddItem(_itemDataKey);
+        Debug.Log(_itemData.Name);
     }
-
-
 
 }
