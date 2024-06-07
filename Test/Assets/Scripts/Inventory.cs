@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     private List<Image> _itemSlots = new List<Image>();
+    private int _itemCount;
 
     private void Awake()
     {
