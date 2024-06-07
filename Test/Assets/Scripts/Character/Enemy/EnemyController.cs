@@ -46,6 +46,8 @@ public class EnemyController : MoveableCharactorController
         base.Awake();
         _navigation = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+
+        gameObject.SetActive(false);
     }
     protected void Start()
     {
@@ -194,5 +196,12 @@ public class EnemyController : MoveableCharactorController
     public void SetState(int state)
     {
         _enemyState = (EnemyState)state;
+    }
+
+
+    protected void Spawn(Vector3 pos)
+    {
+        gameObject.SetActive(true);
+        transform.position = pos;
     }
 }

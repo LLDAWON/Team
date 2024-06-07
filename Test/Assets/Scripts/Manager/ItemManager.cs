@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ItemManager : Singleton<ItemManager>
 {
+
     private ItemData _itemData;
     private int _itemDataKey;
-
     public void GetItem(int key)
     {
         _itemDataKey = key;
