@@ -12,7 +12,7 @@ public class ItemManager : Singleton<ItemManager>
     {
         _itemDataKey = key;
         _itemData = DataManager.Instance.GetItemData(_itemDataKey);
-        UIManager.Instance.GetInventory().AddItem(_itemDataKey);
+        UIManager.Instance.GetInventory().AddItem(_itemData);
         Debug.Log(_itemData.Name);
     }
 

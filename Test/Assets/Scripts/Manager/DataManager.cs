@@ -22,7 +22,7 @@ public struct ItemData
     public int Key;
     public string Name;
     public float Value;
-    public int ImagePath;
+    public string ImagePath;
     public int Type;
 }
 public struct EventData
@@ -45,7 +45,6 @@ public struct TextData
 
 public class DataManager : Singleton<DataManager>
 {   
-
     private Dictionary<int, CharacterData> characterDatas = new Dictionary<int, CharacterData>();
     private Dictionary<int, ItemData> itemDatas = new Dictionary<int, ItemData>();
     private Dictionary<int, TextData> textDatas = new Dictionary<int, TextData>();
@@ -139,7 +138,7 @@ public class DataManager : Singleton<DataManager>
             itemData.Key = int.Parse(data[0]);
             itemData.Name = data[1];
             itemData.Value = float.Parse(data[2]);
-            itemData.ImagePath = int.Parse(data[3]);
+            itemData.ImagePath = data[3];
             itemData.Type = int.Parse(data[4]);
 
 

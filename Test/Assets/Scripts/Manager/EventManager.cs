@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// OBJ Layer 에 있는 오브젝트와 충돌 시 진행되는 이벤트(퀘스트) > 특정 위치에서 발생하는 퀘스트 진행 로직 필요 
 public class EventManager : MonoBehaviour
 {
     private EventData _eventData;
@@ -38,10 +39,8 @@ public class EventManager : MonoBehaviour
             foreach (Collider collider in colliders)
             {
                 _eventData = DataManager.Instance.GetEventData(collider.tag);
-
                 
-
-                if (_eventData.EventTag == "None")
+                if (_eventData.EventTag == "None" || CheckRedundancy(_eventData.Key))
                     continue;
                 else
                 {
@@ -99,5 +98,19 @@ public class EventManager : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawCube(transform.position, _size*2);
+    }
+
+    //중복진행되는 퀘스트 없애기
+    private bool CheckRedundancy(int key)
+    {
+        foreach(int preKey in _preEventKey)
+        {
+            if(preKey == key) 
+            {
+                return true;
+            }            
+        }
+
+        return false;
     }
 }

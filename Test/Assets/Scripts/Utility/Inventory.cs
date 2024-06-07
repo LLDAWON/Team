@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     private List<Image> _itemSlots = new List<Image>();
     private int _itemCount;
+    private string _imagePath;
 
     private void Awake()
     {
@@ -16,20 +17,23 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddItem(int key)
+    public void AddItem(ItemData itemdata)
     {
         foreach(Image item in _itemSlots)
         {
             if(!item.transform.GetChild(0).gameObject.activeSelf)
             {
-                item.transform.GetChild(0).GetComponent<Image>().sprite = null;
+                itemdata.ImagePath = _imagePath;
+                item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(_imagePath) as Sprite;
+                item.transform.GetChild(0).gameObject.SetActive(true);
+                return;
             }
         }
     }
-
-    public void UseItem()
+    //Player 아이템 사용 시 필요한 함수 > 스롯당 번호로 사용할지 클릭으로 확인할지 미정
+    public void UseItem(int key )
     {
-
+        _itemSlots[key].transform.GetChild(0).gameObject.SetActive(false); 
     }
 
 }
