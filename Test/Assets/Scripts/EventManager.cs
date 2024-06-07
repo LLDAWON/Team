@@ -10,10 +10,13 @@ public class EventManager : MonoBehaviour
     private Vector3 _size;
     private Collider _collider;
 
+    [SerializeField]
+    private LayerMask _layerMask;
+
     private void Awake()
     {
         _collider = GetComponent<Collider>();
-        _size = _collider.bounds.size*2.0f;
+        _size = _collider.bounds.size;
     }
 
     private void Update()
@@ -23,11 +26,12 @@ public class EventManager : MonoBehaviour
 
     private void CheckCollision()
     {
-        Collider[] colliders = Physics.OverlapBox(transform.position, _size);
+        Collider[] colliders = Physics.OverlapBox(transform.position, _size, Quaternion.identity, _layerMask);
 
         if(colliders.Length == 0 )
         {
             _eventKey = null;
+            UIManager.Instance.ConditionKey.gameObject.SetActive(false);
         }            
         else
         {
@@ -35,7 +39,7 @@ public class EventManager : MonoBehaviour
             {
                 _eventData = DataManager.Instance.GetEventData(collider.tag);
 
-                UIManager.Instance.ConditionKey.gameObject.SetActive(false);
+                
 
                 if (_eventData.EventTag == "None")
                     continue;
@@ -94,6 +98,6 @@ public class EventManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(transform.position, _size);
+        Gizmos.DrawCube(transform.position, _size*2);
     }
 }

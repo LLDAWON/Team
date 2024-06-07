@@ -43,6 +43,7 @@ TagManager:
   - TeacherTable
   - Chair
   - FlashLight
+  - Swich
   layers:
   - Default
   - TransparentFX
@@ -51,7 +52,7 @@ TagManager:
   - Water
   - UI
   - Wall
-  - 
+  - Object
   - 
   - 
   - 

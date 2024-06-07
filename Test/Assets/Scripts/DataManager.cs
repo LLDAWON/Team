@@ -68,16 +68,10 @@ public class DataManager : Singleton<DataManager>
 
     public EventData GetEventData(string tag)
     {
-        foreach(EventData data in eventDatas.Values)
-        {
-            if (data.EventTag == tag)
-            {
-                return eventDatas[tag];
-            }
-            else continue;
-        }
-
-        return eventDatas["None"];
+        if (eventDatas.ContainsKey(tag))
+            return eventDatas[tag];
+        else
+            return eventDatas["None"];
     }
 
     private void Awake()
