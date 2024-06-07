@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class MoveableCharactorController : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class MoveableCharactorController : MonoBehaviour
     protected bool _isAttack = false;
     protected CharacterData _characterData;
 
+    // 부채꼴 범위판별 관련
+    protected float _angleRange = 30f;
     public CharacterData GetCharacterData() { return _characterData; }
 
     //받는 컴포넌트 
@@ -44,8 +47,6 @@ public class MoveableCharactorController : MonoBehaviour
     protected void FixedUpdate()
     {
         Move();
-        CheckFoward();
-
     }
 
 
@@ -54,10 +55,21 @@ public class MoveableCharactorController : MonoBehaviour
         transform.Translate(_velocity * _playMove * Time.fixedDeltaTime);
     }
 
-    protected void CheckFoward()
+    private void OnDrawGizmos()
     {
-        Debug.DrawRay(transform.position, transform.forward * _characterData.DetectRange, Color.red);
-        
+        Handles.color = new Color(1, 1, 1, 0.2f);
+
+        Handles.DrawSolidDisc(transform.position, Vector3.up, _characterData.DetectRange);
+
+        Handles.color = new Color(0, 1, 0, 0.2f);
+
+        float angle = transform.eulerAngles.y - _angleRange;
+
+        Vector3 pos = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad),
+            0, Mathf.Cos(angle * Mathf.Deg2Rad));
+        //Vector3 pos = enemy.transform.forward * enemy.GetCharacterData().DetectRange;
+
+        Handles.DrawSolidArc(transform.position, Vector3.up, pos, _angleRange * 2.0f, _characterData.DetectRange);
     }
 
 }
