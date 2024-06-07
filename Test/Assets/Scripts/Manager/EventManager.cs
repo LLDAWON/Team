@@ -23,6 +23,11 @@ public class EventManager : MonoBehaviour
     private void Update()
     {
         CheckCollision();
+
+        if(Input.GetMouseButtonDown(1))
+        {
+            UIManager.Instance.GetInventory().UseItem(1);
+        }
     }
 
     private void CheckCollision()
@@ -40,7 +45,7 @@ public class EventManager : MonoBehaviour
             {
                 _eventData = DataManager.Instance.GetEventData(collider.tag);
                 
-                if (_eventData.EventTag == "None" || CheckRedundancy(_eventData.Key))
+                if (_eventData.EventTag == "None" )
                     continue;
                 else
                 {
@@ -70,9 +75,7 @@ public class EventManager : MonoBehaviour
                 {
                     SendText();
                     return;
-                }
-                else
-                    return;
+                }   
             }
         }
         else

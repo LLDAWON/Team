@@ -62,6 +62,8 @@ public class DataManager : Singleton<DataManager>
 
     public TextData GetTextData(int key)
     {
+        if(key == 0)
+            return textDatas[1];
         return textDatas[key];
     }
 

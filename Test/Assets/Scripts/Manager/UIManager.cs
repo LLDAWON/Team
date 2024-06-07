@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
         _text.text = _textData.Text;
         _text.gameObject.SetActive(true);
 
-        Invoke("Exposuretime", _textTime);        
+        Invoke("Exposuretime", _textTime);    
     }
 
     private void Awake()
