@@ -150,6 +150,8 @@ public class EnemyController : MoveableCharactorController
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere (transform.position, _characterData.DetectRange);
+
+        //Gizmos.draw
     }
 
     protected void EnemyAiPattern()
