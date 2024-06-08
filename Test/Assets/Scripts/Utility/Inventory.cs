@@ -7,7 +7,7 @@ using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
-    private List<GameObject> _itemSlots = new();
+    private List<Image> _itemSlots = new();
     private Dictionary<string, TextMeshProUGUI> _countTxTs = new();
     private Dictionary<string, int> _items = new Dictionary<string, int>();
 
@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
     {
         for(int i = 0; i < transform.childCount; i++)
         {
-            _itemSlots.Add(transform.GetChild(i).GetChild(i).GetComponent<GameObject>());
+            _itemSlots.Add(transform.GetChild(i).GetChild(0).GetComponent<Image>());
         }
 
     }
@@ -27,14 +27,15 @@ public class Inventory : MonoBehaviour
             if(!CheckRedundancyItem(itemdata.Name))
             {
                 //중복되는 아이템이 없을 경우
-                if (!_itemSlots[i].transform.GetChild(0).gameObject.activeSelf)
+                if (!_itemSlots[i].gameObject.activeSelf)
                 {
                     _items.Add(itemdata.Name, 1);
-                    _itemSlots[i].GetComponent<Image>().sprite = Resources.Load<Sprite>(itemdata.ImagePath) as Sprite;
-                    _itemSlots[i].gameObject.SetActive(true);                   
+
+                    _itemSlots[i].sprite = Resources.Load<Sprite>(itemdata.ImagePath) as Sprite;
                     _countTxTs.Add(itemdata.Name, _itemSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>());
                     _countTxTs[itemdata.Name].text = _items[itemdata.Name].ToString();
-                    _countTxTs[itemdata.Name].gameObject.SetActive(true) ;                    
+
+                    _itemSlots[i].gameObject.SetActive(true);
 
                     return;
                 }
@@ -52,21 +53,27 @@ public class Inventory : MonoBehaviour
 
     private bool CheckRedundancyItem(string name)
     {
-        if (_items.ContainsKey(name))
-        {            
-            return true;
-        }
-        return false;
+        return _items.ContainsKey(name);
     }
-    //Player 아이템 사용 시 필요한 함수 > 스롯당 번호로 사용할지 클릭으로 확인할지 미정
-    public void UseItem(int key )
+    //이렇게 하면 슬롯 읽어오기 불편할듯...;ㅠ
+    public void UseItem(string name )
     {
-        ItemData itemData =  DataManager.Instance.GetItemData(key);
-        _items[itemData.Name]--;
-        _countTxTs[itemData.Name].text = _items[itemData.Name].ToString () ;
+        _items[name]--;
+        _countTxTs[name].text = _items[name].ToString () ;
 
-        _itemSlots[key].transform.GetChild(0).GetComponent<Image>().sprite = null;
-        _itemSlots[key].transform.GetChild(0).gameObject.SetActive(false); 
+        if (_items[name] == 0)
+        {
+            foreach (Image slot in _itemSlots)
+            {
+                if (slot.sprite.name == name)
+                {
+                    slot.sprite = null;
+                    slot.gameObject.SetActive(false);
+                }
+            }
+            _items.Remove(name);
+            _countTxTs.Remove(name);
+        }
     }
 
 }

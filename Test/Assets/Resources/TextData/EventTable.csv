@@ -1,11 +1,12 @@
-key,condition,enentTag,eventCount,textKey,getItemKey,itemKey
-0,0,None,0,0,0,0
-1,0,Swich,1,1,0,0
-2,1,ClassDoor1,1,2,0,0
-3,0,Locker1,0,3,0,0
-4,3,FlashLight,1,4,101,0
-5,0,Locker2,0,0,0,0
-6,5,Battery,1,5,102,0
-7,6, ,0,6,0,0
-8,7,Hint1,1,7,0,0
-9,0,Hint2,1,8,0,0
+key,condition,enentTag,eventCount,textKey,getItemKey,itemKey,type
+0,0,None,0,0,0,0,0
+1,0,Default,0,1,0,0,0
+2,1,Swich,1,2,0,0,1
+3,0,ClassDoor1,1,3,0,0,1
+4,3,Locker1,0,0,0,0,1
+5,0,FlashLight,1,4,101,0,1
+6,5,Locker2,0,0,0,0,1
+7,6,Battery,1,5,102,0,1
+8,0, ,0,6,0,0,0
+9,8,Hint1,1,7,0,0,1
+10,9,Hint2,1,8,0,0,1

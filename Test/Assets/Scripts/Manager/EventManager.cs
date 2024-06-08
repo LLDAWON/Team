@@ -23,18 +23,13 @@ public class EventManager : MonoBehaviour
     private void Update()
     {
         CheckCollision();
-
-        if(Input.GetMouseButtonDown(1))
-        {
-            UIManager.Instance.GetInventory().UseItem(1);
-        }
     }
 
     private void CheckCollision()
     {
         Collider[] colliders = Physics.OverlapBox(transform.position, _size, Quaternion.identity, _layerMask);
 
-        if(colliders.Length == 0 )
+        if(colliders.Length == 0)
         {
             _eventKey = null;
             UIManager.Instance.ConditionKey.gameObject.SetActive(false);
@@ -45,14 +40,27 @@ public class EventManager : MonoBehaviour
             {
                 _eventData = DataManager.Instance.GetEventData(collider.tag);
                 
-                if (_eventData.EventTag == "None" )
+                if (_eventData.EventTag == "None" || CheckRedundancy(_eventData.Key))
                     continue;
                 else
                 {
-                    UIManager.Instance.ConditionKey.gameObject.SetActive(true);
+                    if(_eventData.Type == 1)
+                    {
+                        UIManager.Instance.ConditionKey.gameObject.SetActive(true);
 
-                    _eventKey = collider.tag;
-                    ClickKey();
+                        _eventKey = collider.tag;
+                        if (Input.GetKeyDown(KeyCode.F))
+                        {
+                            CheckPreEvent();
+                           // collider.GetComponentInParent<Animation>().Play();
+                        }
+                        
+                    }
+                    else
+                    {
+                        CheckPreEvent();
+                    }
+
                 }
             }
         }       

@@ -48,6 +48,7 @@ TagManager:
   - PickableItem
   - Battery
   - Locker2
+  - Default
   layers:
   - Default
   - TransparentFX
