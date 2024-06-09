@@ -17,7 +17,7 @@ public class EventManager : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<Collider>();
-        _size = _collider.bounds.size;
+        _size = _collider.bounds.size*0.5f;
     }
 
     private void Update()
@@ -44,33 +44,30 @@ public class EventManager : MonoBehaviour
                     continue;
                 else
                 {
-                    if(_eventData.Type == 1)
-                    {
-                        UIManager.Instance.ConditionKey.gameObject.SetActive(true);
+                    UIManager.Instance.ConditionKey.gameObject.SetActive(true);
 
-                        _eventKey = collider.tag;
+                    _eventKey = collider.tag;
+                    
+                    if (_eventData.Type == 1)
+                    {
                         if (Input.GetKeyDown(KeyCode.F))
                         {
                             CheckPreEvent();
-                           // collider.GetComponentInParent<Animation>().Play();
+                            collider.GetComponent<Animation>().Play();
                         }
-                        
                     }
                     else
                     {
-                        CheckPreEvent();
+                        if (Input.GetKeyDown(KeyCode.F))
+                        {
+                            CheckPreEvent(); 
+                            collider.gameObject.SetActive(false);
+                        }
+                       
                     }
-
                 }
             }
         }       
-    }
-    private void ClickKey()
-    {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            CheckPreEvent();          
-        }
     }
 
     private void CheckPreEvent()
@@ -114,6 +111,8 @@ public class EventManager : MonoBehaviour
     //중복진행되는 퀘스트 없애기
     private bool CheckRedundancy(int key)
     {
+        if (_eventData.Key > 100) return false;
+
         foreach(int preKey in _preEventKey)
         {
             if(preKey == key) 

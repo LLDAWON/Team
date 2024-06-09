@@ -15,9 +15,9 @@ public class Inventory : MonoBehaviour
     {
         for(int i = 0; i < transform.childCount; i++)
         {
+            GameObject slot = transform.GetChild(i).GetChild(0).gameObject;
             _itemSlots.Add(transform.GetChild(i).GetChild(0).GetComponent<Image>());
         }
-
     }
 
     public void AddItem(ItemData itemdata)
@@ -34,8 +34,15 @@ public class Inventory : MonoBehaviour
                     _itemSlots[i].sprite = Resources.Load<Sprite>(itemdata.ImagePath) as Sprite;
                     _countTxTs.Add(itemdata.Name, _itemSlots[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>());
                     _countTxTs[itemdata.Name].text = _items[itemdata.Name].ToString();
-
+                    
                     _itemSlots[i].gameObject.SetActive(true);
+
+                    Button button = _itemSlots[i].GetComponent<Button>();
+                    if (button != null)
+                    {
+                        int slotIndex = i; // 람다를 위한 인덱스 캡처
+                        button.onClick.AddListener(() => OnSlotClick(slotIndex));
+                    }
 
                     return;
                 }
@@ -55,7 +62,16 @@ public class Inventory : MonoBehaviour
     {
         return _items.ContainsKey(name);
     }
-    //이렇게 하면 슬롯 읽어오기 불편할듯...;ㅠ
+
+    public void OnSlotClick(int slotIndex)
+    {
+        Image slotImage = _itemSlots[slotIndex].GetComponent<Image>();
+        if (slotImage.sprite == null) return;
+
+        string itemName = slotImage.sprite.name;
+        UseItem(itemName);
+    }
+
     public void UseItem(string name )
     {
         _items[name]--;
@@ -65,10 +81,13 @@ public class Inventory : MonoBehaviour
         {
             foreach (Image slot in _itemSlots)
             {
+                if(slot.sprite == null) continue;
+
                 if (slot.sprite.name == name)
                 {
                     slot.sprite = null;
                     slot.gameObject.SetActive(false);
+                    return;
                 }
             }
             _items.Remove(name);

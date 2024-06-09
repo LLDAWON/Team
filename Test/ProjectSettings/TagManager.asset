@@ -49,6 +49,7 @@ TagManager:
   - Battery
   - Locker2
   - Default
+  - Hint1
   layers:
   - Default
   - TransparentFX

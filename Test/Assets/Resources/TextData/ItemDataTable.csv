@@ -7,7 +7,7 @@ key,name,value,path,type
 204,Key,0,Textures/Item/Key,2
 205,Key,0,Textures/Item/Key,2
 206,Key,0,Textures/Item/Key,2
-301,DryCell,100,Textures/Item/Battery,3
+301,Battery,100,Textures/Item/Battery,3
 302,Drink,50,Textures/Item/Drink,3
 401,Hint1,0,Textures/Item/InformationPaper,4
 402,Hint2,0,Textures/Item/InformationPaper,4
