@@ -25,17 +25,28 @@ public class MonsterManager : Singleton<MonsterManager>
 
     private void LoadMonsterPrefabs()
     {
-        GameObject followEnemyPrefab = Resources.Load<GameObject>("Prefabs/Character/Enemy/FollowEnemy");
+        //5類
+        GameObject followEnemyPrefab = Resources.Load<GameObject>("Prefabs/Character/Enemy/Follow");
         if (followEnemyPrefab != null)
         {
             _monsterPrefabs.Add("Follow", followEnemyPrefab);
         }
 
+        //4類
+
+
+        //3類
         GameObject teacherEnemyPrefab = Resources.Load<GameObject>("Prefabs/Character/Enemy/Teacher");
         if (teacherEnemyPrefab != null)
         {
             _monsterPrefabs.Add("Teacher", teacherEnemyPrefab);
         }
+        
+        //2類
+
+
+        //1類
+
     }
 
 

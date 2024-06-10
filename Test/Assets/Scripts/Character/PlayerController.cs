@@ -7,14 +7,19 @@ using UnityEngine.UI;
 
 public class PlayerController : MoveableCharactorController
 {
-    private float _curStemina = 0.0f;
-    private bool _isJump = false;
-    private bool _isPlayerHide;
-    public bool GetIsPlayerHide() { return _isPlayerHide; }
 
     private Vector2 _mouseValue;
 
+    private float _curStemina = 0.0f;
     private float _steminaDrainRate = 10.0f;
+
+    //Hide
+    private bool _isPlayerHide;
+    public bool GetIsPlayerHide() { return _isPlayerHide; }
+
+    //LightOn
+    private bool _isLightOn = false;
+    public bool GetIsLightOn() { return _isLightOn; }
 
     private Transform _rotateObj;
     private GameObject _prfSteminaBar;
@@ -44,7 +49,6 @@ public class PlayerController : MoveableCharactorController
         MoveController();
         RotateController();
 
-        JumpController();
         ItemUseController();
     }
 
@@ -57,10 +61,17 @@ public class PlayerController : MoveableCharactorController
         _velocity.x = Input.GetAxis("Horizontal");
         _velocity.z = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftShift) && _characterData.Stemina > 0)
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            _curStemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
-            _moveSpeed = _characterData.RunSpeed;
+            if(_curStemina > 0.0f)
+            {
+                _curStemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
+                _moveSpeed = _characterData.RunSpeed;
+            }
+            else
+            {
+                _moveSpeed = _characterData.WalkSpeed;
+            }
         }
         else if (Input.GetKey(KeyCode.LeftControl) )
         {
@@ -98,17 +109,9 @@ public class PlayerController : MoveableCharactorController
 
     }
 
-    private void JumpController()
-    {
-        if (Input.GetKey(KeyCode.Space) && !_isJump)
-        {
-            _velocity.y = _characterData.JumpPower;
-            _isJump = true;
-        }
-    }
-
     private void ItemUseController()
     {
+
         if (Input.GetKey(KeyCode.F))
         {
             // 아이템 상호작용 이떄의 아이템 코드에 따라서 행동이 달라지게 

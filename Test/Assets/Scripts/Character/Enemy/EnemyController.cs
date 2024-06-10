@@ -27,10 +27,10 @@ public class EnemyController : MoveableCharactorController
     protected Transform _target;
     protected NavMeshAgent _navigation;
 
-    // 타겟 부채꼴범위판별 // 벽투과방지용 레이저
+    // 타겟 부채꼴범위판별 
     protected bool _isPlayerDetected = false; // 내가 플레이어를 찾음
     protected bool _isInCircularSector = true; // 부채꼴안에 들어옴 
-    protected bool _rayzorHitPlayer = false;
+    protected bool _rayzorHitPlayer = false;   //벽투과방지용 레이저
 
     // State
     protected EnemyState _enemyState = EnemyState.None;
@@ -50,6 +50,9 @@ public class EnemyController : MoveableCharactorController
     // 디졸브효과 및 쉐이더 
     protected Material _material;
     protected Shader _shader;
+    protected float _desolveTime;
+    protected float _desolveEndTime = 2.0f;
+    protected bool _desolveStart = false;
 
 
     protected override void Awake()
@@ -58,7 +61,7 @@ public class EnemyController : MoveableCharactorController
         _navigation = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
 
-        
+        _desolveTime = _desolveEndTime;
 
     }
 
@@ -80,19 +83,19 @@ public class EnemyController : MoveableCharactorController
 
         CheckPath();
 
-        if (!_isFirstMeet)
-            return;
+        
         StateUpdate();
         EnemyAiPattern();
+        //DesolveEnemy();
         base.Update();
     }
 
     virtual protected void StateUpdate()
     {
-
-
-
-        //캐비넷같이 숨을수 있는곳 들어갔을때는 인식못하게 조절하기위해
+        // 플레이어가 조우하기전엔 스테이트변화  x
+        if (!_isFirstMeet)
+            return;
+        //캐비넷같이 숨을수 있는곳 들어갔을때는 인식못하게 조절하기위해 숨으면 순찰
         bool _playerHide = _target.GetComponent<PlayerController>().GetIsPlayerHide();
             if (_playerHide)
             {
@@ -188,7 +191,6 @@ public class EnemyController : MoveableCharactorController
                 _animator.speed = 2.0f;
                 _navigation.SetDestination(_target.position);
                 _navigation.speed = _characterData.RunSpeed;
-                DesolveEffect();
                 break;
             case EnemyState.Attack:
                 _navigation.speed = 0;
@@ -208,8 +210,9 @@ public class EnemyController : MoveableCharactorController
             case EnemyState.Die:
                 _navigation.velocity = Vector3.zero;
                 _navigation.speed = 0;
-                
-                
+                DesolveEffect();
+
+
                 break;
         }
     }
@@ -256,14 +259,14 @@ public class EnemyController : MoveableCharactorController
     }
 
 
-    protected void CheckFirstMeetPlayer()
+    virtual protected void CheckFirstMeetPlayer()
     {
         PlayerController playerController = _target.GetComponent<PlayerController>();
 
         Vector3 _inPlayerSight = transform.position - _target.transform.position;
         _inPlayerSight.y = 0;
 
-        if (_inPlayerSight.magnitude <= _characterData.DetectRange && !_isFirstMeet)
+        if (_inPlayerSight.magnitude <= playerController.GetCharacterData().DetectRange && !_isFirstMeet)
         {
             float dot = Vector3.Dot(_inPlayerSight.normalized, playerController.transform.forward);
 
@@ -275,13 +278,13 @@ public class EnemyController : MoveableCharactorController
             {
                 _isFirstMeet = true;
                 _animator.SetTrigger("MeetPlayer");
-                Debug.Log("적을 만났습니다.");
+                Debug.Log("플레이어가 적을 찾았습니다.");
                 return;
             }
         }
     }
 
-
+    //디졸브효과및 n초후 사라짐
     protected void DesolveEffect()
     {
         //1초후 디졸브 효과가 반복되니 삭제해야함
@@ -294,7 +297,25 @@ public class EnemyController : MoveableCharactorController
                 _shader = _material.shader;
                 _shader = Shader.Find("Shader Graphs/Desolve");
                 _material.shader = _shader;
+
             }
         }
+        _desolveStart = true;
+    }
+
+    protected void DesolveEnemy()
+    {
+        if(_desolveStart)
+        {
+            _desolveTime--;
+            if(_desolveTime<0)
+            {
+                gameObject.SetActive(false);
+                _desolveTime += _desolveEndTime;
+                _desolveStart = false;
+            }
+        }
+
+        _material.SetFloat("DesloveTime", _desolveTime);
     }
 }

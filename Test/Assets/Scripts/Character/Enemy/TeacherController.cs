@@ -12,6 +12,9 @@ public class TeacherController : EnemyController
 
     protected override void StateUpdate()
     {
+        //√π¡∂øÏ¿¸ø£ ∏ÿ√„
+        if (!_isFirstMeet)
+            return;
         //º˚æÓ¿÷¿∏∏È ∏ÿ√„
         bool _playerHide = _target.GetComponent<PlayerController>().GetIsPlayerHide();
         if (_playerHide)
@@ -26,7 +29,7 @@ public class TeacherController : EnemyController
         Vector3 _inPlayerSight = transform.position - _target.transform.position;
         _inPlayerSight.y = 0;
 
-        float _detectRange = _characterData.DetectRange*2.0f;
+        float _detectRange = playerController.GetCharacterData().DetectRange * 2.0f;
 
         if (_inPlayerSight.magnitude <= _detectRange)
         {
