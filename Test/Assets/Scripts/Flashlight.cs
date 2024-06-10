@@ -5,7 +5,7 @@ using UnityEngine;
 public class Flashlight : MonoBehaviour
 {
     public Light lightSource;
-    public KeyCode switchKey = KeyCode.Tab;
+    public KeyCode switchKey = KeyCode.F;
 
     void Update()
     {
