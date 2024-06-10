@@ -8,27 +8,17 @@ public class Testobject : MonoBehaviour
     private bool iscollision = false;
     void Start()
     {
-
+        //objectmanager.BookCase();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        //if (!iscollision)
-        //{
-        //    objectmanager.Falling();
-        //}
         objectmanager.BookCase();
+
     }
 
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag == "Floor")
-        {
-            iscollision = true;
-
-        }
-    }
+   
 }

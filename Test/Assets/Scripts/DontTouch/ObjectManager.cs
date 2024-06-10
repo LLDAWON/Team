@@ -24,12 +24,10 @@ public class ObjectManager : MonoBehaviour
 
         Vector3 currentRotation = _bookCase.transform.rotation.eulerAngles;
 
-        
-        currentRotation.x = Mathf.Clamp(currentRotation.x, 0f, maxRotationX);
+        float newRotationX = Mathf.Clamp(currentRotation.x + speed * Time.deltaTime, 0f, maxRotationX);
 
+        _bookCase.transform.rotation = Quaternion.Euler(newRotationX, currentRotation.y, currentRotation.z);
         
-        _bookCase.transform.rotation = Quaternion.Euler(currentRotation);
-       
     }
    
 
