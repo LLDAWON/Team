@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class EnemyController : MoveableCharactorController
 {
@@ -10,7 +12,9 @@ public class EnemyController : MoveableCharactorController
         Patrol,
         Trace,
         Attack,
-        Stop
+        Stop,
+        None,
+        Die
     }
 
     // 경로 관련
@@ -29,7 +33,7 @@ public class EnemyController : MoveableCharactorController
     protected bool _rayzorHitPlayer = false;
 
     // State
-    protected EnemyState _enemyState = EnemyState.Patrol;
+    protected EnemyState _enemyState = EnemyState.None;
 
     // Animator
     protected Animator _animator;
@@ -40,17 +44,27 @@ public class EnemyController : MoveableCharactorController
     private bool _isFirstSpawn = true;
     private int _defaultAnimatorStateHash;
 
+    //플레이어와 처음 조우하기전까진 움직임 x
+    protected bool _isFirstMeet = false;
+
+    // 디졸브효과 및 쉐이더 
+    protected Material _material;
+    protected Shader _shader;
+
+
     protected override void Awake()
     {
         base.Awake();
         _navigation = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
 
+        
+
     }
 
     protected void Start()
     {
-        _target = GameObject.Find("Player").transform;
+        _target = GameManager.Instance.GetPlayer().transform;
         _destPos = pathes[0];
         _defaultAnimatorStateHash = _animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
     }
@@ -60,7 +74,14 @@ public class EnemyController : MoveableCharactorController
         if (_enemyState == EnemyState.Attack)
             return;
 
+        //처음조우상태
+        CheckFirstMeetPlayer();
+
+
         CheckPath();
+
+        if (!_isFirstMeet)
+            return;
         StateUpdate();
         EnemyAiPattern();
         base.Update();
@@ -68,55 +89,70 @@ public class EnemyController : MoveableCharactorController
 
     virtual protected void StateUpdate()
     {
-        Vector3 targetDirection = _target.transform.position - transform.position;
-        targetDirection.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
 
-        // 벽투과방지용 bool
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, _characterData.DetectRange))
-        {
-            if (hit.collider.CompareTag("Player"))
+
+
+        //캐비넷같이 숨을수 있는곳 들어갔을때는 인식못하게 조절하기위해
+        bool _playerHide = _target.GetComponent<PlayerController>().GetIsPlayerHide();
+            if (_playerHide)
             {
-                _rayzorHitPlayer = true;
+                SetState(0);
+                return;
             }
-        }
 
-        if (targetDirection.magnitude < _characterData.DetectRange)
-        {
-            float dot = Vector3.Dot(targetDirection.normalized, transform.forward);
-            float theta = Mathf.Acos(dot);
-            float degree = Mathf.Rad2Deg * theta;
+            // 부채꼴 판별 관련 코드
+            Vector3 targetDirection = _target.transform.position - transform.position;
+            targetDirection.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
 
-            if (degree <= _angleRange)
+            // 벽투과방지용 bool 
+            // 부채꼴안에 들어왔고, 사정거리 원안에 들어왔지만 사이에 벽이 있을때는 추격상태 x , 순찰모드
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, _characterData.DetectRange))
             {
-                _isInCircularSector = true;
-                if (_rayzorHitPlayer)
+                if (hit.collider.CompareTag("Player"))
                 {
-                    _isPlayerDetected = true;
+                    _rayzorHitPlayer = true;
                 }
             }
-            else
-            {
-                _isInCircularSector = false;
-            }
-        }
 
-        if (_isPlayerDetected)
-        {
-            SetState(1);
-        }
-        else
-        {
-            if (targetDirection.magnitude > _characterData.DetectRange)
+            if (targetDirection.magnitude < _characterData.DetectRange)
             {
-                _isPlayerDetected = false;
-                SetState(0);
+                float dot = Vector3.Dot(targetDirection.normalized, transform.forward);
+                float theta = Mathf.Acos(dot);
+                float degree = Mathf.Rad2Deg * theta;
+
+                if (degree <= _angleRange)
+                {
+                    _isInCircularSector = true;
+                    if (_rayzorHitPlayer)
+                    {
+                        _isPlayerDetected = true;
+                    }
+                }
+                else
+                {
+                    _isInCircularSector = false;
+                }
             }
-            else
+
+            if (_isPlayerDetected)
             {
                 SetState(1);
             }
-        }
+            else
+            {
+                if (targetDirection.magnitude > _characterData.DetectRange)
+                {
+                    _isPlayerDetected = false;
+                    SetState(0);
+                }
+                else
+                {
+                    SetState(1);
+                }
+            }
+      
+        
     }
 
     protected void CheckPath()
@@ -128,8 +164,12 @@ public class EnemyController : MoveableCharactorController
 
         if (direction.sqrMagnitude < 0.01f)
         {
-            _curPathNum = (_curPathNum + 1) % pathes.Count;
-            _destPos = pathes[_curPathNum];
+            //여기는 순서대로 왔다갔다
+            //_curPathNum = (_curPathNum + 1) % pathes.Count;
+            //_destPos = pathes[_curPathNum];
+            //랜덤으로 왔다갔다? 하는게 더 좋을거같다.
+            int randompathNum = Random.Range(0, _curPathNum);
+            _destPos = pathes[randompathNum];
         }
     }
 
@@ -138,14 +178,17 @@ public class EnemyController : MoveableCharactorController
         switch (_enemyState)
         {
             case EnemyState.Patrol:
-                _navigation.SetDestination(_destPos);
+                _animator.SetBool("IsTrace", false);
                 _animator.speed = 0.5f;
+                _navigation.SetDestination(_destPos);
                 _navigation.speed = _characterData.WalkSpeed;
                 break;
             case EnemyState.Trace:
-                _navigation.SetDestination(_target.position);
+                _animator.SetBool("IsTrace", true);
                 _animator.speed = 2.0f;
+                _navigation.SetDestination(_target.position);
                 _navigation.speed = _characterData.RunSpeed;
+                DesolveEffect();
                 break;
             case EnemyState.Attack:
                 _navigation.speed = 0;
@@ -157,6 +200,16 @@ public class EnemyController : MoveableCharactorController
                 _navigation.velocity = Vector3.zero;
                 _navigation.speed = 0;
                 _animator.speed = 0.0f;
+                break;
+            case EnemyState.None:
+                _navigation.velocity = Vector3.zero;
+                _navigation.speed = 0;
+                break;
+            case EnemyState.Die:
+                _navigation.velocity = Vector3.zero;
+                _navigation.speed = 0;
+                
+                
                 break;
         }
     }
@@ -200,5 +253,48 @@ public class EnemyController : MoveableCharactorController
         _animatorPlaybackTime = _animatorStateInfo.normalizedTime % 1;
 
         gameObject.SetActive(false);
+    }
+
+
+    protected void CheckFirstMeetPlayer()
+    {
+        PlayerController playerController = _target.GetComponent<PlayerController>();
+
+        Vector3 _inPlayerSight = transform.position - _target.transform.position;
+        _inPlayerSight.y = 0;
+
+        if (_inPlayerSight.magnitude <= _characterData.DetectRange && !_isFirstMeet)
+        {
+            float dot = Vector3.Dot(_inPlayerSight.normalized, playerController.transform.forward);
+
+            float theta = Mathf.Acos(dot);
+
+            float degree = Mathf.Rad2Deg * theta;
+
+            if (degree <= _angleRange)
+            {
+                _isFirstMeet = true;
+                _animator.SetTrigger("MeetPlayer");
+                Debug.Log("적을 만났습니다.");
+                return;
+            }
+        }
+    }
+
+
+    protected void DesolveEffect()
+    {
+        //1초후 디졸브 효과가 반복되니 삭제해야함
+        foreach (Transform child in transform)
+        {
+            Renderer renderer = child.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                _material = renderer.material;
+                _shader = _material.shader;
+                _shader = Shader.Find("Shader Graphs/Desolve");
+                _material.shader = _shader;
+            }
+        }
     }
 }

@@ -12,13 +12,23 @@ public class TeacherController : EnemyController
 
     protected override void StateUpdate()
     {
+        //º˚æÓ¿÷¿∏∏È ∏ÿ√„
+        bool _playerHide = _target.GetComponent<PlayerController>().GetIsPlayerHide();
+        if (_playerHide)
+        {
+            SetState(3);
+            return;
+        }
+        //«√∑π¿ÃæÓ∞° πŸ∂Û∫∏∏È ∏ÿ√„
         PlayerController playerController = _target.GetComponent<PlayerController>();
+        
 
-        Vector3 _inPlayerSight  = transform.position - _target.transform.position;
+        Vector3 _inPlayerSight = transform.position - _target.transform.position;
         _inPlayerSight.y = 0;
 
+        float _detectRange = _characterData.DetectRange*2.0f;
 
-        if (_inPlayerSight.magnitude <= _characterData.DetectRange)
+        if (_inPlayerSight.magnitude <= _detectRange)
         {
             float dot = Vector3.Dot(_inPlayerSight.normalized, playerController.transform.forward);
 
@@ -29,19 +39,52 @@ public class TeacherController : EnemyController
             if (degree <= _angleRange)
             {
                 SetState(3);
-                Debug.Log("TeacherStop");
                 return;
             }
             else
             {
-                base.StateUpdate();
-                Debug.Log("TeacherMove");
+                SetState(1);
             }
         }
         else
         {
-            base.StateUpdate();
+            SetState(1);
         }
+
+
+        
+
+
+
+        //PlayerController playerController = _target.GetComponent<PlayerController>();
+
+        //Vector3 _inPlayerSight  = transform.position - _target.transform.position;
+        //_inPlayerSight.y = 0;
+
+
+        //if (_inPlayerSight.magnitude <= _characterData.DetectRange)
+        //{
+        //    float dot = Vector3.Dot(_inPlayerSight.normalized, playerController.transform.forward);
+
+        //    float theta = Mathf.Acos(dot);
+
+        //    float degree = Mathf.Rad2Deg * theta;
+
+        //    if (degree <= _angleRange)
+        //    {
+        //        SetState(3);
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        base.StateUpdate();
+        //    }
+        //}
+        //else
+        //{
+        //    base.StateUpdate();
+        //}
+
 
 
     }

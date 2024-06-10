@@ -11,8 +11,10 @@ public class MonsterManager : Singleton<MonsterManager>
     private Dictionary<string, GameObject> _monsterPrefabs = new Dictionary<string, GameObject>();
 
     private Dictionary<string, GameObject> _spawnedMonsters = new Dictionary<string, GameObject>(); //스폰된몬스터
+    private GameObject _curEnemy;
     // private List<GameObject> _monsterPrefab = new List<GameObject>();
 
+    public GameObject GetCurEnemy() { return _curEnemy;}
 
     private void Awake()
     {
@@ -41,15 +43,11 @@ public class MonsterManager : Singleton<MonsterManager>
     // 특정 몬스터 소환 
     public void Spawn(string monster, Vector3 pos)
     {
-        if (!_monsterPrefabs.ContainsKey(monster))
-        {
-            Debug.Log("몬스터프리팹이 존재하지않습니다.");
-            return;
-
-        }
+        
 
         GameObject spawnedMonster = Instantiate(_monsterPrefabs[monster], pos, Quaternion.identity);
         _spawnedMonsters.Add(monster, spawnedMonster);
+        _curEnemy = spawnedMonster;
 
     }
 
@@ -61,6 +59,7 @@ public class MonsterManager : Singleton<MonsterManager>
             EnemyController enemyController = spawnedMonster.GetComponent<EnemyController>();
             enemyController.DestroyMonster();
             _spawnedMonsters.Remove(monster);
+            
         }
     }
 
