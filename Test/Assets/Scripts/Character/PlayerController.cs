@@ -23,7 +23,8 @@ public class PlayerController : MoveableCharactorController
 
         _rotateObj = transform.GetChild(0);
 
-
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Start()
@@ -74,8 +75,7 @@ public class PlayerController : MoveableCharactorController
 
     private void RotateController()
     {
-        Cursor.visible= false;
-        Cursor.lockState = CursorLockMode.Locked;
+        
         _mouseValue.x = Input.GetAxis("Mouse X");
         _mouseValue.y = Input.GetAxis("Mouse Y");
 

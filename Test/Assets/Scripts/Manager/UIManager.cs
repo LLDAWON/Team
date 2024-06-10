@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     { get { return _instance; } }
 
     private float _textTime = 4.0f;
-
+    private bool _inventoryOpen = false;
     private TextData _textData;
     private TextMeshProUGUI _text;
     private Image _conditionKey;
@@ -38,6 +38,27 @@ public class UIManager : MonoBehaviour
         _inventory = transform.GetChild(2).GetComponent<Inventory>();
         _conditionKey.gameObject.SetActive(false);
         _text.gameObject.SetActive(false);
+        _inventory.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            _inventoryOpen = !_inventoryOpen;
+            _inventory.gameObject.SetActive(_inventoryOpen) ;
+            Cursor.visible = _inventoryOpen;
+
+            if(_inventoryOpen)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
+        }
     }
 
     private void Exposuretime()
