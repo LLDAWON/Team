@@ -332,7 +332,6 @@ GameObject:
   - component: {fileID: 64682752129517646}
   - component: {fileID: 111351355889789058}
   - component: {fileID: 65885365305274418}
-  - component: {fileID: 114125841157621586}
   m_Layer: 0
   m_Name: Bookcase
   m_TagString: Bookcase
@@ -467,48 +466,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000002, y: 2.1262093, z: 1.3164712}
   m_Center: {x: 1.5198146e-15, y: 1.0631044, z: 0.5032356}
---- !u!114 &114125841157621586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186259059030320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 4679561080734470}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.3
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: Bookcase_open
-    LockedAnim: Door_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!1 &1198721158092824
 GameObject:
   m_ObjectHideFlags: 0
@@ -3994,7 +3951,6 @@ GameObject:
   - component: {fileID: 8248489292953455325}
   - component: {fileID: 5346009109103467549}
   - component: {fileID: 7852563529770060748}
-  - component: {fileID: 3812909802525782647}
   m_Layer: 0
   m_Name: DrawerA
   m_TagString: Untagged
@@ -4127,48 +4083,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &3812909802525782647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302670239473281037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3807278189997020016}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1
-    closeStartFrom: 1
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: ArchiveDrawer_open
-    LockedAnim: Door_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!1 &384485562319845810
 GameObject:
   m_ObjectHideFlags: 0
@@ -7385,8 +7299,7 @@ MeshRenderer:
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 111300000, guid: 19a7ce8e0e7057e45a70d0796822afbc,
-    type: 2}
+  m_LightmapParameters: {fileID: 111300000, guid: 19a7ce8e0e7057e45a70d0796822afbc, type: 2}
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -8593,7 +8506,6 @@ GameObject:
   - component: {fileID: 6757374261238600422}
   - component: {fileID: 6772305471891080503}
   - component: {fileID: 7999193130290680161}
-  - component: {fileID: 73898842484973233}
   m_Layer: 0
   m_Name: Bookcase (1)
   m_TagString: Bookcase
@@ -8728,48 +8640,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000002, y: 2.1262093, z: 1.3164712}
   m_Center: {x: 1.5198146e-15, y: 1.0631044, z: 0.5032356}
---- !u!114 &73898842484973233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3717163629908319163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 4307949606615596041}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.3
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: Bookcase_open
-    LockedAnim: Door_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!1 &3803606710742873049
 GameObject:
   m_ObjectHideFlags: 0

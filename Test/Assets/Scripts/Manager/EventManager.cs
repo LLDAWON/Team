@@ -28,6 +28,7 @@ public class EventManager : MonoBehaviour
     private void CheckCollision()
     {
         Collider[] colliders = Physics.OverlapBox(transform.position, _size, Quaternion.identity, _layerMask);
+        
 
         if(colliders.Length == 0)
         {
@@ -53,7 +54,8 @@ public class EventManager : MonoBehaviour
                         if (Input.GetKeyDown(KeyCode.F))
                         {
                             CheckPreEvent();
-                            collider.GetComponent<Animation>().Play();
+                            collider.GetComponent<TestAnimation>().PlayAnimation();
+                            return;
                         }
                     }
                     else
@@ -62,6 +64,7 @@ public class EventManager : MonoBehaviour
                         {
                             CheckPreEvent(); 
                             collider.gameObject.SetActive(false);
+                            return;
                         }
                        
                     }
@@ -111,7 +114,7 @@ public class EventManager : MonoBehaviour
     //중복진행되는 퀘스트 없애기
     private bool CheckRedundancy(int key)
     {
-        if (_eventData.Key > 100) return false;
+        if (_eventData.Key >= 100) return false;
 
         foreach(int preKey in _preEventKey)
         {

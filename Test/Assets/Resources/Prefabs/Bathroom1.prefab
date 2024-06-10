@@ -12481,7 +12481,6 @@ GameObject:
   - component: {fileID: 6411570703678129922}
   - component: {fileID: 6340459014003691680}
   - component: {fileID: 4693030874971537606}
-  - component: {fileID: 8643821836549685351}
   m_Layer: 0
   m_Name: ToiletCabin_openable (1)
   m_TagString: ToiletCabin
@@ -12676,48 +12675,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &8643821836549685351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3962607315977345023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 7750575744408302221}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1
-    closeStartFrom: 0.35
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: ToiletCabin_open
-    LockedAnim: Door_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!1 &3969322984789180084
 GameObject:
   m_ObjectHideFlags: 0
@@ -12879,8 +12836,7 @@ MeshRenderer:
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 111300000, guid: 19a7ce8e0e7057e45a70d0796822afbc,
-    type: 2}
+  m_LightmapParameters: {fileID: 111300000, guid: 19a7ce8e0e7057e45a70d0796822afbc, type: 2}
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -16778,8 +16734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5158094665147818932}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000021855692, y: -0.00000004371139, z: -0.00000004371139,
-    w: 1}
+  m_LocalRotation: {x: -0.000000021855692, y: -0.00000004371139, z: -0.00000004371139, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18427,8 +18382,7 @@ MeshRenderer:
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 111300000, guid: 19a7ce8e0e7057e45a70d0796822afbc,
-    type: 2}
+  m_LightmapParameters: {fileID: 111300000, guid: 19a7ce8e0e7057e45a70d0796822afbc, type: 2}
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -21962,7 +21916,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4100583995353056507}
   - component: {fileID: 1497296307515633385}
-  - component: {fileID: 9039637593811038518}
   - component: {fileID: 8219010623842561107}
   m_Layer: 0
   m_Name: DoorNarrow
@@ -22004,48 +21957,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!114 &9039637593811038518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6419443710991674635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 1611801506941600196}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: DoorNarrow_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!65 &8219010623842561107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28981,8 +28892,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8331646396110332005}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000021855692, y: -0.00000004371139, z: -0.00000004371139,
-    w: 1}
+  m_LocalRotation: {x: -0.000000021855692, y: -0.00000004371139, z: -0.00000004371139, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

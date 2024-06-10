@@ -540,7 +540,6 @@ GameObject:
   - component: {fileID: 111030043187518996}
   - component: {fileID: 87947569982090814}
   - component: {fileID: 88318813218325396}
-  - component: {fileID: 19804605221193716}
   - component: {fileID: 23283044628519634}
   m_Layer: 0
   m_Name: LockerA (29)
@@ -658,48 +657,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &19804605221193716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133703109680760254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 130175930276632300}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &23283044628519634
 Animation:
   m_ObjectHideFlags: 0
@@ -866,7 +823,6 @@ GameObject:
   - component: {fileID: 375570751291132199}
   - component: {fileID: 397527874880321805}
   - component: {fileID: 398001053833254055}
-  - component: {fileID: 358707462255857863}
   - component: {fileID: 355372508657339873}
   m_Layer: 0
   m_Name: LockerA (27)
@@ -984,48 +940,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &358707462255857863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389346837318439565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 392451941077828063}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &355372508657339873
 Animation:
   m_ObjectHideFlags: 0
@@ -1192,7 +1106,6 @@ GameObject:
   - component: {fileID: 520809874056293332}
   - component: {fileID: 542770852917582846}
   - component: {fileID: 543239628991133268}
-  - component: {fileID: 501694788967526964}
   - component: {fileID: 496111879013134098}
   m_Layer: 0
   m_Name: LockerA (55)
@@ -1310,48 +1223,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &501694788967526964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534589886222676094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 539946795699233580}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &496111879013134098
 Animation:
   m_ObjectHideFlags: 0
@@ -1517,7 +1388,6 @@ GameObject:
   - component: {fileID: 676472117361657210}
   - component: {fileID: 707427066714191184}
   - component: {fileID: 707346119138875642}
-  - component: {fileID: 625831972324416666}
   - component: {fileID: 629251863128408508}
   m_Layer: 0
   m_Name: LockerA (65)
@@ -1635,48 +1505,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &625831972324416666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662654453836013264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 659566942313188738}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &629251863128408508
 Animation:
   m_ObjectHideFlags: 0
@@ -2137,7 +1965,6 @@ GameObject:
   - component: {fileID: 768528630775866719}
   - component: {fileID: 727430652301825397}
   - component: {fileID: 727873354196236511}
-  - component: {fileID: 821473335008967871}
   - component: {fileID: 824895704891990425}
   m_Layer: 0
   m_Name: LockerA (50)
@@ -2255,48 +2082,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &821473335008967871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791274326441164533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 787659180822212007}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &824895704891990425
 Animation:
   m_ObjectHideFlags: 0
@@ -2736,8 +2521,6 @@ GameObject:
   - component: {fileID: 866098164455756847}
   - component: {fileID: 916193713945994245}
   - component: {fileID: 916288955669449135}
-  - component: {fileID: 993279715713617359}
-  - component: {fileID: 998740576260657385}
   m_Layer: 0
   m_Name: LockerA
   m_TagString: Locker
@@ -2854,64 +2637,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &993279715713617359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888766895786119045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 882970358152928471}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
---- !u!111 &998740576260657385
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888766895786119045}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 54745bc4b997cf146a6b4876129343dd, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 54745bc4b997cf146a6b4876129343dd, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &888896095222361695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3093,7 +2818,6 @@ GameObject:
   - component: {fileID: 947039109156607491}
   - component: {fileID: 979121600162702889}
   - component: {fileID: 979321052828322691}
-  - component: {fileID: 930175978500018147}
   - component: {fileID: 935708582184702661}
   m_Layer: 0
   m_Name: LockerA (42)
@@ -3211,48 +2935,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &930175978500018147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969954472536772009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 963911472483262203}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &935708582184702661
 Animation:
   m_ObjectHideFlags: 0
@@ -3419,7 +3101,6 @@ GameObject:
   - component: {fileID: 994882523395874389}
   - component: {fileID: 971808331963559551}
   - component: {fileID: 971994804723057621}
-  - component: {fileID: 865431584457066421}
   - component: {fileID: 870965562015521427}
   m_Layer: 0
   m_Name: LockerA (32)
@@ -3537,48 +3218,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &865431584457066421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981783736128685567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 975740769948538541}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &870965562015521427
 Animation:
   m_ObjectHideFlags: 0
@@ -3819,7 +3458,6 @@ GameObject:
   - component: {fileID: 1091137537270282474}
   - component: {fileID: 1123218379011016896}
   - component: {fileID: 1123594837981701482}
-  - component: {fileID: 1074204020708483338}
   - component: {fileID: 1079946081189444652}
   m_Layer: 0
   m_Name: LockerA (57)
@@ -3937,48 +3575,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &1074204020708483338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113806062238262080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 1108009353043095570}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &1079946081189444652
 Animation:
   m_ObjectHideFlags: 0
@@ -4335,7 +3931,6 @@ GameObject:
   - component: {fileID: 1194189731335457612}
   - component: {fileID: 1162100085716810598}
   - component: {fileID: 1162260178731603660}
-  - component: {fileID: 1251635836154122924}
   - component: {fileID: 1245913567662870410}
   m_Layer: 0
   m_Name: LockerA (46)
@@ -4453,48 +4048,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &1251635836154122924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1208066697288667366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 1213318047743083444}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &1245913567662870410
 Animation:
   m_ObjectHideFlags: 0
@@ -4630,7 +4183,6 @@ GameObject:
   - component: {fileID: 1259393040232702196}
   - component: {fileID: 1281350686467543262}
   - component: {fileID: 1281822812044082548}
-  - component: {fileID: 1204266905466943764}
   - component: {fileID: 1198663103951316018}
   m_Layer: 0
   m_Name: LockerA (31)
@@ -4748,48 +4300,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &1204266905466943764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237139926321920862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 1242514255615109132}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &1198663103951316018
 Animation:
   m_ObjectHideFlags: 0
@@ -5093,7 +4603,6 @@ GameObject:
   - component: {fileID: 1350138898298388007}
   - component: {fileID: 1301169523062312461}
   - component: {fileID: 1301285682316665767}
-  - component: {fileID: 1400761588041246663}
   - component: {fileID: 1397359288678808289}
   m_Layer: 0
   m_Name: LockerA (22)
@@ -5211,48 +4720,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &1400761588041246663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363991821699949965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 1367026386658948831}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &1397359288678808289
 Animation:
   m_ObjectHideFlags: 0
@@ -5629,7 +5096,6 @@ GameObject:
   - component: {fileID: 1513266770857916283}
   - component: {fileID: 1563368067815294801}
   - component: {fileID: 1563739035093510907}
-  - component: {fileID: 1498604725595385499}
   - component: {fileID: 1502221979546727357}
   m_Layer: 0
   m_Name: LockerA (20)
@@ -5747,48 +5213,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &1498604725595385499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536083049938611409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 1532415132121186179}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &1502221979546727357
 Animation:
   m_ObjectHideFlags: 0
@@ -5924,7 +5348,6 @@ GameObject:
   - component: {fileID: 1617991266546537532}
   - component: {fileID: 1641074539150599190}
   - component: {fileID: 1641546938635159996}
-  - component: {fileID: 1709234181269491164}
   - component: {fileID: 1705879706978029818}
   m_Layer: 0
   m_Name: LockerA (7)
@@ -6042,48 +5465,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &1709234181269491164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595739940615180182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 1598862606579768516}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &1705879706978029818
 Animation:
   m_ObjectHideFlags: 0
@@ -6281,7 +5662,6 @@ GameObject:
   - component: {fileID: 1643279912309195091}
   - component: {fileID: 1620201553678512505}
   - component: {fileID: 1620638486295207123}
-  - component: {fileID: 1657944019689232563}
   - component: {fileID: 1663755352055760277}
   m_Layer: 0
   m_Name: LockerA (37)
@@ -6399,48 +5779,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &1657944019689232563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630141603627408121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 1624133921830521259}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &1663755352055760277
 Animation:
   m_ObjectHideFlags: 0
@@ -6606,7 +5944,6 @@ GameObject:
   - component: {fileID: 1808490643376664083}
   - component: {fileID: 1849583400783437369}
   - component: {fileID: 1849498313441620883}
-  - component: {fileID: 1789377908190722035}
   - component: {fileID: 1783933816140507861}
   m_Layer: 0
   m_Name: LockerA (34)
@@ -6724,48 +6061,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &1789377908190722035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821842190949742009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 1827621169565673195}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &1783933816140507861
 Animation:
   m_ObjectHideFlags: 0
@@ -7007,7 +6302,6 @@ GameObject:
   - component: {fileID: 1803915788746979035}
   - component: {fileID: 1854019867230455537}
   - component: {fileID: 1854211566433545051}
-  - component: {fileID: 1784800703656341307}
   - component: {fileID: 1787939119992844829}
   m_Layer: 0
   m_Name: LockerA (19)
@@ -7125,48 +6419,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &1784800703656341307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1826698533459127665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 1823048243615645219}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &1787939119992844829
 Animation:
   m_ObjectHideFlags: 0
@@ -7504,7 +6756,6 @@ GameObject:
   - component: {fileID: 2027507178328610260}
   - component: {fileID: 2058463804058396158}
   - component: {fileID: 2058311378566809684}
-  - component: {fileID: 2156958259005754420}
   - component: {fileID: 2160573314469007634}
   m_Layer: 0
   m_Name: LockerA (45)
@@ -7622,48 +6873,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &2156958259005754420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049789223071993470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 2046648968279203116}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &2160573314469007634
 Animation:
   m_ObjectHideFlags: 0
@@ -8231,7 +7440,6 @@ GameObject:
   - component: {fileID: 2084724085073792149}
   - component: {fileID: 2043626423892376767}
   - component: {fileID: 2044033626270339349}
-  - component: {fileID: 2099315761594013045}
   - component: {fileID: 2105062774606366803}
   m_Layer: 0
   m_Name: LockerA (25)
@@ -8349,48 +7557,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &2099315761594013045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2071404022978565951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 2065572159222252653}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &2105062774606366803
 Animation:
   m_ObjectHideFlags: 0
@@ -8556,7 +7722,6 @@ GameObject:
   - component: {fileID: 2187006277761712453}
   - component: {fileID: 2228094868783886703}
   - component: {fileID: 2227732453756443845}
-  - component: {fileID: 2275979782757783717}
   - component: {fileID: 2270109351547012483}
   m_Layer: 0
   m_Name: LockerA (11)
@@ -8674,48 +7839,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &2275979782757783717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2164184019216685807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 2170103843179596221}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &2270109351547012483
 Animation:
   m_ObjectHideFlags: 0
@@ -8882,7 +8005,6 @@ GameObject:
   - component: {fileID: 2189827789652377646}
   - component: {fileID: 2220787130340274180}
   - component: {fileID: 2220385149605387694}
-  - component: {fileID: 2283322637322328526}
   - component: {fileID: 2286445665297597672}
   m_Layer: 0
   m_Name: LockerA (63)
@@ -9000,48 +8122,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &2283322637322328526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2175981601043241860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 2172946859971381462}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &2286445665297597672
 Animation:
   m_ObjectHideFlags: 0
@@ -9420,7 +8500,6 @@ GameObject:
   - component: {fileID: 2364616883212353346}
   - component: {fileID: 2333647887980941160}
   - component: {fileID: 2333848414913635010}
-  - component: {fileID: 2386036527478449826}
   - component: {fileID: 2380166098743638916}
   m_Layer: 0
   m_Name: LockerA (5)
@@ -9538,48 +8617,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &2386036527478449826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2342357788622513384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 2347714521367590842}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &2380166098743638916
 Animation:
   m_ObjectHideFlags: 0
@@ -9957,7 +8994,6 @@ GameObject:
   - component: {fileID: 2563195932166901257}
   - component: {fileID: 2531106534318571043}
   - component: {fileID: 2531583041328026505}
-  - component: {fileID: 2476526848377231337}
   - component: {fileID: 2470945591979477711}
   m_Layer: 0
   m_Name: LockerA (4)
@@ -10075,48 +9111,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &2476526848377231337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2576967629281252771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 2582324500103137009}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &2470945591979477711
 Animation:
   m_ObjectHideFlags: 0
@@ -10314,7 +9308,6 @@ GameObject:
   - component: {fileID: 2605798347377411102}
   - component: {fileID: 2637879231258407988}
   - component: {fileID: 2637446405617179038}
-  - component: {fileID: 2730745811243490814}
   - component: {fileID: 2734077741534200024}
   m_Layer: 0
   m_Name: LockerA (51)
@@ -10432,48 +9425,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &2730745811243490814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2628079850020052916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 2624939596166483174}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &2734077741534200024
 Animation:
   m_ObjectHideFlags: 0
@@ -10715,7 +9666,6 @@ GameObject:
   - component: {fileID: 2697469029525116046}
   - component: {fileID: 2728428412082644132}
   - component: {fileID: 2728307847266568462}
-  - component: {fileID: 2640091077779950958}
   - component: {fileID: 2645749574198595656}
   m_Layer: 0
   m_Name: LockerA (35)
@@ -10833,48 +9783,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &2640091077779950958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2683620580674228004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 2678334079536012406}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &2645749574198595656
 Animation:
   m_ObjectHideFlags: 0
@@ -11253,7 +10161,6 @@ GameObject:
   - component: {fileID: 2757464572466629460}
   - component: {fileID: 2807569468608985982}
   - component: {fileID: 2807936269807736532}
-  - component: {fileID: 2848617447482708660}
   - component: {fileID: 2854360332461199250}
   m_Layer: 0
   m_Name: LockerA (8)
@@ -11371,48 +10278,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &2848617447482708660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2744112820423266558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 2738316144900195244}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &2854360332461199250
 Animation:
   m_ObjectHideFlags: 0
@@ -11610,7 +10475,6 @@ GameObject:
   - component: {fileID: 2882779194393984708}
   - component: {fileID: 2932888453682024174}
   - component: {fileID: 2932406466771362628}
-  - component: {fileID: 3012232456910382884}
   - component: {fileID: 3015567411797867010}
   m_Layer: 0
   m_Name: LockerA (53)
@@ -11728,48 +10592,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &3012232456910382884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2905040692017948014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 2901935587237443132}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &3015567411797867010
 Animation:
   m_ObjectHideFlags: 0
@@ -12041,7 +10863,6 @@ GameObject:
   - component: {fileID: 2999889087925785983}
   - component: {fileID: 2959913743302108501}
   - component: {fileID: 2959444919383050495}
-  - component: {fileID: 2913149639699319967}
   - component: {fileID: 2916500536287744441}
   m_Layer: 0
   m_Name: LockerA (21)
@@ -12159,48 +10980,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &2913149639699319967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3022135536918105813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3019013012704222599}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &2916500536287744441
 Animation:
   m_ObjectHideFlags: 0
@@ -12441,7 +11220,6 @@ GameObject:
   - component: {fileID: 3223944446841327752}
   - component: {fileID: 3174974522115793058}
   - component: {fileID: 3174598099659672840}
-  - component: {fileID: 3274655098049186152}
   - component: {fileID: 3271023549877048398}
   m_Layer: 0
   m_Name: LockerA (43)
@@ -12559,48 +11337,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &3274655098049186152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3237163570976754466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3240849046049740912}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &3271023549877048398
 Animation:
   m_ObjectHideFlags: 0
@@ -12872,7 +11608,6 @@ GameObject:
   - component: {fileID: 3342621023519257762}
   - component: {fileID: 3373590817081689224}
   - component: {fileID: 3373425223831677218}
-  - component: {fileID: 3436045369298447682}
   - component: {fileID: 3439521884760698980}
   m_Layer: 0
   m_Name: LockerA (56)
@@ -12990,48 +11725,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &3436045369298447682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328748797607784200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3325749383852031066}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &3439521884760698980
 Animation:
   m_ObjectHideFlags: 0
@@ -13229,7 +11922,6 @@ GameObject:
   - component: {fileID: 3383764588011873298}
   - component: {fileID: 3334789165187126328}
   - component: {fileID: 3334418221426293138}
-  - component: {fileID: 3402930095458401778}
   - component: {fileID: 3399453578756595924}
   m_Layer: 0
   m_Name: LockerA (36)
@@ -13347,48 +12039,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &3402930095458401778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3361088915209191352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3364616198784888042}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &3399453578756595924
 Animation:
   m_ObjectHideFlags: 0
@@ -13661,7 +12311,6 @@ GameObject:
   - component: {fileID: 3410947029570409939}
   - component: {fileID: 3450910313116165625}
   - component: {fileID: 3451356013439846483}
-  - component: {fileID: 3358057300932758579}
   - component: {fileID: 3354861431429140757}
   m_Layer: 0
   m_Name: LockerA (61)
@@ -13779,48 +12428,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &3358057300932758579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3388792938745187961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3391792356831305003}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &3354861431429140757
 Animation:
   m_ObjectHideFlags: 0
@@ -13986,7 +12593,6 @@ GameObject:
   - component: {fileID: 3473294510765194969}
   - component: {fileID: 3495241987589377779}
   - component: {fileID: 3494844673299800921}
-  - component: {fileID: 3602800425839879993}
   - component: {fileID: 3597069911004871199}
   m_Layer: 0
   m_Name: LockerA (30)
@@ -14104,48 +12710,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &3602800425839879993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3486605857432315251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3492420123499591201}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &3597069911004871199
 Animation:
   m_ObjectHideFlags: 0
@@ -14387,7 +12951,6 @@ GameObject:
   - component: {fileID: 3520793568424250466}
   - component: {fileID: 3489825706791861320}
   - component: {fileID: 3490271410325164514}
-  - component: {fileID: 3535455493442934146}
   - component: {fileID: 3532121638707497124}
   m_Layer: 0
   m_Name: LockerA (41)
@@ -14505,48 +13068,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &3535455493442934146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3498496886021412808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3501637175811703962}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &3532121638707497124
 Animation:
   m_ObjectHideFlags: 0
@@ -15017,7 +13538,6 @@ GameObject:
   - component: {fileID: 3775012631160099306}
   - component: {fileID: 3805980500038492608}
   - component: {fileID: 3805605177589976170}
-  - component: {fileID: 3868487549641017354}
   - component: {fileID: 3871770830725764396}
   m_Layer: 0
   m_Name: LockerA (24)
@@ -15135,48 +13655,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &3868487549641017354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3761348489357593152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3758120373523994898}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &3871770830725764396
 Animation:
   m_ObjectHideFlags: 0
@@ -15312,7 +13790,6 @@ GameObject:
   - component: {fileID: 3803091068463936693}
   - component: {fileID: 3780012985254298783}
   - component: {fileID: 3779922441750096181}
-  - component: {fileID: 3822256734848036181}
   - component: {fileID: 3827929801164402803}
   m_Layer: 0
   m_Name: LockerA (9)
@@ -15430,48 +13907,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &3822256734848036181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3789282468594806559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3783943156033633357}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &3827929801164402803
 Animation:
   m_ObjectHideFlags: 0
@@ -15669,7 +14104,6 @@ GameObject:
   - component: {fileID: 3920266462990175369}
   - component: {fileID: 3951226386984385699}
   - component: {fileID: 3950824355174437129}
-  - component: {fileID: 4011507156680365417}
   - component: {fileID: 4017025470798350415}
   m_Layer: 0
   m_Name: LockerA (17)
@@ -15787,48 +14221,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &4011507156680365417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3906559224143779619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3901132118323840113}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &4017025470798350415
 Animation:
   m_ObjectHideFlags: 0
@@ -15964,7 +14356,6 @@ GameObject:
   - component: {fileID: 3934832536212597595}
   - component: {fileID: 3902742624039820145}
   - component: {fileID: 3902620978438715099}
-  - component: {fileID: 3987792654530196155}
   - component: {fileID: 3982193252937772957}
   m_Layer: 0
   m_Name: LockerA (38)
@@ -16082,48 +14473,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &3987792654530196155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3948005550317138161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 3953978185200083875}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &3982193252937772957
 Animation:
   m_ObjectHideFlags: 0
@@ -16637,7 +14986,7 @@ Transform:
   m_Children:
   - {fileID: 4003047398740552488}
   m_Father: {fileID: 4003046420983398688}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -94, z: 0}
 --- !u!33 &4028640783557067802
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16933,7 +15282,6 @@ GameObject:
   - component: {fileID: 4078844367978470760}
   - component: {fileID: 4046750015073758530}
   - component: {fileID: 4046843898981499112}
-  - component: {fileID: 4131734096626009224}
   - component: {fileID: 4125919194107369902}
   m_Layer: 0
   m_Name: LockerA (33)
@@ -17051,48 +15399,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &4131734096626009224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4092505625496389314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 4097985640129549712}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &4125919194107369902
 Animation:
   m_ObjectHideFlags: 0
@@ -17289,7 +15595,6 @@ GameObject:
   - component: {fileID: 4248886670446299404}
   - component: {fileID: 4198785383689533734}
   - component: {fileID: 4198660694592345228}
-  - component: {fileID: 4268069912354672876}
   - component: {fileID: 4264857274848234954}
   m_Layer: 0
   m_Name: LockerA (14)
@@ -17407,48 +15712,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &4268069912354672876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4226175883740549798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 4229755843379151348}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &4264857274848234954
 Animation:
   m_ObjectHideFlags: 0
@@ -17615,7 +15878,6 @@ GameObject:
   - component: {fileID: 4323921354261125126}
   - component: {fileID: 4374017188018219052}
   - component: {fileID: 4373584380153529734}
-  - component: {fileID: 4453372298048766438}
   - component: {fileID: 4456704778557988032}
   m_Layer: 0
   m_Name: LockerA (10)
@@ -17733,48 +15995,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &4453372298048766438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4346203341622100908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 4343063223681061118}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &4456704778557988032
 Animation:
   m_ObjectHideFlags: 0
@@ -18152,7 +16372,6 @@ GameObject:
   - component: {fileID: 4673680001799981373}
   - component: {fileID: 4642711858041600279}
   - component: {fileID: 4643087457517622461}
-  - component: {fileID: 4688271545726161117}
   - component: {fileID: 4685148518328520187}
   m_Layer: 0
   m_Name: LockerA (64)
@@ -18270,48 +16489,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &4688271545726161117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4651453474743456407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 4654523398473761221}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &4685148518328520187
 Animation:
   m_ObjectHideFlags: 0
@@ -18447,7 +16624,6 @@ GameObject:
   - component: {fileID: 4744662347015802341}
   - component: {fileID: 4713698299587001807}
   - component: {fileID: 4714104454528766053}
-  - component: {fileID: 4617390657302598661}
   - component: {fileID: 4611879214692796707}
   m_Layer: 0
   m_Name: LockerA (15)
@@ -18565,48 +16741,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &4617390657302598661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4722334534970496591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 4727761640905966877}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &4611879214692796707
 Animation:
   m_ObjectHideFlags: 0
@@ -18910,7 +17044,6 @@ GameObject:
   - component: {fileID: 4815676684285072473}
   - component: {fileID: 4784721159407264883}
   - component: {fileID: 4784802115463350745}
-  - component: {fileID: 4834774164282248633}
   - component: {fileID: 4831371311369982111}
   m_Layer: 0
   m_Name: LockerA (23)
@@ -19028,48 +17161,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &4834774164282248633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4793465078135705587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 4796534830119918753}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &4831371311369982111
 Animation:
   m_ObjectHideFlags: 0
@@ -19099,7 +17190,6 @@ GameObject:
   - component: {fileID: 4837416841551047498}
   - component: {fileID: 4869501815316994912}
   - component: {fileID: 4869029732599871178}
-  - component: {fileID: 4822754791456420522}
   - component: {fileID: 4825947913637965708}
   m_Layer: 0
   m_Name: LockerA (6)
@@ -19217,48 +17307,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &4822754791456420522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4859528608027373792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 4856564373893882802}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &4825947913637965708
 Animation:
   m_ObjectHideFlags: 0
@@ -20989,7 +19037,6 @@ GameObject:
   - component: {fileID: 5686646466577730882}
   - component: {fileID: 5645543814910852456}
   - component: {fileID: 5645462893652791490}
-  - component: {fileID: 5703579987436524706}
   - component: {fileID: 5707120825200626052}
   m_Layer: 0
   m_Name: LockerA (18)
@@ -21107,48 +19154,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &5703579987436524706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5672971666153346792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 5669761145024529850}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &5707120825200626052
 Animation:
   m_ObjectHideFlags: 0
@@ -21525,7 +19530,6 @@ GameObject:
   - component: {fileID: 6221627339209912436}
   - component: {fileID: 6261604357255823454}
   - component: {fileID: 6261157263759470068}
-  - component: {fileID: 6312780089146861972}
   - component: {fileID: 6309380263684011186}
   m_Layer: 0
   m_Name: LockerA (47)
@@ -21643,48 +19647,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &6312780089146861972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6198886443302169566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 6202484130032154764}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &6309380263684011186
 Animation:
   m_ObjectHideFlags: 0
@@ -21851,7 +19813,6 @@ GameObject:
   - component: {fileID: 6302106771078686988}
   - component: {fileID: 6325185086216476966}
   - component: {fileID: 6324783364225168524}
-  - component: {fileID: 6249234476233945324}
   - component: {fileID: 6245743116032372170}
   m_Layer: 0
   m_Name: LockerA (28)
@@ -21969,48 +19930,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &6249234476233945324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6279394256994906790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 6282974316491301364}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &6245743116032372170
 Animation:
   m_ObjectHideFlags: 0
@@ -22684,7 +20603,6 @@ GameObject:
   - component: {fileID: 6577172905213286457}
   - component: {fileID: 6626142012825233427}
   - component: {fileID: 6626342798000227769}
-  - component: {fileID: 6524280973246923225}
   - component: {fileID: 6529670918783245567}
   m_Layer: 0
   m_Name: LockerA (16)
@@ -22802,48 +20720,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &6524280973246923225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6563917917241099155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 6558015685814423745}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &6529670918783245567
 Animation:
   m_ObjectHideFlags: 0
@@ -23463,7 +21339,7 @@ Transform:
   m_Children:
   - {fileID: 6835370720582655752}
   m_Father: {fileID: 6835371941865026816}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -94, z: 0}
 --- !u!33 &6825531106243522618
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23579,7 +21455,6 @@ GameObject:
   - component: {fileID: 6816217937654323184}
   - component: {fileID: 6785258863529207770}
   - component: {fileID: 6785695779563653744}
-  - component: {fileID: 6869180250702401040}
   - component: {fileID: 6863715542436533046}
   m_Layer: 0
   m_Name: LockerA (26)
@@ -23697,48 +21572,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &6869180250702401040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6830101776297725018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 6835370720582655752}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &6863715542436533046
 Animation:
   m_ObjectHideFlags: 0
@@ -23905,7 +21738,6 @@ GameObject:
   - component: {fileID: 6884465485091465646}
   - component: {fileID: 6861390193608546692}
   - component: {fileID: 6861577768465478702}
-  - component: {fileID: 6793295142446346318}
   - component: {fileID: 6796576221117918568}
   m_Layer: 0
   m_Name: LockerA (66)
@@ -24023,48 +21855,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &6793295142446346318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6907395496384786948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 6903604330590839126}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &6796576221117918568
 Animation:
   m_ObjectHideFlags: 0
@@ -24428,7 +22218,6 @@ GameObject:
   - component: {fileID: 7463016689606861967}
   - component: {fileID: 7432048544508712101}
   - component: {fileID: 7431579718540753167}
-  - component: {fileID: 7376297170013715823}
   - component: {fileID: 7370480339017130057}
   m_Layer: 0
   m_Name: LockerA (58)
@@ -24546,48 +22335,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &7376297170013715823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7476117605227544357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 7482160472455867511}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &7370480339017130057
 Animation:
   m_ObjectHideFlags: 0
@@ -24957,7 +22704,6 @@ GameObject:
   - component: {fileID: 7669382532825564640}
   - component: {fileID: 7776118099972915190}
   - component: {fileID: 7676686028126180036}
-  - component: {fileID: 7779308502965151182}
   m_Layer: 0
   m_Name: DoorBack
   m_TagString: Door
@@ -25019,48 +22765,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.25, y: 2.1163952, z: 3.3525982}
   m_Center: {x: 0, y: 1.0861069, z: -0.06459427}
---- !u!114 &7779308502965151182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7666632127633983818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 7669449851266026104}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.28
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: DoorBack_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!1 &7692174996209772431
 GameObject:
   m_ObjectHideFlags: 0
@@ -25105,7 +22809,6 @@ GameObject:
   - component: {fileID: 7678947012813561343}
   - component: {fileID: 7647991203937267157}
   - component: {fileID: 7647861887514099839}
-  - component: {fileID: 7736393117099246623}
   - component: {fileID: 7730951499710552377}
   m_Layer: 0
   m_Name: LockerA (3)
@@ -25223,48 +22926,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &7736393117099246623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7692270101658666581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 7698084368210449671}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &7730951499710552377
 Animation:
   m_ObjectHideFlags: 0
@@ -25537,7 +23198,6 @@ GameObject:
   - component: {fileID: 7728219884807782833}
   - component: {fileID: 7778316817543901595}
   - component: {fileID: 7778727318492437553}
-  - component: {fileID: 7677526963227121745}
   - component: {fileID: 7681142018799420791}
   m_Layer: 0
   m_Name: LockerA (12)
@@ -25655,48 +23315,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &7677526963227121745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7715036093298612763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 7711332888535583049}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &7681142018799420791
 Animation:
   m_ObjectHideFlags: 0
@@ -26353,8 +23971,7 @@ MeshRenderer:
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 111300000, guid: 19a7ce8e0e7057e45a70d0796822afbc,
-    type: 2}
+  m_LightmapParameters: {fileID: 111300000, guid: 19a7ce8e0e7057e45a70d0796822afbc, type: 2}
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -26940,7 +24557,6 @@ GameObject:
   - component: {fileID: 8192662278129863532}
   - component: {fileID: 8142552150986128198}
   - component: {fileID: 8142964068201141996}
-  - component: {fileID: 8105925166348538508}
   - component: {fileID: 8100546490610847658}
   m_Layer: 0
   m_Name: LockerA (13)
@@ -27058,48 +24674,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &8105925166348538508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8206501446961189062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 8211787815961953172}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &8100546490610847658
 Animation:
   m_ObjectHideFlags: 0
@@ -27235,7 +24809,6 @@ GameObject:
   - component: {fileID: 8286622236538053650}
   - component: {fileID: 8236514034879730744}
   - component: {fileID: 8236044986122926482}
-  - component: {fileID: 8301213935063989746}
   - component: {fileID: 8297668970115096788}
   m_Layer: 0
   m_Name: LockerA (52)
@@ -27353,48 +24926,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &8301213935063989746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8263692434354061240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 8267465873746521322}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &8297668970115096788
 Animation:
   m_ObjectHideFlags: 0
@@ -27698,7 +25229,6 @@ GameObject:
   - component: {fileID: 8457241521563473488}
   - component: {fileID: 8497217991464396410}
   - component: {fileID: 8497615306321284048}
-  - component: {fileID: 8399777670473142192}
   - component: {fileID: 8396656567649325718}
   m_Layer: 0
   m_Name: LockerA (67)
@@ -27816,48 +25346,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &8399777670473142192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8435065228836474362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 8438099968096394920}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &8396656567649325718
 Animation:
   m_ObjectHideFlags: 0
@@ -27992,7 +25480,6 @@ GameObject:
   - component: {fileID: 8524707142945040930}
   - component: {fileID: 8574802143210101256}
   - component: {fileID: 8574404786004375458}
-  - component: {fileID: 8611444241837568962}
   - component: {fileID: 8616816591024205540}
   m_Layer: 0
   m_Name: LockerA (54)
@@ -28110,48 +25597,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &8611444241837568962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8510853877959815560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 8505567513321284314}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &8616816591024205540
 Animation:
   m_ObjectHideFlags: 0
@@ -28635,7 +26080,6 @@ GameObject:
   - component: {fileID: 8887138101764915194}
   - component: {fileID: 8928232197592960976}
   - component: {fileID: 8928040216598618746}
-  - component: {fileID: 8834193397536237082}
   - component: {fileID: 8830916712980331324}
   m_Layer: 0
   m_Name: LockerA (60)
@@ -28753,48 +26197,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &8834193397536237082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8864212702600160336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 8868003735619385090}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &8830916712980331324
 Animation:
   m_ObjectHideFlags: 0
@@ -29309,7 +26711,6 @@ GameObject:
   - component: {fileID: 9098164331366221458}
   - component: {fileID: 9147139203891738296}
   - component: {fileID: 9146982380366256914}
-  - component: {fileID: 9191571221873975154}
   - component: {fileID: 9195205518803550804}
   m_Layer: 0
   m_Name: LockerA (62)
@@ -29427,48 +26828,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35000008, y: 1.6999999, z: 1.3132013}
   m_Center: {x: 8.474677e-18, y: 0.84999996, z: 0.43892014}
---- !u!114 &9191571221873975154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9084423695128272184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53902f99ae0788849b5bec608f908713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 9081265848165977706}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1.3
-    closeStartFrom: 0.33
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-    OpenedAtStart: 0
-  AnimationNames:
-    OpeningAnim: LockerDoor_open
-    LockedAnim: MainDoor_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 0}
-    close: {fileID: 0}
-    closed: {fileID: 0}
-    volume: 1
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 0
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 0}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
 --- !u!111 &9195205518803550804
 Animation:
   m_ObjectHideFlags: 0

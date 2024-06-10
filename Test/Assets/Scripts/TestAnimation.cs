@@ -5,31 +5,29 @@ using UnityEngine;
 public class TestAnimation : MonoBehaviour
 {
     private Animation _animation;
+    private bool _isOpen;
 
     private void Awake()
     {
         _animation = GetComponent<Animation>();
+        _isOpen = false;
     }
 
-
-    private void Update()
+    public void PlayAnimation()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(!_isOpen )
         {
             _animation[_animation.clip.name].speed = 1.0f;
             _animation[_animation.clip.name].time = 0;
             _animation.Play();
-
-            SoundManager.Instance.Play2D("Door");
+            _isOpen= true;
         }
-
-        if (Input.GetMouseButtonDown(1))
+        else
         {
             _animation[_animation.clip.name].speed = -1.0f;
             _animation[_animation.clip.name].time = _animation[_animation.clip.name].length;
             _animation.Play();
-
-            SoundManager.Instance.Play2D("Door");
+            _isOpen = false;
         }
     }
 }
