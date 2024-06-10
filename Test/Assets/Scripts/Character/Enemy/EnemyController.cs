@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 
 public class EnemyController : MoveableCharactorController
 {
-    protected enum EnemyState
+    public enum EnemyState
     {
         Patrol,
         Trace,
@@ -16,7 +16,7 @@ public class EnemyController : MoveableCharactorController
         None,
         Die
     }
-
+    
     // 경로 관련
     [SerializeField]
     protected List<Vector3> pathes = new List<Vector3>();
@@ -34,6 +34,7 @@ public class EnemyController : MoveableCharactorController
 
     // State
     protected EnemyState _enemyState = EnemyState.None;
+    public EnemyState GetEnemyCurState() { return _enemyState; }
 
     // Animator
     protected Animator _animator;
@@ -65,7 +66,7 @@ public class EnemyController : MoveableCharactorController
 
     }
 
-    protected void Start()
+    virtual protected  void Start()
     {
         _target = GameManager.Instance.GetPlayer().transform;
         _destPos = pathes[0];
@@ -80,10 +81,8 @@ public class EnemyController : MoveableCharactorController
         //처음조우상태
         CheckFirstMeetPlayer();
 
-
         CheckPath();
 
-        
         StateUpdate();
         EnemyAiPattern();
         //DesolveEnemy();
@@ -141,6 +140,7 @@ public class EnemyController : MoveableCharactorController
             if (_isPlayerDetected)
             {
                 SetState(1);
+                 _animator.SetBool("IsTrace", true);
             }
             else
             {
@@ -148,10 +148,12 @@ public class EnemyController : MoveableCharactorController
                 {
                     _isPlayerDetected = false;
                     SetState(0);
-                }
+                    _animator.SetBool("IsTrace", false);
+            }
                 else
                 {
                     SetState(1);
+                    _animator.SetBool("IsTrace", true);
                 }
             }
       
@@ -176,18 +178,16 @@ public class EnemyController : MoveableCharactorController
         }
     }
 
-    protected void EnemyAiPattern()
+    virtual protected void EnemyAiPattern()
     {
         switch (_enemyState)
         {
             case EnemyState.Patrol:
-                _animator.SetBool("IsTrace", false);
                 _animator.speed = 0.5f;
                 _navigation.SetDestination(_destPos);
                 _navigation.speed = _characterData.WalkSpeed;
                 break;
             case EnemyState.Trace:
-                _animator.SetBool("IsTrace", true);
                 _animator.speed = 2.0f;
                 _navigation.SetDestination(_target.position);
                 _navigation.speed = _characterData.RunSpeed;
@@ -195,7 +195,6 @@ public class EnemyController : MoveableCharactorController
             case EnemyState.Attack:
                 _navigation.speed = 0;
                 _animator.speed = 1.0f;
-                _animator.SetTrigger("Attack");
                 _isAttack = true;
                 break;
             case EnemyState.Stop:
@@ -211,8 +210,6 @@ public class EnemyController : MoveableCharactorController
                 _navigation.velocity = Vector3.zero;
                 _navigation.speed = 0;
                 DesolveEffect();
-
-
                 break;
         }
     }
@@ -222,6 +219,7 @@ public class EnemyController : MoveableCharactorController
         if (other.gameObject.CompareTag("Player"))
         {
             SetState(2);
+            _animator.SetTrigger("Attack");
         }
     }
 

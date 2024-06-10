@@ -9,7 +9,7 @@ public class EventManager : MonoBehaviour
     private List<int> _preEventKey = new List<int>();
     private Vector3 _size;
     private Collider _collider;
-
+    private RaycastHit hit;
     public int CurEvent()
     {
         return _eventData.Key;
@@ -31,50 +31,90 @@ public class EventManager : MonoBehaviour
 
     private void CheckCollision()
     {
-        Collider[] colliders = Physics.OverlapBox(transform.position, _size, Quaternion.identity, _layerMask);
-        
+        //Collider[] colliders = Physics.OverlapBox(transform.position, _size, Quaternion.identity, _layerMask);
 
-        if(colliders.Length == 0)
-        {
-            _eventKey = null;
-            UIManager.Instance.ConditionKey.gameObject.SetActive(false);
-        }            
-        else
-        {
-            foreach (Collider collider in colliders)
+        Ray ray = new Ray(transform.position, transform.forward);
+
+        Debug.DrawRay(transform.position, transform.forward, Color.red);
+
+        if (Physics.Raycast(ray, out hit, 3.0f, _layerMask ))
+        {            
+            _eventData = DataManager.Instance.GetEventData(hit.collider.tag);
+
+            if (_eventData.EventTag == "None" || CheckRedundancy(_eventData.Key))
+                return;
+            else
             {
-                _eventData = DataManager.Instance.GetEventData(collider.tag);
-                
-                if (_eventData.EventTag == "None" || CheckRedundancy(_eventData.Key))
-                    continue;
-                else
-                {
-                    UIManager.Instance.ConditionKey.gameObject.SetActive(true);
+                _eventKey = hit.collider.tag;
 
-                    _eventKey = collider.tag;
-                    
-                    if (_eventData.Type == 1)
+                if (_eventData.Type == 1)
+                {
+                    if (Input.GetKeyDown(KeyCode.F))
                     {
-                        if (Input.GetKeyDown(KeyCode.F))
-                        {
-                            CheckPreEvent();
-                            collider.GetComponent<TestAnimation>().PlayAnimation();
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        if (Input.GetKeyDown(KeyCode.F))
-                        {
-                            CheckPreEvent(); 
-                            collider.gameObject.SetActive(false);
-                            return;
-                        }
-                       
+                        CheckPreEvent();
+                        hit.collider.GetComponent<TestAnimation>().PlayAnimation();
+                        return;
                     }
                 }
+                else
+                {
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        CheckPreEvent();
+                        hit.collider.gameObject.SetActive(false);
+                        return;
+                    }
+
+                }
             }
-        }       
+        }
+        else
+        {
+            _eventKey = null;
+        }
+
+
+        //if(colliders.Length == 0)
+        //{
+        //    _eventKey = null;
+        //    UIManager.Instance.ConditionKey.gameObject.SetActive(false);
+        //}            
+        //else
+        //{
+        //    foreach (Collider collider in colliders)
+        //    {
+        //        _eventData = DataManager.Instance.GetEventData(collider.tag);
+        //        
+        //        if (_eventData.EventTag == "None" || CheckRedundancy(_eventData.Key))
+        //            continue;
+        //        else
+        //        {
+        //            UIManager.Instance.ConditionKey.gameObject.SetActive(true);
+        //
+        //            _eventKey = collider.tag;
+        //            
+        //            if (_eventData.Type == 1)
+        //            {
+        //                if (Input.GetKeyDown(KeyCode.F))
+        //                {
+        //                    CheckPreEvent();
+        //                    collider.GetComponent<TestAnimation>().PlayAnimation();
+        //                    return;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (Input.GetKeyDown(KeyCode.F))
+        //                {
+        //                    CheckPreEvent(); 
+        //                    collider.gameObject.SetActive(false);
+        //                    return;
+        //                }
+        //               
+        //            }
+        //        }
+        //    }
+        //}       
     }
 
     private void CheckPreEvent()

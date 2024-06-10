@@ -10,12 +10,14 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance
     { get { return _instance; } }
 
-    private float _textTime = 4.0f;
     private bool _inventoryOpen = false;
+
     private TextData _textData;
-    private TextMeshProUGUI _text;
+    
+    private SystemTXT _text;
     private Image _conditionKey;
     private Inventory _inventory;
+    private ArchiveTXT _archive;
 
     public Inventory GetInventory() { return _inventory; }
     public Image ConditionKey
@@ -24,18 +26,26 @@ public class UIManager : MonoBehaviour
     public void SetText(int key)
     {
         _textData = DataManager.Instance.GetTextData(key);
-        _text.text = _textData.Text;
-        _text.gameObject.SetActive(true);
 
-        Invoke("Exposuretime", _textTime);    
+        if(_textData.Type == 1)
+        {
+            _archive.SetText(_textData);
+        }
+        else if(_textData.Type == 0)
+        {
+            _text.SetText(_textData);
+        }
     }
 
     private void Awake()
     {
         _instance = this;
-        _text = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+        _text = transform.GetChild(0).GetComponent<SystemTXT>();
         _conditionKey = transform.GetChild(1).GetComponent<Image>();
         _inventory = transform.GetChild(2).GetComponent<Inventory>();
+        _archive = transform.GetChild(3).GetComponent<ArchiveTXT>();
+
         _conditionKey.gameObject.SetActive(false);
         _text.gameObject.SetActive(false);
         _inventory.gameObject.SetActive(false);
@@ -61,8 +71,4 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Exposuretime()
-    {
-        _text.gameObject.SetActive(false);
-    }
 }

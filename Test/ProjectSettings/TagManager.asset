@@ -3,63 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Floor
-  - Wall
-  - Enemy
-  - Locker1
-  - Book
-  - Pen
-  - ClassDoor1
-  - Locker
-  - Tower
-  - Ball
-  - Bench
-  - TrashCan
-  - Door
-  - TeamLogo
-  - Column
-  - Toilet
-  - Mirror
-  - ToiletCabin
-  - GlassDebris
-  - Sink
-  - CleanerBucket
-  - CleanerMop
-  - Rostrums_broken
-  - Rostrum
-  - BacketballBackboard
-  - BacketboardIndoor
-  - CardboardBox
-  - Bookcase
-  - FireExtinguisher
-  - Folder
-  - ArchiveDrawers
-  - Frame
-  - LibraryCardCatalog
-  - Plant
-  - PaperDecal
-  - Telephone
-  - TeacherTable
-  - Chair
-  - FlashLight
-  - Swich
-  - Flashlight
-  - PickableItem
-  - Battery
-  - Locker2
-  - Default
-  - Hint1
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - PostProcess
+  - 
   - Water
   - UI
-  - Wall
-  - Object
-  - IphoneCamera
+  - 
+  - 
+  - 
   - 
   - 
   - 
