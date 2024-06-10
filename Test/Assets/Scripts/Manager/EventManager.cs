@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// OBJ Layer 에 있는 오브젝트와 충돌 시 진행되는 이벤트(퀘스트) > 특정 위치에서 발생하는 퀘스트 진행 로직 필요 
 public class EventManager : MonoBehaviour
 {
     private EventData _eventData;
@@ -10,6 +9,11 @@ public class EventManager : MonoBehaviour
     private List<int> _preEventKey = new List<int>();
     private Vector3 _size;
     private Collider _collider;
+
+    public int CurEvent()
+    {
+        return _eventData.Key;
+    }
 
     [SerializeField]
     private LayerMask _layerMask;
