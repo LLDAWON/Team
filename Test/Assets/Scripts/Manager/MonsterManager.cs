@@ -54,8 +54,6 @@ public class MonsterManager : Singleton<MonsterManager>
     // 특정 몬스터 소환 
     public void Spawn(string monster, Vector3 pos)
     {
-        
-
         GameObject spawnedMonster = Instantiate(_monsterPrefabs[monster], pos, Quaternion.identity);
         _spawnedMonsters.Add(monster, spawnedMonster);
         _curEnemy = spawnedMonster;

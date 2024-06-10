@@ -4,6 +4,29 @@ using UnityEngine;
 
 public class DarkMonsterController : EnemyController
 {
+    private float _floatSpeed = 1.0f; //부유하는 속도
+    private float _floatAmplitude = 0.3f; // 부유 높이
+    private float _darkMonsterSpeed;
+    private float _initialY; //초기 y값
+
+    private Transform _skulPanel;
+
+
+    
+    override protected void Start()
+    {
+        base.Start();
+        _initialY = transform.position.y;
+        _darkMonsterSpeed = _characterData.WalkSpeed;
+        _skulPanel = transform.GetChild(0);
+    }
+    override protected void Update()
+    {
+        SkulRotate();
+        SpeedIncresePerGetSkul();
+        FloatingAir();
+        base.Update();
+    }
 
     override protected void StateUpdate()
     {
@@ -15,10 +38,10 @@ public class DarkMonsterController : EnemyController
             return;
         }
 
+
         // 플레이어가 쳐다보고 손전등 켰을때
         PlayerController playerController = _target.GetComponent<PlayerController>();
-
-
+        //플레이어의 부채꼴 탐색
         Vector3 _inPlayerSight = transform.position - _target.transform.position;
         _inPlayerSight.y = 0;
 
@@ -56,5 +79,50 @@ public class DarkMonsterController : EnemyController
     }
 
 
+    protected override void EnemyAiPattern()
+    {
+        switch (_enemyState)
+        {
+            case EnemyState.Trace:
+                _animator.speed = 1.0f;
+                _navigation.SetDestination(_target.position);
+                _navigation.speed = _darkMonsterSpeed;
+                break;
+            case EnemyState.Attack:
+                _navigation.speed = 0;
+                _isAttack = true;
+                break;
+            case EnemyState.Die:
+                _navigation.velocity = Vector3.zero;
+                _navigation.speed = 0;
+                DesolveEffect();
+                break;
+        }
+    }
 
+    private void FloatingAir()
+    {
+
+        Vector3 pos = transform.position;
+        pos.y = _initialY + Mathf.Sin(Time.time * _floatSpeed) * _floatAmplitude;
+        transform.position = pos;
+
+    }
+
+    private void SpeedIncresePerGetSkul()
+    {
+        // 촛불퀘스트 촛불킬때마다 스피드++;
+    }
+
+    private void SkulRotate()
+    {
+        float rotZ = 20.0f;
+        _skulPanel.Rotate(0,0,rotZ*Time.deltaTime);
+
+        foreach (Transform child in _skulPanel)
+        {
+            child.Rotate(0, 0, -rotZ * Time.deltaTime);
+        }
+
+    }
 }

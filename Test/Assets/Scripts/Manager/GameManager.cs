@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+
     private GameObject _playerprefab;
     private GameObject _player;
 
@@ -28,7 +29,10 @@ public class GameManager : MonoBehaviour
         MonsterManager monsterManager = MonsterManager.Instance;
 
         // MonsterManager를 사용하여 Monster를 스폰
-        monsterManager.Spawn("Teacher", new Vector3(-16f, 1.5f, -10f));
+        monsterManager.Spawn("Follow", new Vector3(-16f, 2.5f, -10f));
+
+
     }
+
 }
 
