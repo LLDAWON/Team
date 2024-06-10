@@ -9,6 +9,9 @@ public class PlayerController : MoveableCharactorController
 {
     private float _curStemina = 0.0f;
     private bool _isJump = false;
+    private bool _isPlayerHide;
+    public bool GetIsPlayerHide() { return _isPlayerHide; }
+
     private Vector2 _mouseValue;
 
     private float _steminaDrainRate = 10.0f;
