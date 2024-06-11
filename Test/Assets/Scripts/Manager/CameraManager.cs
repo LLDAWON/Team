@@ -7,9 +7,7 @@ using UnityEngine.Rendering.Universal;
 
 public class CameraManager : MonoBehaviour
 {
-    private static CameraManager _instance;
-    public static CameraManager Instance
-    { get { return _instance; } }
+    public static CameraManager Instance;
 
     public CinemachineVirtualCamera _virtualCamera;
     private CinemachineBasicMultiChannelPerlin _noise;//카메라 흔들림효과
@@ -30,19 +28,11 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
 
         _noise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _volume.profile.TryGet(out _vignette);
         _volume.profile.TryGet(out _depthOfField);
-    }
-    private void Start()
-    {
-
-
-    }
-    private void Update()
-    {
-
     }
     public void ShakeCamera(float intensity, float duration)
     {
@@ -109,9 +99,10 @@ public class CameraManager : MonoBehaviour
 
     }
 
-
     public void StartVignette()
     {
+        if (_isChased)
+            return;
         _isChased = true;
         _vignette.color.value = Color.red;
         _vignette.smoothness.value = 0.5f;

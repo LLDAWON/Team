@@ -12,9 +12,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArchiveDrawers (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5b821f49875664645896b289aee7754b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5b821f49875664645896b289aee7754b, type: 3}
+      propertyPath: m_TagString
+      value: Locker
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 5b821f49875664645896b289aee7754b, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 5b821f49875664645896b289aee7754b, type: 3}
       propertyPath: m_TagString
@@ -22,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 5b821f49875664645896b289aee7754b, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 5b821f49875664645896b289aee7754b, type: 3}
       propertyPath: m_TagString
@@ -30,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 5b821f49875664645896b289aee7754b, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 5b821f49875664645896b289aee7754b, type: 3}
       propertyPath: m_TagString

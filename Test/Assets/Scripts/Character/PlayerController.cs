@@ -109,7 +109,7 @@ public class PlayerController : MoveableCharactorController
             rotX -= 360.0f;
         }
 
-        rotX = Mathf.Clamp(rotX, -30.0f, 30.0f);        
+        rotX = Mathf.Clamp(rotX, -50.0f, 50.0f);        
         _rotateObj.localRotation = Quaternion.Euler(rotX, 0, 0);
 
 

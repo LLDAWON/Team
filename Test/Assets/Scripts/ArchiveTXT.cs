@@ -28,6 +28,5 @@ public class ArchiveTXT : MonoBehaviour
     private void Exposuretime()
     {
         gameObject.SetActive(false);
-        _txt.gameObject.SetActive(false);
     }
 }
