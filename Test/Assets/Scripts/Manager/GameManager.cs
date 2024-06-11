@@ -6,16 +6,16 @@ using static UnityEditor.PlayerSettings;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager Instance;
-
 
     private GameObject _playerprefab;
     private GameObject _player;
     private EventManager _eventManager;
+    private MonsterManager _monsterManager;
+
+    private Vector3 _playerSpawnPosition = new Vector3(41.3f, 0.8f, 16.9f);
+    private bool _isSpawning = false;
     public GameObject GetPlayer() { return _player; }
-    private Vector3 _playerSpawnPosition = new Vector3(41.38365f, 0.8915222f, 16.93983f);
-   private MonsterManager _monsterManager;
     private void Awake()
     {
         Instance = this;
@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     private void PlayerSpawn()
     {
         _player.transform.position = _playerSpawnPosition;
+        UIManager.Instance.SetText(1);
+        UIManager.Instance.SetText(2);
     }
     private void Update()
     {
@@ -47,13 +49,16 @@ public class GameManager : MonoBehaviour
     }
     private void Floor5MonsterSpawn()
     {
+        if (_isSpawning) return;
+
         if (_eventManager != null)
         {
             int currentEvent = _eventManager.CurEvent();
-            Debug.Log("Current Event Key: " + currentEvent);
+            //Debug.Log("Current Event Key: " + currentEvent);
             if (currentEvent == 6)
             {
-                _monsterManager.Spawn("Follow", new Vector3(2.455653f, 0.880652f, -5.482373f));
+                _monsterManager.Spawn("Follow", new Vector3(2.4f, 0.8f, -5.4f));
+                _isSpawning = true;
             }
         }
         

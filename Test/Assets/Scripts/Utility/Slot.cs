@@ -19,7 +19,7 @@ public class Slot : MonoBehaviour
     {
         _itemButton = transform.GetChild(0).gameObject;
         _countTXT = _itemButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        _image= _itemButton.GetComponent<Image>();
+        _image = _itemButton.GetComponent<Image>();
         _itemButton.gameObject.SetActive(false);
     }
 
@@ -45,7 +45,7 @@ public class Slot : MonoBehaviour
 
         Button button = transform.GetChild(0).GetComponent<Button>();
 
-        if(button != null )
+        if (button != null)
         {
             button.onClick.AddListener(() => OnSlotClick());
         }
@@ -63,18 +63,17 @@ public class Slot : MonoBehaviour
 
     private void OnSlotClick()
     {
-        if(_image != null)
+        if (_image != null)
         {
             UseItem();
         }
     }
-
     private void UseItem()
     {
         _count--;
         _countTXT.text = _count.ToString();
 
-        if(_count == 0 )
+        if (_count == 0)
         {
             _image.sprite = null;
         }

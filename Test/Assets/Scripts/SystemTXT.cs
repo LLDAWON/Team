@@ -13,13 +13,16 @@ public class SystemTXT : MonoBehaviour
     {
         _txt = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         _txt.gameObject.SetActive(false);
+
+        gameObject.SetActive(false);
     }
 
     public void SetText(TextData data)
     {
+        gameObject.SetActive(true);
+        _txt.gameObject.SetActive(true);
         _txtData = data;
         _txt.text = _txtData.Text;
-        gameObject.SetActive(true);
     }
 
 }

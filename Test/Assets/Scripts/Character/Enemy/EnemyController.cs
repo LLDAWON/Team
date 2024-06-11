@@ -106,7 +106,7 @@ public class EnemyController : MoveableCharactorController
 
         if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(DisolveEffect());
+         //   StartCoroutine(DisolveEffect());
         }
         //처음조우상태
         CheckFirstMeetPlayer();
@@ -170,7 +170,8 @@ public class EnemyController : MoveableCharactorController
             if (_isPlayerDetected)
             {
                 SetState(1);
-                 _animator.SetBool("IsTrace", true);
+                _animator.SetBool("IsTrace", true);
+
             }
             else
             {
@@ -217,6 +218,8 @@ public class EnemyController : MoveableCharactorController
                     _animator.speed = 0.5f;
                     _navigation.SetDestination(_destPos);
                     _navigation.speed = _characterData.WalkSpeed;
+
+                    CameraManager.Instance.StopVignette();
                 }
                 break;
             case EnemyState.Trace:
@@ -224,6 +227,8 @@ public class EnemyController : MoveableCharactorController
                     _animator.speed = 2.0f;
                     _navigation.SetDestination(_target.position);
                     _navigation.speed = _characterData.RunSpeed;
+
+                    CameraManager.Instance.StartVignette();
                 }
                 break;
             case EnemyState.Attack:

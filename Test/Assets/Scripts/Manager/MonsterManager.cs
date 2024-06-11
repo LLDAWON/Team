@@ -61,7 +61,7 @@ public class MonsterManager : Singleton<MonsterManager>
         GameObject spawnedMonster = Instantiate(_monsterPrefabs[monster], pos, Quaternion.identity);
         _spawnedMonsters.Add(monster, spawnedMonster);
         _curEnemy = spawnedMonster;
-
+        UIManager.Instance.SetText(8);
     }
 
     private void DestroyMonster(string monster)
