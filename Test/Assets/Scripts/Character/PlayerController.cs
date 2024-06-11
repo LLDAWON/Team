@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.RenderGraphModule;
 using UnityEngine.UI;
 
 public class PlayerController : MoveableCharactorController
@@ -24,14 +25,19 @@ public class PlayerController : MoveableCharactorController
     private Transform _rotateObj;
     private GameObject _prfSteminaBar;
     private Image _curSteminaBar;
+    
+    public Texture2D cursorTexture;
+    private Vector2 hotspot = Vector2.zero;
 
     protected override void Awake()
     {
         base.Awake();
-
+        Vector3 pos = new Vector3(960, 540,0);
         _rotateObj = transform.GetChild(0);
 
-        Cursor.visible = false;
+        //cursorTexture = Resources.Load("Textures/UI/Cursur")as Texture2D;
+        Cursor.visible = true;
+        Cursor.SetCursor(cursorTexture, Camera.main.WorldToScreenPoint(pos) , CursorMode.ForceSoftware);
         Cursor.lockState = CursorLockMode.Locked;
     }
 

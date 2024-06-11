@@ -12,17 +12,14 @@ public class SystemTXT : MonoBehaviour
     private void Awake()
     {
         _txt = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        gameObject.SetActive(false);
         _txt.gameObject.SetActive(false);
     }
 
     public void SetText(TextData data)
     {
-        gameObject.SetActive(true);
-        _txt.gameObject.SetActive(true);
         _txtData = data;
         _txt.text = _txtData.Text;
-       
+        gameObject.SetActive(true);
     }
 
 }

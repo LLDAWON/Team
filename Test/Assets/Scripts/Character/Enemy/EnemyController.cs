@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 
 public class EnemyController : MoveableCharactorController
 {
+
     public enum EnemyState
     {
         Patrol,
@@ -51,18 +52,21 @@ public class EnemyController : MoveableCharactorController
     // 디졸브효과 및 쉐이더 
     protected Material _material;
     protected Shader _shader;
-    protected float _desolveTime;
     protected float _desolveEndTime = 2.0f;
     protected bool _desolveStart = false;
+    protected float _desolveSpeed = 0.3f;
+    protected Renderer[] _renderers;
 
 
     protected override void Awake()
     {
+
         base.Awake();
         _navigation = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
 
-        _desolveTime = _desolveEndTime;
+        _renderers = GetComponentsInChildren<Renderer>();
+
+            _animator = GetComponent<Animator>();
 
     }
 
@@ -71,13 +75,39 @@ public class EnemyController : MoveableCharactorController
         _target = GameManager.Instance.GetPlayer().transform;
         _destPos = pathes[0];
         _defaultAnimatorStateHash = _animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
-    }
+       
+       
 
+    }
+    IEnumerator DisolveEffect()
+    {
+        float disolveTime = 0.0f;
+
+        while (disolveTime < 2.0f)
+        {
+            disolveTime += _desolveSpeed * Time.deltaTime;
+
+            foreach (Renderer renderer in _renderers)
+            {
+                renderer.material.SetFloat("_DesolveTime", disolveTime);
+            }
+
+            yield return null;
+        }
+        if(disolveTime>2.0f)
+        { 
+            SetState(5);
+        }
+    }
     protected override void Update()
     {
         if (_enemyState == EnemyState.Attack)
             return;
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(DisolveEffect());
+        }
         //처음조우상태
         CheckFirstMeetPlayer();
 
@@ -85,7 +115,7 @@ public class EnemyController : MoveableCharactorController
 
         StateUpdate();
         EnemyAiPattern();
-        //DesolveEnemy();
+       
         base.Update();
     }
 
@@ -221,7 +251,8 @@ public class EnemyController : MoveableCharactorController
                 {
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
-                    DesolveEffect();
+                    Debug.Log("죽음");
+                    DestroyMonster();
                 }
                 break;
         }
@@ -232,7 +263,8 @@ public class EnemyController : MoveableCharactorController
         if (other.gameObject.CompareTag("Player"))
         {
             SetState(2);
-            //_animator.SetTrigger("Attack");
+            //if (_animator.SetTrigger("attack"))
+            //    return;            //_animator.SetTrigger("Attack");
         }
     }
 
@@ -296,37 +328,5 @@ public class EnemyController : MoveableCharactorController
     }
 
     //디졸브효과및 n초후 사라짐
-    protected void DesolveEffect()
-    {
-        //1초후 디졸브 효과가 반복되니 삭제해야함
-        foreach (Transform child in transform)
-        {
-            Renderer renderer = child.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                _material = renderer.material;
-                _shader = _material.shader;
-                _shader = Shader.Find("Shader Graphs/Desolve");
-                _material.shader = _shader;
-
-            }
-        }
-        _desolveStart = true;
-    }
-
-    protected void DesolveEnemy()
-    {
-        if(_desolveStart)
-        {
-            _desolveTime--;
-            if(_desolveTime<0)
-            {
-                gameObject.SetActive(false);
-                _desolveTime += _desolveEndTime;
-                _desolveStart = false;
-            }
-        }
-
-        _material.SetFloat("DesloveTime", _desolveTime);
-    }
+   
 }

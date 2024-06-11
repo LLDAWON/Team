@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Kimono_Material_BaseMap_1K
-  m_Shader: {fileID: -6465566751694194690, guid: 3f722add50062cc429f1fdc4610a4198, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 8fdd269323928ea4388f8a6ea2753f41, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

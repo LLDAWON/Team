@@ -3,45 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Floor
-  - FlashLight
-  - Column
-  - Wall
-  - Book
-  - Locker
-  - Mirror
-  - ArchiveDrawers
-  - Telephone
-  - Toilet
-  - Door
-  - Pen
-  - LibraryCardCatalog
-  - ToiletCabin
-  - Ball
-  - PaperDecal
-  - CardboardBox
-  - Folder
-  - Tower
-  - Plant
-  - GlassDebris
-  - Bench
-  - Bookcase
-  - FireExtinguisher
-  - Sink
-  - Frame
-  - CleanerBucket
-  - Chair
-  - TeamLogo
-  - TrashCan
-  - CleanerMop
-  - TeacherTable
-  - ClassDoor1
-  - Locker1
-  - Battery
-  - Locker2
-  - Default
-  - Hint1
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -49,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Object
+  - 
   - 
   - 
   - 
