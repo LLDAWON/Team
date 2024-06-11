@@ -183,33 +183,46 @@ public class EnemyController : MoveableCharactorController
         switch (_enemyState)
         {
             case EnemyState.Patrol:
-                _animator.speed = 0.5f;
-                _navigation.SetDestination(_destPos);
-                _navigation.speed = _characterData.WalkSpeed;
+                {
+                    _animator.speed = 0.5f;
+                    _navigation.SetDestination(_destPos);
+                    _navigation.speed = _characterData.WalkSpeed;
+                }
                 break;
             case EnemyState.Trace:
-                _animator.speed = 2.0f;
-                _navigation.SetDestination(_target.position);
-                _navigation.speed = _characterData.RunSpeed;
+                {
+                    _animator.speed = 2.0f;
+                    _navigation.SetDestination(_target.position);
+                    _navigation.speed = _characterData.RunSpeed;
+                }
                 break;
             case EnemyState.Attack:
-                _navigation.speed = 0;
-                _animator.speed = 1.0f;
-                _isAttack = true;
+                {
+                    _navigation.speed = 0;
+                    _animator.speed = 1.0f;
+                    _isAttack = true;
+                    Debug.Log("°ø°ÝÁß");
+                }
                 break;
             case EnemyState.Stop:
-                _navigation.velocity = Vector3.zero;
-                _navigation.speed = 0;
-                _animator.speed = 0.0f;
+                {
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
+                    _animator.speed = 0.0f;
+                }
                 break;
             case EnemyState.None:
-                _navigation.velocity = Vector3.zero;
-                _navigation.speed = 0;
+                {
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
+                }
                 break;
             case EnemyState.Die:
-                _navigation.velocity = Vector3.zero;
-                _navigation.speed = 0;
-                DesolveEffect();
+                {
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
+                    DesolveEffect();
+                }
                 break;
         }
     }
@@ -219,7 +232,7 @@ public class EnemyController : MoveableCharactorController
         if (other.gameObject.CompareTag("Player"))
         {
             SetState(2);
-            _animator.SetTrigger("Attack");
+            //_animator.SetTrigger("Attack");
         }
     }
 
