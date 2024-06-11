@@ -11,14 +11,16 @@ public class Slot : MonoBehaviour
 
     private TextMeshProUGUI _countTXT;
     private Image _image;
+    private GameObject _itemButton;
 
     private ItemData _data;
 
     private void Awake()
     {
-        _countTXT = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        _image= GetComponent<Image>();
-        gameObject.SetActive(false);
+        _itemButton = transform.GetChild(0).gameObject;
+        _countTXT = _itemButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        _image= _itemButton.GetComponent<Image>();
+        _itemButton.gameObject.SetActive(false);
     }
 
 
@@ -41,14 +43,15 @@ public class Slot : MonoBehaviour
         _image.sprite = Resources.Load<Sprite>(data.ImagePath) as Sprite;
         _countTXT.text = _count.ToString();
 
-        Button button = GetComponent<Button>();
+        Button button = transform.GetChild(0).GetComponent<Button>();
+
         if(button != null )
         {
             button.onClick.AddListener(() => OnSlotClick());
         }
 
         _isSetItem = true;
-        gameObject.SetActive(true);
+        _itemButton.gameObject.SetActive(true);
 
     }
 

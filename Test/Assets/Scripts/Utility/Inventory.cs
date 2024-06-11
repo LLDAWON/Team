@@ -58,6 +58,11 @@ public class Inventory : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        DeleteSlotData();
+    }
+
     private bool CheckRedundancyItem(string name)
     {
         return _items.ContainsKey(name);
@@ -83,7 +88,7 @@ public class Inventory : MonoBehaviour
             {
 <<<<<<< Updated upstream
                 slot.SetIsItem(false);
-                slot.gameObject.SetActive(false);
+                slot.transform.GetChild(0).gameObject.SetActive(false);
                 _items.Remove(slot.SlotData().Name);
                 return;
 =======
