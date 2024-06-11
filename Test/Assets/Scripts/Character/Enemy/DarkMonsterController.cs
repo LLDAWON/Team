@@ -10,9 +10,16 @@ public class DarkMonsterController : EnemyController
     private float _initialY; //ÃÊ±â y°ª
 
     private Transform _skulPanel;
+    private Renderer[] _renderers;
 
+    protected override void Awake()
+    {
+        base.Awake();
 
-    
+        //GetComponentsInChildren<Renderer>(_renderers);
+        _renderers = GetComponentsInChildren<Renderer>();
+    }
+
     override protected void Start()
     {
         base.Start();
@@ -22,10 +29,32 @@ public class DarkMonsterController : EnemyController
     }
     override protected void Update()
     {
+        if(Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(DisolveEffect());
+        }
+
         SkulRotate();
         SpeedIncresePerGetSkul();
         FloatingAir();
         base.Update();
+    }
+
+    IEnumerator DisolveEffect()
+    {
+        float disolveTime = 0.0f;
+
+        while(disolveTime < 2.0f)
+        {
+            disolveTime += Time.deltaTime;
+
+            foreach(Renderer renderer in _renderers)
+            {
+                renderer.material.SetFloat("_DesolveTime", disolveTime);
+            }
+
+            yield return null;
+        }
     }
 
     override protected void StateUpdate()
