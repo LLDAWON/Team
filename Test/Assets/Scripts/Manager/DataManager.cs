@@ -194,11 +194,8 @@ public class DataManager : Singleton<DataManager>
             TextData textData;
 
 
-
             textData.Key = int.Parse(data[0]);
-            string txt = data[1];
-            //txt.Replace("\\n", "\n");
-            textData.Text = txt.Replace("@", "\n");
+            textData.Text = data[1];
             textData.Type = int.Parse(data[2]);
 
 

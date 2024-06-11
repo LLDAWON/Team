@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class DarkMonsterController : EnemyController
 {
+    // 다크몬스터가 부유하는 상태값
     private float _floatSpeed = 1.0f; //부유하는 속도
     private float _floatAmplitude = 0.3f; // 부유 높이
     private float _darkMonsterSpeed;
     private float _initialY; //초기 y값
 
+    //다크몬스터 주변에있는 해골들
     private Transform _skulPanel;
-    private Renderer[] _renderers;
+    //private Renderer[] _renderers;
+
+    //다크몬스터의 이동을 제한하는 촛불들을 관리하는 리스트
+    private List<CandleScript> candles;
+
+    //
+    //private float _desolveSpeed = 0.3f; 
 
     protected override void Awake()
     {
         base.Awake();
 
-        //GetComponentsInChildren<Renderer>(_renderers);
-        _renderers = GetComponentsInChildren<Renderer>();
+        //_renderers = GetComponentsInChildren<Renderer>();
     }
 
     override protected void Start()
@@ -26,13 +33,14 @@ public class DarkMonsterController : EnemyController
         _initialY = transform.position.y;
         _darkMonsterSpeed = _characterData.WalkSpeed;
         _skulPanel = transform.GetChild(0);
+        candles = new List<CandleScript>(FindObjectsOfType<CandleScript>());
     }
     override protected void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(DisolveEffect());
-        }
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    StartCoroutine(DisolveEffect());
+        //}
 
         SkulRotate();
         SpeedIncresePerGetSkul();
@@ -40,22 +48,22 @@ public class DarkMonsterController : EnemyController
         base.Update();
     }
 
-    IEnumerator DisolveEffect()
-    {
-        float disolveTime = 0.0f;
+    //IEnumerator DisolveEffect()
+    //{
+    //    float disolveTime = 0.0f;
 
-        while(disolveTime < 2.0f)
-        {
-            disolveTime += Time.deltaTime;
+    //    while(disolveTime < 2.0f)
+    //    {
+    //        disolveTime += _desolveSpeedTime.deltaTime;
 
-            foreach(Renderer renderer in _renderers)
-            {
-                renderer.material.SetFloat("_DesolveTime", disolveTime);
-            }
+    //        foreach(Renderer renderer in _renderers)
+    //        {
+    //            renderer.material.SetFloat("_DesolveTime", disolveTime);
+    //        }
 
-            yield return null;
-        }
-    }
+    //        yield return null;
+    //    }
+    //}
 
     override protected void StateUpdate()
     {
@@ -110,21 +118,36 @@ public class DarkMonsterController : EnemyController
 
     protected override void EnemyAiPattern()
     {
+
+        if (IsWithinAnyCandleLight())
+        {
+            AvoidCandles();
+            return;
+        }
+
         switch (_enemyState)
         {
             case EnemyState.Trace:
-                _animator.speed = 1.0f;
-                _navigation.SetDestination(_target.position);
-                _navigation.speed = _darkMonsterSpeed;
+                {
+                    _animator.speed = 1.0f;
+                    _navigation.SetDestination(_target.position);
+                    _navigation.speed = _darkMonsterSpeed;
+                }
                 break;
             case EnemyState.Attack:
-                _navigation.speed = 0;
-                _isAttack = true;
+                {
+                    _navigation.speed = 0;
+                    _isAttack = true;
+                }
+               
                 break;
             case EnemyState.Die:
-                _navigation.velocity = Vector3.zero;
-                _navigation.speed = 0;
-                DesolveEffect();
+                {
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
+                    Debug.Log("죽음");
+                    DestroyMonster();
+                }
                 break;
         }
     }
@@ -146,12 +169,38 @@ public class DarkMonsterController : EnemyController
     private void SkulRotate()
     {
         float rotZ = 20.0f;
-        _skulPanel.Rotate(0,0,rotZ*Time.deltaTime);
+        _skulPanel.Rotate(0, 0, rotZ * Time.deltaTime);
 
         foreach (Transform child in _skulPanel)
         {
             child.Rotate(0, 0, -rotZ * Time.deltaTime);
         }
 
+    }
+
+    private bool IsWithinAnyCandleLight()
+    {
+        foreach (var candle in candles)
+        {
+            if (candle.IsWithinLight(transform.position))
+                return true;
+        }
+        return false;
+    }
+
+    private void AvoidCandles()
+    {
+        // 촛불 주변을 피하도록 이동 경로 계산
+        Vector3 avoidDirection = Vector3.zero;
+        foreach (var candle in candles)
+        {
+            if (candle.IsWithinLight(transform.position))
+            {
+                avoidDirection += (transform.position - candle.transform.position);
+            }
+        }
+        avoidDirection.Normalize();
+        Vector3 newTargetPosition = transform.position + avoidDirection * _darkMonsterSpeed * Time.deltaTime;
+        _navigation.SetDestination(newTargetPosition);
     }
 }

@@ -478,8 +478,13 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
+<<<<<<< Updated upstream:Test/Assets/Shaders/Desolve/Desolve.shadergraph
             "x": -1880.9998779296875,
             "y": 342.0000305175781,
+=======
+            "x": -1381.0,
+            "y": 135.0,
+>>>>>>> Stashed changes:Test/Assets/Resources/Shaders/Desolve/Desolve.shadergraph
             "width": 143.0,
             "height": 33.99993896484375
         }
@@ -965,8 +970,13 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
+<<<<<<< Updated upstream:Test/Assets/Shaders/Desolve/Desolve.shadergraph
             "x": -1631.9998779296875,
             "y": 440.0,
+=======
+            "x": -1223.0,
+            "y": 267.0,
+>>>>>>> Stashed changes:Test/Assets/Resources/Shaders/Desolve/Desolve.shadergraph
             "width": 208.0,
             "height": 326.0
         }

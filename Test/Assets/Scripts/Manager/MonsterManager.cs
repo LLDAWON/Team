@@ -33,7 +33,11 @@ public class MonsterManager : Singleton<MonsterManager>
         }
 
         //4Ãþ
-
+        GameObject darkEnemyPrefab = Resources.Load<GameObject>("Prefabs/Character/Enemy/Dark");
+        if (darkEnemyPrefab != null)
+        {
+            _monsterPrefabs.Add("Dark", darkEnemyPrefab);
+        }
 
         //3Ãþ
         GameObject teacherEnemyPrefab = Resources.Load<GameObject>("Prefabs/Character/Enemy/Teacher");
