@@ -46,9 +46,7 @@ public class UIManager : MonoBehaviour
         _inventory = transform.GetChild(2).GetComponent<Inventory>();
         _archive = transform.GetChild(3).GetComponent<ArchiveTXT>();
 
-        _conditionKey.gameObject.SetActive(false);
-        _text.gameObject.SetActive(false);
-        _inventory.gameObject.SetActive(false);
+        _conditionKey.gameObject.SetActive(false);        
     }
 
     private void Update()
