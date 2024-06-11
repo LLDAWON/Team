@@ -650,7 +650,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70706904, y: -0.0073086023, z: 0.0073086023, w: -0.70706904}
   m_LocalPosition: {x: -0.0010699994, y: 0.0015999984, z: 0.0005000038}
-  m_LocalScale: {x: 0.010000001, y: 0.010000001, z: 0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1439166057}
@@ -668,7 +668,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderCamera: {fileID: 829978522}
-  renderTexture: {fileID: 8400000, guid: 166633ca65cd7054fbf6946ff6432405, type: 2}
 --- !u!114 &829978520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,7 +753,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 166633ca65cd7054fbf6946ff6432405, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1077,6 +1076,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -1526509560930016547, guid: 44b42fd0da8397a43a36f67b97d3bcbb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4bd49b259ff44af45afdab37f0518b94, type: 2}
     - target: {fileID: 919132149155446097, guid: 44b42fd0da8397a43a36f67b97d3bcbb, type: 3}
       propertyPath: m_Name
       value: IPHONE13
@@ -1088,9 +1091,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 829978518}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: -8256134651489076907, guid: 44b42fd0da8397a43a36f67b97d3bcbb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1895629889}
     - targetCorrespondingSourceObject: {fileID: -8256134651489076907, guid: 44b42fd0da8397a43a36f67b97d3bcbb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1895629890}
@@ -1513,19 +1513,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -8256134651489076907, guid: 44b42fd0da8397a43a36f67b97d3bcbb, type: 3}
   m_PrefabInstance: {fileID: 1439166056}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1895629889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895629885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 280675219aaaef549a7a317c0fbbb2a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  screenMaterial: {fileID: 2100000, guid: 4bd49b259ff44af45afdab37f0518b94, type: 2}
 --- !u!114 &1895629890
 MonoBehaviour:
   m_ObjectHideFlags: 0
