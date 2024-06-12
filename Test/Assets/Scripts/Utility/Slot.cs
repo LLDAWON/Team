@@ -6,31 +6,24 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
+    [SerializeField]
+    private Image _image;
+
     private bool _isSetItem = false;
     private int _count = 0;
-
-    private TextMeshProUGUI _countTXT;
-    private Image _image;
-    private GameObject _itemButton;
-
+    
     private ItemData _data;
 
     private void Awake()
     {
-        _itemButton = transform.GetChild(0).gameObject;
-        _countTXT = _itemButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        _image = _itemButton.GetComponent<Image>();
-        _itemButton.gameObject.SetActive(false);
+        _image.gameObject.SetActive(false);
     }
-
-
     public bool IsSet()
     {
         return _isSetItem;
     }
     public int Count()
     { return _count; }
-
     public void SetIsItem(bool isItem)
     { _isSetItem = isItem; }
     public ItemData SlotData()
@@ -41,7 +34,7 @@ public class Slot : MonoBehaviour
         _data = data;
         _count++;
         _image.sprite = Resources.Load<Sprite>(data.ImagePath) as Sprite;
-        _countTXT.text = _count.ToString();
+        _image.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _count.ToString();
 
         Button button = transform.GetChild(0).GetComponent<Button>();
 
@@ -51,14 +44,14 @@ public class Slot : MonoBehaviour
         }
 
         _isSetItem = true;
-        _itemButton.gameObject.SetActive(true);
+        _image.gameObject.SetActive(true);
 
     }
 
     public void AddItem()
     {
         _count++;
-        _countTXT.text = _count.ToString();
+        _image.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _count.ToString();
     }
 
     private void OnSlotClick()
@@ -71,7 +64,7 @@ public class Slot : MonoBehaviour
     private void UseItem()
     {
         _count--;
-        _countTXT.text = _count.ToString();
+        _image.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _count.ToString();
 
         if (_count == 0)
         {

@@ -43,8 +43,7 @@ public class EventManager : MonoBehaviour
             if (_eventData.EventTag == "None" || CheckRedundancy(_eventData.Key))
                 return;
             else
-            {
-                _eventKey = hit.collider.tag;
+            {               
 
                 if (_eventData.Type == 1)
                 {
@@ -65,6 +64,7 @@ public class EventManager : MonoBehaviour
                     }
 
                 }
+
             }
         }
         else
@@ -74,9 +74,11 @@ public class EventManager : MonoBehaviour
         
 
     }
-        private void CheckPreEvent()
+    private void CheckPreEvent()
     {
-        if(_eventData.Condition > 0)
+        _eventKey = hit.collider.tag;
+
+        if (_eventData.Condition > 0)
         {
             foreach(int i in _preEventKey)
             {
