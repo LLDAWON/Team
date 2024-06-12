@@ -11,7 +11,7 @@ public class Flashlight : MonoBehaviour
 
     private float _maxValue;
     private float _usedValue = 35.0f;
-    private int _dataKey = 101;
+    private readonly int _dataKey = 101;
     private bool _enabled = true;
 
 
@@ -62,5 +62,21 @@ public class Flashlight : MonoBehaviour
         }            
         
         UIManager.Instance.Battery.transform.GetChild(batteryCount).gameObject.SetActive(false);
+    }
+
+    public void ChargeBattery(float value)
+    {
+        _maxValue += value;
+
+        if(_maxValue > _data.Value)
+        {
+            _maxValue = _data.Value;
+        }
+
+        for(int i = 0; i < UIManager.Instance.Battery.transform.childCount; i++)
+        {
+            UIManager.Instance.Battery.transform.GetChild(i).gameObject.SetActive(true);
+        }
+
     }
 }

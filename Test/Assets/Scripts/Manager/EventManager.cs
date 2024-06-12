@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventManager : MonoBehaviour
 {
@@ -43,7 +44,8 @@ public class EventManager : MonoBehaviour
             if (_eventData.EventTag == "None")
                 return;
             else
-            {               
+            {
+                UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/HitCursor") as Sprite;
                 if (_eventData.Type == 1)
                 {
                     if (Input.GetKeyDown(KeyCode.F))
@@ -58,6 +60,8 @@ public class EventManager : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         CheckPreEvent();
+                        if (_eventData.GetItemKey == 0)
+                            return;
                         hit.collider.gameObject.SetActive(false);
                         return;
                     }
@@ -68,6 +72,7 @@ public class EventManager : MonoBehaviour
         }
         else
         {
+            UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/Cursur") as Sprite;
             _eventKey = null;
         }
         

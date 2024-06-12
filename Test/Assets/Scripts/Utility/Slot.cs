@@ -66,6 +66,8 @@ public class Slot : MonoBehaviour
         _count--;
         _image.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _count.ToString();
 
+        //ItemManager.Instance.UseItem(_data.Key);
+
         if (_count == 0)
         {
             _image.sprite = null;

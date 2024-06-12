@@ -10,13 +10,17 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance
     { get { return _instance; } }
 
+    [SerializeField]
+    private GameObject _hintPena;
+    [SerializeField]
+    private GameObject _cursor;
+
     private bool _inventoryOpen = false;
     private List<int> _preTxTKey = new List<int>();
 
     private TextData _textData;
     
     private SystemTXT _text;
-    private Image _conditionKey;
     private Inventory _inventory;
     private ArchiveTXT _archive;
     private GameObject _battery;
@@ -25,9 +29,8 @@ public class UIManager : MonoBehaviour
     { get { return _inventory; } }
     public GameObject Battery 
     {  get { return _battery; } }
-    public Image ConditionKey
-    { get { return _conditionKey; } }
-
+    public GameObject GetCursor
+    { get { return _cursor; } }
     public void SetText(int key)
     {
         _textData = DataManager.Instance.GetTextData(key);
@@ -49,12 +52,10 @@ public class UIManager : MonoBehaviour
         _instance = this;
 
         _text = transform.GetChild(0).GetComponent<SystemTXT>();
-        _conditionKey = transform.GetChild(1).GetComponent<Image>();
-        _inventory = transform.GetChild(2).GetComponent<Inventory>();
-        _archive = transform.GetChild(3).GetComponent<ArchiveTXT>();
-        _battery = transform.GetChild(4).gameObject;
+        _inventory = transform.GetChild(1).GetComponent<Inventory>();
+        _archive = transform.GetChild(2).GetComponent<ArchiveTXT>();
+        _battery = transform.GetChild(3).gameObject;
 
-        _conditionKey.gameObject.SetActive(false);
         _battery.SetActive(false);
     }
 

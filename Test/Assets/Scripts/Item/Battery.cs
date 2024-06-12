@@ -7,16 +7,18 @@ public class Battery : MonoBehaviour
     [SerializeField]
     private int _dataKey;
 
+    private Flashlight _flash;
     private ItemData _data;
 
     private void Awake()
     {
         _data = DataManager.Instance.GetItemData(_dataKey);
+        _flash = GameObject.Find("Flashlight_ON").GetComponent<Flashlight>();
     }
 
-    private void UseBattery()
+    public void UseBattery()
     {
-
+        //_flash.ChargeBattery(_data.Value);
     }
 
 }

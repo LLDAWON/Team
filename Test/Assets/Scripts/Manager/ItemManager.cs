@@ -18,4 +18,9 @@ public class ItemManager : Singleton<ItemManager>
         
     }
 
+    public void UseItem(int key)
+    {
+        //
+    }
+
 }
