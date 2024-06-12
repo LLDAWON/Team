@@ -66,7 +66,7 @@ public class EnemyController : MoveableCharactorController
 
         _renderers = GetComponentsInChildren<Renderer>();
 
-            _animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
 
     }
 
@@ -101,15 +101,8 @@ public class EnemyController : MoveableCharactorController
     }
     protected override void Update()
     {
-        if (_enemyState == EnemyState.Attack)
-            return;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-         //   StartCoroutine(DisolveEffect());
-        }
-        //처음조우상태
-        CheckFirstMeetPlayer();
+       
 
         CheckPath();
 
@@ -121,7 +114,12 @@ public class EnemyController : MoveableCharactorController
 
     virtual protected void StateUpdate()
     {
+        //공격일떈 스테이트변화 x
+        if (_enemyState == EnemyState.Attack)
+            return;
+
         // 플레이어가 조우하기전엔 스테이트변화  x
+        CheckFirstMeetPlayer();
         if (!_isFirstMeet)
             return;
         //캐비넷같이 숨을수 있는곳 들어갔을때는 인식못하게 조절하기위해 숨으면 순찰
@@ -228,13 +226,15 @@ public class EnemyController : MoveableCharactorController
                     _navigation.SetDestination(_target.position);
                     _navigation.speed = _characterData.RunSpeed;
 
-                    CameraManager.Instance.StartVignette();
+                    //CameraManager.Instance.StartVignette();
                 }
                 break;
             case EnemyState.Attack:
                 {
                     _navigation.speed = 0;
+                    _navigation.velocity = Vector3.zero;
                     _animator.speed = 1.0f;
+                    _animator.SetTrigger("Attack");
                     _isAttack = true;
                     Debug.Log("공격중");
                 }
@@ -263,13 +263,11 @@ public class EnemyController : MoveableCharactorController
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             SetState(2);
-            //if (_animator.SetTrigger("attack"))
-            //    return;            //_animator.SetTrigger("Attack");
         }
     }
 

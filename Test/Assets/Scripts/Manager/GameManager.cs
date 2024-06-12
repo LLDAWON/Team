@@ -21,9 +21,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
-        _player = Instantiate(_playerprefab, new Vector3(8f, 1.5f, -10f), Quaternion.identity);
-        _eventManager = _player.GetComponent<EventManager>();
-        //  _player = GameObject.Find("Player");
+        //_player = Instantiate(_playerprefab, new Vector3(8f, 1.5f, -10f), Quaternion.identity);
+        //_eventManager = _player.GetComponent<EventManager>();
+          _player = GameObject.Find("Player");
         _monsterManager = MonsterManager.Instance;
     }
     private void Start()
@@ -32,10 +32,9 @@ public class GameManager : MonoBehaviour
        // MonsterManager monsterManager = MonsterManager.Instance;
 
         // MonsterManager를 사용하여 Monster를 스폰
-
-       
-
-        PlayerSpawn();
+       // _monsterManager.Spawn("Pig", new Vector3(-3.89f, 1.28f, 27.77f));
+        
+        //PlayerSpawn();
     }
     private void PlayerSpawn()
     {
@@ -45,7 +44,8 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-       Floor5MonsterSpawn();
+        //Floor5MonsterSpawn();
+       
     }
     private void Floor5MonsterSpawn()
     {
@@ -62,6 +62,16 @@ public class GameManager : MonoBehaviour
             }
         }
         
+    }
+
+    private void MiniMonsterSpawn()
+    {
+        if (!_isSpawning)
+        {
+            
+            _isSpawning = true;
+        }
+
     }
 
 

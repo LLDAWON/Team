@@ -15,12 +15,22 @@ public class PlayerController : MoveableCharactorController
     private float _steminaDrainRate = 10.0f;
 
     //Hide
-    private bool _isPlayerHide;
+    private bool _isPlayerHide = false;
     public bool GetIsPlayerHide() { return _isPlayerHide; }
+
+    // 플레이어 벤트들어간지 여부
+    private bool _isPlayerVant = false;
+    public void SetPlayerInVant(bool _isVant) { _isPlayerVant = _isVant; }
+    public bool GetIsPlayerVant() { return _isPlayerVant; }
+
 
     //LightOn
     private bool _isLightOn = false;
     public bool GetIsLightOn() { return _isLightOn; }
+
+    //플레이어 죽음상태
+    private bool _isDie = false;
+    public bool GetIsPlayerDie() { return _isDie; }
 
     private Transform _rotateObj;
     private GameObject _prfSteminaBar;
@@ -50,6 +60,9 @@ public class PlayerController : MoveableCharactorController
 
     protected override void Update()
     {
+        if (_isDie)
+            return;
+
         base.Update();
 
         MoveController();
@@ -71,6 +84,7 @@ public class PlayerController : MoveableCharactorController
         {
             if(_curStemina > 0.0f)
             {
+                _isPlayerVant = false;
                 _curStemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
                 _moveSpeed = _characterData.RunSpeed;
             }
@@ -79,13 +93,15 @@ public class PlayerController : MoveableCharactorController
                 _moveSpeed = _characterData.WalkSpeed;
             }
         }
-        else if (Input.GetKey(KeyCode.LeftControl) )
+        else if (Input.GetKey(KeyCode.C) )
         {
+            _isPlayerVant = true;
             _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
             _moveSpeed = _characterData.CrawlingSpeed;            
         }
         else
         {
+            _isPlayerVant = false;
             _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
             _moveSpeed = _characterData.WalkSpeed;            
         }
@@ -127,6 +143,15 @@ public class PlayerController : MoveableCharactorController
             //
         }
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            _isDie = true;
+            //닿았을때 호출 잘된다.
+        }
     }
 
 
