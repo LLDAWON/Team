@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     { get { return _instance; } }
 
     private bool _inventoryOpen = false;
+    private List<int> _preTxTKey = new List<int>();
 
     private TextData _textData;
     
@@ -18,8 +19,12 @@ public class UIManager : MonoBehaviour
     private Image _conditionKey;
     private Inventory _inventory;
     private ArchiveTXT _archive;
+    private GameObject _battery;
 
-    public Inventory GetInventory() { return _inventory; }
+    public Inventory GetInventory
+    { get { return _inventory; } }
+    public GameObject Battery 
+    {  get { return _battery; } }
     public Image ConditionKey
     { get { return _conditionKey; } }
 
@@ -27,11 +32,13 @@ public class UIManager : MonoBehaviour
     {
         _textData = DataManager.Instance.GetTextData(key);
 
-        if(_textData.Type == 1)
+        if (CheckRedundancy(key)) return;
+
+        if (_textData.Type == 1)
         {
             _archive.SetText(_textData);
         }
-        else if(_textData.Type == 0)
+        else if(_textData.Type == 0 && _textData.Key != 0)
         {
             _text.SetText(_textData);
         }
@@ -45,9 +52,10 @@ public class UIManager : MonoBehaviour
         _conditionKey = transform.GetChild(1).GetComponent<Image>();
         _inventory = transform.GetChild(2).GetComponent<Inventory>();
         _archive = transform.GetChild(3).GetComponent<ArchiveTXT>();
+        _battery = transform.GetChild(4).gameObject;
 
         _conditionKey.gameObject.SetActive(false);
-
+        _battery.SetActive(false);
     }
 
     private void Update()
@@ -68,6 +76,19 @@ public class UIManager : MonoBehaviour
             }
 
         }
+    }
+
+    private bool CheckRedundancy(int key)
+    {
+        foreach (int preKey in _preTxTKey)
+        {
+            if (preKey == key)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

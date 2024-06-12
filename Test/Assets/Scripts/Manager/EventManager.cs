@@ -40,11 +40,10 @@ public class EventManager : MonoBehaviour
         {
             _eventData = DataManager.Instance.GetEventData(hit.collider.tag);
 
-            if (_eventData.EventTag == "None" || CheckRedundancy(_eventData.Key))
+            if (_eventData.EventTag == "None")
                 return;
             else
             {               
-
                 if (_eventData.Type == 1)
                 {
                     if (Input.GetKeyDown(KeyCode.F))
@@ -114,19 +113,19 @@ public class EventManager : MonoBehaviour
         Gizmos.DrawCube(transform.position, _size*2);
     }
 
-    //중복진행되는 퀘스트 없애기
-    private bool CheckRedundancy(int key)
-    {
-        if (_eventData.Key >= 100) return false;
-
-        foreach(int preKey in _preEventKey)
-        {
-            if(preKey == key) 
-            {
-                return true;
-            }            
-        }
-
-        return false;
-    }
+    ////중복진행되는 퀘스트 없애기
+    //private bool CheckRedundancy(int key)
+    //{
+    //    if (_eventData.Key >= 100) return false;
+    //
+    //    foreach(int preKey in _preEventKey)
+    //    {
+    //        if(preKey == key) 
+    //        {
+    //            return true;
+    //        }            
+    //    }
+    //
+    //    return false;
+    //}
 }

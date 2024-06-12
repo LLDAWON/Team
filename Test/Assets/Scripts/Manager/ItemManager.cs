@@ -14,7 +14,7 @@ public class ItemManager : Singleton<ItemManager>
         _itemData = DataManager.Instance.GetItemData(_itemDataKey);
         Debug.Log(_itemData.Name);
         if (_itemData.Type == 4) return;
-        UIManager.Instance.GetInventory().AddItem(_itemData);
+        UIManager.Instance.GetInventory.AddItem(_itemData);
         
     }
 
