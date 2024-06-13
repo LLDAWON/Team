@@ -28,7 +28,6 @@ public class Flashlight : MonoBehaviour
         {
             lightSource.enabled = !lightSource.enabled;
             UIManager.Instance.Battery.SetActive(lightSource.enabled);
-
         }
 
         Battery();
@@ -38,12 +37,27 @@ public class Flashlight : MonoBehaviour
     {
         if(lightSource.enabled)
         {
-            Invoke("OnFlash", _usedValue);
+            StartCoroutine("FlashRoutine");
+        }
+        else
+        {
+            StopCoroutine("FlashRoutine");
         }
 
         if (!_enabled)
         {
             lightSource.enabled = _enabled;
+        }
+    }
+
+    IEnumerator FlashRoutine()
+    {
+        while (_enabled)
+        {
+            yield return new WaitForSeconds(_usedValue);
+            OnFlash();
+
+            StopCoroutine("FlashRoutine");
         }
     }
 
