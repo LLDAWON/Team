@@ -44,8 +44,7 @@ public class Slot : MonoBehaviour
         }
 
         _isSetItem = true;
-        _image.gameObject.SetActive(true);
-
+        //_image.gameObject.SetActive(true);
     }
 
     public void AddItem()
@@ -67,6 +66,8 @@ public class Slot : MonoBehaviour
         _image.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _count.ToString();
 
         //ItemManager.Instance.UseItem(_data.Key);
+                
+        Opserver.OnEvents[_data.Key](_data.Value);
 
         if (_count == 0)
         {

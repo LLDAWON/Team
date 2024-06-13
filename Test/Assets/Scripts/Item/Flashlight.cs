@@ -19,6 +19,8 @@ public class Flashlight : MonoBehaviour
     {
         _data = DataManager.Instance.GetItemData(_dataKey);
         _maxValue = _data.Value;
+
+        Opserver.OnEvents.Add(301, ChargeBattery);
     }
     void Update()
     {

@@ -16,6 +16,12 @@ public class Inventory : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void Start()
+    {
+        
+    }
+
+
     public void AddItem(ItemData itemdata)
     {
         if (CheckRedundancyItem(itemdata.Name))
@@ -57,5 +63,5 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
-    }
+    }    
 }
