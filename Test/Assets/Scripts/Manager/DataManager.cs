@@ -10,7 +10,6 @@ public struct CharacterData
     public float WalkSpeed;
     public float RunSpeed;
     public float CrawlingSpeed;
-    public float JumpPower;
     public float Stemina;
     public int Type;
     public int Room;
@@ -108,12 +107,11 @@ public class DataManager : Singleton<DataManager>
             characterData.WalkSpeed = float.Parse(data[2]);
             characterData.RunSpeed = float.Parse(data[3]);
             characterData.CrawlingSpeed = float.Parse(data[4]);
-            characterData.JumpPower = float.Parse(data[5]);
-            characterData.Stemina = float.Parse(data[6]);
-            characterData.Type = int.Parse(data[7]);
-            characterData.Room = int.Parse(data[8]);
-            characterData.DetectRange = float.Parse(data[9]);
-            characterData.RotateSpeed = float.Parse(data[10]);
+            characterData.Stemina = float.Parse(data[5]);
+            characterData.Type = int.Parse(data[6]);
+            characterData.Room = int.Parse(data[7]);
+            characterData.DetectRange = float.Parse(data[8]);
+            characterData.RotateSpeed = float.Parse(data[9]);
 
             characterDatas.Add(characterData.Key, characterData);
         }
