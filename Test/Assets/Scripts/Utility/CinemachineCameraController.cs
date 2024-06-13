@@ -8,7 +8,6 @@ public class CinemachineCameraController : MonoBehaviour
     private GameObject _player;
     private PlayerController _playerController;
     private CinemachineVirtualCamera _virtualCamera;
-    //private List<GameObject> _monsters;
 
     private bool _isFirstTime = false;
     private Vector3 _ventDownPos = new Vector3(0, -1.5f, 0);
@@ -28,7 +27,8 @@ public class CinemachineCameraController : MonoBehaviour
 
         _player = GameManager.Instance.GetPlayer();
         _playerController = _player.GetComponent<PlayerController>();
-       
+        PlayerFollowCam();
+
     }
 
     private void Update()
@@ -64,10 +64,10 @@ public class CinemachineCameraController : MonoBehaviour
         //    }
         //}
 
-        if (_player.GetComponent<PlayerController>().GetIsPlayerDie() == false)
-        {
-            PlayerFollowCam();
-        }
+        //if (_player.GetComponent<PlayerController>().GetIsPlayerDie() == false)
+        //{
+        //    PlayerFollowCam();
+        //}
 
 
     }

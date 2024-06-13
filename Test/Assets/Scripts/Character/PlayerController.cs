@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MoveableCharactorController
 {
+    //플레이어가 손전등가지고 있으니 옵저버 써서 
+     
 
     private Vector2 _mouseValue;
 
@@ -49,6 +51,9 @@ public class PlayerController : MoveableCharactorController
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, Camera.main.WorldToScreenPoint(pos) , CursorMode.ForceSoftware);
         Cursor.lockState = CursorLockMode.Locked;
+
+
+        Opserver.OnEvents.Add(302, UseDrink);
     }
 
     private void Start()
@@ -152,6 +157,13 @@ public class PlayerController : MoveableCharactorController
             _isDie = true;
             //닿았을때 호출 잘된다.
         }
+
+    }
+
+    public void UseDrink(float value)
+    {
+        _curStemina += value;
+
     }
 
 

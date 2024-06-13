@@ -106,14 +106,14 @@ public class MonsterManager : Singleton<MonsterManager>
         //UIManager.Instance.SetText(8);
     }
 
-    private void DestroyMonster(string monster)
+    public void DestroyMonster(string monster)
     {
 
         if (_spawnedMonsters.ContainsKey(monster))
         {
             GameObject spawnedMonster = _spawnedMonsters[monster];
             EnemyController enemyController = spawnedMonster.GetComponent<EnemyController>();
-            enemyController.DestroyMonster();
+            spawnedMonster.SetActive(false);
             _spawnMonsters.Remove(spawnedMonster);
 
         }

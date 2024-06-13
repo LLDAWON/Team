@@ -39,12 +39,12 @@ public class EnemyController : MoveableCharactorController
 
     // Animator
     protected Animator _animator;
-    private AnimatorStateInfo _animatorStateInfo;
-    private float _animatorPlaybackTime;
+    protected AnimatorStateInfo _animatorStateInfo;
+    protected float _animatorPlaybackTime;
 
     // 처음 스폰 여부 확인
-    private bool _isFirstSpawn = true;
-    private int _defaultAnimatorStateHash;
+    protected bool _isFirstSpawn = true;
+    protected int _defaultAnimatorStateHash;
 
     //플레이어와 처음 조우하기전까진 움직임 x
     protected bool _isFirstMeet = false;
@@ -102,10 +102,7 @@ public class EnemyController : MoveableCharactorController
     protected override void Update()
     {
 
-       
-
         CheckPath();
-
         StateUpdate();
         EnemyAiPattern();
        
@@ -198,10 +195,7 @@ public class EnemyController : MoveableCharactorController
 
         if (direction.sqrMagnitude < 0.01f)
         {
-            //여기는 순서대로 왔다갔다
-            //_curPathNum = (_curPathNum + 1) % pathes.Count;
-            //_destPos = pathes[_curPathNum];
-            //랜덤으로 왔다갔다? 하는게 더 좋을거같다.
+            
             int randompathNum = Random.Range(0, _curPathNum);
             _destPos = pathes[randompathNum];
         }
@@ -213,11 +207,12 @@ public class EnemyController : MoveableCharactorController
         {
             case EnemyState.Patrol:
                 {
+
                     _animator.speed = 0.5f;
                     _navigation.SetDestination(_destPos);
                     _navigation.speed = _characterData.WalkSpeed;
-
                     CameraManager.Instance.StopVignette();
+
                 }
                 break;
             case EnemyState.Trace:
@@ -234,7 +229,12 @@ public class EnemyController : MoveableCharactorController
                     _navigation.speed = 0;
                     _navigation.velocity = Vector3.zero;
                     _animator.speed = 1.0f;
-                    _animator.SetTrigger("Attack");
+                    if(!_isAttack)
+                    {
+                        _animator.SetTrigger("Attack");
+                        Opserver.OnTargetEvents[1](gameObject);
+                        Debug.Log(_isAttack);
+                    }
                     _isAttack = true;
                     Debug.Log("공격중");
                 }
@@ -257,7 +257,7 @@ public class EnemyController : MoveableCharactorController
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
                     Debug.Log("죽음");
-                    DestroyMonster();
+                    gameObject.SetActive(false);
                 }
                 break;
         }
@@ -280,30 +280,8 @@ public class EnemyController : MoveableCharactorController
     {
         gameObject.SetActive(true);
         transform.position = pos;
-
-        if (_isFirstSpawn)
-        {
-            // 처음 스폰 시 기본 애니메이션 상태로 설정
-            _animator.Play(_defaultAnimatorStateHash, -1, 0f);
-            _isFirstSpawn = false;
-        }
-        else
-        {
-            // 애니메이터 상태 복원
-            _animator.Play(_animatorStateInfo.fullPathHash, -1, _animatorPlaybackTime);
-        }
         _animator.speed = 1.0f;
     }
-
-    public void DestroyMonster()
-    {
-        // 애니메이터 상태 저장
-        _animatorStateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-        _animatorPlaybackTime = _animatorStateInfo.normalizedTime % 1;
-
-        gameObject.SetActive(false);
-    }
-
 
     virtual protected void CheckFirstMeetPlayer()
     {
@@ -329,7 +307,5 @@ public class EnemyController : MoveableCharactorController
             }
         }
     }
-
-    //디졸브효과및 n초후 사라짐
    
 }

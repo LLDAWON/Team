@@ -61,7 +61,9 @@ public class MiniMonsterController : EnemyController
         //공격상태일때 빠꾸
         if (_enemyState == EnemyState.Attack)
             return;
-
+        //플레이어가 죽으면 되돌리기
+        if (_target.GetComponent<PlayerController>().GetIsPlayerDie() == true)
+            return;
 
         PlayerController playerController = _target.GetComponent<PlayerController>();
         //플레이어의 부채꼴 탐색
@@ -130,7 +132,7 @@ public class MiniMonsterController : EnemyController
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
                     Debug.Log("죽음");
-                    DestroyMonster();
+                    gameObject.SetActive(false);
                 }
                 break;
             case EnemyState.None:

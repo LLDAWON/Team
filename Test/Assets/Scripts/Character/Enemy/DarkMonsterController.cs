@@ -37,10 +37,6 @@ public class DarkMonsterController : EnemyController
     }
     override protected void Update()
     {
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    StartCoroutine(DisolveEffect());
-        //}
 
         SkulRotate();
         SpeedIncresePerGetSkul();
@@ -48,22 +44,6 @@ public class DarkMonsterController : EnemyController
         base.Update();
     }
 
-    //IEnumerator DisolveEffect()
-    //{
-    //    float disolveTime = 0.0f;
-
-    //    while(disolveTime < 2.0f)
-    //    {
-    //        disolveTime += _desolveSpeedTime.deltaTime;
-
-    //        foreach(Renderer renderer in _renderers)
-    //        {
-    //            renderer.material.SetFloat("_DesolveTime", disolveTime);
-    //        }
-
-    //        yield return null;
-    //    }
-    //}
 
     override protected void StateUpdate()
     {
@@ -146,7 +126,7 @@ public class DarkMonsterController : EnemyController
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
                     Debug.Log("Á×À½");
-                    DestroyMonster();
+                    gameObject.SetActive(false);
                 }
                 break;
         }
@@ -180,6 +160,9 @@ public class DarkMonsterController : EnemyController
 
     private bool IsWithinAnyCandleLight()
     {
+        if(candles.Count == 0) 
+            return false;
+
         foreach (var candle in candles)
         {
             if (candle.IsWithinLight(transform.position))
