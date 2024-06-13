@@ -16,7 +16,7 @@ public class Slot : MonoBehaviour
 
     private void Awake()
     {
-        _image.gameObject.SetActive(false);
+        //_image.gameObject.SetActive(false);
     }
     public bool IsSet()
     {
@@ -64,10 +64,11 @@ public class Slot : MonoBehaviour
     {
         _count--;
         _image.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _count.ToString();
-
-        //ItemManager.Instance.UseItem(_data.Key);
-                
-        Opserver.OnEvents[_data.Key](_data.Value);
+   
+        if(_data.Type == 3)
+        {
+            Opserver.OnEvents[_data.Key](_data.Value);
+        }
 
         if (_count == 0)
         {
