@@ -121,6 +121,7 @@ public class MiniMonsterController : EnemyController
                     _animator.SetTrigger("Attack");
                     Debug.Log("EnemyState.Attack");
 
+                    Opserver.OnTargetEvents[1](gameObject);
                 }
 
                 break;

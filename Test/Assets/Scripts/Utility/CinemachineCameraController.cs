@@ -8,7 +8,7 @@ public class CinemachineCameraController : MonoBehaviour
     private GameObject _player;
     private PlayerController _playerController;
     private CinemachineVirtualCamera _virtualCamera;
-    private List<GameObject> _monsters;
+    //private List<GameObject> _monsters;
 
     private bool _isFirstTime = false;
     private Vector3 _ventDownPos = new Vector3(0, -1.5f, 0);
@@ -16,13 +16,15 @@ public class CinemachineCameraController : MonoBehaviour
     private void Awake()
     {
         _virtualCamera = GetComponent<CinemachineVirtualCamera>();
+
+        Opserver.OnTargetEvents.Add(1, PlayerDieCam);
     }
 
 
     private void Start()
     {
 
-        _monsters = MonsterManager.Instance.GetSpawnMonster();
+        //_monsters = MonsterManager.Instance.GetSpawnMonster();
 
         _player = GameManager.Instance.GetPlayer();
         _playerController = _player.GetComponent<PlayerController>();
@@ -53,14 +55,14 @@ public class CinemachineCameraController : MonoBehaviour
         }
 
 
-        foreach (GameObject monster in _monsters)
-        {
-            if (monster.GetComponent<MiniMonsterController>().GetEnemyCurState() == EnemyController.EnemyState.Attack)
-            {
-                    PlayerDieCam(monster);
-                    return;
-            }
-        }
+        //foreach (GameObject monster in _monsters)
+        //{
+        //    if (monster.GetComponent<MiniMonsterController>().GetEnemyCurState() == EnemyController.EnemyState.Attack)
+        //    {
+        //            PlayerDieCam(monster);
+        //            return;
+        //    }
+        //}
 
         if (_player.GetComponent<PlayerController>().GetIsPlayerDie() == false)
         {
@@ -77,7 +79,7 @@ public class CinemachineCameraController : MonoBehaviour
         _virtualCamera.LookAt = _player.transform.GetChild(0).transform.GetChild(0).transform;
     }
 
-    private void PlayerDieCam(GameObject attackingMonster)
+    public void PlayerDieCam(GameObject attackingMonster)
     {
         _virtualCamera.Follow = attackingMonster.transform.GetChild(0).transform;
         _virtualCamera.LookAt = attackingMonster.transform.GetChild(0).transform.GetChild(0).transform;
