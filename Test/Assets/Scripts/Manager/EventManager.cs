@@ -35,9 +35,9 @@ public class EventManager : MonoBehaviour
         Vector3 pos = transform.GetChild(0).transform.GetChild(0).transform.position;
         Vector3 dir = pos - transform.GetChild(0).transform.position;
 
-        Debug.DrawRay(pos, dir, Color.red);
+        Debug.DrawRay(pos, dir*2f, Color.red);
 
-        if (Physics.Raycast(pos, dir, out hit, 10.0f, _layerMask))
+        if (Physics.Raycast(pos, dir, out hit, 2.0f, _layerMask))
         {
             _eventData = DataManager.Instance.GetEventData(hit.collider.tag);
 
@@ -72,7 +72,7 @@ public class EventManager : MonoBehaviour
         }
         else
         {
-            //UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/Cursur") as Sprite;
+            UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/Cursur") as Sprite;
             _eventKey = null;
         }
         
@@ -104,6 +104,7 @@ public class EventManager : MonoBehaviour
         if(_eventData.GetItemKey > 0)
         {
             ItemManager.Instance.GetItem(_eventData.GetItemKey);
+            ConditionText(_eventData.GetItemKey);
         }
 
         UIManager.Instance.SetText(_eventData.TextDataKey);
@@ -116,6 +117,16 @@ public class EventManager : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawCube(transform.position, _size*2);
+    }
+
+    private void ConditionText(int key)
+    {
+        ItemData data = DataManager.Instance.GetItemData(key);
+        if(data.Type == 4)
+        {
+            UIManager.Instance.SetText(_eventData.TextDataKey - 1);
+            return;
+        }
     }
 
     ////중복진행되는 퀘스트 없애기

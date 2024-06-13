@@ -12,15 +12,12 @@ public class ItemManager : Singleton<ItemManager>
     {
         _itemDataKey = key;
         _itemData = DataManager.Instance.GetItemData(_itemDataKey);
+       
         Debug.Log(_itemData.Name);
-        if (_itemData.Type == 4) return;
-        UIManager.Instance.GetInventory.AddItem(_itemData);
-        
-    }
 
-    public void UseItem(int key)
-    {
-        //
+        if (_itemData.Type == 4) return;
+
+        UIManager.Instance.GetInventory.AddItem(_itemData);        
     }
 
 }

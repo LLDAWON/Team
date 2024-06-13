@@ -21,9 +21,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
-        //_player = Instantiate(_playerprefab, new Vector3(8f, 1.5f, -10f), Quaternion.identity);
+        _player = Instantiate(_playerprefab, _playerSpawnPosition, Quaternion.identity);
         //_eventManager = _player.GetComponent<EventManager>();
-          _player = GameObject.Find("Player");
+        //_player = GameObject.Find("Player");
         _monsterManager = MonsterManager.Instance;
     }
     private void Start()

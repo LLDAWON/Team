@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     { get { return _instance; } }
 
     [SerializeField]
-    private GameObject _hintPena;
+    private GameObject _hintPenal;
     [SerializeField]
     private GameObject _cursor;
 
@@ -44,6 +44,12 @@ public class UIManager : MonoBehaviour
         else if(_textData.Type == 0 && _textData.Key != 0)
         {
             _text.SetText(_textData);
+        }
+        else if(_textData.Type ==2)
+        {
+            _hintPenal.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _textData.Text;
+            _hintPenal.SetActive(true);
+            Invoke("HintUI", 4);
         }
     }
 
@@ -90,6 +96,11 @@ public class UIManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void HintUI()
+    {
+        _hintPenal.SetActive(false);
     }
 
 }

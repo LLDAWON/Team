@@ -45,6 +45,8 @@ TagManager:
   - Enemy
   - Phone
   - Hint2
+  - Teacher
+  - Drink
   layers:
   - Default
   - TransparentFX
