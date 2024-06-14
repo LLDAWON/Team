@@ -70,6 +70,10 @@ public class Slot : MonoBehaviour
             Opserver.OnEvents[_data.Key](_data.Value);
         }
 
+        else if (_data.Type == 1) 
+        {
+            Opserver.OnNoneEvents[_data.Key]();     
+        }
         if (_count == 0)
         {
             _image.sprite = null;

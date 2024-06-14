@@ -9,4 +9,7 @@ public class Opserver
 
     public delegate void OnTargetEvent(GameObject target);
     public static Dictionary<int, OnTargetEvent> OnTargetEvents = new();
+
+    public delegate void OnEquip();
+    public static Dictionary<int, OnEquip> OnNoneEvents = new();
 }

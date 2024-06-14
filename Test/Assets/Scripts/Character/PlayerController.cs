@@ -41,6 +41,9 @@ public class PlayerController : MoveableCharactorController
     public Texture2D cursorTexture;
     private Vector2 hotspot = Vector2.zero;
 
+    private GameObject _hand;
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -53,7 +56,9 @@ public class PlayerController : MoveableCharactorController
         Cursor.lockState = CursorLockMode.Locked;
 
 
+        _hand = transform.GetChild(0).transform.GetChild(1).gameObject;
         Opserver.OnEvents.Add(302, UseDrink);
+        Opserver.OnNoneEvents.Add(101, UseFlash);
     }
 
     private void Start()
@@ -61,6 +66,8 @@ public class PlayerController : MoveableCharactorController
         _prfSteminaBar = GameObject.Find("SteminaBar");
         _curSteminaBar = _prfSteminaBar.transform.GetChild(0).GetComponent<Image>();
         _curStemina = _characterData.Stemina;
+
+
     }
 
     protected override void Update()
@@ -166,6 +173,17 @@ public class PlayerController : MoveableCharactorController
 
     }
 
+
+    private void UseFlash()
+    {
+        // 
+        _isLightOn = !_isLightOn;
+
+        _hand.SetActive(_isLightOn);
+        Animator animator = _hand.GetComponent<Animator>();
+        animator.SetBool("IsFlash", _isLightOn);
+
+    }
 
 
 }

@@ -8,10 +8,9 @@ public class BalerinaController : EnemyController
     private GameObject _mannequinPrefab;
     private List<GameObject> _spawnedMannequins = new List<GameObject>(); // 생성된 마네킹 객체 리스트
     private int _currentMannequinIndex; // 현재 발레리나가 위치한 마네킹 인덱스
+    private int randomManequinIndex; // 랜덤 마네킹 인덱스
     private float _nextDanceTime; // 다음 춤 시간
-    private bool _isDancing = false; // 춤 상태
     AnimatorStateInfo _currentAnimatorState;
-    private float _savedAnimationTime = 0f; // 애니메이션 시간 저장
     private int _savedAnimationHash; // 애니메이션 상태 해시 저장
 
 
@@ -33,7 +32,7 @@ public class BalerinaController : EnemyController
         SpawnMannequins();
         //StartCoroutine(DanceRoutine());
         //Invoke("StartDance", Random.ran;
-        StartCoroutine(DanceRoutine());
+        //StartCoroutine(DanceRoutine());
     }
 
     private void Update()
@@ -101,23 +100,49 @@ public class BalerinaController : EnemyController
         //음악 켜주고
         //balletMusic.Play();
         //_animator.SetTrigger("StartDance");
-        _isDancing = true;
 
+        //gameObject.SetActive(true);
         //SwitchMannequin();
 
         //_animator.Play(_savedAnimationHash, -1, _savedAnimationTime);             
 
         //Invoke("EndDance", Random.Range(4f, 7f));
 
-        int random = Random.Range(0, _spawnedMannequins.Count);
+         randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
 
-        Animator animator = _spawnedMannequins[random].GetComponent<Animator>();
+        Animator animator = _spawnedMannequins[randomManequinIndex].GetComponent<Animator>();
         _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
         animator.Play(_savedAnimationHash, 0, _currentAnimatorState.normalizedTime);
-        _spawnedMannequins[random].transform.position = transform.position;
-        _spawnedMannequins[random].transform.rotation = transform.rotation;
+        _spawnedMannequins[randomManequinIndex].transform.position = transform.position;
+        _spawnedMannequins[randomManequinIndex].transform.rotation = transform.rotation;
 
-        transform.Translate(GetRandomPosition());
+
+        _animator.speed = 1.0f;
+        //transform.Translate(GetRandomPosition());
+
+        randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
+        transform.position = _spawnedMannequins[randomManequinIndex].transform.position;
+    }
+
+    private void EndDance()
+    {
+        // 현재 애니메이션 상태 저장
+        _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
+        //_savedAnimationHash = _currentAnimatorState.fullPathHash;
+        //_savedAnimationTime = _currentAnimatorState.normalizedTime;
+        //foreach (GameObject spawnedMannequin in _spawnedMannequins)
+        //{
+        //    Animator animator = spawnedMannequin.GetComponent<Animator>();
+        //    animator.Play(_currentAnimatorState.fullPathHash, 0, _currentAnimatorState.normalizedTime);
+        //    animator.speed = 0.0f;
+        //}
+
+        //gameObject.SetActive(false);
+        //transform.GetComponentInChildren<GameObject>().SetActive(false);
+        _animator.speed = 0.0f;
+        // 파괴 전 위치에 마네킹을 생성
+        _spawnedMannequins[_currentMannequinIndex].SetActive(true);
+
     }
     // 발레리나를 랜덤한 마네킹 위치로 이동시키는 함수
     private void MoveToRandomMannequin()
@@ -133,27 +158,6 @@ public class BalerinaController : EnemyController
         _spawnedMannequins[_currentMannequinIndex].SetActive(false);
     }
 
-    private  void EndDance()
-    {
-        // 현재 애니메이션 상태 저장
-        _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
-        //_savedAnimationHash = _currentAnimatorState.fullPathHash;
-        //_savedAnimationTime = _currentAnimatorState.normalizedTime;
-        foreach (GameObject spawnedMannequin in _spawnedMannequins)
-        {
-            Animator animator = spawnedMannequin.GetComponent<Animator>();            
-            animator.Play(_currentAnimatorState.fullPathHash, 0, _currentAnimatorState.normalizedTime);
-            animator.speed = 0.0f;
-        }
-
-        gameObject.SetActive(false);
-        // 파괴 전 위치에 마네킹을 생성
-        //GameObject mannequin = Instantiate(_mannequinPrefabs[_currentMannequinIndex], transform.position, transform.rotation);
-        //mannequin.SetActive(true);
-        _spawnedMannequins[_currentMannequinIndex].SetActive(true);
-
-        //Invoke("StartDance", Random.Range(4f, 7f));
-    }
 
     override protected void StateUpdate()
     {
