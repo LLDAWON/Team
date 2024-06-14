@@ -72,7 +72,7 @@ public class EventManager : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/Cursur") as Sprite;
+            //UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/Cursur") as Sprite;
             _eventKey = null;
         }
         
