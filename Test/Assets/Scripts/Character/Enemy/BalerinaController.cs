@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BalerinaController : EnemyController
 {
-    public List<GameObject> _mannequinPrefabs; // 5개의 마네킹 프리팹 리스트
+    //public List<GameObject> _mannequinPrefabs; // 5개의 마네킹 프리팹 리스트
+    private GameObject _mannequinPrefab;
     private List<GameObject> _spawnedMannequins = new List<GameObject>(); // 생성된 마네킹 객체 리스트
     private int _currentMannequinIndex; // 현재 발레리나가 위치한 마네킹 인덱스
     private float _nextDanceTime; // 다음 춤 시간
@@ -18,31 +19,56 @@ public class BalerinaController : EnemyController
 
     override protected void Awake()
     {
-        base.Awake();
-        for (int i = 0; i < 5; i++)
-        {
-            GameObject _manequin = Resources.Load("Prefabs/Character/Enemy/Manequin") as GameObject;
-            _mannequinPrefabs.Add(_manequin);
-        }
+        base.Awake();        
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    GameObject _manequin = Resources.Load("Prefabs/Character/Enemy/Manequin") as GameObject;
+        //    _mannequinPrefabs.Add(_manequin);
+        //}
+        _mannequinPrefab = Resources.Load<GameObject>("Prefabs/Character/Enemy/Manequin");
     }
     protected override void Start()
     {
         base.Start(); 
         SpawnMannequins();
+        //StartCoroutine(DanceRoutine());
+        //Invoke("StartDance", Random.ran;
         StartCoroutine(DanceRoutine());
+    }
+
+    private void Update()
+    {
+        //base.Update();
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            EndDance();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            StartDance();
+        }
     }
 
     // 마네킹을 랜덤 위치에 스폰하는 함수
     private void SpawnMannequins()
     {
-        for (int i = 0; i < _mannequinPrefabs.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
-            Vector3 randomPosition = GetRandomPosition();
-            GameObject mannequin = Instantiate(_mannequinPrefabs[i], randomPosition, Quaternion.identity);
-            mannequin.SetActive(true);
+            Vector3 randomPosition = transform.position + GetRandomPosition();
+            GameObject mannequin = Instantiate(_mannequinPrefab, randomPosition, Quaternion.identity);
+            Animator animator = mannequin.GetComponent<Animator>();
+            AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+            _savedAnimationHash = info.fullPathHash;
+            animator.Play(info.fullPathHash, 0, Random.Range(0.0f, 1.0f));
+            animator.speed = 0.0f;
             _spawnedMannequins.Add(mannequin);
-        }
+        }        
+    }
 
+    private void SwitchMannequin()
+    {
         _currentMannequinIndex = Random.Range(0, _spawnedMannequins.Count);
         Transform currentMannequinTransform = _spawnedMannequins[_currentMannequinIndex].transform;
         transform.position = currentMannequinTransform.position;
@@ -63,16 +89,10 @@ public class BalerinaController : EnemyController
     {
         while (true)
         {
-            if (!_isDancing)
-            {
-                yield return new WaitForSeconds(Random.Range(4f, 7f));
-                StartDance();
-            }
-            else
-            {
-                yield return null;
-            }
-        }
+            yield return new WaitForSeconds(Random.Range(4f, 7f));
+
+            StartDance();
+        }        
     }
 
     // 춤을 시작하는 함수
@@ -83,22 +103,22 @@ public class BalerinaController : EnemyController
         //_animator.SetTrigger("StartDance");
         _isDancing = true;
 
-        _animator.Play(_savedAnimationHash, -1, _savedAnimationTime);
+        //SwitchMannequin();
 
-        _nextDanceTime = Time.time + Random.Range(4f, 7f);
-        Invoke("EndDance", _nextDanceTime - Time.deltaTime);
+        //_animator.Play(_savedAnimationHash, -1, _savedAnimationTime);             
+
+        //Invoke("EndDance", Random.Range(4f, 7f));
+
+        int random = Random.Range(0, _spawnedMannequins.Count);
+
+        Animator animator = _spawnedMannequins[random].GetComponent<Animator>();
+        _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
+        animator.Play(_savedAnimationHash, 0, _currentAnimatorState.normalizedTime);
+        _spawnedMannequins[random].transform.position = transform.position;
+        _spawnedMannequins[random].transform.rotation = transform.rotation;
+
+        transform.Translate(GetRandomPosition());
     }
-
-    // 춤을 종료하는 함수
-    private void EndDance()
-    {
-        //음악꺼주고
-        //balletMusic.Stop();
-        //_animator.SetTrigger("EndDance");
-        MoveToRandomMannequin();
-        _isDancing = false;
-    }
-
     // 발레리나를 랜덤한 마네킹 위치로 이동시키는 함수
     private void MoveToRandomMannequin()
     {
@@ -110,23 +130,29 @@ public class BalerinaController : EnemyController
         transform.position = newMannequinTransform.position;
         transform.rotation = newMannequinTransform.rotation;
 
-
         _spawnedMannequins[_currentMannequinIndex].SetActive(false);
     }
 
-    private  void DestroyMonster()
+    private  void EndDance()
     {
         // 현재 애니메이션 상태 저장
         _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
-        _savedAnimationHash = _currentAnimatorState.fullPathHash;
-        _savedAnimationTime = _currentAnimatorState.normalizedTime;
+        //_savedAnimationHash = _currentAnimatorState.fullPathHash;
+        //_savedAnimationTime = _currentAnimatorState.normalizedTime;
+        foreach (GameObject spawnedMannequin in _spawnedMannequins)
+        {
+            Animator animator = spawnedMannequin.GetComponent<Animator>();            
+            animator.Play(_currentAnimatorState.fullPathHash, 0, _currentAnimatorState.normalizedTime);
+            animator.speed = 0.0f;
+        }
 
         gameObject.SetActive(false);
-
         // 파괴 전 위치에 마네킹을 생성
-        GameObject mannequin = Instantiate(_mannequinPrefabs[_currentMannequinIndex], transform.position, transform.rotation);
-        mannequin.SetActive(true);
-        _spawnedMannequins[_currentMannequinIndex] = mannequin;
+        //GameObject mannequin = Instantiate(_mannequinPrefabs[_currentMannequinIndex], transform.position, transform.rotation);
+        //mannequin.SetActive(true);
+        _spawnedMannequins[_currentMannequinIndex].SetActive(true);
+
+        //Invoke("StartDance", Random.Range(4f, 7f));
     }
 
     override protected void StateUpdate()
