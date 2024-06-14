@@ -47,6 +47,7 @@ TagManager:
   - Hint2
   - Teacher
   - Drink
+  - Picture
   layers:
   - Default
   - TransparentFX
