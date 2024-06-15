@@ -45,9 +45,16 @@ public class DarkMonsterController : EnemyController
 
     override protected void StateUpdate()
     {
-
+        // 적 공격시 상태값 리턴
         if (_enemyState == EnemyState.Attack)
             return;
+        // 촛불안에 들어오면 none상태 유지
+        //근데 이러면 계속 안에 들어온 상태 아닐까?
+        if (IsWithinAnyCandleLight())
+        {
+            SetState(3);
+            return;
+        }
         //플레이어가 숨으면 순찰
         bool _playerHide = _target.GetComponent<PlayerController>().GetIsPlayerHide();
         if (_playerHide)
@@ -99,11 +106,7 @@ public class DarkMonsterController : EnemyController
     protected override void EnemyAiPattern()
     {
 
-        //if (IsWithinAnyCandleLight())
-        //{
-        //      AvoidCandles();
-        //    return;
-        //}
+       
 
         switch (_enemyState)
         {
@@ -130,6 +133,13 @@ public class DarkMonsterController : EnemyController
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
                     Debug.Log("죽음");
+                }
+                break;
+            case EnemyState.Stop:
+                {
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
+                    Debug.Log("멈춤");
                 }
                 break;
         }
@@ -184,22 +194,12 @@ public class DarkMonsterController : EnemyController
     private void AvoidCandles()
     {
         // 촛불 주변을 피하도록 이동 경로 계산
-        Vector3 avoidDirection = Vector3.zero;
-        foreach (var candle in candles)
-        {
-            if (candle.IsWithinLight(transform.position))
-            {
-                avoidDirection += (transform.position - candle.transform.position);
-            }
-        }
-        avoidDirection.Normalize();
-        Vector3 newTargetPosition = transform.position + avoidDirection * _darkMonsterSpeed * Time.deltaTime;
-        _navigation.SetDestination(newTargetPosition);
+        
     }
 
     private void EndAttack()
     {
-         StartCoroutine(Observer.OnDesolveEvents[1](2.0f));
+        StartCoroutine(Observer.OnDesolveEvents[1](gameObject));
         //Observer.OnDesolveEvents[1](2.0f);
     }
 }

@@ -51,11 +51,13 @@ public class TeacherController : EnemyController
             else
             {
                 SetState(1);
+                _animator.speed = 1.0f;
             }
         }
         else
         {
             SetState(1);
+            _animator.speed = 1.0f;
         }
 
 

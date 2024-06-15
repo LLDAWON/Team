@@ -40,22 +40,12 @@ public class EnemyController : MoveableCharactorController
     // Animator
     protected Animator _animator;
     protected AnimatorStateInfo _animatorStateInfo;
-    protected float _animatorPlaybackTime;
 
     // 처음 스폰 여부 확인
     protected bool _isFirstSpawn = true;
-    protected int _defaultAnimatorStateHash;
 
     //플레이어와 처음 조우하기전까진 움직임 x
     protected bool _isFirstMeet = false;
-
-    // 디졸브효과 및 쉐이더 
-    protected Material _material;
-    protected Shader _shader;
-    protected float _desolveEndTime = 2.0f;
-    protected bool _desolveStart = false;
-    protected float _desolveSpeed = 0.3f;
-    protected Renderer[] _renderers;
 
 
     protected override void Awake()
@@ -64,11 +54,9 @@ public class EnemyController : MoveableCharactorController
         base.Awake();
         _navigation = GetComponent<NavMeshAgent>();
 
-        _renderers = GetComponentsInChildren<Renderer>();
 
         _animator = GetComponent<Animator>();
 
-        Observer.OnDesolveEvents.Add(1, DisolveEffect);
 
 
 
@@ -79,29 +67,9 @@ public class EnemyController : MoveableCharactorController
     {
         _target = GameManager.Instance.GetPlayer().transform;
         _destPos = pathes[0];
-        _defaultAnimatorStateHash = _animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
        
     }
-    IEnumerator DisolveEffect(float desolvetime)
-    {
-        float _time = 0.0f;
-
-        while (_time < desolvetime)
-        {
-            _time += _desolveSpeed * Time.deltaTime;
-
-            foreach (Renderer renderer in _renderers)
-            {
-                renderer.material.SetFloat("_DesolveTime", _time);
-            }
-
-            yield return null;
-        }
-        if(_time > desolvetime)
-        { 
-            gameObject.SetActive(false);
-        }
-    }
+   
     protected override void Update()
     {
 

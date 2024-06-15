@@ -15,7 +15,17 @@ public class GameManager : MonoBehaviour
 
     private Vector3 _playerSpawnPosition = new Vector3(41.3f, 0.8f, 16.9f);
     private bool _isSpawning = false;
+
+
+
     public GameObject GetPlayer() { return _player; }
+
+
+    //µðÁ¹ºê°ü·Ã
+    protected float _desolveEndTime = 2.0f;
+    protected bool _desolveStart = false;
+    protected float _desolveSpeed = 0.3f;
+
     private void Awake()
     {
         Instance = this;
@@ -25,6 +35,8 @@ public class GameManager : MonoBehaviour
        // _eventManager = _player.GetComponent<EventManager>();
         _player = GameObject.Find("Player");
         _monsterManager = MonsterManager.Instance;
+
+        Observer.OnDesolveEvents.Add(1, DisolveEffect);
     }
     private void Start()
     {
@@ -74,11 +86,34 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public IEnumerator DisolveEffect(GameObject target)
+    {
 
-        
+        Renderer[] _renderers = target.GetComponentsInChildren<Renderer>();
+
+        float _time = 0.0f;
+
+        while (_time < 2.0f)
+        {
+            _time += _desolveSpeed * Time.deltaTime;
+
+            foreach (Renderer renderer in _renderers)
+            {
+                renderer.material.SetFloat("_DesolveTime", _time);
+            }
+
+            yield return null;
+        }
+        if (_time > 2.0f)
+        {
+            target.SetActive(false);
+        }
+    }
 
 
-  }
+
+
+}
 
 
 

@@ -11,6 +11,7 @@ public class BalerinaController : EnemyController
     private float _nextDanceTime; // 다음 춤 시간
     AnimatorStateInfo _currentAnimatorState;
     private int _savedAnimationHash; // 애니메이션 상태 해시 저장
+    private float _savedAnimationTime;
 
 
     //public AudioSource balletMusic; // 발레리나 음악 3d사운드로 만들어주기
@@ -25,29 +26,28 @@ public class BalerinaController : EnemyController
         base.Start(); 
         SpawnMannequins();
         //StartCoroutine(DanceRoutine());
-        //Invoke("StartDance", Random.ran;
-        //StartCoroutine(DanceRoutine());
     }
 
-    private void Update()
+    override protected void Update()
     {
-        //base.Update();
 
         if(Input.GetMouseButtonDown(0))
         {
-            EndDance();
+            StopDance();
         }
 
         if (Input.GetMouseButtonDown(1))
         {
             StartDance();
         }
+
+        base.Update();
     }
 
     // 마네킹을 랜덤 위치에 스폰하는 함수
     private void SpawnMannequins()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
             Vector3 randomPosition = transform.position + GetRandomPosition();
             GameObject mannequin = Instantiate(_mannequinPrefab, randomPosition, Quaternion.identity);
@@ -93,7 +93,7 @@ public class BalerinaController : EnemyController
         //balletMusic.Play();
         //_animator.SetTrigger("StartDance");
     
-        //Invoke("EndDance", Random.Range(4f, 7f));
+        Invoke("EndDance", Random.Range(4f, 7f));
 
          randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
 
@@ -103,26 +103,26 @@ public class BalerinaController : EnemyController
         _spawnedMannequins[randomManequinIndex].transform.position = transform.position;
         _spawnedMannequins[randomManequinIndex].transform.rotation = transform.rotation;
 
-
-        _animator.speed = 1.0f;
+        SetState(1);
         //transform.Translate(GetRandomPosition());
 
         randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
         transform.position = _spawnedMannequins[randomManequinIndex].transform.position;
     }
 
-    private void EndDance()
+    private void StopDance()
     {
         // 현재 애니메이션 상태 저장
         _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
-        //_savedAnimationHash = _currentAnimatorState.fullPathHash;
-        //_savedAnimationTime = _currentAnimatorState.normalizedTime;
+        _savedAnimationHash = _currentAnimatorState.fullPathHash;
+        _savedAnimationTime = _currentAnimatorState.normalizedTime;
 
-        //gameObject.SetActive(false);
-        //transform.GetComponentInChildren<GameObject>().SetActive(false);
-        _animator.speed = 0.0f;
-        // 파괴 전 위치에 마네킹을 생성
-        _spawnedMannequins[_currentMannequinIndex].SetActive(true);
+        //현재 각도 유지
+        Quaternion currentRotation = transform.rotation;
+        transform.rotation = currentRotation;
+
+        //움직이지 않게 해주고 속도 0 애니메이션 속도0 멈추게하기
+        SetState(4);
 
     }
     // 발레리나를 랜덤한 마네킹 위치로 이동시키는 함수
@@ -145,6 +145,8 @@ public class BalerinaController : EnemyController
         //공격일떈 스테이트변화 x
         if (_enemyState == EnemyState.Attack)
             return;
+        if (_enemyState == EnemyState.None)
+            return;
 
         // 플레이어가 조우하기전엔 스테이트변화  x
         CheckFirstMeetPlayer();
@@ -153,5 +155,49 @@ public class BalerinaController : EnemyController
 
         SetState(1);
         
+    }
+    protected override void EnemyAiPattern()
+    {
+
+        switch (_enemyState)
+        {
+            case EnemyState.Trace:
+                {
+                    _animator.speed = 0.5f;
+                    transform.Rotate(0, 1.0f, 0);
+                    _navigation.SetDestination(_target.position);
+                    _navigation.speed = _characterData.WalkSpeed;
+                }
+                break;
+            case EnemyState.Attack:
+                {
+                    _navigation.speed = 0;
+                    _navigation.velocity = Vector3.zero;
+                    _animator.speed = 1.0f;
+                    _isAttack = true;
+
+                    //_animator.SetTrigger("Attack");
+                    Debug.Log("EnemyState.Attack");
+
+                    Observer.OnTargetEvents[1](gameObject);
+                }
+
+                break;
+            case EnemyState.Die:
+                {
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
+                    gameObject.SetActive(false);
+                }
+                break;
+            case EnemyState.None:
+                {
+                    _animator.speed = 0.0f;
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
+                    Debug.Log("None");
+                }
+                break;
+        }
     }
 }

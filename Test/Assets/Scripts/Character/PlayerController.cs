@@ -16,6 +16,11 @@ public class PlayerController : MoveableCharactorController
     private float _curStemina = 0.0f;
     private float _steminaDrainRate = 10.0f;
 
+
+    /// ///////////////////////////////////////////////////////////////////////////////////////
+    /// ///////////////////////////////////////////////////////////////////////////////////////
+    // 플레이어의 정보 추출해주는 부분
+
     //Hide
     private bool _isPlayerHide = false;
     public bool GetIsPlayerHide() { return _isPlayerHide; }
@@ -24,8 +29,6 @@ public class PlayerController : MoveableCharactorController
     private bool _isPlayerVant = false;
     public void SetPlayerInVant(bool _isVant) { _isPlayerVant = _isVant; }
     public bool GetIsPlayerVant() { return _isPlayerVant; }
-
-
     //LightOn
     private bool _isLightOn = false;
     public bool GetIsLightOn() { return _isLightOn; }
@@ -33,6 +36,13 @@ public class PlayerController : MoveableCharactorController
     //플레이어 죽음상태
     private bool _isDie = false;
     public bool GetIsPlayerDie() { return _isDie; }
+
+    //플레이어 이동상태
+    private bool _isMove = false;
+    public bool GetIsPlayerMove() { return _isMove; }
+
+    /// ///////////////////////////////////////////////////////////////////////////////////////
+    /// ///////////////////////////////////////////////////////////////////////////////////////
 
     private Transform _rotateObj;
     private GameObject _prfSteminaBar;
@@ -85,6 +95,15 @@ public class PlayerController : MoveableCharactorController
 
     private void MoveController()
     {
+        if(_velocity.magnitude==0)
+        {
+            _isMove = false;
+        }
+        else
+        {
+            _isMove = true;
+        }
+
         // 스태미너 관리
         _curSteminaBar.fillAmount = _curStemina / _characterData.Stemina;
         _curStemina = Mathf.Clamp(_curStemina, 0, _characterData.Stemina);
@@ -98,7 +117,8 @@ public class PlayerController : MoveableCharactorController
             {
                 _isPlayerVant = false;
                 _curStemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
-                _moveSpeed = _characterData.RunSpeed;
+                _moveSpeed = _characterData.RunSpeed; 
+                
             }
             else
             {
@@ -109,13 +129,13 @@ public class PlayerController : MoveableCharactorController
         {
             _isPlayerVant = true;
             _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
-            _moveSpeed = _characterData.CrawlingSpeed;            
+            _moveSpeed = _characterData.CrawlingSpeed;
         }
         else
         {
             _isPlayerVant = false;
             _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
-            _moveSpeed = _characterData.WalkSpeed;            
+            _moveSpeed = _characterData.WalkSpeed;
         }
 
         _velocity *= _moveSpeed;        
