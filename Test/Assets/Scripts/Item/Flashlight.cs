@@ -83,6 +83,7 @@ public class Flashlight : MonoBehaviour
     public void ChargeBattery(float value)
     {
         _maxValue += value;
+        _enabled = true;
 
         if(_maxValue > _data.Value)
         {

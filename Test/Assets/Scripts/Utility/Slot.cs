@@ -44,7 +44,7 @@ public class Slot : MonoBehaviour
         }
 
         _isSetItem = true;
-        //_image.gameObject.SetActive(true);
+        _image.gameObject.SetActive(true);
     }
 
     public void AddItem()

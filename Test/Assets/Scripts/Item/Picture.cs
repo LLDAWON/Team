@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,8 @@ public class Picture : MonoBehaviour
     {
         _data = DataManager.Instance.GetItemData(_dataKey);
     }
-
-    private void UsedPicture()
+    public void UsedPicture()
     {
-        Vector3 pos = GameManager.Instance.GetPlayer().transform.position;
-
-        transform.position = pos;
-
+        StartCoroutine(Observer.OnDesolveEvents[1](gameObject));
     }
 }

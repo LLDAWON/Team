@@ -5,8 +5,8 @@ key,condition,enentTag,eventCount,textKey,getItemKey,itemKey,type
 3,1,Battery,1,10,301,0,0
 4,1,Phone,1,12,102,0,0
 5,4,ClassDoor1,1,6,0,0,1
-6,5,Hint2,1,7,402,0,0
-7,6,Picture,1,9,0,0,0
+6,5,Hint2,1,8,402,0,0
+7,6,Picture,1,9,406,0,2
 101,0,Locker,0,0,0,0,1
 102,0,Door,0,0,0,0,1
 8,1,Drink,1,13,302,0,0

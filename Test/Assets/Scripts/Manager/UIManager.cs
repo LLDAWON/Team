@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     private Inventory _inventory;
     private ArchiveTXT _archive;
     private GameObject _battery;
+    private KeySlider _keySlider;
 
     public Inventory GetInventory
     { get { return _inventory; } }
@@ -31,6 +32,8 @@ public class UIManager : MonoBehaviour
     {  get { return _battery; } }
     public GameObject GetCursor
     { get { return _cursor; } }
+    public KeySlider KeySlider
+    { get { return _keySlider; } }
     public void SetText(int key)
     {
         _textData = DataManager.Instance.GetTextData(key);
@@ -61,6 +64,7 @@ public class UIManager : MonoBehaviour
         _inventory = transform.GetChild(1).GetComponent<Inventory>();
         _archive = transform.GetChild(2).GetComponent<ArchiveTXT>();
         _battery = transform.GetChild(3).gameObject;
+        _keySlider = transform.GetChild(7).GetComponent<KeySlider>();
 
         _battery.SetActive(false);
     }

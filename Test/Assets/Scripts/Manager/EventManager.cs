@@ -43,60 +43,72 @@ public class EventManager : MonoBehaviour
 
             if (_eventData.EventTag == "None")
                 return;
-            else
+
+            if(CheckPreEvent())
             {
                 UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/HitCursor") as Sprite;
-                if (_eventData.Type == 1)
-                {
-                    if (Input.GetKeyDown(KeyCode.F))
-                    {
-                        CheckPreEvent();
-                        hit.collider.GetComponent<TestAnimation>().PlayAnimation();
-                        return;
-                    }
-                }
-                else
-                {
-                    if (Input.GetKeyDown(KeyCode.F))
-                    {
-                        CheckPreEvent();
-                        if (_eventData.GetItemKey == 0)
-                            return;
-                        hit.collider.gameObject.SetActive(false);
-                        return;
-                    }
 
+                if (_eventData.Type == 2)
+                {
+                    UIManager.Instance.KeySlider.gameObject.SetActive(true);
+
+                    GameObject obj = hit.collider.gameObject;
+
+                    UIManager.Instance.KeySlider.OnPressKey(obj);
+                    return;
                 }
 
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    OnKeyDown();
+                    return;
+                }
             }
         }
         else
         {
+            UIManager.Instance.KeySlider.gameObject.SetActive(false);
             UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/Cursur") as Sprite;
             _eventKey = null;
         }
          
 
     }
-    private void CheckPreEvent()
+
+    private void OnKeyDown()
     {
         _eventKey = hit.collider.tag;
 
+        SendText();
+
+        if (_eventData.Type == 1)
+        {
+            hit.collider.GetComponent<TestAnimation>().PlayAnimation();
+        }
+        else if (_eventData.Type == 0)
+        {
+            if (_eventData.GetItemKey == 0)
+                return;
+            hit.collider.gameObject.SetActive(false);
+        }
+    }
+    private bool CheckPreEvent()
+    {
         if (_eventData.Condition > 0)
         {
             foreach(int i in _preEventKey)
             {
                 if (_eventData.Condition == i)
                 {
-                    SendText();
-                    return;
-                }   
+                    return true;
+                }
             }
         }
         else
         {
-            SendText();
+            return true;
         }
+        return false;
     }
 
     private void SendText()
@@ -122,26 +134,11 @@ public class EventManager : MonoBehaviour
     private void ConditionText(int key)
     {
         ItemData data = DataManager.Instance.GetItemData(key);
+
         if(data.Type == 4)
         {
             UIManager.Instance.SetText(_eventData.TextDataKey - 1);
             return;
         }
     }
-
-    ////중복진행되는 퀘스트 없애기
-    //private bool CheckRedundancy(int key)
-    //{
-    //    if (_eventData.Key >= 100) return false;
-    //
-    //    foreach(int preKey in _preEventKey)
-    //    {
-    //        if(preKey == key) 
-    //        {
-    //            return true;
-    //        }            
-    //    }
-    //
-    //    return false;
-    //}
 }
