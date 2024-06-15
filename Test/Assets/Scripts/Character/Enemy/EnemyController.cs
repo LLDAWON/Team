@@ -68,6 +68,11 @@ public class EnemyController : MoveableCharactorController
 
         _animator = GetComponent<Animator>();
 
+        Observer.OnDesolveEvents.Add(1, DisolveEffect);
+
+
+
+
     }
 
     virtual protected  void Start()
@@ -76,27 +81,25 @@ public class EnemyController : MoveableCharactorController
         _destPos = pathes[0];
         _defaultAnimatorStateHash = _animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
        
-       
-
     }
-    IEnumerator DisolveEffect()
+    IEnumerator DisolveEffect(float desolvetime)
     {
-        float disolveTime = 0.0f;
+        float _time = 0.0f;
 
-        while (disolveTime < 2.0f)
+        while (_time < desolvetime)
         {
-            disolveTime += _desolveSpeed * Time.deltaTime;
+            _time += _desolveSpeed * Time.deltaTime;
 
             foreach (Renderer renderer in _renderers)
             {
-                renderer.material.SetFloat("_DesolveTime", disolveTime);
+                renderer.material.SetFloat("_DesolveTime", _time);
             }
 
             yield return null;
         }
-        if(disolveTime>2.0f)
+        if(_time > desolvetime)
         { 
-            SetState(5);
+            gameObject.SetActive(false);
         }
     }
     protected override void Update()
@@ -232,7 +235,7 @@ public class EnemyController : MoveableCharactorController
                     if(!_isAttack)
                     {
                         _animator.SetTrigger("Attack");
-                        Opserver.OnTargetEvents[1](gameObject);
+                        Observer.OnTargetEvents[1](gameObject);
                         Debug.Log(_isAttack);
                     }
                     _isAttack = true;

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BalerinaController : EnemyController
 {
-    //public List<GameObject> _mannequinPrefabs; // 5개의 마네킹 프리팹 리스트
     private GameObject _mannequinPrefab;
     private List<GameObject> _spawnedMannequins = new List<GameObject>(); // 생성된 마네킹 객체 리스트
     private int _currentMannequinIndex; // 현재 발레리나가 위치한 마네킹 인덱스
@@ -19,11 +18,6 @@ public class BalerinaController : EnemyController
     override protected void Awake()
     {
         base.Awake();        
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    GameObject _manequin = Resources.Load("Prefabs/Character/Enemy/Manequin") as GameObject;
-        //    _mannequinPrefabs.Add(_manequin);
-        //}
         _mannequinPrefab = Resources.Load<GameObject>("Prefabs/Character/Enemy/Manequin");
     }
     protected override void Start()
@@ -78,8 +72,6 @@ public class BalerinaController : EnemyController
     // 랜덤 위치를 반환하는 함수
     private Vector3 GetRandomPosition()
     {
-        // 임의의 위치를 반환 (임의의 로직을 구현)
-        // 예시: 특정 범위 내에서 랜덤한 위치를 반환
         return new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
     }
 
@@ -100,12 +92,7 @@ public class BalerinaController : EnemyController
         //음악 켜주고
         //balletMusic.Play();
         //_animator.SetTrigger("StartDance");
-
-        //gameObject.SetActive(true);
-        //SwitchMannequin();
-
-        //_animator.Play(_savedAnimationHash, -1, _savedAnimationTime);             
-
+    
         //Invoke("EndDance", Random.Range(4f, 7f));
 
          randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
@@ -130,12 +117,6 @@ public class BalerinaController : EnemyController
         _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
         //_savedAnimationHash = _currentAnimatorState.fullPathHash;
         //_savedAnimationTime = _currentAnimatorState.normalizedTime;
-        //foreach (GameObject spawnedMannequin in _spawnedMannequins)
-        //{
-        //    Animator animator = spawnedMannequin.GetComponent<Animator>();
-        //    animator.Play(_currentAnimatorState.fullPathHash, 0, _currentAnimatorState.normalizedTime);
-        //    animator.speed = 0.0f;
-        //}
 
         //gameObject.SetActive(false);
         //transform.GetComponentInChildren<GameObject>().SetActive(false);

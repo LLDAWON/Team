@@ -16,7 +16,7 @@ public class CinemachineCameraController : MonoBehaviour
     {
         _virtualCamera = GetComponent<CinemachineVirtualCamera>();
 
-        Opserver.OnTargetEvents.Add(1, PlayerDieCam);
+        Observer.OnTargetEvents.Add(1, PlayerDieCam);
     }
 
 

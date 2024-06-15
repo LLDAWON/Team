@@ -57,8 +57,8 @@ public class PlayerController : MoveableCharactorController
 
 
         _hand = transform.GetChild(0).transform.GetChild(1).gameObject;
-        Opserver.OnEvents.Add(302, UseDrink);
-        Opserver.OnNoneEvents.Add(101, UseFlash);
+        Observer.OnEvents.Add(302, UseDrink);
+        Observer.OnNoneEvents.Add(101, UseFlash);
     }
 
     private void Start()

@@ -67,12 +67,12 @@ public class Slot : MonoBehaviour
    
         if(_data.Type == 3)
         {
-            Opserver.OnEvents[_data.Key](_data.Value);
+            Observer.OnEvents[_data.Key](_data.Value);
         }
 
         else if (_data.Type == 1) 
         {
-            Opserver.OnNoneEvents[_data.Key]();     
+            Observer.OnNoneEvents[_data.Key]();     
         }
         if (_count == 0)
         {

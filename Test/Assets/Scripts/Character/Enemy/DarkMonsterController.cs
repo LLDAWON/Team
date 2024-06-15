@@ -12,19 +12,16 @@ public class DarkMonsterController : EnemyController
 
     //다크몬스터 주변에있는 해골들
     private Transform _skulPanel;
-    //private Renderer[] _renderers;
 
     //다크몬스터의 이동을 제한하는 촛불들을 관리하는 리스트
     private List<CandleScript> candles;
 
     //
-    //private float _desolveSpeed = 0.3f; 
 
     protected override void Awake()
     {
         base.Awake();
 
-        //_renderers = GetComponentsInChildren<Renderer>();
     }
 
     override protected void Start()
@@ -33,6 +30,7 @@ public class DarkMonsterController : EnemyController
         _initialY = transform.position.y;
         _darkMonsterSpeed = _characterData.WalkSpeed;
         _skulPanel = transform.GetChild(0);
+
         candles = new List<CandleScript>(FindObjectsOfType<CandleScript>());
     }
     override protected void Update()
@@ -47,6 +45,9 @@ public class DarkMonsterController : EnemyController
 
     override protected void StateUpdate()
     {
+
+        if (_enemyState == EnemyState.Attack)
+            return;
         //플레이어가 숨으면 순찰
         bool _playerHide = _target.GetComponent<PlayerController>().GetIsPlayerHide();
         if (_playerHide)
@@ -56,7 +57,6 @@ public class DarkMonsterController : EnemyController
         }
 
 
-        // 플레이어가 쳐다보고 손전등 켰을때
         PlayerController playerController = _target.GetComponent<PlayerController>();
         //플레이어의 부채꼴 탐색
         Vector3 _inPlayerSight = transform.position - _target.transform.position;
@@ -99,11 +99,11 @@ public class DarkMonsterController : EnemyController
     protected override void EnemyAiPattern()
     {
 
-        if (IsWithinAnyCandleLight())
-        {
-            AvoidCandles();
-            return;
-        }
+        //if (IsWithinAnyCandleLight())
+        //{
+        //      AvoidCandles();
+        //    return;
+        //}
 
         switch (_enemyState)
         {
@@ -117,7 +117,11 @@ public class DarkMonsterController : EnemyController
             case EnemyState.Attack:
                 {
                     _navigation.speed = 0;
+                    _navigation.velocity = Vector3.zero;
+                    _animator.speed = 1.0f;
                     _isAttack = true;
+                    _animator.SetTrigger("Attack");
+                    Observer.OnTargetEvents[1](gameObject);
                 }
                
                 break;
@@ -126,10 +130,10 @@ public class DarkMonsterController : EnemyController
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
                     Debug.Log("죽음");
-                    gameObject.SetActive(false);
                 }
                 break;
         }
+        Debug.Log(_enemyState);
     }
 
     private void FloatingAir()
@@ -138,12 +142,18 @@ public class DarkMonsterController : EnemyController
         Vector3 pos = transform.position;
         pos.y = _initialY + Mathf.Sin(Time.time * _floatSpeed) * _floatAmplitude;
         transform.position = pos;
+        Debug.Log("부유");
 
     }
 
     private void SpeedIncresePerGetSkul()
     {
         // 촛불퀘스트 촛불킬때마다 스피드++;
+        //if()
+        //{
+        //    _darkMonsterSpeed++;
+        //}
+
     }
 
     private void SkulRotate()
@@ -185,5 +195,11 @@ public class DarkMonsterController : EnemyController
         avoidDirection.Normalize();
         Vector3 newTargetPosition = transform.position + avoidDirection * _darkMonsterSpeed * Time.deltaTime;
         _navigation.SetDestination(newTargetPosition);
+    }
+
+    private void EndAttack()
+    {
+         StartCoroutine(Observer.OnDesolveEvents[1](2.0f));
+        //Observer.OnDesolveEvents[1](2.0f);
     }
 }
