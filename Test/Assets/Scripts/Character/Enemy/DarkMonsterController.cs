@@ -1,37 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DarkMonsterController : EnemyController
 {
+
     // 다크몬스터가 부유하는 상태값
     private float _floatSpeed = 1.0f; //부유하는 속도
     private float _floatAmplitude = 0.3f; // 부유 높이
-    private float _darkMonsterSpeed;
+    public float _darkMonsterSpeed;
     private float _initialY; //초기 y값
 
     //다크몬스터 주변에있는 해골들
     private Transform _skulPanel;
+    private List<Light> _skulLights;
 
     //다크몬스터의 이동을 제한하는 촛불들을 관리하는 리스트
+    //촛불의 처음맵에 off된 상태를 저장
     private List<CandleScript> candles;
+    private Dictionary<CandleScript, bool> candlePrevStates;
+    private int _count;
 
-    //
-
-    protected override void Awake()
+    override protected void Awake()
     {
         base.Awake();
-
+        //해골 오브젝트
+        _skulPanel = transform.GetChild(0);
+        _skulLights = _skulPanel.GetComponentsInChildren<Light>().ToList();
     }
 
     override protected void Start()
     {
         base.Start();
+
+
         _initialY = transform.position.y;
         _darkMonsterSpeed = _characterData.WalkSpeed;
-        _skulPanel = transform.GetChild(0);
 
-        candles = new List<CandleScript>(FindObjectsOfType<CandleScript>());
+
+        // 딕셔너리를 촛불들의 초기 상태로 초기화
+        candles = new List<CandleScript>(FindObjectsOfType<CandleScript>()); 
+        candlePrevStates = new Dictionary<CandleScript, bool>();
+        foreach (CandleScript candle in candles)
+        {
+            candlePrevStates[candle] = candle.GetLit();
+        }
     }
     override protected void Update()
     {
@@ -105,9 +119,6 @@ public class DarkMonsterController : EnemyController
 
     protected override void EnemyAiPattern()
     {
-
-       
-
         switch (_enemyState)
         {
             case EnemyState.Trace:
@@ -156,15 +167,7 @@ public class DarkMonsterController : EnemyController
 
     }
 
-    private void SpeedIncresePerGetSkul()
-    {
-        // 촛불퀘스트 촛불킬때마다 스피드++;
-        //if()
-        //{
-        //    _darkMonsterSpeed++;
-        //}
-
-    }
+   
 
     private void SkulRotate()
     {
@@ -178,12 +181,43 @@ public class DarkMonsterController : EnemyController
 
     }
 
+    private void SpeedIncresePerGetSkul()
+    {
+        //촛불퀘스트 촛불킬때마다 스피드++;
+
+        foreach (CandleScript candle in candles)
+        {
+            bool previousState = candlePrevStates[candle];
+            bool currentState = candle.GetLit();
+
+            // 촛불이 이전에 꺼져있었고 현재 켜져있다면 속도 증가
+            if (!previousState && currentState)
+            {
+                _darkMonsterSpeed += 1.0f; // 촛불 하나당 속도를 1 증가
+            }
+
+            int candleIndex = candles.IndexOf(candle);
+
+            if (candleIndex >= 0 && candleIndex < _skulLights.Count)
+            {
+                Light skulLight = _skulLights[candleIndex];
+                skulLight.intensity = currentState ? 1.0f : 0.0f; // 촛불이 켜져 있으면 강도 1, 꺼져 있으면 강도 0
+            }
+            // 현재 상태를 딕셔너리에 업데이트
+            candlePrevStates[candle] = currentState;
+        }
+
+
+        //해골 불 켜주기
+
+    }
+
     private bool IsWithinAnyCandleLight()
     {
         if(candles.Count == 0) 
             return false;
 
-        foreach (var candle in candles)
+        foreach (CandleScript candle in candles)
         {
             if (candle.IsWithinLight(transform.position))
                 return true;
@@ -200,6 +234,5 @@ public class DarkMonsterController : EnemyController
     private void EndAttack()
     {
         StartCoroutine(Observer.OnDesolveEvents[1](gameObject));
-        //Observer.OnDesolveEvents[1](2.0f);
     }
 }

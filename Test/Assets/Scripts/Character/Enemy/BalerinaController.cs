@@ -25,7 +25,7 @@ public class BalerinaController : EnemyController
     {
         base.Start(); 
         SpawnMannequins();
-        //StartCoroutine(DanceRoutine());
+        StartCoroutine(DanceRoutine());
     }
 
     override protected void Update()
@@ -80,7 +80,7 @@ public class BalerinaController : EnemyController
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(4f, 7f));
+            yield return new WaitForSeconds(6.0f);
 
             StartDance();
         }        
@@ -93,7 +93,6 @@ public class BalerinaController : EnemyController
         //balletMusic.Play();
         //_animator.SetTrigger("StartDance");
     
-        Invoke("EndDance", Random.Range(4f, 7f));
 
          randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
 
@@ -108,6 +107,7 @@ public class BalerinaController : EnemyController
 
         randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
         transform.position = _spawnedMannequins[randomManequinIndex].transform.position;
+        Invoke("StopDance", 5.0f);
     }
 
     private void StopDance()
