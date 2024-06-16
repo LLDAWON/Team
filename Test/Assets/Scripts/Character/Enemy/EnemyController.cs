@@ -34,7 +34,7 @@ public class EnemyController : MoveableCharactorController
     protected bool _rayzorHitPlayer = false;   //벽투과방지용 레이저
 
     // State
-    protected EnemyState _enemyState = EnemyState.None;
+    protected EnemyState _enemyState = EnemyState.Patrol;
     public EnemyState GetEnemyCurState() { return _enemyState; }
 
     // Animator

@@ -61,11 +61,15 @@ public class MiniMonsterController : EnemyController
         //공격상태일때 빠꾸
         if (_enemyState == EnemyState.Attack)
             return;
+
         //플레이어가 죽으면 되돌리기
         if (_target.GetComponent<PlayerController>().GetIsPlayerDie() == true)
             return;
 
         PlayerController playerController = _target.GetComponent<PlayerController>();
+
+        if (playerController.GetIsPlayerDie() == true)
+            SetState((int)EnemyState.None);
         //플레이어의 부채꼴 탐색
         Vector3 _inPlayerSight = transform.position - _target.transform.position;
         _inPlayerSight.y = 0;
@@ -99,6 +103,8 @@ public class MiniMonsterController : EnemyController
         {
             SetState(1);
         }
+
+
     }
     protected override void EnemyAiPattern()
     {
@@ -137,6 +143,8 @@ public class MiniMonsterController : EnemyController
                 break;
             case EnemyState.None:
                 {
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
                     Debug.Log("None");
                 }
                 break;

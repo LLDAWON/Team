@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.PlayerSettings;
 
 public class GameManager : MonoBehaviour
@@ -10,10 +12,13 @@ public class GameManager : MonoBehaviour
 
     private GameObject _playerprefab;
     private GameObject _player;
+
+    //Manager 관리
     private EventManager _eventManager;
     private MonsterManager _monsterManager;
 
-    private Vector3 _playerSpawnPosition = new Vector3(41.3f, 0.8f, 16.9f);
+    // private Vector3 _playerSpawnPosition = new Vector3(41.3f, 0.8f, 16.9f);
+    private Vector3 _playerSpawnPosition;
     private bool _isSpawning = false;
 
 
@@ -31,25 +36,20 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
-       // _player = Instantiate(_playerprefab, _playerSpawnPosition, Quaternion.identity);
+        _playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
+        _player = Instantiate(_playerprefab, _playerSpawnPosition, Quaternion.identity);
        // _eventManager = _player.GetComponent<EventManager>();
-        _player = GameObject.Find("Player");
         _monsterManager = MonsterManager.Instance;
 
         Observer.OnDesolveEvents.Add(1, DisolveEffect);
     }
     private void Start()
     {
-        // MonsterManager 싱글톤 인스턴스 가져오기
-       // MonsterManager monsterManager = MonsterManager.Instance;
-
-        // MonsterManager를 사용하여 Monster를 스폰
-       // _monsterManager.Spawn("Pig", new Vector3(-3.89f, 1.28f, 27.77f));
-        
         //PlayerSpawn();
     }
     private void PlayerSpawn()
     {
+        _playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
         _player.transform.position = _playerSpawnPosition;
         UIManager.Instance.SetText(1);
         UIManager.Instance.SetText(2);

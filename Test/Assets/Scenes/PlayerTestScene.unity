@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cat
       objectReference: {fileID: 0}
+    - target: {fileID: 393942022052118098, guid: e877457f27032e44bb59ec8adf35c171, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1025765742562485480, guid: e877457f27032e44bb59ec8adf35c171, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.7104015
@@ -344,8 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e099f8aeb99554faadafba6e299123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLit: 0
-  lightRadius: 5
+  _isLit: 0
+  _lightRadius: 5
 --- !u!1 &36402136
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2707861175895022371, guid: b1ffeb59fd7ebc8438dc6ef5773998dc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8980950834714401911, guid: b1ffeb59fd7ebc8438dc6ef5773998dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -677,6 +681,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dog
       objectReference: {fileID: 0}
+    - target: {fileID: 6710287632769659888, guid: 9643dc7b552257049869970b85b0f773, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -887,8 +895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e099f8aeb99554faadafba6e299123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLit: 0
-  lightRadius: 5
+  _isLit: 0
+  _lightRadius: 5
 --- !u!4 &884253275 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7676698306497596200, guid: eee5a4f456935e44db9c050fb0b18b96, type: 3}
@@ -1341,6 +1349,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rabbit
       objectReference: {fileID: 0}
+    - target: {fileID: 7257196580713431138, guid: 149478dc8004ccb4695564d8954027c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8069726484919147224, guid: 149478dc8004ccb4695564d8954027c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.510145
@@ -1666,6 +1678,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chicken
       objectReference: {fileID: 0}
+    - target: {fileID: 305437415318676194, guid: 715acfce20670c14fb8f78f49a939028, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1114343054403090520, guid: 715acfce20670c14fb8f78f49a939028, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.4950085
@@ -1763,14 +1779,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5072617338324673439, guid: eee5a4f456935e44db9c050fb0b18b96, type: 3}
-      propertyPath: m_Mass
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072617338324673439, guid: eee5a4f456935e44db9c050fb0b18b96, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1827,6 +1835,10 @@ PrefabInstance:
     - target: {fileID: 1909150233138133753, guid: 3d9b0902d2fe62643b5f3224b30697cf, type: 3}
       propertyPath: m_Name
       value: Unicorn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909150233138133753, guid: 3d9b0902d2fe62643b5f3224b30697cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1949,6 +1961,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elephant
       objectReference: {fileID: 0}
+    - target: {fileID: 5600320762776280679, guid: 5f72fae1c422bd74897ebca0f74c931c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2025,6 +2041,10 @@ PrefabInstance:
     - target: {fileID: 1232009024332020717, guid: f192d4dc39a617d49ab7a47051f1f5cb, type: 3}
       propertyPath: m_Name
       value: Pig
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232009024332020717, guid: f192d4dc39a617d49ab7a47051f1f5cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1896904958864974167, guid: f192d4dc39a617d49ab7a47051f1f5cb, type: 3}
       propertyPath: m_LocalPosition.x
