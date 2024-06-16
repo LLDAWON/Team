@@ -32,6 +32,9 @@ public class PlayerController : MoveableCharactorController
     //LightOn
     private bool _isLightOn = false;
     public bool GetIsLightOn() { return _isLightOn; }
+    //핸드폰
+    private bool _isPhoneOn = false;
+    public bool GetIsPhoneOn() { return _isPhoneOn; }
 
     //플레이어 죽음상태
     private bool _isDie = false;
@@ -69,6 +72,7 @@ public class PlayerController : MoveableCharactorController
         _hand = transform.GetChild(0).transform.GetChild(1).gameObject;
         Observer.OnEvents.Add(302, UseDrink);
         Observer.OnNoneEvents.Add(101, UseFlash);
+        Observer.OnNoneEvents.Add(102, UsePhone);
     }
 
     private void Start()
@@ -196,12 +200,29 @@ public class PlayerController : MoveableCharactorController
 
     private void UseFlash()
     {
-        // 
+
         _isLightOn = !_isLightOn;
 
         _hand.SetActive(_isLightOn);
+        GameObject _flash = _hand.transform.Find("Flashlight").gameObject;
+        //GameObject _phone = _hand.transform.Find("PlayerIPHONE").gameObject;
+        _flash.SetActive(_isLightOn);
+        //_phone.SetActive(false);
         Animator animator = _hand.GetComponent<Animator>();
         animator.SetBool("IsFlash", _isLightOn);
+
+    }
+    private void UsePhone()
+    {
+        _isPhoneOn = !_isPhoneOn;
+
+        _hand.SetActive(_isPhoneOn);
+        //GameObject _flash = _hand.transform.Find("Flashlight").gameObject;
+        GameObject _phone = _hand.transform.Find("PlayerIPHONE").gameObject;
+        //_flash.SetActive(false);
+        _phone.SetActive(_isPhoneOn);
+        Animator animator = _hand.GetComponent<Animator>();
+        animator.SetBool("IsPhone", _isPhoneOn);
 
     }
 

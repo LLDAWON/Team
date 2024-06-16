@@ -841,11 +841,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7158053935426638156, guid: 63c420ff8ce7a0749ad430c52ee9f6d4, type: 3}
   m_PrefabInstance: {fileID: 1066734367}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &814841638 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5185766629390327496, guid: eee5a4f456935e44db9c050fb0b18b96, type: 3}
-  m_PrefabInstance: {fileID: 1665821942}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &826218813
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,11 +892,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isLit: 0
   _lightRadius: 5
---- !u!4 &884253275 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7676698306497596200, guid: eee5a4f456935e44db9c050fb0b18b96, type: 3}
-  m_PrefabInstance: {fileID: 1665821942}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &934725368
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,8 +1426,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 9
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 884253275}
-  m_Follow: {fileID: 814841638}
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 70.04
     OrthographicSize: 5
