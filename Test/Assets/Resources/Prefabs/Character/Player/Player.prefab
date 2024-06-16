@@ -192,6 +192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterKey: 101
   _velocity: {x: 0, y: 0, z: 0}
+  _flash: {fileID: 1056240008503105525}
+  _phone: {fileID: 202819632434499532}
   cursorTexture: {fileID: 0}
 --- !u!1 &5932838542066919251
 GameObject:
@@ -916,6 +918,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cedef14eea67b15438856b1a72d5a9b4, type: 3}
+--- !u!1 &202819632434499532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5803217635813587752, guid: cedef14eea67b15438856b1a72d5a9b4, type: 3}
+  m_PrefabInstance: {fileID: 5933955201463006436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &692252301972968822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6612123308970418578, guid: cedef14eea67b15438856b1a72d5a9b4, type: 3}

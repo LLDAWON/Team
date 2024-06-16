@@ -33,6 +33,7 @@ public class CameraManager : MonoBehaviour
         _noise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _volume.profile.TryGet(out _vignette);
         _volume.profile.TryGet(out _depthOfField);
+        DontDestroyOnLoad(this.gameObject);
     }
     public void ShakeCamera(float intensity, float duration)
     {

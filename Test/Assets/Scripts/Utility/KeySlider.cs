@@ -41,10 +41,13 @@ public class KeySlider : MonoBehaviour
             {
                 //StartCoroutine(Observer.OnDesolveEvents[1](gameObject));
                 gameObject.GetComponent<Picture>().UsedPicture();
+                GameObject obj = GameObject.FindGameObjectWithTag("Objects");
+                obj.GetComponent<ObjectsController>().Target(gameObject);
+                GameManager.Instance.GetPlayer().GetComponent<EventManager>().CallEvent(gameObject.tag);
             }
             else if(gameObject.CompareTag("Candle"))
             {
-
+                gameObject.GetComponent<CandleScript>().SetLit(true);
             }
 
         }

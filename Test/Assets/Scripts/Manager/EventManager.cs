@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EventManager : MonoBehaviour
 {
     private EventData _eventData;
-    private string _eventKey = null;
+    private string _eventKey;
     private List<int> _preEventKey = new List<int>();
     private Vector3 _size;
     private Collider _collider;
     private RaycastHit hit;
-    public int CurEvent()
-    {
-        return _eventData.Key;
-    }
+  
+    public int CurKey
+    { get { return _eventData.Key; } }
 
     [SerializeField]
     private LayerMask _layerMask;
@@ -51,7 +51,6 @@ public class EventManager : MonoBehaviour
                 if (_eventData.Type == 2)
                 {
                     UIManager.Instance.KeySlider.gameObject.SetActive(true);
-
                     GameObject obj = hit.collider.gameObject;
 
                     UIManager.Instance.KeySlider.OnPressKey(obj);
@@ -69,12 +68,11 @@ public class EventManager : MonoBehaviour
         {
             UIManager.Instance.KeySlider.gameObject.SetActive(false);
             UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/Cursur") as Sprite;
-            _eventKey = null;
+            //_eventKey = null;
         }
          
 
     }
-
     private void OnKeyDown()
     {
         _eventKey = hit.collider.tag;
@@ -139,6 +137,22 @@ public class EventManager : MonoBehaviour
         {
             UIManager.Instance.SetText(_eventData.TextDataKey - 1);
             return;
+        }
+    }
+
+    public void CallEvent(string key)
+    {
+        _eventData = DataManager.Instance.GetEventData(key);
+        _eventKey = key;
+
+        SendText();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("4ChangeScene"))
+        {
+            SceneManager.LoadScene("4FloorScene");
         }
     }
 }

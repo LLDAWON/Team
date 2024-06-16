@@ -7,6 +7,7 @@ public class CandleScript : MonoBehaviour
 {
     public bool _isLit = false;
     public float _lightRadius = 5.0f; // 촛불의 밝기 범위
+
     private NavMeshObstacle navMeshObstacle;
     private ParticleSystem _fire;
 
@@ -22,34 +23,19 @@ public class CandleScript : MonoBehaviour
         navMeshObstacle.carving = false; // 동적 장애물로 설정
         UpdateObstacle();
         //파티클 on&off
-        _fireObject = transform.GetChild(0).transform.GetChild(0).gameObject;
-        _flashPoint = transform.GetChild(0).transform.GetChild(2).gameObject;
+        _fireObject = transform.GetChild(0).gameObject;
+        _flashPoint = transform.GetChild(2).gameObject;
         _fire = _fireObject.GetComponent<ParticleSystem>();
+
+        _fireObject.SetActive(false);
+        _flashPoint.SetActive(false);
+        _fire.Stop();
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = _isLit ? Color.yellow : Color.gray;
         Gizmos.DrawWireSphere(transform.position, _lightRadius);
-    }
-
-
-    private void Update()
-    {
-        if (_isLit)
-        {
-            GameObject _fireObject = transform.GetChild(0).transform.GetChild(0).gameObject;
-            _fireObject.SetActive(true);
-            _flashPoint.SetActive(true);
-            _fire.Play();
-        }
-        else
-        {
-            GameObject _fireObject = transform.GetChild(0).transform.GetChild(0).gameObject;
-            _fireObject.SetActive(false);
-            _flashPoint.SetActive(false);
-            _fire.Stop();
-        }
     }
     void UpdateObstacle()
     {
@@ -58,7 +44,9 @@ public class CandleScript : MonoBehaviour
 
     public void SetLit(bool islitOn)
     {
-        _isLit = islitOn;
+        _fireObject.SetActive(islitOn);
+        _flashPoint.SetActive(islitOn);
+        _fire.Play();
         UpdateObstacle();
     }
     public bool GetLit() { return _isLit;}

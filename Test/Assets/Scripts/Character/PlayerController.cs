@@ -16,6 +16,10 @@ public class PlayerController : MoveableCharactorController
     private float _curStemina = 0.0f;
     private float _steminaDrainRate = 10.0f;
 
+    [SerializeField]
+    private GameObject _flash;
+    [SerializeField]
+    private GameObject _phone;
 
     /// ///////////////////////////////////////////////////////////////////////////////////////
     /// ///////////////////////////////////////////////////////////////////////////////////////
@@ -204,7 +208,7 @@ public class PlayerController : MoveableCharactorController
         _isLightOn = !_isLightOn;
 
         _hand.SetActive(_isLightOn);
-        GameObject _flash = _hand.transform.Find("Flashlight").gameObject;
+        
         //GameObject _phone = _hand.transform.Find("PlayerIPHONE").gameObject;
         _flash.SetActive(_isLightOn);
         //_phone.SetActive(false);
@@ -218,7 +222,7 @@ public class PlayerController : MoveableCharactorController
 
         _hand.SetActive(_isPhoneOn);
         //GameObject _flash = _hand.transform.Find("Flashlight").gameObject;
-        GameObject _phone = _hand.transform.Find("PlayerIPHONE").gameObject;
+        
         //_flash.SetActive(false);
         _phone.SetActive(_isPhoneOn);
         Animator animator = _hand.GetComponent<Animator>();

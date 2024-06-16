@@ -48,6 +48,10 @@ TagManager:
   - Teacher
   - Drink
   - Picture
+  - Objects
+  - Candle
+  - HInt3
+  - 4ChangeScene
   layers:
   - Default
   - TransparentFX

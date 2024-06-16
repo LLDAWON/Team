@@ -33,19 +33,30 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        // 인스턴스가 존재하지 않으면 이 인스턴스를 할당
+        if (Instance == null)
+        {
+            Instance = this;
+            //DontDestroyOnLoad(gameObject); // 이 오브젝트를 씬 전환 시 파괴되지 않도록 설정
 
+            Initialize(); // 초기에 awkae할 애들
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject); // 이미 인스턴스가 존재하면 새로운 인스턴스를 파괴
+        }
+    }
+
+    private void Initialize()
+    {
         _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
         _playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
         _player = Instantiate(_playerprefab, _playerSpawnPosition, Quaternion.identity);
-       // _eventManager = _player.GetComponent<EventManager>();
+       
         _monsterManager = MonsterManager.Instance;
+        _eventManager = _player.GetComponent<EventManager>();
 
         Observer.OnDesolveEvents.Add(1, DisolveEffect);
-    }
-    private void Start()
-    {
-        //PlayerSpawn();
     }
     private void PlayerSpawn()
     {
@@ -56,7 +67,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        Floor5MonsterSpawn();
+        //Floor5MonsterSpawn();
        
     }
     private void Floor5MonsterSpawn()
@@ -65,12 +76,13 @@ public class GameManager : MonoBehaviour
 
         if (_eventManager != null)
         {
-            int currentEvent = _eventManager.CurEvent();
+            int currentEvent = _eventManager.CurKey;
             //Debug.Log("Current Event Key: " + currentEvent);
-            if (currentEvent == 6)
+            if (_eventManager.CurKey == 6)
             {
                 _monsterManager.Spawn("Follow", new Vector3(2.4f, 0.8f, -5.4f));
                 _isSpawning = true;
+                return;
             }
         }
         

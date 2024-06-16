@@ -10,3 +10,5 @@ key,condition,enentTag,eventCount,textKey,getItemKey,itemKey,type
 101,0,Locker,0,0,0,0,1
 102,0,Door,0,0,0,0,1
 8,1,Drink,1,13,302,0,0
+9,0,HInt3,1,16,403,0,0
+10,9,Candle,6,0,0,0,2

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -39,7 +41,7 @@ public class UIManager : MonoBehaviour
         _textData = DataManager.Instance.GetTextData(key);
 
         if (CheckRedundancy(key)) return;
-
+        _preTxTKey.Add(key);
         if (_textData.Type == 1)
         {
             _archive.SetText(_textData);
@@ -105,6 +107,22 @@ public class UIManager : MonoBehaviour
     private void HintUI()
     {
         _hintPenal.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "4ChangeScene")
+        {
+            SceneManager.LoadScene("4FloorScene");
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("4ChangeScene"))
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 
 }

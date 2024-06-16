@@ -78,6 +78,7 @@ public class CinemachineCameraController : MonoBehaviour
 
         _virtualCamera.Follow = _player.transform.GetChild(0).transform;
         _virtualCamera.LookAt = _player.transform.GetChild(0).transform.GetChild(0).transform;
+        //StopCoroutine("MoveToCameraForCutScene");
     }
 
     public void PlayerDieCam(GameObject attackingMonster)
@@ -109,10 +110,9 @@ public class CinemachineCameraController : MonoBehaviour
         }
 
         // 끝난다음에 다시 플레이어 로 이동
-        _virtualCamera.Follow.position = _rotatePosition;
-        _virtualCamera.LookAt.position = _lookPosition;
+
+        Invoke("PlayerFollowCam", 6);
+        
     }
-
-
 
 }
