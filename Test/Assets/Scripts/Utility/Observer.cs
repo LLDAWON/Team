@@ -16,6 +16,7 @@ public class Observer
     public static Dictionary<int, OnEquip> OnNoneEvents = new();
 
     //1¹ø : µðÁ¹ºê
+    //2¹ø ÄÆ¾À Ä«¸Þ¶ó ÀÌµ¿
     public delegate IEnumerator OnDesolve(GameObject target);
     public static Dictionary<int, OnDesolve> OnDesolveEvents = new();
 
