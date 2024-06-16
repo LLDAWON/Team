@@ -52,12 +52,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BookCase
   - Water
   - UI
   - Object
-  - 
-  - 
+  - Wall
+  - Player
   - 
   - 
   - 
