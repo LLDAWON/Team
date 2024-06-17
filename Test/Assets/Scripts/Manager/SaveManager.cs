@@ -13,7 +13,11 @@ public class SaveData
 
 public class SaveManager : Singleton<SaveManager>
 {
-    private string path = Path.Combine(Application.persistentDataPath + "/Data/", "database.json");
+    private string path;
+    private void Awake()
+    {
+        path = Path.Combine(Application.persistentDataPath + "/Data/", "database.json");
+    }
 
     public void JsonLoad()
     {
@@ -23,13 +27,17 @@ public class SaveManager : Singleton<SaveManager>
         {
             string loadJson = File.ReadAllText(path);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
-
             if (saveData != null)
             {
                 GameManager.Instance.GetPlayer().transform.position = saveData.savePoint;
                 GameManager.Instance.GetPlayer().GetComponent<EventManager>().SetKey(saveData.curEvent);
             }
         }
+    }
+
+    public bool GetData()
+    {
+        return File.Exists(path);
     }
 
     public void JsonSave(Vector3 savePoint,int curEvent)
@@ -39,9 +47,6 @@ public class SaveManager : Singleton<SaveManager>
         saveData.curEvent = curEvent;
 
         string json = JsonUtility.ToJson(saveData, true);
-        //path = Path.Combine(Application.dataPath + "/Data/", "database.json");
         File.WriteAllText(path, json);
-        print(saveData.savePoint);
-        print(saveData.curEvent);
     }
 }
