@@ -174,13 +174,29 @@ public class PlayerController : MoveableCharactorController
     private void ItemUseController()
     {
 
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
-            // 아이템 상호작용 이떄의 아이템 코드에 따라서 행동이 달라지게 
-            // 장비템일경우 (Type == 1) 장착하고
-            // 키일경우 (Type == 2) 범위 측정해서 해당키와 문이 일치할경우 
-            // 소비템일경우 (Type == 3) 게이지 회복하고
-            //
+            if(_isLightOn)
+            {
+                _isLightOn = false;
+                Animator animator = _hand.GetComponent<Animator>();
+                animator.SetBool("IsFlash", _isLightOn);
+                _flash.SetActive(_isLightOn);
+                ItemData data = DataManager.Instance.GetItemData(101);
+                UIManager.Instance.GetInventory.AddItem(data);
+            }
+            if(_isPhoneOn)
+            {
+                _isPhoneOn = false;
+
+                _phone.SetActive(_isPhoneOn);
+                Animator animator = _hand.GetComponent<Animator>();
+                animator.SetBool("IsPhone", _isPhoneOn);
+
+                _hand.SetActive(_isPhoneOn);
+                ItemData data = DataManager.Instance.GetItemData(102);
+                UIManager.Instance.GetInventory.AddItem(data);
+            }
         }
 
     }
