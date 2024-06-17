@@ -1162,6 +1162,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterKey: 101
   _velocity: {x: 0, y: 0, z: 0}
+  _flash: {fileID: 0}
+  _phone: {fileID: 0}
   cursorTexture: {fileID: 0}
 --- !u!54 &262804830
 Rigidbody:
@@ -16923,16 +16925,20 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -1526509560930016547, guid: 44b42fd0da8397a43a36f67b97d3bcbb, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1526509560930016547, guid: 44b42fd0da8397a43a36f67b97d3bcbb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4bd49b259ff44af45afdab37f0518b94, type: 2}
+      objectReference: {fileID: 2100000, guid: 481d7916acd74e04b989ccf9c41967c5, type: 2}
     - target: {fileID: 919132149155446097, guid: 44b42fd0da8397a43a36f67b97d3bcbb, type: 3}
       propertyPath: m_Name
       value: IPHONE13
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 44b42fd0da8397a43a36f67b97d3bcbb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
