@@ -27,6 +27,15 @@ public class UIManager : MonoBehaviour
     private ArchiveTXT _archive;
     private GameObject _battery;
     private KeySlider _keySlider;
+    private TextMeshProUGUI _candleCount;
+
+    private int _maxCandle;
+    private int _curCandle;
+
+    public void AddCandle()
+    {
+        _curCandle++;
+    }
 
     public Inventory GetInventory
     { get { return _inventory; } }
@@ -36,27 +45,6 @@ public class UIManager : MonoBehaviour
     { get { return _cursor; } }
     public KeySlider KeySlider
     { get { return _keySlider; } }
-    public void SetText(int key)
-    {
-        _textData = DataManager.Instance.GetTextData(key);
-
-        if (CheckRedundancy(key)) return;
-        _preTxTKey.Add(key);
-        if (_textData.Type == 1)
-        {
-            _archive.SetText(_textData);
-        }
-        else if(_textData.Type == 0 && _textData.Key != 0)
-        {
-            _text.SetText(_textData);
-        }
-        else if(_textData.Type ==2)
-        {
-            _hintPenal.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _textData.Text;
-            _hintPenal.SetActive(true);
-            Invoke("HintUI", 4);
-        }
-    }
 
     private void Awake()
     {
@@ -67,8 +55,12 @@ public class UIManager : MonoBehaviour
         _archive = transform.GetChild(2).GetComponent<ArchiveTXT>();
         _battery = transform.GetChild(3).gameObject;
         _keySlider = transform.GetChild(7).GetComponent<KeySlider>();
+        _candleCount = transform.GetChild(8).GetComponent<TextMeshProUGUI>();
 
         _battery.SetActive(false);
+
+        _curCandle = 0;
+        _maxCandle = 6;
     }
 
     private void Update()
@@ -88,6 +80,29 @@ public class UIManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
             }
 
+        }
+
+        _candleCount.text = _curCandle.ToString() + "/" + _maxCandle.ToString();
+    }
+    public void SetText(int key)
+    {
+        _textData = DataManager.Instance.GetTextData(key);
+
+        if (CheckRedundancy(key)) return;
+        _preTxTKey.Add(key);
+        if (_textData.Type == 1)
+        {
+            _archive.SetText(_textData);
+        }
+        else if (_textData.Type == 0 && _textData.Key != 0)
+        {
+            _text.SetText(_textData);
+        }
+        else if (_textData.Type == 2)
+        {
+            _hintPenal.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _textData.Text;
+            _hintPenal.SetActive(true);
+            Invoke("HintUI", 4);
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using UnityEditor.Rendering;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -52,6 +53,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); // 이미 인스턴스가 존재하면 새로운 인스턴스를 파괴
         }
+
+        SoundManager.Instance.Play2D("BG");
     }
 
     private void Initialize()
@@ -59,21 +62,9 @@ public class GameManager : MonoBehaviour
         _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
         _playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
         _player = Instantiate(_playerprefab, _playerSpawnPosition, Quaternion.identity);
-        _savePoint = GameObject.Find("SavePoint").transform.position;
+        
          _monsterManager = MonsterManager.Instance;
         _eventManager = _player.GetComponent<EventManager>();
-
-
-        if (_mainCamera == null)
-        {
-            Debug.LogError("MainCamera를 찾을 수 없습니다.");
-        }
-
-        if (_cutSceneCamera == null)
-        {
-            Debug.LogError("EventCamera를 찾을 수 없습니다.");
-        }
-
 
         Observer.OnDesolveEvents.Add(1, DisolveEffect);
     }
@@ -146,7 +137,7 @@ public class GameManager : MonoBehaviour
     {
         _mainCamera.GetComponent<Camera>().enabled = false;
         _cutSceneCamera.GetComponent<Camera>().enabled = true;
-
+        
         Animator _cutSceneAnimator = _cutSceneCamera.GetComponent<Animator>();
         _cutSceneAnimator.SetTrigger("Destroy");
     }

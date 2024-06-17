@@ -39,15 +39,21 @@ public class CandleScript : MonoBehaviour
     }
     void UpdateObstacle()
     {
-        navMeshObstacle.enabled = _isLit;
+        navMeshObstacle.enabled = _isLit;       
     }
 
     public void SetLit(bool islitOn)
     {
+        if (_isLit) return;
+
         _fireObject.SetActive(islitOn);
         _flashPoint.SetActive(islitOn);
         _isLit = true;
         _fire.Play();
+        UIManager.Instance.AddCandle();
+
+       
+
         UpdateObstacle();
     }
     public bool GetLit() { return _isLit;}

@@ -1931,6 +1931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36ba484a2f2ca34e9c35309be59bcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainCamera: {fileID: 0}
+  _cutSceneCamera: {fileID: 0}
   _savePoint: {x: 0, y: 0, z: 0}
   _curEvent: 0
 --- !u!4 &86436367
@@ -7710,7 +7712,7 @@ Transform:
   m_GameObject: {fileID: 588569942}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.11, y: 0.61, z: -14.06}
+  m_LocalPosition: {x: -19.679, y: 56.031, z: -48.545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
