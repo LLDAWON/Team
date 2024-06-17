@@ -52,6 +52,7 @@ TagManager:
   - Candle
   - HInt3
   - 4ChangeScene
+  - BookCase
   layers:
   - Default
   - TransparentFX
