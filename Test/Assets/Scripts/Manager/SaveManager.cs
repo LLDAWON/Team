@@ -40,8 +40,8 @@ public class SaveManager : MonoBehaviour
 
             if (saveData != null)
             {
-                GameManager.Instance._savePoint = saveData.savePoint;
-                GameManager.Instance._curEvent = saveData.curEvent;
+                //GameManager.Instance._savePoint = saveData.savePoint;
+                //GameManager.Instance._curEvent = saveData.curEvent;
             }
         }
     }
