@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     private Vector3 _playerSpawnPosition;
     private bool _isSpawning = false;
 
-
-
+    public Vector3 _savePoint;
+    public int _curEvent;
     public GameObject GetPlayer() { return _player; }
 
 
@@ -52,8 +52,8 @@ public class GameManager : MonoBehaviour
         _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
         _playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
         _player = Instantiate(_playerprefab, _playerSpawnPosition, Quaternion.identity);
-       
-        _monsterManager = MonsterManager.Instance;
+        _savePoint = GameObject.Find("SavePoint").transform.position;
+         _monsterManager = MonsterManager.Instance;
         _eventManager = _player.GetComponent<EventManager>();
 
         Observer.OnDesolveEvents.Add(1, DisolveEffect);
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        //Floor5MonsterSpawn();
+       // Floor5MonsterSpawn();
        
     }
     private void Floor5MonsterSpawn()
@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
             {
                 _monsterManager.Spawn("Follow", new Vector3(2.4f, 0.8f, -5.4f));
                 _isSpawning = true;
+                SoundManager.Instance.Play3D("Monster", new Vector3(2.4f, 0.8f, -5.4f));
                 return;
             }
         }

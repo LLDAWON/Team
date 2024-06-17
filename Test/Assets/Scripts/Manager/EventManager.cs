@@ -16,6 +16,11 @@ public class EventManager : MonoBehaviour
     public int CurKey
     { get { return _eventData.Key; } }
 
+    public void SetKey(int key)
+    {
+        _eventData.Key = key;
+    }
+
     [SerializeField]
     private LayerMask _layerMask;
 
@@ -54,6 +59,7 @@ public class EventManager : MonoBehaviour
                     GameObject obj = hit.collider.gameObject;
 
                     UIManager.Instance.KeySlider.OnPressKey(obj);
+                    //SaveManager.Instance.JsonSave(transform.position, _eventData.Key);
                     return;
                 }
 

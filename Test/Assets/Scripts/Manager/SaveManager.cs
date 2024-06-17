@@ -11,21 +11,17 @@ public class SaveData
 }
 
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : Singleton<SaveManager>
 {
-    public static SaveManager Instance;
 
     private string path;
     private void Awake()
     {
-        Instance = this;
-
-       
-
+        path = Path.Combine(Application.dataPath + "/Data/", "database.json");
     }
     void Start()
     {
-        path = Path.Combine(Application.dataPath + "/Data/", "database.json");
+       
         
     }
 
@@ -40,8 +36,8 @@ public class SaveManager : MonoBehaviour
 
             if (saveData != null)
             {
-                //GameManager.Instance._savePoint = saveData.savePoint;
-                //GameManager.Instance._curEvent = saveData.curEvent;
+                GameManager.Instance.GetPlayer().transform.position = saveData.savePoint;
+                GameManager.Instance.GetPlayer().GetComponent<EventManager>().SetKey(saveData.curEvent);
             }
         }
     }
@@ -53,7 +49,9 @@ public class SaveManager : MonoBehaviour
         saveData.curEvent = curEvent;
 
         string json = JsonUtility.ToJson(saveData, true);
-
+        //path = Path.Combine(Application.dataPath + "/Data/", "database.json");
         File.WriteAllText(path, json);
+        print(saveData.savePoint);
+        print(saveData.curEvent);
     }
 }

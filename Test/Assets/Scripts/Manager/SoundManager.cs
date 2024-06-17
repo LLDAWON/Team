@@ -22,8 +22,8 @@ public class SoundManager : MonoBehaviour
     [Range(0f, 1f)]
     private float _volume = 1.0f;
     private int _audioPoolSize = 30;
-    private int _soundDistanceMin = 0;
-    private int _soundDistanceMax = 100;
+    private int _soundDistanceMin = 1;
+    private int _soundDistanceMax = 55;
 
     private AudioSource _audioSource;
     private Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>();
@@ -71,6 +71,8 @@ public class SoundManager : MonoBehaviour
         {
             if (!audioObject.activeSelf)
             {
+                audioObject.SetActive(true);
+                audioObject.transform.position = pos;
                 Sound sound = audioObject.GetComponent<Sound>();
                 sound.Play(clips[key], pos);
                 return;
