@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class DarkMonsterController : EnemyController
 {
-
+    // 플레이어가 바라봤을때 한번만 인식하게 설정
+    private bool _isMeet = false;
+    //디졸브 상태값
+    protected float _desolveSpeed = 0.3f;
     // 다크몬스터가 부유하는 상태값
     private float _floatSpeed = 1.0f; //부유하는 속도
     private float _floatAmplitude = 0.3f; // 부유 높이
@@ -61,23 +64,18 @@ public class DarkMonsterController : EnemyController
     {
         // 적 공격시 상태값 리턴
         if (_enemyState == EnemyState.Attack)
+            return; 
+        if (_enemyState == EnemyState.Die)
+            return;
+        if (_enemyState == EnemyState.Stop)
             return;
         // 촛불안에 들어오면 none상태 유지
         //근데 이러면 계속 안에 들어온 상태 아닐까?
         if (IsWithinAnyCandleLight())
         {
-            SetState(3);
+            SetState((int)EnemyState.Die);
             return;
         }
-        //플레이어가 숨으면 순찰
-        bool _playerHide = _target.GetComponent<PlayerController>().GetIsPlayerHide();
-        if (_playerHide)
-        {
-            SetState(0);
-            return;
-        }
-
-
         PlayerController playerController = _target.GetComponent<PlayerController>();
         //플레이어의 부채꼴 탐색
         Vector3 _inPlayerSight = transform.position - _target.transform.position;
@@ -99,7 +97,13 @@ public class DarkMonsterController : EnemyController
             {
                 //불켰을때
                 if(playerController.GetIsLightOn() == true)
-                    SetState(5); //주금
+                {
+                    if(!_isMeet)
+                    {
+                        _isMeet = true;
+                        SetState(5); //주금
+                    }
+                }
                 else
                     SetState(1); // 추적
             }
@@ -126,6 +130,7 @@ public class DarkMonsterController : EnemyController
                     _animator.speed = 1.0f;
                     _navigation.SetDestination(_target.position);
                     _navigation.speed = _darkMonsterSpeed;
+                    StopCoroutine("DisolveEffect");
                 }
                 break;
             case EnemyState.Attack:
@@ -143,6 +148,7 @@ public class DarkMonsterController : EnemyController
                 {
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
+                    ClosestFire();
                     Debug.Log("죽음");
                 }
                 break;
@@ -225,14 +231,50 @@ public class DarkMonsterController : EnemyController
         return false;
     }
 
-    private void AvoidCandles()
+    private void ClosestFire()
     {
         // 촛불 주변을 피하도록 이동 경로 계산
-        
+        StartCoroutine(DisolveEffect());
+        SetState((int)EnemyState.None);
     }
 
-    private void EndAttack()
+    
+
+    public IEnumerator DisolveEffect()
     {
-        StartCoroutine(Observer.OnDesolveEvents[1](gameObject));
+
+        Renderer[] _renderers = transform.GetComponentsInChildren<Renderer>();
+
+        float _time = 0.0f;
+
+        while (_time < 2.0f)
+        {
+            _time += _desolveSpeed * Time.deltaTime;
+
+            foreach (Renderer renderer in _renderers)
+            {
+                renderer.material.SetFloat("_DesolveTime", _time);
+                renderer.material.SetColor("DesolveColor", Color.white);
+            }
+
+            yield return null;
+        }
+        if (_time > 2.0f)
+        {
+            foreach (Renderer renderer in _renderers)
+            {
+                //path의 랜덤한 장소에서 태어나게 해주고 디졸브 초기값과 색상 초기값으로 설정
+                //
+                renderer.material.SetFloat("_DesolveTime", 0.0f);
+                renderer.material.SetColor("DesolveColor", Color.red);
+
+            }
+
+            int random = Random.Range(0, 4);
+            transform.position = pathes[random];
+            SetState((int)EnemyState.Trace);
+            _isMeet = false;
+
+        }
     }
 }

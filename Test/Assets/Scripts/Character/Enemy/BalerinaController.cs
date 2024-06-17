@@ -47,7 +47,7 @@ public class BalerinaController : EnemyController
     // 마네킹을 랜덤 위치에 스폰하는 함수
     private void SpawnMannequins()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 30; i++)
         {
             Vector3 randomPosition = transform.position + GetRandomPosition();
             GameObject mannequin = Instantiate(_mannequinPrefab, randomPosition, Quaternion.identity);
@@ -60,14 +60,14 @@ public class BalerinaController : EnemyController
         }        
     }
 
-    private void SwitchMannequin()
-    {
-        _currentMannequinIndex = Random.Range(0, _spawnedMannequins.Count);
-        Transform currentMannequinTransform = _spawnedMannequins[_currentMannequinIndex].transform;
-        transform.position = currentMannequinTransform.position;
-        transform.rotation = currentMannequinTransform.rotation;
-        _spawnedMannequins[_currentMannequinIndex].SetActive(false);
-    }
+    //private void SwitchMannequin()
+    //{
+    //    _currentMannequinIndex = Random.Range(0, _spawnedMannequins.Count);
+    //    Transform currentMannequinTransform = _spawnedMannequins[_currentMannequinIndex].transform;
+    //    transform.position = currentMannequinTransform.position;
+    //    transform.rotation = currentMannequinTransform.rotation;
+    //    _spawnedMannequins[_currentMannequinIndex].SetActive(false);
+    //}
 
     // 랜덤 위치를 반환하는 함수
     private Vector3 GetRandomPosition()
@@ -92,21 +92,23 @@ public class BalerinaController : EnemyController
         //음악 켜주고
         //balletMusic.Play();
         //_animator.SetTrigger("StartDance");
-    
 
-         randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
+        //마네킹을 음악 멈추기 전의 위치로 보내주기
+        _spawnedMannequins[randomManequinIndex].transform.position = transform.position;
+        _spawnedMannequins[randomManequinIndex].transform.rotation = transform.rotation;
+
+        //다시 랜덤값 잡아줘서 발레리나 본체를 옮겨주기
+        randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
+        transform.position = _spawnedMannequins[randomManequinIndex].transform.position;
+
 
         Animator animator = _spawnedMannequins[randomManequinIndex].GetComponent<Animator>();
         _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
         animator.Play(_savedAnimationHash, 0, _currentAnimatorState.normalizedTime);
-        _spawnedMannequins[randomManequinIndex].transform.position = transform.position;
-        _spawnedMannequins[randomManequinIndex].transform.rotation = transform.rotation;
 
         SetState(1);
         //transform.Translate(GetRandomPosition());
 
-        randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
-        transform.position = _spawnedMannequins[randomManequinIndex].transform.position;
         Invoke("StopDance", 5.0f);
     }
 

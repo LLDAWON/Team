@@ -46,6 +46,7 @@ public class CandleScript : MonoBehaviour
     {
         _fireObject.SetActive(islitOn);
         _flashPoint.SetActive(islitOn);
+        _isLit = true;
         _fire.Play();
         UpdateObstacle();
     }
