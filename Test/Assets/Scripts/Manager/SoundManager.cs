@@ -23,12 +23,12 @@ public class SoundManager : MonoBehaviour
     private float _volume = 1.0f;
     private int _audioPoolSize = 30;
     private int _soundDistanceMin = 1;
-    private int _soundDistanceMax = 55;
+    private int _soundDistanceMax = 10;
 
     private AudioSource _audioSource;
     private Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>();
 
-    private List<GameObject> _audioObjects = new List<GameObject>();
+    private List<Sound> _audioObjects = new List<Sound>();
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class SoundManager : MonoBehaviour
             audioSource.spatialBlend = 1f;
             obj.transform.SetParent(transform);
             Sound sound = obj.AddComponent<Sound>();
-            _audioObjects.Add(obj);
+            _audioObjects.Add(sound);
             obj.SetActive(false);
         }
 
@@ -67,19 +67,30 @@ public class SoundManager : MonoBehaviour
     public void Play3D(string key, Vector3 pos)
     {
         //액티브 꺼져있는 애 찾아서 플레이
-        foreach (GameObject audioObject in _audioObjects)
+        foreach (Sound audioObject in _audioObjects)
         {
-            if (!audioObject.activeSelf)
+            if (!audioObject.gameObject.activeSelf)
             {
-                audioObject.SetActive(true);
-                audioObject.transform.position = pos;
-                Sound sound = audioObject.GetComponent<Sound>();
-                sound.Play(clips[key], pos);
+                audioObject.Play(clips[key], pos);
+                return;
+            }
+
+        }     
+
+    }
+
+    public void Play3D(string key, Transform parent)
+    {
+        //액티브 꺼져있는 애 찾아서 플레이
+        foreach (Sound audioObject in _audioObjects)
+        {
+            if (!audioObject.gameObject.activeSelf)
+            {
+                audioObject.Play(clips[key], parent);
                 return;
             }
 
         }
-       
 
     }
 }
