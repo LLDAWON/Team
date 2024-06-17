@@ -73,7 +73,7 @@ public class PlayerController : MoveableCharactorController
         Cursor.lockState = CursorLockMode.Locked;
 
 
-        _hand = transform.GetChild(0).transform.GetChild(1).gameObject;
+       // _hand = transform.GetChild(0).transform.GetChild(1).gameObject;
         Observer.OnEvents.Add(302, UseDrink);
         Observer.OnNoneEvents.Add(101, UseFlash);
         Observer.OnNoneEvents.Add(102, UsePhone);

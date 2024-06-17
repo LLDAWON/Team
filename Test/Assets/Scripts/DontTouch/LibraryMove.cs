@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LibraryMove : MonoBehaviour
 {
-    private float moveInterval;
-    private float moveDistance = 1.0f;
-    private float rotateAngle = 90.0f; 
-    public LayerMask obstacleMask; 
+    private float _moveInterval;
+    private float _moveDistance = 1.0f;
+    private float _rotateAngle = 90.0f; 
+    public LayerMask _obstacleMask; 
 
    
 
@@ -16,60 +16,45 @@ public class LibraryMove : MonoBehaviour
 
         StartCoroutine(MoveRoutine());
     }
-
     private IEnumerator MoveRoutine()
     {
         while (true)
         {
-           
-            int randomDirection = Random.Range(0, 2); 
+            int randomDirection = Random.Range(0, 2);
 
-       
             Quaternion newRotation = transform.rotation;
 
             if (randomDirection == 0)
             {
-               
-                newRotation *= Quaternion.Euler(0, rotateAngle, 0);
+                newRotation *= Quaternion.Euler(0, _rotateAngle, 0);
             }
             else
             {
-                
-                newRotation *= Quaternion.Euler(0, -rotateAngle, 0);
+                newRotation *= Quaternion.Euler(0, -_rotateAngle, 0);
             }
 
-           
-            Vector3 moveDirection = newRotation * Vector3.forward;
-            Vector3 targetPosition = transform.position + moveDirection;
-
-           
             bool collisionDetected = false;
-            yield return StartCoroutine(CheckCollision(targetPosition, newRotation, (result) => collisionDetected = result));
+            yield return StartCoroutine(CheckCollision(newRotation, (result) => collisionDetected = result));
 
             if (!collisionDetected)
             {
-               
-                yield return StartCoroutine(MoveTo(targetPosition, newRotation));
-               
+                yield return StartCoroutine(MoveTo(newRotation));
             }
-              moveInterval = Random.Range(5, 10.0f);
-           // moveInterval = 3f;
-            yield return new WaitForSeconds(moveInterval);
+            _moveInterval = Random.Range(5, 10.0f);
+            yield return new WaitForSeconds(_moveInterval);
         }
     }
 
-    private IEnumerator MoveTo(Vector3 targetPosition, Quaternion targetRotation)
+    private IEnumerator MoveTo(Quaternion targetRotation)
     {
         float elapsedTime = 0f;
-        float moveTime = 1.0f;
+        float rotateTime = 1.0f;
 
-        Vector3 startPosition = transform.position;
         Quaternion startRotation = transform.rotation;
 
-        while (elapsedTime < moveTime)
+        while (elapsedTime < rotateTime)
         {
-            float t = elapsedTime / moveTime;
-           
+            float t = elapsedTime / rotateTime;
             transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
 
             elapsedTime += Time.deltaTime;
@@ -78,54 +63,62 @@ public class LibraryMove : MonoBehaviour
         transform.rotation = targetRotation;
     }
 
-    private IEnumerator CheckCollision(Vector3 targetPosition, Quaternion targetRotation, System.Action<bool> onComplete)
+    private IEnumerator CheckCollision(Quaternion targetRotation, System.Action<bool> onComplete)
     {
-       
-        GameObject tempObject = new GameObject("TempCollider");
-        tempObject.transform.position = transform.position;
-        tempObject.transform.rotation = transform.rotation;
-        BoxCollider tempCollider = tempObject.AddComponent<BoxCollider>();
-        tempCollider.size = GetComponent<BoxCollider>().size;
+        BoxCollider originalCollider = GetComponent<BoxCollider>();
 
-        yield return StartCoroutine(MoveTempObject(tempObject, targetPosition, targetRotation, () =>
+        originalCollider.enabled = false;
+        BoxCollider tempCollider = gameObject.AddComponent<BoxCollider>();
+        tempCollider.size = originalCollider.size;
+        tempCollider.isTrigger = true; 
+
+        bool collisionDetected = false;
+
+        yield return StartCoroutine(MoveTempObject(tempCollider, targetRotation, originalCollider, (collision) =>
         {
-            Collider[] hitColliders = Physics.OverlapBox(tempObject.transform.position, tempCollider.size / 2, tempObject.transform.rotation, obstacleMask);
+            collisionDetected = collision;
+        }));
 
-            bool collisionDetected = false;
+        onComplete(collisionDetected);
+
+        Destroy(tempCollider);
+        originalCollider.enabled = true;
+    }
+
+    private IEnumerator MoveTempObject(BoxCollider tempCollider, Quaternion targetRotation, BoxCollider originalCollider, System.Action<bool> onComplete)
+    {
+        float elapsedTime = 0f;
+        float rotateTime = 1.0f;
+
+        Quaternion startRotation = tempCollider.transform.rotation;
+
+        bool collisionDetected = false;
+
+        while (elapsedTime < rotateTime)
+        {
+            float t = elapsedTime / rotateTime;
+
+            tempCollider.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+ 
+            Collider[] hitColliders = Physics.OverlapBox(tempCollider.bounds.center, tempCollider.size / 2, tempCollider.transform.rotation, _obstacleMask);
             foreach (Collider collider in hitColliders)
             {
-                if (collider != GetComponent<Collider>())
+                if (collider != tempCollider)
                 {
-                    collisionDetected = true; 
+                    collisionDetected = true;
                     break;
                 }
             }
-
-            onComplete(collisionDetected);
-            Destroy(tempObject);
-        }));
-    }
-
-    private IEnumerator MoveTempObject(GameObject tempObject, Vector3 targetPosition, Quaternion targetRotation, System.Action onComplete)
-    {
-        float elapsedTime = 0f;
-        float moveTime = 1.0f; 
-
-        Quaternion startRotation = tempObject.transform.rotation;
-
-        while (elapsedTime < moveTime)
-        {
-            float t = elapsedTime / moveTime;
-         
-            tempObject.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+            if (collisionDetected)
+            {
+                break;
+            }
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        tempObject.transform.rotation = targetRotation;
-
-        onComplete();
+        onComplete(collisionDetected);
     }
-  
+
 }

@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
+[Serializable]
 public struct ClipInfo
 {
     public string key;
@@ -20,7 +23,7 @@ public class SoundManager : MonoBehaviour
     private float _volume = 1.0f;
     private int _audioPoolSize = 30;
     private int _soundDistanceMin = 0;
-    private int _soundDistanceMax = 10;
+    private int _soundDistanceMax = 100;
 
     private AudioSource _audioSource;
     private Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>();
@@ -42,13 +45,15 @@ public class SoundManager : MonoBehaviour
         {
             GameObject obj = new GameObject("Sound" + i);
             AudioSource audioSource =  obj.AddComponent<AudioSource>();
-            audioSource.loop = false;
+            audioSource.loop = true;
             audioSource.volume = _volume;
             audioSource.minDistance = _soundDistanceMin;
             audioSource.maxDistance = _soundDistanceMax;
+            audioSource.spatialBlend = 1f;
             obj.transform.SetParent(transform);
-
+            Sound sound = obj.AddComponent<Sound>();
             _audioObjects.Add(obj);
+            obj.SetActive(false);
         }
 
     }
@@ -62,5 +67,17 @@ public class SoundManager : MonoBehaviour
     public void Play3D(string key, Vector3 pos)
     {
         //액티브 꺼져있는 애 찾아서 플레이
+        foreach (GameObject audioObject in _audioObjects)
+        {
+            if (!audioObject.activeSelf)
+            {
+                Sound sound = audioObject.GetComponent<Sound>();
+                sound.Play(clips[key], pos);
+                return;
+            }
+
+        }
+       
+
     }
 }

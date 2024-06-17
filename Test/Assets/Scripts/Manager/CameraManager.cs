@@ -26,17 +26,56 @@ public class CameraManager : MonoBehaviour
     public float _speed = 1.0f; // 속도 조절
     public float _vignetteSpeed = 0.5f;
 
+
+
+    private Vector3 initialPosition;
+
+    private Quaternion initialRotation;
+
     private void Awake()
     {
         Instance = this;
-
         _noise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
         _volume.profile.TryGet(out _vignette);
         _volume.profile.TryGet(out _depthOfField);
         DontDestroyOnLoad(this.gameObject);
     }
+
+    private void Start()
+    {
+
+        initialPosition = _virtualCamera.transform.position;
+        initialRotation = _virtualCamera.transform.rotation;
+    }
+
+    public void Shake(float magnitude, float duration)
+    {
+        StartCoroutine(ShakeCoroutine(duration, magnitude));
+    }
+
+    private IEnumerator ShakeCoroutine(float duration, float magnitude)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+
+            _virtualCamera.transform.position = initialPosition + Random.insideUnitSphere * magnitude;
+            _virtualCamera.transform.rotation = Quaternion.Euler(initialRotation.eulerAngles + Random.insideUnitSphere * magnitude);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        _virtualCamera.transform.position = initialPosition;
+        _virtualCamera.transform.rotation = initialRotation;
+    }
+
     public void ShakeCamera(float intensity, float duration)
     {
+
+
         _initialAmplitude = _noise.m_AmplitudeGain;
         _initialFrequency = _noise.m_FrequencyGain;
 
@@ -49,7 +88,6 @@ public class CameraManager : MonoBehaviour
         _noise.m_AmplitudeGain = _initialAmplitude;
         _noise.m_FrequencyGain = _initialFrequency;
     }
-
     public void StartFuzziness()
     {
         _vignette.color.value = Color.black;
