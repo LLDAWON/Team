@@ -18,6 +18,7 @@ public class CinemachineCameraController : MonoBehaviour
 
         Observer.OnTargetEvents.Add(1, PlayerDieCam);
         Observer.OnDesolveEvents.Add(2, MoveToCameraForCutScene);
+        Observer.OnNoneEvents.Add(10, PlayerFollowCam);
     }
 
 

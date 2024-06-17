@@ -22,6 +22,5 @@ public class Picture : MonoBehaviour
     {
         StartCoroutine(Observer.OnDesolveEvents[1](gameObject));
 
-        
     }
 }

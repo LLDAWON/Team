@@ -13,6 +13,13 @@ public class GameManager : MonoBehaviour
     private GameObject _playerprefab;
     private GameObject _player;
 
+    //카메라 관련
+    [SerializeField]
+    private GameObject _mainCamera;
+    [SerializeField] 
+    private GameObject _cutSceneCamera;
+    public GameObject GetMainCamera() { return _mainCamera; }
+
     //Manager 관리
     private EventManager _eventManager;
     private MonsterManager _monsterManager;
@@ -55,6 +62,18 @@ public class GameManager : MonoBehaviour
         _savePoint = GameObject.Find("SavePoint").transform.position;
          _monsterManager = MonsterManager.Instance;
         _eventManager = _player.GetComponent<EventManager>();
+
+
+        if (_mainCamera == null)
+        {
+            Debug.LogError("MainCamera를 찾을 수 없습니다.");
+        }
+
+        if (_cutSceneCamera == null)
+        {
+            Debug.LogError("EventCamera를 찾을 수 없습니다.");
+        }
+
 
         Observer.OnDesolveEvents.Add(1, DisolveEffect);
     }
@@ -123,7 +142,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ChangeCamera()
+    {
+        _mainCamera.GetComponent<Camera>().enabled = false;
+        _cutSceneCamera.GetComponent<Camera>().enabled = true;
 
+        Animator _cutSceneAnimator = _cutSceneCamera.GetComponent<Animator>();
+        _cutSceneAnimator.SetTrigger("Destroy");
+    }
+    public void RestoreMainCamera()
+    {
+        _cutSceneCamera.GetComponent<Camera>().enabled = false;
+        _mainCamera.GetComponent<Camera>().enabled = true;
+    }
 
 
 }

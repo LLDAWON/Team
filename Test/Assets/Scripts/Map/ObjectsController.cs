@@ -15,7 +15,7 @@ public class ObjectsController : MonoBehaviour
 
         if(!_target.activeSelf)
         {
-            StartCoroutine(Observer.OnDesolveEvents[2](gameObject));
+            GameManager.Instance.ChangeCamera();
             StartCoroutine(Observer.OnDesolveEvents[1](gameObject));
             _target = null;
             return;

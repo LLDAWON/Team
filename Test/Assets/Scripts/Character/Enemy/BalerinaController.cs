@@ -12,6 +12,7 @@ public class BalerinaController : EnemyController
     AnimatorStateInfo _currentAnimatorState;
     private int _savedAnimationHash; // 애니메이션 상태 해시 저장
     private float _savedAnimationTime;
+    private GameObject _spotLight;
 
 
     //public AudioSource balletMusic; // 발레리나 음악 3d사운드로 만들어주기
@@ -20,6 +21,7 @@ public class BalerinaController : EnemyController
     {
         base.Awake();        
         _mannequinPrefab = Resources.Load<GameObject>("Prefabs/Character/Enemy/Manequin");
+        _spotLight = transform.GetChild(1).gameObject;
     }
     protected override void Start()
     {
@@ -72,7 +74,7 @@ public class BalerinaController : EnemyController
     // 랜덤 위치를 반환하는 함수
     private Vector3 GetRandomPosition()
     {
-        return new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
+        return new Vector3(Random.Range(-20f, 20f), 0, Random.Range(-20f, 20f));
     }
 
     // 춤 루틴을 처리하는 코루틴
@@ -105,8 +107,13 @@ public class BalerinaController : EnemyController
         Animator animator = _spawnedMannequins[randomManequinIndex].GetComponent<Animator>();
         _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
         animator.Play(_savedAnimationHash, 0, _currentAnimatorState.normalizedTime);
+        //Light켜주기
+        _spotLight.SetActive(true);
 
         SetState(1);
+        Invoke("TeleportBalerina", 1.0f);
+
+        
         //transform.Translate(GetRandomPosition());
 
         Invoke("StopDance", 5.0f);
@@ -118,6 +125,8 @@ public class BalerinaController : EnemyController
         _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
         _savedAnimationHash = _currentAnimatorState.fullPathHash;
         _savedAnimationTime = _currentAnimatorState.normalizedTime;
+        // 라이트꺼주기
+        _spotLight.SetActive(false);
 
         //현재 각도 유지
         Quaternion currentRotation = transform.rotation;
@@ -139,6 +148,18 @@ public class BalerinaController : EnemyController
         transform.rotation = newMannequinTransform.rotation;
 
         _spawnedMannequins[_currentMannequinIndex].SetActive(false);
+    }
+
+    private void TeleportBalerina()
+    {
+        float randomX = 0;
+        float randomZ = 0;
+        while ((randomX+randomZ)<3.0f)
+        {
+            randomX = Random.Range(-5f, 5f);
+            randomZ = Random.Range(-5f, 5f);
+        }
+        transform.position = _target.position + new Vector3(randomX, 0, randomZ);
     }
 
 
