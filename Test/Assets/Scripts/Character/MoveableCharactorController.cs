@@ -36,7 +36,6 @@ public class MoveableCharactorController : MonoBehaviour
         _collider = GetComponent<CapsuleCollider>();
         _rigidBody = GetComponent<Rigidbody>();
 
-        DontDestroyOnLoad(this.gameObject);
         _characterData = DataManager.Instance.GetCharacterData(_characterKey);
     }
 

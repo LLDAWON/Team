@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     private GameObject _hintPenal;
     [SerializeField]
     private GameObject _cursor;
+   
+    private GameObject _4Door;
 
     private bool _inventoryOpen = false;
     private List<int> _preTxTKey = new List<int>();
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
     private GameObject _battery;
     private KeySlider _keySlider;
     private TextMeshProUGUI _candleCount;
+    private GameObject _ventEventUI;
 
     private int _maxCandle;
     private int _curCandle;
@@ -47,6 +50,8 @@ public class UIManager : MonoBehaviour
     { get { return _keySlider; } }
     public TextMeshProUGUI CandleUI
     { get { return _candleCount; } }
+    public GameObject VentUI
+    { get { return _ventEventUI; } }
 
     private void Awake()
     {
@@ -58,12 +63,15 @@ public class UIManager : MonoBehaviour
         _battery = transform.GetChild(3).gameObject;
         _keySlider = transform.GetChild(7).GetComponent<KeySlider>();
         _candleCount = transform.GetChild(8).GetComponent<TextMeshProUGUI>();
+        _ventEventUI = transform.GetChild(9).gameObject;
 
         _battery.SetActive(false);
 
-        _curCandle = 0;
+        _curCandle = 5;
         _maxCandle = 6;
         _candleCount.gameObject.SetActive(false);
+        _ventEventUI.SetActive(false);
+        
     }
 
     private void Update()
@@ -85,8 +93,29 @@ public class UIManager : MonoBehaviour
 
         }
 
-        _candleCount.text = _curCandle.ToString() + "/" + _maxCandle.ToString();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _ventEventUI.SetActive(false) ;
+        }
+
     }
+    public IEnumerator Candle()
+    {
+        while(_candleCount.gameObject.activeSelf)
+        {
+            yield return null;
+            _candleCount.text = _curCandle.ToString() + "/" + _maxCandle.ToString();
+            _4Door = GameObject.Find("AnimationDoor");
+            if (_curCandle == _maxCandle)
+            {
+                SetText(9);
+                _candleCount.gameObject.SetActive(false);
+                _4Door.GetComponent<Animation>().Play();
+                break;
+            }
+        }
+    }
+
     public void SetText(int key)
     {
         _textData = DataManager.Instance.GetTextData(key);

@@ -52,29 +52,36 @@ public class GameManager : MonoBehaviour
     {
         _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
         _playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
-        _player = Instantiate(_playerprefab, _playerSpawnPosition, Quaternion.identity);
+        _player = Instantiate(_playerprefab, _playerSpawnPosition, Quaternion.identity, transform);
         
-         _monsterManager = MonsterManager.Instance;
+        _monsterManager = MonsterManager.Instance;
         _eventManager = _player.GetComponent<EventManager>();
-
+        _curEvent = _eventManager.CurKey;
         Observer.OnDesolveEvents.Add(1, DisolveEffect);
     }
     private void PlayerSpawn()
     {
         _playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
         _player.transform.position = _playerSpawnPosition;
+
         UIManager.Instance.SetText(1);
         UIManager.Instance.SetText(2);
     }
     private void Update()
     {
-       // Floor5MonsterSpawn();
+        // Floor5MonsterSpawn();
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.V))
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(3);
         }
-       
+
+            if (Input.GetKeyDown(KeyCode.K))
+        {
+            List<int> item = UIManager.Instance.GetInventory.SaveItem;
+            SaveManager.Instance.JsonSave(_player.transform.position, _curEvent, item);
+            Debug.Log("curSceneSave:" + SceneManager.GetActiveScene().name);
+        }
     }
     private void Floor5MonsterSpawn()
     {
@@ -83,7 +90,7 @@ public class GameManager : MonoBehaviour
         if (_eventManager != null)
         {
             int currentEvent = _eventManager.CurKey;
-            //Debug.Log("Current Event Key: " + currentEvent);
+
             if (_eventManager.CurKey == 6)
             {
                 _monsterManager.Spawn("Follow", new Vector3(2.4f, 0.8f, -5.4f));

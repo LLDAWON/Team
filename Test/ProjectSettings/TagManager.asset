@@ -58,6 +58,9 @@ TagManager:
   - BacketboardIndoor
   - BacketballBackboard
   - Rostrums_broken
+  - Hint4
+  - Cal
+  - 3ChangeScene
   layers:
   - Default
   - TransparentFX

@@ -23,6 +23,7 @@ public class EventManager : MonoBehaviour
 
     [SerializeField]
     private LayerMask _layerMask;
+    
 
     private void Awake()
     {
@@ -59,7 +60,7 @@ public class EventManager : MonoBehaviour
                     GameObject obj = hit.collider.gameObject;
 
                     UIManager.Instance.KeySlider.OnPressKey(obj);
-                    //SaveManager.Instance.JsonSave(transform.position, _eventData.Key);
+
                     return;
                 }
 
@@ -158,7 +159,13 @@ public class EventManager : MonoBehaviour
     {
         if(collision.collider.CompareTag("4ChangeScene"))
         {
-            SceneManager.LoadScene("4FloorScene");
+            SceneManager.LoadScene(1);
+            UIManager.Instance.CandleUI.gameObject.SetActive(true);
+            UIManager.Instance.StartCoroutine("Candle");
+        }
+        if (collision.collider.CompareTag("3ChangeScene"))
+        {
+            SceneManager.LoadScene(2);
             UIManager.Instance.CandleUI.gameObject.SetActive(true);
         }
     }

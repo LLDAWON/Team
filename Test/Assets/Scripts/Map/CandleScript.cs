@@ -50,6 +50,7 @@ public class CandleScript : MonoBehaviour
         _flashPoint.SetActive(islitOn);
         _isLit = true;
         _fire.Play();
+
         UIManager.Instance.AddCandle();
 
        

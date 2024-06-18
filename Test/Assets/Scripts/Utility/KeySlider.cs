@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class KeySlider : MonoBehaviour
@@ -33,13 +34,8 @@ public class KeySlider : MonoBehaviour
     {
         if(_pressTime >= _maxPressTime)
         {
-            // 지금 오브젝트 말고 다른 오브젝트들은 사용 못하는 함수...
-            //GameObject obj = GameObject.Find("SCP-096").gameObject;
-            //obj.GetComponent<Picture>().UsedPicture();
-
             if(gameObject.CompareTag("Picture"))
             {
-                //StartCoroutine(Observer.OnDesolveEvents[1](gameObject));
                 gameObject.GetComponent<Picture>().UsedPicture();
                 GameObject obj = GameObject.FindGameObjectWithTag("Objects");
                 obj.GetComponent<ObjectsController>().Target(gameObject);
@@ -49,7 +45,20 @@ public class KeySlider : MonoBehaviour
             {
                 gameObject.GetComponent<CandleScript>().SetLit(true);
             }
-
+            else if (gameObject.CompareTag("BookCase"))
+            {
+                ObjectManager.Instance.BookCase();
+            }
+            else if (gameObject.CompareTag("Vent"))
+            {
+                UIManager.Instance.SetText(19);
+                SceneManager.LoadScene(3);
+            }
+            else if (gameObject.CompareTag("Cal"))
+            {
+                UIManager.Instance.VentUI.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
     }
 }
