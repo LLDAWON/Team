@@ -17,6 +17,13 @@ public class Slot : MonoBehaviour
     private void Awake()
     {
         //_image.gameObject.SetActive(false);
+        Button button = transform.GetChild(0).GetComponent<Button>();
+
+        if (button != null)
+        {
+            button.onClick.AddListener(() => OnSlotClick());
+        }
+
     }
     public bool IsSet()
     {
@@ -35,14 +42,6 @@ public class Slot : MonoBehaviour
         _count++;
         _image.sprite = Resources.Load<Sprite>(data.ImagePath) as Sprite;
         _image.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _count.ToString();
-
-        Button button = transform.GetChild(0).GetComponent<Button>();
-
-        if (button != null)
-        {
-            button.onClick.AddListener(() => OnSlotClick());
-        }
-
         _isSetItem = true;
         _image.gameObject.SetActive(true);
         _image.color = Color.white;
@@ -56,7 +55,7 @@ public class Slot : MonoBehaviour
 
     private void OnSlotClick()
     {
-        if (_image != null)
+        if (_count > 0)
         {
             UseItem();
         }

@@ -39,7 +39,6 @@ public class CameraManager : MonoBehaviour
 
         _volume.profile.TryGet(out _vignette);
         _volume.profile.TryGet(out _depthOfField);
-        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()

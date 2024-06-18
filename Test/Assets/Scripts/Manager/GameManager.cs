@@ -41,18 +41,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // 인스턴스가 존재하지 않으면 이 인스턴스를 할당
-        if (Instance == null)
-        {
-            Instance = this;
-            //DontDestroyOnLoad(gameObject); // 이 오브젝트를 씬 전환 시 파괴되지 않도록 설정
-
-            Initialize(); // 초기에 awkae할 애들
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject); // 이미 인스턴스가 존재하면 새로운 인스턴스를 파괴
-        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // 이 오브젝트를 씬 전환 시 파괴되지 않도록 설정
+        Initialize(); // 초기에 awkae할 애들        
 
         SoundManager.Instance.Play2D("BG");
     }
@@ -78,6 +69,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
        // Floor5MonsterSpawn();
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(1);
+        }
        
     }
     private void Floor5MonsterSpawn()
