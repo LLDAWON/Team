@@ -59,6 +59,7 @@ public class PlayerController : MoveableCharactorController
     private Vector2 hotspot = Vector2.zero;
 
     private GameObject _hand;
+    public GameObject GetHand() { return _hand; }
 
 
     protected override void Awake()
@@ -85,7 +86,6 @@ public class PlayerController : MoveableCharactorController
         _prfSteminaBar = GameObject.Find("SteminaBar");
         _curSteminaBar = _prfSteminaBar.transform.GetChild(0).GetComponent<Image>();
         _curStemina = _characterData.Stemina;
-
 
     }
 

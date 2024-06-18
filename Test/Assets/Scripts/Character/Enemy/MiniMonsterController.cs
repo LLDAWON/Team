@@ -4,57 +4,13 @@ using UnityEngine;
 
 public class MiniMonsterController : EnemyController
 {
-    private Transform _head;
-
-    override protected void Awake()
-    {
-        base.Awake();
-
-        _head = FindChildByName(transform, "JNT_Head");
-    }
-
+    
     override protected void Start()
     {
-        StartCoroutine(HeadLookPlayer());
        base.Start();
     }
-    private IEnumerator HeadLookPlayer()
-    {
-        while (true)
-        {
-            if (_head != null && _target != null)
-            {
-                // _head가 target을 바라보도록 회전
-                Vector3 direction = (_target.position - _head.position).normalized;
-                Quaternion lookRotation = Quaternion.LookRotation(direction);
-                _head.rotation = Quaternion.Slerp(_head.rotation, lookRotation, Time.deltaTime * 2.0f);
-            }
+    
 
-            // 다음 프레임까지 기다립니다.
-            yield return null;
-        }
-    }
-
-    private Transform FindChildByName(Transform parent, string name)
-    {
-        // 현재 단계에서 이름을 체크
-        if (parent.name == name)
-        {
-            return parent;
-        }
-
-        // 자식들 탐색
-        foreach (Transform child in parent)
-        {
-            Transform result = FindChildByName(child, name);
-            if (result != null)
-            {
-                return result;
-            }
-        }
-
-        return null; // 찾지 못한 경우
-    }
 
     protected override void StateUpdate()
     {
@@ -125,7 +81,6 @@ public class MiniMonsterController : EnemyController
                     _animator.speed = 1.0f;
                     _isAttack = true;
 
-                    StartCoroutine(MoveToTarget());
                     _animator.SetTrigger("Attack");
                     Debug.Log("EnemyState.Attack");
 
@@ -150,20 +105,5 @@ public class MiniMonsterController : EnemyController
                 break;
         }
     }
-    private IEnumerator MoveToTarget()
-    {
-        float duration = 1.0f;  // 기간동안이동
-        float elapsed = 0.0f;
-        //공격당하면 이동
-        Vector3 initialPosition = transform.position;
-        Vector3 targetPosition = _target.GetChild(0).transform.GetChild(0).position;
-
-        while (elapsed < duration)
-        {
-            transform.position = Vector3.Slerp(initialPosition, targetPosition, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-    }
+   
 }

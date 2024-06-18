@@ -14,6 +14,8 @@ public class BalerinaController : EnemyController
     private float _savedAnimationTime;
     private GameObject _spotLight;
 
+    private Coroutine _danceRoutineCoroutine;
+
 
     //public AudioSource balletMusic; // 발레리나 음악 3d사운드로 만들어주기
 
@@ -27,7 +29,7 @@ public class BalerinaController : EnemyController
     {
         base.Start(); 
         SpawnMannequins();
-        StartCoroutine(DanceRoutine());
+        _danceRoutineCoroutine = StartCoroutine(DanceRoutine());
     }
 
     override protected void Update()
@@ -62,15 +64,6 @@ public class BalerinaController : EnemyController
         }        
     }
 
-    //private void SwitchMannequin()
-    //{
-    //    _currentMannequinIndex = Random.Range(0, _spawnedMannequins.Count);
-    //    Transform currentMannequinTransform = _spawnedMannequins[_currentMannequinIndex].transform;
-    //    transform.position = currentMannequinTransform.position;
-    //    transform.rotation = currentMannequinTransform.rotation;
-    //    _spawnedMannequins[_currentMannequinIndex].SetActive(false);
-    //}
-
     // 랜덤 위치를 반환하는 함수
     private Vector3 GetRandomPosition()
     {
@@ -80,7 +73,7 @@ public class BalerinaController : EnemyController
     // 춤 루틴을 처리하는 코루틴
     private IEnumerator DanceRoutine()
     {
-        while (true)
+        while (_isAttack==false)
         {
             yield return new WaitForSeconds(6.0f);
 
@@ -167,7 +160,14 @@ public class BalerinaController : EnemyController
     {
         //공격일떈 스테이트변화 x
         if (_enemyState == EnemyState.Attack)
+        {
+            if (_danceRoutineCoroutine != null)
+            {
+                StopCoroutine(_danceRoutineCoroutine); // Attack 상태일 때 코루틴 중지
+                _danceRoutineCoroutine = null;
+            }
             return;
+        }
         if (_enemyState == EnemyState.None)
             return;
 
@@ -198,8 +198,8 @@ public class BalerinaController : EnemyController
                     _navigation.velocity = Vector3.zero;
                     _animator.speed = 1.0f;
                     _isAttack = true;
-
-                    //_animator.SetTrigger("Attack");
+                    _animator.SetTrigger("Attack");
+                    _target.GetComponent<PlayerController>().GetHand().SetActive(false);
                     Debug.Log("EnemyState.Attack");
 
                     Observer.OnTargetEvents[1](gameObject);
