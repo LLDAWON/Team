@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Unity.Collections;
 
 [System.Serializable]
 public class SaveData
 {
+    public List<int> itemList = new List<int>();
+   
     public Vector3 savePoint;
     public int curEvent;
 }
@@ -31,6 +34,11 @@ public class SaveManager : Singleton<SaveManager>
             {
                 GameManager.Instance.GetPlayer().transform.position = saveData.savePoint;
                 GameManager.Instance.GetPlayer().GetComponent<EventManager>().SetKey(saveData.curEvent);
+                foreach(int data in saveData.itemList)
+                {
+                    ItemData itemdata = DataManager.Instance.GetItemData(data);
+                    UIManager.Instance.GetInventory.AddItem(itemdata);
+                }
             }
         }
     }
@@ -40,12 +48,12 @@ public class SaveManager : Singleton<SaveManager>
         return File.Exists(path);
     }
 
-    public void JsonSave(Vector3 savePoint,int curEvent)
+    public void JsonSave(Vector3 savePoint,int curEvent,List<int>data)
     {
         SaveData saveData = new SaveData();
         saveData.savePoint = savePoint;
         saveData.curEvent = curEvent;
-
+        saveData.itemList = data;
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(path, json);
     }
