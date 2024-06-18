@@ -89,6 +89,14 @@ public class EventManager : MonoBehaviour
         if (_eventData.Type == 1)
         {
             hit.collider.GetComponent<TestAnimation>().PlayAnimation();
+            if (hit.collider.CompareTag("ClassDoor1"))
+            {
+                SoundManager.Instance.Play3D("Door", hit.transform.position, false);
+                return;
+            }
+            
+            SoundManager.Instance.Play3D(hit.collider.tag, hit.transform.position, false);
+
         }
         else if (_eventData.Type == 0)
         {

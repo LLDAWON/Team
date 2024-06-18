@@ -16,10 +16,13 @@ public class UIManager : MonoBehaviour
     private GameObject _hintPenal;
     [SerializeField]
     private GameObject _cursor;
+    [SerializeField]
+    private GameObject _miniMap;
    
     private GameObject _4Door;
 
     private bool _inventoryOpen = false;
+    private bool _miniMapOpen = false;
     private List<int> _preTxTKey = new List<int>();
 
     private TextData _textData;
@@ -71,7 +74,7 @@ public class UIManager : MonoBehaviour
         _maxCandle = 6;
         _candleCount.gameObject.SetActive(false);
         _ventEventUI.SetActive(false);
-        
+        _miniMap.SetActive(false);
     }
 
     private void Update()
@@ -91,6 +94,14 @@ public class UIManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
             }
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if (SceneManager.GetActiveScene().name == "3FloorScene" || SceneManager.GetActiveScene().name == "VentScene")
+                return;
+            _miniMapOpen = !_miniMapOpen;
+            _miniMap.SetActive(_miniMapOpen) ;
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

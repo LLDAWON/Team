@@ -121,6 +121,8 @@ public class PlayerController : MoveableCharactorController
         else
         {
             _isMove = true;
+            // 사운드 한번만 호출해서 진행
+            // SoundManager.Instance.Play3D("PlayerStep", transform, false);
         }
 
         // 스태미너 관리
@@ -144,6 +146,7 @@ public class PlayerController : MoveableCharactorController
                     _isPlayerVant = false;
                     _curStemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
                     _moveSpeed = _characterData.RunSpeed;
+                    //pitch  조절해서 사용할지 하나 그냥 넣을지 ㄱ고민
 
                 }
                 else
@@ -156,6 +159,7 @@ public class PlayerController : MoveableCharactorController
                 _isPlayerVant = true;
                 _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
                 _moveSpeed = _characterData.CrawlingSpeed;
+
             }
             else
             {

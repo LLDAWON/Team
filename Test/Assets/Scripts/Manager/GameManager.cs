@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject); // 이 오브젝트를 씬 전환 시 파괴되지 않도록 설정
         Initialize(); // 초기에 awkae할 애들        
 
-        SoundManager.Instance.Play2D("BG");
+        SoundManager.Instance.Play2D("BG", true);
     }
 
     private void Initialize()
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             {
                 _monsterManager.Spawn("Follow", new Vector3(2.4f, 0.8f, -5.4f));
                 _isSpawning = true;
-                SoundManager.Instance.Play3D("Monster", new Vector3(2.4f, 0.8f, -5.4f));
+                SoundManager.Instance.Play3D("Monster", new Vector3(2.4f, 0.8f, -5.4f), false   );
                 return;
             }
         }

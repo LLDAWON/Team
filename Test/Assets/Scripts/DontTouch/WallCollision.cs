@@ -14,7 +14,7 @@ public class WallCollision : MonoBehaviour
     private void Spawn()
     {
         
-        SoundManager.Instance.Play3D("Door", transform.position);
+       // SoundManager.Instance.Play3D("Door", transform.position);
     }
 
     private void OnTriggerEnter(Collider other)
