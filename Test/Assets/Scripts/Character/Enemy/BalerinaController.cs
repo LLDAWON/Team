@@ -80,8 +80,6 @@ public class BalerinaController : EnemyController
         //balletMusic.Play();
 
         //마네킹을 음악 멈추기 전의 위치로 보내주기
-        _spawnedMannequins[randomManequinIndex].transform.position = transform.position;
-        _spawnedMannequins[randomManequinIndex].transform.rotation = transform.rotation;
 
         //다시 랜덤값 잡아줘서 발레리나 본체를 옮겨주기
         randomManequinIndex = Random.Range(0, _spawnedMannequins.Count);
@@ -131,9 +129,12 @@ public class BalerinaController : EnemyController
     
     private void TeleportBalerina()
     {
+
+        _spawnedMannequins[randomManequinIndex].transform.position = transform.position;
+        _spawnedMannequins[randomManequinIndex].transform.rotation = transform.rotation;
         float randomX = 0;
         float randomZ = 0;
-        while ((randomX + randomZ) < 3.0f)
+        while ((randomX + randomZ) < 5.0f)
         {
             randomX = Random.Range(-5f, 5f);
             randomZ = Random.Range(-5f, 5f);
