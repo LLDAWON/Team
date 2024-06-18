@@ -74,6 +74,7 @@ public class PlayerController : MoveableCharactorController
 
 
         _hand = transform.GetChild(0).transform.GetChild(1).gameObject;
+
         Observer.OnEvents.Add(302, UseDrink);
         Observer.OnNoneEvents.Add(101, UseFlash);
         Observer.OnNoneEvents.Add(102, UsePhone);
@@ -174,7 +175,7 @@ public class PlayerController : MoveableCharactorController
     private void ItemUseController()
     {
 
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             if(_isLightOn)
             {
@@ -182,8 +183,10 @@ public class PlayerController : MoveableCharactorController
                 Animator animator = _hand.GetComponent<Animator>();
                 animator.SetBool("IsFlash", _isLightOn);
                 _flash.SetActive(_isLightOn);
+                _hand.SetActive(_isLightOn);
                 ItemData data = DataManager.Instance.GetItemData(101);
                 UIManager.Instance.GetInventory.AddItem(data);
+                
             }
             if(_isPhoneOn)
             {
@@ -196,6 +199,7 @@ public class PlayerController : MoveableCharactorController
                 _hand.SetActive(_isPhoneOn);
                 ItemData data = DataManager.Instance.GetItemData(102);
                 UIManager.Instance.GetInventory.AddItem(data);
+                
             }
         }
 

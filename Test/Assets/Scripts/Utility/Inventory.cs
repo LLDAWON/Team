@@ -49,7 +49,7 @@ public class Inventory : MonoBehaviour
     {
         foreach (Slot slot in _slots)
         {
-            if (slot.IsSet() && slot.Count() == 0)
+            if (slot.IsSet() && slot.Count() <= 0)
             {
                 slot.SetIsItem(false);
                 slot.transform.GetChild(0).gameObject.SetActive(false);

@@ -159,6 +159,7 @@ public class EventManager : MonoBehaviour
         if(collision.collider.CompareTag("4ChangeScene"))
         {
             SceneManager.LoadScene("4FloorScene");
+            UIManager.Instance.CandleUI.gameObject.SetActive(true);
         }
     }
 }

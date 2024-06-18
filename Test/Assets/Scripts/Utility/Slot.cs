@@ -45,6 +45,7 @@ public class Slot : MonoBehaviour
 
         _isSetItem = true;
         _image.gameObject.SetActive(true);
+        _image.color = Color.white;
     }
 
     public void AddItem()

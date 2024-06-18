@@ -45,6 +45,8 @@ public class UIManager : MonoBehaviour
     { get { return _cursor; } }
     public KeySlider KeySlider
     { get { return _keySlider; } }
+    public TextMeshProUGUI CandleUI
+    { get { return _candleCount; } }
 
     private void Awake()
     {
@@ -61,6 +63,7 @@ public class UIManager : MonoBehaviour
 
         _curCandle = 0;
         _maxCandle = 6;
+        _candleCount.gameObject.SetActive(false);
     }
 
     private void Update()

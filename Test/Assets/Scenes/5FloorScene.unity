@@ -2870,6 +2870,8 @@ MonoBehaviour:
   _clipInfos:
   - key: Monster
     clip: {fileID: 8300000, guid: 039cbf3404c73fc47b0a8fd916b9929c, type: 3}
+  - key: BG
+    clip: {fileID: 8300000, guid: 16ea5e3d981fd3046b00db78d22e6ef8, type: 3}
 --- !u!1 &659468825
 GameObject:
   m_ObjectHideFlags: 0
@@ -7215,7 +7217,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1609787905}
   - component: {fileID: 1609787904}
-  - component: {fileID: 1609787903}
   - component: {fileID: 1609787902}
   - component: {fileID: 1609787901}
   - component: {fileID: 1609787900}
@@ -7303,14 +7304,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1609787903
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609787899}
-  m_Enabled: 1
 --- !u!20 &1609787904
 Camera:
   m_ObjectHideFlags: 0

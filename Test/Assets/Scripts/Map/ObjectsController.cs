@@ -9,6 +9,12 @@ public class ObjectsController : MonoBehaviour
 
     public void Target(GameObject target)
     { _target = target; }
+
+    private void Awake()
+    {
+        transform.GetChild(1).GetComponent<Light>().enabled = false;
+    }
+
     private void Update()
     {
         if (_target == null) return;
@@ -17,6 +23,7 @@ public class ObjectsController : MonoBehaviour
         {
             GameManager.Instance.ChangeCamera();
             StartCoroutine(Observer.OnDesolveEvents[1](gameObject));
+            transform.GetChild(1).GetComponent<Light>().enabled = true;
             _target = null;
             return;
         }
