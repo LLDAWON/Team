@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class MiniMonsterController : EnemyController
 {
-    
+    private bool _isMeet = false;
+    //디졸브 상태값
+    protected float _desolveSpeed = 0.3f;
+
     override protected void Start()
     {
        base.Start();
@@ -44,11 +47,20 @@ public class MiniMonsterController : EnemyController
             //부채꼴 안에 들어왔을때
             if (degree <= _angleRange)
             {
+                
                 //불켰을때
-                if (playerController.GetIsLightOn() == true)
-                    SetState(5); //주금
+                if (playerController.GetIsFlashLight() == true)
+                {
+
+                    if (!_isMeet)
+                    {
+                        _isMeet = true;
+                        SetState(5); //주금
+                    }
+                } 
+                    
                 else
-                    SetState(1); // 추적
+                SetState(1); // 추적
             }
             //부채꼴안에 안들어왔을때
             else
@@ -93,7 +105,7 @@ public class MiniMonsterController : EnemyController
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
                     Debug.Log("죽음");
-                    gameObject.SetActive(false);
+                    DesolveAndTeleport();
                 }
                 break;
             case EnemyState.None:
@@ -105,5 +117,47 @@ public class MiniMonsterController : EnemyController
                 break;
         }
     }
-   
+    private void DesolveAndTeleport()
+    {
+        // 촛불 주변을 피하도록 이동 경로 계산
+        StartCoroutine(DisolveEffect());
+        SetState((int)EnemyState.None);
+    }
+    public IEnumerator DisolveEffect()
+    {
+
+        Renderer[] _renderers = transform.GetComponentsInChildren<Renderer>();
+
+        float _time = 0.0f;
+
+        while (_time < 2.0f)
+        {
+            _time += _desolveSpeed * Time.deltaTime;
+
+            foreach (Renderer renderer in _renderers)
+            {
+                renderer.material.SetFloat("_DesolveTime", _time);
+                renderer.material.SetColor("DesolveColor", Color.white);
+            }
+
+            yield return null;
+        }
+        if (_time > 2.0f)
+        {
+            foreach (Renderer renderer in _renderers)
+            {
+                //path의 랜덤한 장소에서 태어나게 해주고 디졸브 초기값과 색상 초기값으로 설정
+                //
+                renderer.material.SetFloat("_DesolveTime", 0.0f);
+                renderer.material.SetColor("DesolveColor", Color.red);
+
+            }
+
+            int random = Random.Range(0, 4);
+            transform.position = pathes[random];
+            SetState((int)EnemyState.Trace);
+            _isMeet = false;
+
+        }
+    }
 }

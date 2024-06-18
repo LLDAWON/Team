@@ -62,6 +62,7 @@ public class DarkMonsterController : EnemyController
 
     override protected void StateUpdate()
     {
+        Debug.Log(_enemyState);
         // 적 공격시 상태값 리턴
         if (_enemyState == EnemyState.Attack)
             return; 
@@ -96,7 +97,7 @@ public class DarkMonsterController : EnemyController
             if (degree <= _angleRange)
             {
                 //불켰을때
-                if(playerController.GetIsLightOn() == true)
+                if(playerController.GetIsFlashLight() == true)
                 {
                     if(!_isMeet)
                     {

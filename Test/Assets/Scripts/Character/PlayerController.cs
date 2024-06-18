@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.RenderGraphModule;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MoveableCharactorController
 {
@@ -35,7 +36,8 @@ public class PlayerController : MoveableCharactorController
     public bool GetIsPlayerVant() { return _isPlayerVant; }
     //LightOn
     private bool _isLightOn = false;
-    public bool GetIsLightOn() { return _isLightOn; }
+    private bool _isFlashLight = false;
+    public bool GetIsFlashLight() { return _isFlashLight; }
     //핸드폰
     private bool _isPhoneOn = false;
     public bool GetIsPhoneOn() { return _isPhoneOn; }
@@ -96,6 +98,14 @@ public class PlayerController : MoveableCharactorController
 
         base.Update();
 
+        if (SceneManager.GetActiveScene().name == "VentScene")
+        {
+            _isPlayerVant = true;
+        }
+        Light _flashLight = _flash.GetComponentInChildren<Flashlight>().lightSource;
+        _isFlashLight = _flashLight.enabled;
+
+
         MoveController();
         RotateController();
 
@@ -120,33 +130,41 @@ public class PlayerController : MoveableCharactorController
         _velocity.x = Input.GetAxis("Horizontal");
         _velocity.z = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (SceneManager.GetActiveScene().name == "VentScene")
         {
-            if(_curStemina > 0.0f)
-            {
-                _isPlayerVant = false;
-                _curStemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
-                _moveSpeed = _characterData.RunSpeed; 
-                
-            }
-            else
-            {
-                _moveSpeed = _characterData.WalkSpeed;
-            }
-        }
-        else if (Input.GetKey(KeyCode.C) )
-        {
-            _isPlayerVant = true;
-            _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
             _moveSpeed = _characterData.CrawlingSpeed;
         }
         else
         {
-            _isPlayerVant = false;
-            _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
-            _moveSpeed = _characterData.WalkSpeed;
-        }
 
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (_curStemina > 0.0f)
+                {
+                    _isPlayerVant = false;
+                    _curStemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
+                    _moveSpeed = _characterData.RunSpeed;
+
+                }
+                else
+                {
+                    _moveSpeed = _characterData.WalkSpeed;
+                }
+            }
+            else if (Input.GetKey(KeyCode.C))
+            {
+                _isPlayerVant = true;
+                _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
+                _moveSpeed = _characterData.CrawlingSpeed;
+            }
+            else
+            {
+                _isPlayerVant = false;
+                _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
+                _moveSpeed = _characterData.WalkSpeed;
+            }
+
+        }
         _velocity *= _moveSpeed;        
     }
 
@@ -210,6 +228,7 @@ public class PlayerController : MoveableCharactorController
         if(collision.gameObject.CompareTag("Enemy"))
         {
             _isDie = true;
+            _hand.SetActive(false);
             //닿았을때 호출 잘된다.
         }
 

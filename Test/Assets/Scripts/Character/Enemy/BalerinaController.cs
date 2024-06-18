@@ -78,7 +78,6 @@ public class BalerinaController : EnemyController
     {
         //음악 켜주고
         //balletMusic.Play();
-        //_animator.SetTrigger("StartDance");
 
         //마네킹을 음악 멈추기 전의 위치로 보내주기
         _spawnedMannequins[randomManequinIndex].transform.position = transform.position;
@@ -171,7 +170,10 @@ public class BalerinaController : EnemyController
     override protected void StateUpdate()
     {
         //공격일떈 스테이트변화 x
-        if (_enemyState == EnemyState.Attack || _enemyState == EnemyState.Trace)
+
+        if (_enemyState == EnemyState.Attack)
+            return;
+        if ( _enemyState == EnemyState.Trace)
         {
             if (_danceRoutineCoroutine != null)
             {
@@ -217,7 +219,6 @@ public class BalerinaController : EnemyController
                     _animator.speed = 1.0f;
                     _isAttack = true;
                     _animator.SetTrigger("Attack");
-                    _target.GetComponent<PlayerController>().GetHand().SetActive(false);
                     Debug.Log("Attack");
 
                     Observer.OnTargetEvents[1](gameObject);
@@ -245,7 +246,7 @@ public class BalerinaController : EnemyController
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.startWidth = 0.2f;
-        _lineRenderer.endWidth = 0.2f;
+        _lineRenderer.endWidth = 0.2f;  
         _lineRenderer.positionCount = _numSegments + 1;
         _lineRenderer.useWorldSpace = false;
         _lineRenderer.loop = true;
