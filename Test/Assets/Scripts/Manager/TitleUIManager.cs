@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class TitleUIManager : MonoBehaviour
 {
@@ -13,11 +14,17 @@ public class TitleUIManager : MonoBehaviour
     private Button _loadData;
     [SerializeField]
     private Button _setting;
+    [SerializeField]
+    private GameObject _soundSetting;
+    [SerializeField]
+    private AudioSource _audioSource;
+
 
     private void Awake()
     {
         _playStart.onClick.AddListener(() => PlayStart());        
         _setting.onClick.AddListener(()=>  Setting());
+        _soundSetting.SetActive(false);
     }
 
     private void Start()
@@ -46,6 +53,6 @@ public class TitleUIManager : MonoBehaviour
 
     private void Setting()
     {
-
+        _soundSetting.SetActive(true);
     }
 }

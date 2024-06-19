@@ -36,7 +36,10 @@ public class GameManager : MonoBehaviour
         if(_player == null)
         {
             _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
-            _player = Instantiate(_playerprefab, transform);            
+            _player = Instantiate(_playerprefab, transform);
+            UIManager.Instance.SetText(1);
+            UIManager.Instance.SetText(2);
+            CameraManager.Instance.StartFuzziness();
         }
 
         return _player; 
@@ -83,7 +86,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        // Floor5MonsterSpawn();
+         Floor5MonsterSpawn();
 
         if (Input.GetKeyDown(KeyCode.V))
         {
@@ -110,6 +113,7 @@ public class GameManager : MonoBehaviour
                 _monsterManager.Spawn("Follow", new Vector3(2.4f, 0.8f, -5.4f));
                 _isSpawning = true;
                 SoundManager.Instance.Play3D("Monster", new Vector3(2.4f, 0.8f, -5.4f), false   );
+                CameraManager.Instance.Shake(2.0f, 2.0f);
                 return;
             }
         }

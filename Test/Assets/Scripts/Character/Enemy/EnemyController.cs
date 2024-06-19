@@ -182,7 +182,7 @@ public class EnemyController : MoveableCharactorController
                     _animator.speed = 0.5f;
                     _navigation.SetDestination(_destPos);
                     _navigation.speed = _characterData.WalkSpeed;
-                    //CameraManager.Instance.StopVignette();
+                    CameraManager.Instance.StopVignette();
 
                 }
                 break;
@@ -192,7 +192,7 @@ public class EnemyController : MoveableCharactorController
                     _navigation.SetDestination(_target.position);
                     _navigation.speed = _characterData.RunSpeed;
 
-                    //CameraManager.Instance.StartVignette();
+                    CameraManager.Instance.StartVignette();
                 }
                 break;
             case EnemyState.Attack:
