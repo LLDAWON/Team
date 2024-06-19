@@ -72,7 +72,7 @@ public class EnemyController : MoveableCharactorController
    
     protected override void Update()
     {
-
+        SoundController();
         CheckPath();
         StateUpdate();
         EnemyAiPattern();
@@ -83,76 +83,77 @@ public class EnemyController : MoveableCharactorController
     virtual protected void StateUpdate()
     {
         //공격일떈 스테이트변화 x
-        if (_enemyState == EnemyState.Attack)
-            return;
+    if (_enemyState == EnemyState.Attack)
+        return;
 
-        // 플레이어가 조우하기전엔 스테이트변화  x
-        CheckFirstMeetPlayer();
-        if (!_isFirstMeet)
+    // 플레이어가 조우하기전엔 스테이트변화  x
+    CheckFirstMeetPlayer();
+    if (!_isFirstMeet)
+        return;
+    //캐비넷같이 숨을수 있는곳 들어갔을때는 인식못하게 조절하기위해 숨으면 순찰
+    bool _playerHide = _target.GetComponent<PlayerController>().GetIsPlayerHide();
+        if (_playerHide)
+        {
+            SetState(0);
             return;
-        //캐비넷같이 숨을수 있는곳 들어갔을때는 인식못하게 조절하기위해 숨으면 순찰
-        bool _playerHide = _target.GetComponent<PlayerController>().GetIsPlayerHide();
-            if (_playerHide)
-            {
-                SetState(0);
-                return;
-            }
+        }
 
-            // 부채꼴 판별 관련 코드
-            Vector3 targetDirection = _target.transform.position - transform.position;
-            targetDirection.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
+        // 부채꼴 판별 관련 코드
+        Vector3 targetDirection = _target.transform.position - transform.position;
+        targetDirection.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
 
             // 벽투과방지용 bool 
             // 부채꼴안에 들어왔고, 사정거리 원안에 들어왔지만 사이에 벽이 있을때는 추격상태 x , 순찰모드
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, _characterData.DetectRange))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, _characterData.DetectRange))
+        {
+            if (hit.collider.CompareTag("Player"))
             {
-                if (hit.collider.CompareTag("Player"))
-                {
-                    _rayzorHitPlayer = true;
-                }
+                _rayzorHitPlayer = true;
             }
+        }
 
-            if (targetDirection.magnitude < _characterData.DetectRange)
-            {
-                float dot = Vector3.Dot(targetDirection.normalized, transform.forward);
+        if (targetDirection.magnitude < _characterData.DetectRange)
+        {
+
+            float dot = Vector3.Dot(targetDirection.normalized, transform.forward);
                 float theta = Mathf.Acos(dot);
                 float degree = Mathf.Rad2Deg * theta;
 
-                if (degree <= _angleRange)
+            if (degree <= _angleRange)
+            {
+                _isInCircularSector = true;
+                if (_rayzorHitPlayer)
                 {
-                    _isInCircularSector = true;
-                    if (_rayzorHitPlayer)
-                    {
-                        _isPlayerDetected = true;
-                    }
-                }
-                else
-                {
-                    _isInCircularSector = false;
+                    _isPlayerDetected = true;
                 }
             }
+            else
+            {
+                _isInCircularSector = false;
+            }
+        }
 
-            if (_isPlayerDetected)
+        if (_isPlayerDetected)
             {
                 SetState(1);
                 _animator.SetBool("IsTrace", true);
 
             }
+        else
+        {
+            if (targetDirection.magnitude > _characterData.DetectRange)
+            {
+                _isPlayerDetected = false;
+                SetState(0);
+                _animator.SetBool("IsTrace", false);
+        }
             else
             {
-                if (targetDirection.magnitude > _characterData.DetectRange)
-                {
-                    _isPlayerDetected = false;
-                    SetState(0);
-                    _animator.SetBool("IsTrace", false);
+                SetState(1);
+                _animator.SetBool("IsTrace", true);
             }
-                else
-                {
-                    SetState(1);
-                    _animator.SetBool("IsTrace", true);
-                }
-            }
+        }
       
         
     }
@@ -203,6 +204,8 @@ public class EnemyController : MoveableCharactorController
                     if(!_isAttack)
                     {
                         _animator.SetTrigger("Attack");
+
+                        SoundManager.Instance.SameStateJustOnePlay3D("FollowAttack", transform, false, 2.0f); 
                         Observer.OnTargetEvents[1](gameObject);
                         Debug.Log(_isAttack);
                     }
@@ -278,5 +281,24 @@ public class EnemyController : MoveableCharactorController
             }
         }
     }
-   
+
+
+    protected void SoundController()
+    {
+        Vector3 targetDirection = _target.transform.position - transform.position;
+        targetDirection.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
+
+        //사운드 추가
+        if (targetDirection.magnitude < _target.GetComponent<PlayerController>().GetCharacterData().DetectRange)
+        {
+            //심장소리 넣어주고
+            SoundManager.Instance.SameStateJustOnePlay3D("Heart", transform, true, 1.0f);
+        }
+        else
+        {
+            SoundManager.Instance.Stop3D("Heart");
+        }
+
+    }
+
 }

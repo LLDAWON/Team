@@ -62,4 +62,91 @@ public class TeacherController : EnemyController
 
 
     }
+
+    override protected void EnemyAiPattern()
+    {
+        switch (_enemyState)
+        {
+            case EnemyState.Patrol:
+                {
+
+                    _animator.speed = 0.5f;
+                    _navigation.SetDestination(_destPos);
+                    _navigation.speed = _characterData.WalkSpeed;
+                    CameraManager.Instance.StopVignette();
+
+                }
+                break;
+            case EnemyState.Trace:
+                {
+                    _animator.speed = 2.0f;
+                    _navigation.SetDestination(_target.position);
+                    _navigation.speed = _characterData.RunSpeed;
+
+                    CameraManager.Instance.StartVignette();
+                }
+                break;
+            case EnemyState.Attack:
+                {
+                    _navigation.speed = 0;
+                    _navigation.velocity = Vector3.zero;
+                    _animator.speed = 1.0f;
+                    if (!_isAttack)
+                    {
+                        _animator.SetTrigger("Attack");
+
+                        Observer.OnTargetEvents[1](gameObject);
+                        Debug.Log(_isAttack);
+                    }
+                    _isAttack = true;
+                    Debug.Log("공격중");
+                }
+                break;
+            case EnemyState.Stop:
+                {
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
+                    _animator.speed = 0.0f;
+                }
+                break;
+            case EnemyState.None:
+                {
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
+                }
+                break;
+            case EnemyState.Die:
+                {
+                    _navigation.velocity = Vector3.zero;
+                    _navigation.speed = 0;
+                    Debug.Log("죽음");
+                    gameObject.SetActive(false);
+                }
+                break;
+        }
+    }
+    override protected void CheckFirstMeetPlayer()
+    {
+        PlayerController playerController = _target.GetComponent<PlayerController>();
+
+        Vector3 _inPlayerSight = transform.position - _target.transform.position;
+        _inPlayerSight.y = 0;
+
+        if (_inPlayerSight.magnitude <= playerController.GetCharacterData().DetectRange && !_isFirstMeet)
+        {
+            float dot = Vector3.Dot(_inPlayerSight.normalized, playerController.transform.forward);
+
+            float theta = Mathf.Acos(dot);
+
+            float degree = Mathf.Rad2Deg * theta;
+
+            if (degree <= _angleRange)
+            {
+                _isFirstMeet = true;
+                _animator.SetTrigger("MeetPlayer");
+                Debug.Log("플레이어가 적을 찾았습니다.");
+                return;
+            }
+        }
+    }
 }

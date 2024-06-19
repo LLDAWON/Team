@@ -20,6 +20,7 @@ public class SoundManager : MonoBehaviour
 
     [Header("3D Sound Option")]
     [Range(0f, 1f)]
+
     private float _volume = 1.0f;
     private int _audioPoolSize = 30;
     private int _soundDistanceMin = 1;
@@ -29,6 +30,7 @@ public class SoundManager : MonoBehaviour
     private Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>();
 
     private List<Sound> _audioObjects = new List<Sound>();
+    private string _lastPlayedKey = ""; // 중복방지용 검색키 변수
 
     private void Awake()
     {
@@ -65,6 +67,7 @@ public class SoundManager : MonoBehaviour
         _audioSource.loop = isLoop;
     }
 
+    //고정되어있는 정적 물체에 달기
     public void Play3D(string key, Vector3 pos, bool isLoop)
     {
         //액티브 꺼져있는 애 찾아서 플레이
@@ -80,14 +83,15 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    public void Play3D(string key, Transform parent, bool isLoop)
+    //움직이는 동적 물체에 달기 (플레이어/ enemy들)
+    public void Play3D(string key, Transform parent, bool isLoop, float speed)
     {
         //액티브 꺼져있는 애 찾아서 플레이
         foreach (Sound audioObject in _audioObjects)
         {
             if (!audioObject.gameObject.activeSelf)
             {
-                audioObject.Play(clips[key], parent, isLoop);
+                audioObject.Play(clips[key], parent, isLoop, speed);
                 return;
             }
 
@@ -95,4 +99,60 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    public void Stop3D(string key)
+    {
+        foreach (Sound audioObject in _audioObjects)
+        {
+            if(audioObject.audioSource.clip == clips[key])
+            {
+                if (audioObject.IsPlaying())
+                {
+                    audioObject.Stop(clips[key]);
+                    ResetLastPlayedKey(key);
+                    return;
+                }
+            }
+        }
+    }
+
+    //
+    //만약 사운드가 1번 다돌면 리셋해주자
+    public void ResetLastPlayedKey(string key)
+    {
+        if (_lastPlayedKey == key)
+        {
+            // 이미 재생 중이면 반환
+            _lastPlayedKey = "";
+            Debug.Log("키 리셋");
+        }
+    }
+
+
+    //꺼져있는애들중에서 같은이름이면 반환해주자
+    public void SameStateJustOnePlay3D(string key, Transform parent, bool isLoop, float speed)
+    {
+
+        if (_lastPlayedKey == key)
+        {
+            // 마지막 재생된 사운드 키와 현재 요청된 사운드 키가 같으면 반
+            //근데 이렇게되면 마지막 사운드가 저장되어 한사이클 끝나면 리셋해줘여
+            return;
+        }
+
+        foreach (Sound audioObject in _audioObjects)
+        {
+            if (audioObject.IsPlaying())
+            {
+                // 이미 재생 중이면 반환
+                return;
+            }
+        }
+        // 재생 중이 아니면 사운드 재생
+        Play3D(key, parent, isLoop, speed);
+        _lastPlayedKey = key; // 마지막 재생된 사운드 키 업데이트
+    }
+
+
+
+    //각 객체가 사운드 소스를 가져가서 사운드가 한사이클돌면 다시 시작하게 하는건 어떨까?
 }

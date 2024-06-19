@@ -134,6 +134,8 @@ public class DarkMonsterController : EnemyController
                     _navigation.SetDestination(_target.position);
                     _navigation.speed = _darkMonsterSpeed;
                     StopCoroutine("DisolveEffect");
+                    SoundManager.Instance.SameStateJustOnePlay3D("DarkTrace", transform, false, 1.0f);
+                    
                 }
                 break;
             case EnemyState.Attack:
@@ -144,6 +146,8 @@ public class DarkMonsterController : EnemyController
                     _isAttack = true;
                     _animator.SetTrigger("Attack");
                     Observer.OnTargetEvents[1](gameObject);
+                    SoundManager.Instance.Stop3D("DarkTrace");
+                    SoundManager.Instance.SameStateJustOnePlay3D("DarkAttak", transform, false, 1.0f);
                 }
                
                 break;
@@ -152,6 +156,7 @@ public class DarkMonsterController : EnemyController
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
                     ClosestFire();
+                    SoundManager.Instance.Stop3D("DarkTrace");
                     Debug.Log("Á×À½");
                 }
                 break;
@@ -159,6 +164,7 @@ public class DarkMonsterController : EnemyController
                 {
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
+                    SoundManager.Instance.Stop3D("DarkTrace");
                     Debug.Log("¸ØÃã");
                 }
                 break;

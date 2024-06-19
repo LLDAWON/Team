@@ -49,6 +49,8 @@ public class PlayerController : MoveableCharactorController
     //플레이어 이동상태
     private bool _isMove = false;
     public bool GetIsPlayerMove() { return _isMove; }
+    private bool _event = false;
+    public void SetIsEventCamera(bool isEvent) { _event = isEvent; }
 
     /// ///////////////////////////////////////////////////////////////////////////////////////
     /// ///////////////////////////////////////////////////////////////////////////////////////
@@ -95,12 +97,19 @@ public class PlayerController : MoveableCharactorController
     {
         if (_isDie)
         {
+            
             _hand.SetActive(false);
+            return;
+        }
+
+        if(_event)
+        {
             return;
         }
 
         base.Update();
 
+        SoundController();
         if (SceneManager.GetActiveScene().name == "VentScene")
         {
             _isPlayerVant = true;
@@ -120,12 +129,11 @@ public class PlayerController : MoveableCharactorController
         if(_velocity.magnitude==0)
         {
             _isMove = false;
+            SoundManager.Instance.Stop3D("PlayerStep");
         }
         else
         {
             _isMove = true;
-            // 사운드 한번만 호출해서 진행
-            // SoundManager.Instance.Play3D("PlayerStep", transform, false);
         }
 
         // 스태미너 관리
@@ -149,12 +157,11 @@ public class PlayerController : MoveableCharactorController
                     _isPlayerVant = false;
                     _curStemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
                     _moveSpeed = _characterData.RunSpeed;
-                    //pitch  조절해서 사용할지 하나 그냥 넣을지 ㄱ고민
-
                 }
                 else
                 {
                     _moveSpeed = _characterData.WalkSpeed;
+                    SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 1.0f);
                 }
             }
             else if (Input.GetKey(KeyCode.C))
@@ -169,15 +176,40 @@ public class PlayerController : MoveableCharactorController
                 _isPlayerVant = false;
                 _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
                 _moveSpeed = _characterData.WalkSpeed;
+                SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 1.0f);
             }
 
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            SoundManager.Instance.Stop3D("PlayerStep");
+            SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 2.0f);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            SoundManager.Instance.Stop3D("PlayerStep");
+            SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 1.0f);
+        }
+        
+        //이때 헐떡이는소리
+        if(_curStemina<=_characterData.Stemina*0.8f)
+        {
+            SoundManager.Instance.SameStateJustOnePlay3D("HalfStemina", transform, true, 1.0f);
+        }
+        else
+        {
+            SoundManager.Instance.Stop3D("HalfStemina");
+        }
+
+
         _velocity *= _moveSpeed;        
     }
 
     private void RotateController()
     {
         
+
         _mouseValue.x = Input.GetAxis("Mouse X");
         _mouseValue.y = Input.GetAxis("Mouse Y");
 
@@ -230,6 +262,30 @@ public class PlayerController : MoveableCharactorController
 
     }
 
+    private void SoundController()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            SoundManager.Instance.Stop3D("PlayerStep");
+            SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 2.0f);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            SoundManager.Instance.Stop3D("PlayerStep");
+            SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 1.0f);
+        }
+
+        //이때 헐떡이는소리
+        if (_curStemina <= _characterData.Stemina * 0.8f)
+        {
+            SoundManager.Instance.SameStateJustOnePlay3D("HalfStemina", transform, true, 1.0f);
+        }
+        else
+        {
+            SoundManager.Instance.Stop3D("HalfStemina");
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Enemy"))
@@ -275,6 +331,7 @@ public class PlayerController : MoveableCharactorController
         animator.SetBool("IsPhone", _isPhoneOn);
 
     }
+
 
 
 }
