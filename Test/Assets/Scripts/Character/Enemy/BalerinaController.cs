@@ -174,16 +174,6 @@ public class BalerinaController : EnemyController
 
         if (_enemyState == EnemyState.Attack)
             return;
-        if ( _enemyState == EnemyState.Trace)
-        {
-            if (_danceRoutineCoroutine != null)
-            {
-                StopCoroutine(_danceRoutineCoroutine); // Attack 상태일 때 코루틴 중지
-                _danceRoutineCoroutine = null;
-                _lineRenderer.enabled = false;
-            }
-            return;
-        }
 
         // 플레이어가 원 안에 있는지 확인
         if (Vector3.Distance(transform.position, _target.position) <= _circleRadius)
@@ -206,6 +196,12 @@ public class BalerinaController : EnemyController
                 break;
             case EnemyState.Trace:
                 {
+                    if (_danceRoutineCoroutine != null)
+                    {
+                        StopCoroutine(_danceRoutineCoroutine); // Attack 상태일 때 코루틴 중지
+                        _danceRoutineCoroutine = null;
+                        _lineRenderer.enabled = false;
+                    }
                     _animator.SetTrigger("Trace");
                     _animator.speed = 2.0f;
                     _navigation.SetDestination(_target.position);
