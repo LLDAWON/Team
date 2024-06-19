@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class Calculater : MonoBehaviour
 {
-    public List<Button> _hexBtns;
+    [SerializeField]
+    private int _answerInt;
+
+    private List<Button> _hexBtns;
     public Button _plusButton;
     public Button _equalsButton;
     public TMP_Text _answerText;
@@ -15,18 +19,22 @@ public class Calculater : MonoBehaviour
     private string _answer = "";
     private string _correctAnswer = "AB";
     private Coroutine _resetCoroutine;
-    private Canvas canvas;
-   
 
     private void Start()
     {
+        for(int i = 0; i < _answerInt; i ++)
+        {
+            _hexBtns.Add(transform.GetChild(i).GetComponent<Button>());
+        }
+
         foreach (Button button in _hexBtns)
         {
             button.onClick.AddListener(() => OnHexButtonClick(button.GetComponentInChildren<TMP_Text>().text));
         }
+
         _plusButton.onClick.AddListener(OnPlusButtonClick);
         _equalsButton.onClick.AddListener(OnEqualsButtonClick);
-        //DisableRandomButtons(2);
+        
         DisableButtons("A");
         DisableButtons("B");
     }
@@ -77,9 +85,11 @@ public class Calculater : MonoBehaviour
         }
 
         string sumHex = sum.ToString("X");
+
         if (sumHex == _correctAnswer)
         {
             _resultText.text = "True";
+            Invoke("End", 1.5f);
         }
         else
         {
@@ -98,7 +108,7 @@ public class Calculater : MonoBehaviour
         _answerText.text = "";
         _resultText.text = "";
         ReturnAllButtons();
-        // DisableRandomButtons(2);
+
         DisableButtons("A");
         DisableButtons("B");
     }
@@ -132,6 +142,15 @@ public class Calculater : MonoBehaviour
                 return; 
             }
         }
+    }
+
+    private void End()
+    {
+        gameObject.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.LoadScene(3);
+        UIManager.Instance.SetText(22);
     }
 }
 

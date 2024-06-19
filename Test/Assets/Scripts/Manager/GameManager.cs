@@ -31,7 +31,16 @@ public class GameManager : MonoBehaviour
 
     public Vector3 _savePoint;
     public int _curEvent;
-    public GameObject GetPlayer() { return _player; }
+    public GameObject GetPlayer()
+    { 
+        if(_player == null)
+        {
+            _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
+            _player = Instantiate(_playerprefab, transform);            
+        }
+
+        return _player; 
+    }
 
 
     //디졸브관련
@@ -43,38 +52,50 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject); // 이 오브젝트를 씬 전환 시 파괴되지 않도록 설정
-        Initialize(); // 초기에 awkae할 애들        
+        //Initialize(); // 초기에 awkae할 애들        
 
-        SoundManager.Instance.Play2D("BG");
+        //SoundManager.Instance.Play2D("BG", true);
+    }
+
+    private void Start()
+    {
+        Initialize();
+        SoundManager.Instance.Play2D("BG", true);
     }
 
     private void Initialize()
     {
-        _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
-        _playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
-        _player = Instantiate(_playerprefab, _playerSpawnPosition, Quaternion.identity);
         
-         _monsterManager = MonsterManager.Instance;
-        _eventManager = _player.GetComponent<EventManager>();
+        //_playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
 
+        _monsterManager = MonsterManager.Instance;
+        _eventManager = _player.GetComponent<EventManager>();
+        _curEvent = _eventManager.CurKey;
         Observer.OnDesolveEvents.Add(1, DisolveEffect);
     }
     private void PlayerSpawn()
     {
         _playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
         _player.transform.position = _playerSpawnPosition;
+
         UIManager.Instance.SetText(1);
         UIManager.Instance.SetText(2);
     }
     private void Update()
     {
-       // Floor5MonsterSpawn();
+        // Floor5MonsterSpawn();
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.V))
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(3);
         }
-       
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            List<int> item = UIManager.Instance.GetInventory.SaveItem;
+            SaveManager.Instance.JsonSave(_player.transform.position, _curEvent, item);
+            Debug.Log("curSceneSave:" + SceneManager.GetActiveScene().name);
+        }
     }
     private void Floor5MonsterSpawn()
     {
@@ -83,12 +104,12 @@ public class GameManager : MonoBehaviour
         if (_eventManager != null)
         {
             int currentEvent = _eventManager.CurKey;
-            //Debug.Log("Current Event Key: " + currentEvent);
+
             if (_eventManager.CurKey == 6)
             {
                 _monsterManager.Spawn("Follow", new Vector3(2.4f, 0.8f, -5.4f));
                 _isSpawning = true;
-                SoundManager.Instance.Play3D("Monster", new Vector3(2.4f, 0.8f, -5.4f));
+                SoundManager.Instance.Play3D("Monster", new Vector3(2.4f, 0.8f, -5.4f), false   );
                 return;
             }
         }

@@ -6,9 +6,13 @@ key,condition,enentTag,eventCount,textKey,getItemKey,itemKey,type
 4,1,Phone,1,12,102,0,0
 5,4,ClassDoor1,1,6,0,0,1
 6,5,Hint2,1,8,402,0,0
-7,6,Picture,1,9,406,0,2
+7,6,Picture,1,9,0,0,2
 101,0,Locker,0,0,0,0,1
 102,0,Door,0,0,0,0,1
 8,1,Drink,1,13,302,0,0
 9,0,HInt3,1,16,403,0,0
 10,9,Candle,6,0,0,0,2
+11,0,BookCase,0,0,0,0,2
+12,0,Hint4,0,18,0,0,0
+13,0,Vent,0,0,0,0,2
+14,0,Cal,0,0,0,0,2

@@ -53,6 +53,14 @@ TagManager:
   - HInt3
   - 4ChangeScene
   - BookCase
+  - Vent
+  - Rostrum
+  - BacketboardIndoor
+  - BacketballBackboard
+  - Rostrums_broken
+  - Hint4
+  - Cal
+  - 3ChangeScene
   layers:
   - Default
   - TransparentFX

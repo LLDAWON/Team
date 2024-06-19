@@ -14,6 +14,11 @@ public class ObjectManager : MonoBehaviour
     public float _maxRotationX = 45f;
     private Coroutine _bookCaseRotationCoroutine;
 
+    private void Awake()
+    {
+        _instance = this;
+    }
+
 
     public void BookCase()
     {

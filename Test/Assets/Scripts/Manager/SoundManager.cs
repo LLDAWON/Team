@@ -45,7 +45,7 @@ public class SoundManager : MonoBehaviour
         {
             GameObject obj = new GameObject("Sound" + i);
             AudioSource audioSource =  obj.AddComponent<AudioSource>();
-            audioSource.loop = true;
+            audioSource.loop = false;
             audioSource.volume = _volume;
             audioSource.minDistance = _soundDistanceMin;
             audioSource.maxDistance = _soundDistanceMax;
@@ -58,20 +58,21 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    public void Play2D(string key)
+    public void Play2D(string key, bool isLoop)
     {
         _audioSource.clip = clips[key];
         _audioSource.Play();
+        _audioSource.loop = isLoop;
     }
 
-    public void Play3D(string key, Vector3 pos)
+    public void Play3D(string key, Vector3 pos, bool isLoop)
     {
         //액티브 꺼져있는 애 찾아서 플레이
         foreach (Sound audioObject in _audioObjects)
         {
             if (!audioObject.gameObject.activeSelf)
             {
-                audioObject.Play(clips[key], pos);
+                audioObject.Play(clips[key], pos, isLoop);
                 return;
             }
 
@@ -79,18 +80,19 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    public void Play3D(string key, Transform parent)
+    public void Play3D(string key, Transform parent, bool isLoop)
     {
         //액티브 꺼져있는 애 찾아서 플레이
         foreach (Sound audioObject in _audioObjects)
         {
             if (!audioObject.gameObject.activeSelf)
             {
-                audioObject.Play(clips[key], parent);
+                audioObject.Play(clips[key], parent, isLoop);
                 return;
             }
 
         }
 
     }
+
 }

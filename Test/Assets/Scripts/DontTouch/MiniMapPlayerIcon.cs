@@ -5,21 +5,22 @@ using UnityEngine;
 public class MiniMapPlayerIcon : MonoBehaviour
 {
     public RectTransform miniMapRectTransform; 
-    public Transform playerTransform; 
+    private Transform playerTransform; 
     public Camera miniMapCamera; 
 
     private RectTransform playerIconRectTransform;
 
+
     void Start()
     {
         playerIconRectTransform = GetComponent<RectTransform>();
+        playerTransform = GameManager.Instance.GetPlayer().transform;
     }
 
     void Update()
     {
         
         Vector3 miniMapPos = miniMapCamera.WorldToViewportPoint(playerTransform.position);
-
        
         miniMapPos.x *= miniMapRectTransform.rect.width;
         miniMapPos.y *= miniMapRectTransform.rect.height;

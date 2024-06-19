@@ -9,6 +9,11 @@ public class Inventory : MonoBehaviour
 {
     private Slot[] _slots;
     private Dictionary<string, Slot> _items = new Dictionary<string, Slot>();
+    private List<int> _saveItem = new();
+
+    public List<int> SaveItem
+    { get { return _saveItem; } }
+
     private void Awake()
     {
         _slots = GetComponentsInChildren<Slot>();
@@ -18,6 +23,7 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData itemdata)
     {
+        _saveItem.Add(itemdata.Key);
         if (CheckRedundancyItem(itemdata.Name))
         {
             _items[itemdata.Name].AddItem();

@@ -10,7 +10,7 @@ public class CinemachineCameraController : MonoBehaviour
     private CinemachineVirtualCamera _virtualCamera;
 
     private bool _isFirstTime = false;
-    private Vector3 _ventDownPos = new Vector3(0, -1.5f, 0);
+    private Vector3 _ventDownPos = new Vector3(0, -1.2f, 0);
 
     private void Awake()
     {
