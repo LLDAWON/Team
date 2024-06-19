@@ -29,7 +29,7 @@ public class DarkMonsterController : EnemyController
     {
         base.Awake();
         //해골 오브젝트
-        _skulPanel = transform.GetChild(0);
+        _skulPanel = transform.GetChild(1);
         _skulLights = _skulPanel.GetComponentsInChildren<Light>().ToList();
     }
 
@@ -63,6 +63,8 @@ public class DarkMonsterController : EnemyController
     override protected void StateUpdate()
     {
         Debug.Log(_enemyState);
+        if (_isMeet)
+            return;
         // 적 공격시 상태값 리턴
         if (_enemyState == EnemyState.Attack)
             return; 
@@ -187,13 +189,13 @@ public class DarkMonsterController : EnemyController
         }
 
     }
+
     private void SpeedIncresePerGetSkul()
     {
         //촛불퀘스트 촛불킬때마다 스피드++;
 
-        for (int i = 0; i < candles.Count; i++)
+        foreach (CandleScript candle in candles)
         {
-            CandleScript candle = candles[i];
             bool previousState = candlePrevStates[candle];
             bool currentState = candle.GetLit();
 
@@ -201,50 +203,25 @@ public class DarkMonsterController : EnemyController
             if (!previousState && currentState)
             {
                 _darkMonsterSpeed += 1.0f; // 촛불 하나당 속도를 1 증가
-
-                // Turn on the corresponding light if available
-                if (i < _skulLights.Count)
-                {
-                    _skulLights[i].intensity = 1.0f; // Turn on the light
-                }
             }
 
+            int candleIndex = candles.IndexOf(candle);
+
+            if (candleIndex >= 0 && candleIndex < _skulLights.Count)
+            {
+                Light skulLight = _skulLights[candleIndex];
+                skulLight.intensity = currentState ? 1.0f : 0.0f; // 촛불이 켜져 있으면 강도 1, 꺼져 있으면 강도 0
+            }
             // 현재 상태를 딕셔너리에 업데이트
             candlePrevStates[candle] = currentState;
         }
-    }
-    //private void SpeedIncresePerGetSkul()
-    //{
-    //    //촛불퀘스트 촛불킬때마다 스피드++;
-
-    //    foreach (CandleScript candle in candles)
-    //    {
-    //        bool previousState = candlePrevStates[candle];
-    //        bool currentState = candle.GetLit();
-
-    //        // 촛불이 이전에 꺼져있었고 현재 켜져있다면 속도 증가
-    //        if (!previousState && currentState)
-    //        {
-    //            _darkMonsterSpeed += 1.0f; // 촛불 하나당 속도를 1 증가
-    //        }
-
-    //        int candleIndex = candles.IndexOf(candle);
-
-    //        if (candleIndex >= 0 && candleIndex < _skulLights.Count)
-    //        {
-    //            Light skulLight = _skulLights[candleIndex];
-    //            skulLight.intensity = currentState ? 1.0f : 0.0f; // 촛불이 켜져 있으면 강도 1, 꺼져 있으면 강도 0
-    //        }
-    //        // 현재 상태를 딕셔너리에 업데이트
-    //        candlePrevStates[candle] = currentState;
-    //    }
 
 
-    //해골 불 켜주기
+        //해골 불 켜주기
 
 
 
-    private bool IsWithinAnyCandleLight()
+        private bool IsWithinAnyCandleLight()
     {
         if(candles.Count == 0) 
             return false;
