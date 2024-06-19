@@ -76,14 +76,6 @@ public class GameManager : MonoBehaviour
         _curEvent = _eventManager.CurKey;
         Observer.OnDesolveEvents.Add(1, DisolveEffect);
     }
-    private void PlayerSpawn()
-    {
-        _playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
-        _player.transform.position = _playerSpawnPosition;
-
-        UIManager.Instance.SetText(1);
-        UIManager.Instance.SetText(2);
-    }
     private void Update()
     {
          Floor5MonsterSpawn();

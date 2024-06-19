@@ -18,11 +18,16 @@ public class UIManager : MonoBehaviour
     private GameObject _cursor;
     [SerializeField]
     private GameObject _miniMap;
-   
+    [SerializeField]
+    private GameObject _setting;
+    [SerializeField]
+    private GameObject _white;
+
     private GameObject _4Door;
 
     private bool _inventoryOpen = false;
     private bool _miniMapOpen = false;
+    private bool _uiOpen = false;
     private List<int> _preTxTKey = new List<int>();
 
     private TextData _textData;
@@ -55,6 +60,8 @@ public class UIManager : MonoBehaviour
     { get { return _candleCount; } }
     public GameObject VentUI
     { get { return _ventEventUI; } }
+    public GameObject White
+    { get { return _white; } }
 
     private void Awake()
     {
@@ -84,16 +91,18 @@ public class UIManager : MonoBehaviour
             _inventoryOpen = !_inventoryOpen;
             _inventory.gameObject.SetActive(_inventoryOpen) ;
             Cursor.visible = _inventoryOpen;
+            _uiOpen = _inventoryOpen;
+        }
 
-            if(_inventoryOpen)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-
+        if(_uiOpen)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = _uiOpen;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = _uiOpen;
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -102,11 +111,22 @@ public class UIManager : MonoBehaviour
                 return;
             _miniMapOpen = !_miniMapOpen;
             _miniMap.SetActive(_miniMapOpen) ;
+            _uiOpen = _miniMap;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) )
         {
-            _ventEventUI.SetActive(false) ;
+            if(_uiOpen)
+            {
+                _setting.gameObject.SetActive(false);
+                _uiOpen = false;
+            }
+            else
+            {
+                _setting.gameObject.SetActive(true);
+                _uiOpen = true;
+            }
+
         }
 
     }
@@ -165,22 +185,6 @@ public class UIManager : MonoBehaviour
     private void HintUI()
     {
         _hintPenal.SetActive(false);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "4ChangeScene")
-        {
-            SceneManager.LoadScene("4FloorScene");
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.CompareTag("4ChangeScene"))
-        {
-            SceneManager.LoadScene(1);
-        }
     }
 
 }

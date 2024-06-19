@@ -163,6 +163,11 @@ public class EventManager : MonoBehaviour
         SendText();
     }
 
+    public void LoadEvent(int key)
+    {
+
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.collider.CompareTag("4ChangeScene"))
@@ -174,7 +179,6 @@ public class EventManager : MonoBehaviour
         if (collision.collider.CompareTag("3ChangeScene"))
         {
             SceneManager.LoadScene(2);
-            UIManager.Instance.CandleUI.gameObject.SetActive(true);
         }
     }
 }

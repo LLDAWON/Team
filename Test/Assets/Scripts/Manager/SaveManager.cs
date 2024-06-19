@@ -19,7 +19,7 @@ public class SaveManager : Singleton<SaveManager>
     private string path;
     private void Awake()
     {
-        path = Path.Combine(Application.persistentDataPath + "/Data/", "database.json");
+        path = Path.Combine(Application.persistentDataPath, "database.json");
     }
 
     public void JsonLoad()

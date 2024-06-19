@@ -9,7 +9,7 @@ public class Calculater : MonoBehaviour
     [SerializeField]
     private int _answerInt;
 
-    private List<Button> _hexBtns;
+    private List<Button> _hexBtns = new();
     public Button _plusButton;
     public Button _equalsButton;
     public TMP_Text _answerText;
@@ -20,11 +20,12 @@ public class Calculater : MonoBehaviour
     private string _correctAnswer = "AB";
     private Coroutine _resetCoroutine;
 
-    private void Start()
+    private void Awake()
     {
-        for(int i = 0; i < _answerInt; i ++)
+        for (int i = 0; i < _answerInt; i++)
         {
-            _hexBtns.Add(transform.GetChild(i).GetComponent<Button>());
+            Button button = transform.GetChild(i).GetComponent<Button>();
+            _hexBtns.Add(button);
         }
 
         foreach (Button button in _hexBtns)
@@ -34,9 +35,14 @@ public class Calculater : MonoBehaviour
 
         _plusButton.onClick.AddListener(OnPlusButtonClick);
         _equalsButton.onClick.AddListener(OnEqualsButtonClick);
-        
+
         DisableButtons("A");
         DisableButtons("B");
+    }
+
+    private void Start()
+    {
+        
     }
 
     public void OnHexButtonClick(string hexValue)
@@ -149,7 +155,7 @@ public class Calculater : MonoBehaviour
         gameObject.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
         UIManager.Instance.SetText(22);
     }
 }
