@@ -94,7 +94,10 @@ public class PlayerController : MoveableCharactorController
     protected override void Update()
     {
         if (_isDie)
+        {
+            _hand.SetActive(false);
             return;
+        }
 
         base.Update();
 
