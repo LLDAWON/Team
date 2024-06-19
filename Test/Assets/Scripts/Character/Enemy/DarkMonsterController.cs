@@ -134,7 +134,7 @@ public class DarkMonsterController : EnemyController
                     _navigation.SetDestination(_target.position);
                     _navigation.speed = _darkMonsterSpeed;
                     StopCoroutine("DisolveEffect");
-                    SoundManager.Instance.SameStateJustOnePlay3D("DarkTrace", transform, false, 1.0f);
+                    SoundManager.Instance.SameStateJustOnePlay3D("DarkTrace", transform, true, 1.0f);
                     
                 }
                 break;

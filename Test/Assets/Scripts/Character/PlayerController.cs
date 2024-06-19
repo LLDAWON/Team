@@ -52,6 +52,12 @@ public class PlayerController : MoveableCharactorController
     private bool _event = false;
     public void SetIsEventCamera(bool isEvent) { _event = isEvent; }
 
+    ////플레이어 사운드 관리
+    private AudioSource _steminaSound;
+    private AudioSource _stepSound;
+    private AudioSource _heartBeatSound;
+    public AudioSource GetHeartBeatSound() { return _heartBeatSound; }
+
     /// ///////////////////////////////////////////////////////////////////////////////////////
     /// ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,28 +75,21 @@ public class PlayerController : MoveableCharactorController
     protected override void Awake()
     {
         base.Awake();
-        Vector3 pos = new Vector3(960, 540,0);
         _rotateObj = transform.GetChild(0);
-
-        //cursorTexture = Resources.Load("Textures/UI/Cursur")as Texture2D;
-        Cursor.visible = true;
-        Cursor.SetCursor(cursorTexture, Camera.main.WorldToScreenPoint(pos) , CursorMode.ForceSoftware);
-        Cursor.lockState = CursorLockMode.Locked;
-
-
         _hand = transform.GetChild(0).transform.GetChild(1).gameObject;
 
-        Observer.OnEvents.Add(302, UseDrink);
-        Observer.OnNoneEvents.Add(101, UseFlash);
-        Observer.OnNoneEvents.Add(102, UsePhone);
+        SettingCursor();
+
+        //사운드
+        SettingSound();
+
+        //옵저버패턴
+        SetObserverPattern();
     }
 
     private void Start()
     {
-        _prfSteminaBar = GameObject.Find("SteminaBar");
-        _curSteminaBar = _prfSteminaBar.transform.GetChild(0).GetComponent<Image>();
-        _curStemina = _characterData.Stemina;
-
+        SettingStemina();
     }
 
     protected override void Update()
@@ -109,7 +108,6 @@ public class PlayerController : MoveableCharactorController
 
         base.Update();
 
-        SoundController();
         if (SceneManager.GetActiveScene().name == "VentScene")
         {
             _isPlayerVant = true;
@@ -118,6 +116,7 @@ public class PlayerController : MoveableCharactorController
         _isFlashLight = _flashLight.enabled;
 
 
+        SoundController();
         MoveController();
         RotateController();
 
@@ -128,11 +127,12 @@ public class PlayerController : MoveableCharactorController
     {
         if(_velocity.magnitude==0)
         {
+            _stepSound.volume = 0.0f;
             _isMove = false;
-            SoundManager.Instance.Stop3D("PlayerStep");
         }
         else
         {
+            _stepSound.volume = 1.0f;
             _isMove = true;
         }
 
@@ -154,14 +154,15 @@ public class PlayerController : MoveableCharactorController
             {
                 if (_curStemina > 0.0f)
                 {
+                    _stepSound.pitch = 2.0f;
                     _isPlayerVant = false;
                     _curStemina -= Time.deltaTime * _steminaDrainRate; // 스테미너 감소
                     _moveSpeed = _characterData.RunSpeed;
                 }
                 else
                 {
+                    _stepSound.pitch = 1.0f;
                     _moveSpeed = _characterData.WalkSpeed;
-                    SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 1.0f);
                 }
             }
             else if (Input.GetKey(KeyCode.C))
@@ -173,35 +174,15 @@ public class PlayerController : MoveableCharactorController
             }
             else
             {
+                _stepSound.pitch = 1.0f;
                 _isPlayerVant = false;
                 _curStemina += Time.deltaTime * 0.5f * _steminaDrainRate; // 스테미너 증가
                 _moveSpeed = _characterData.WalkSpeed;
-                SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 1.0f);
             }
 
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            SoundManager.Instance.Stop3D("PlayerStep");
-            SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 2.0f);
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            SoundManager.Instance.Stop3D("PlayerStep");
-            SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 1.0f);
-        }
         
-        //이때 헐떡이는소리
-        if(_curStemina<=_characterData.Stemina*0.8f)
-        {
-            SoundManager.Instance.SameStateJustOnePlay3D("HalfStemina", transform, true, 1.0f);
-        }
-        else
-        {
-            SoundManager.Instance.Stop3D("HalfStemina");
-        }
-
 
         _velocity *= _moveSpeed;        
     }
@@ -264,25 +245,14 @@ public class PlayerController : MoveableCharactorController
 
     private void SoundController()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            SoundManager.Instance.Stop3D("PlayerStep");
-            SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 2.0f);
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            SoundManager.Instance.Stop3D("PlayerStep");
-            SoundManager.Instance.SameStateJustOnePlay3D("PlayerStep", transform, true, 1.0f);
-        }
-
         //이때 헐떡이는소리
         if (_curStemina <= _characterData.Stemina * 0.8f)
         {
-            SoundManager.Instance.SameStateJustOnePlay3D("HalfStemina", transform, true, 1.0f);
+            _steminaSound.volume = 1.0f;
         }
         else
         {
-            SoundManager.Instance.Stop3D("HalfStemina");
+            _steminaSound.volume = 0.0f;
         }
     }
 
@@ -333,5 +303,41 @@ public class PlayerController : MoveableCharactorController
     }
 
 
+    private void SetObserverPattern()
+    {
 
+        Observer.OnEvents.Add(302, UseDrink);
+        Observer.OnNoneEvents.Add(101, UseFlash);
+        Observer.OnNoneEvents.Add(102, UsePhone);
+    }
+
+    private void SettingSound()
+    {
+
+        _steminaSound = transform.GetChild(2).GetComponent<AudioSource>();
+        _stepSound = transform.GetChild(3).GetComponent<AudioSource>();
+        _heartBeatSound = transform.GetChild(4).GetComponent<AudioSource>();
+        _steminaSound.Play();
+        _stepSound.Play();
+        _heartBeatSound.Play();
+        _steminaSound.volume = 0.0f;
+        _stepSound.volume = 0.0f;
+        _heartBeatSound.volume = 0.0f;
+    }
+    private void SettingCursor()
+    {
+        Vector3 pos = new Vector3(960, 540, 0);
+
+        //cursorTexture = Resources.Load("Textures/UI/Cursur")as Texture2D;
+        Cursor.visible = true;
+        Cursor.SetCursor(cursorTexture, Camera.main.WorldToScreenPoint(pos), CursorMode.ForceSoftware);
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void SettingStemina()
+    {
+        _prfSteminaBar = GameObject.Find("SteminaBar");
+        _curSteminaBar = _prfSteminaBar.transform.GetChild(0).GetComponent<Image>();
+        _curStemina = _characterData.Stemina;
+    }
 }
