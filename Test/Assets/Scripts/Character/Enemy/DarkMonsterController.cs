@@ -220,7 +220,7 @@ public class DarkMonsterController : EnemyController
         //해골 불 켜주기
 
 
-
+    }
         private bool IsWithinAnyCandleLight()
     {
         if(candles.Count == 0) 

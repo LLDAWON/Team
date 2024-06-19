@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 104245577490871178}
   - component: {fileID: 6669645811794473738}
   - component: {fileID: 6780701717309698019}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1459544979171842233}
   - component: {fileID: 6360085748938717186}
   - component: {fileID: 42944201194912508}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bell_01.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 6916425100640482226}
   - component: {fileID: 6249139762892692427}
   - component: {fileID: 8764140272191033153}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 7335066473459434089}
   - component: {fileID: 6983666699654463140}
   - component: {fileID: 33115970199601825}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0.40446424, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 0.18
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -336,7 +336,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 4605994434591348243}
   - component: {fileID: 4022111844005451448}
   - component: {fileID: 2116772283304577628}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Falda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 7260637783214046014}
   - component: {fileID: 269040241464597332}
   - component: {fileID: 7333267716540649199}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,8 @@ GameObject:
   - component: {fileID: 8383792610363672797}
   - component: {fileID: 33633737583291322}
   - component: {fileID: 6158782891095734244}
-  m_Layer: 0
+  - component: {fileID: 5271975434295463702}
+  m_Layer: 9
   m_Name: Dark
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -599,10 +600,11 @@ MonoBehaviour:
   _characterKey: 503
   _velocity: {x: 0, y: 0, z: 0}
   pathes:
-  - {x: 15, y: 1.366424, z: 10}
-  - {x: 10, y: 1.366424, z: 10}
-  - {x: 10, y: 1.366424, z: -6}
-  - {x: 15, y: 1.366424, z: -6}
+  - {x: 1.3, y: -0.1193476, z: -9.2}
+  - {x: 33.1, y: -0.1193476, z: -9.2}
+  - {x: 33.1, y: -0.1193476, z: 28.4}
+  - {x: 1.3, y: -0.1193476, z: 28.4}
+  _darkMonsterSpeed: 0
 --- !u!95 &1069248577575451306
 Animator:
   serializedVersion: 5
@@ -696,6 +698,183 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!82 &5271975434295463702
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707861175895022371}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.002
+      value: 1
+      inSlope: -500.20065
+      outSlope: -500.20065
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.004
+      value: 0.5
+      inSlope: -125.05016
+      outSlope: -125.05016
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.016
+      value: 0.125
+      inSlope: -7.815635
+      outSlope: -7.815635
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.128
+      value: 0.015625
+      inSlope: -0.1221193
+      outSlope: -0.1221193
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.18283886
+      value: 0.08731079
+      inSlope: -1.9539088
+      outSlope: -1.9539088
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.33761084
+      value: 0.21691895
+      inSlope: -31.26254
+      outSlope: -31.26254
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.36008918
+      value: 0.63500977
+      inSlope: -0.4884772
+      outSlope: -0.4884772
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.36214778
+      value: 0.61157227
+      inSlope: -0.030529825
+      outSlope: -0.030529825
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6926367
+      value: 0.61343944
+      inSlope: -1.3654428
+      outSlope: -1.3654428
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.735465
+      value: 0.23548889
+      inSlope: -0.0076324563
+      outSlope: -0.0076324563
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.002
+      inSlope: -0.002000801
+      outSlope: -0.002000801
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3712474908053144469
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +886,7 @@ GameObject:
   - component: {fileID: 7797601126522412669}
   - component: {fileID: 2878911365424893538}
   - component: {fileID: 7076478932666212373}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bell_01.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +969,7 @@ GameObject:
   - component: {fileID: 3703415477124723059}
   - component: {fileID: 3718825161920956596}
   - component: {fileID: 868189309841849608}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -824,7 +1003,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0.40446424, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 0.18
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -866,7 +1045,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -908,7 +1087,7 @@ GameObject:
   - component: {fileID: 8722249879613913157}
   - component: {fileID: 5648145992956860869}
   - component: {fileID: 6472461838611451984}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plumas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -991,7 +1170,7 @@ GameObject:
   - component: {fileID: 8028508150168377229}
   - component: {fileID: 7754337619662361866}
   - component: {fileID: 2365282998212343538}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rostro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1253,7 @@ GameObject:
   - component: {fileID: 7114885029312115565}
   - component: {fileID: 4039010486574990929}
   - component: {fileID: 6585958819872487805}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1157,7 +1336,7 @@ GameObject:
   - component: {fileID: 7632192775790089610}
   - component: {fileID: 8508284824295624}
   - component: {fileID: 5817056568436568249}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1191,7 +1370,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0.40446424, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 0.18
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1233,7 +1412,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -1275,7 +1454,7 @@ GameObject:
   - component: {fileID: 339248520942565519}
   - component: {fileID: 5226660252287278115}
   - component: {fileID: 2099418942746263180}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Kimono_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1356,7 +1535,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5896663276984878336}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Rotate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1390,7 +1569,7 @@ GameObject:
   - component: {fileID: 5378097276498832969}
   - component: {fileID: 6005546329727568026}
   - component: {fileID: 3267666457356427664}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1424,7 +1603,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0.40446424, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 0.18
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1466,7 +1645,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -1508,7 +1687,7 @@ GameObject:
   - component: {fileID: 3825458292349207919}
   - component: {fileID: 5660400897874961545}
   - component: {fileID: 7432642131348150869}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1542,7 +1721,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0.40446424, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 0.18
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1584,7 +1763,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -1626,7 +1805,7 @@ GameObject:
   - component: {fileID: 9083493968511788927}
   - component: {fileID: 14862004335133775}
   - component: {fileID: 1148333073946610629}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bell_01.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1709,7 +1888,7 @@ GameObject:
   - component: {fileID: 4489092295864192455}
   - component: {fileID: 5956097007014021389}
   - component: {fileID: 1435034519474237509}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bell_01.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1792,7 +1971,7 @@ GameObject:
   - component: {fileID: 8729017902422294400}
   - component: {fileID: 8460309333913908656}
   - component: {fileID: 6703448548736536879}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Manos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1873,7 +2052,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4864561682790908474}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JapaneseLamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1908,7 +2087,7 @@ GameObject:
   - component: {fileID: 5591217298993942500}
   - component: {fileID: 4732566850606478542}
   - component: {fileID: 297703099936008875}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2026,7 +2205,7 @@ GameObject:
   - component: {fileID: 8448235763754801984}
   - component: {fileID: 1169156749262601364}
   - component: {fileID: 8249249362438241410}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2060,7 +2239,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0.40446424, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 0.18
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2102,7 +2281,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -2142,7 +2321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3032640439272225279}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2175,7 +2354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3626257841066582852}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Look
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -2208,7 +2387,7 @@ GameObject:
   - component: {fileID: 5662082553725527809}
   - component: {fileID: 8331470428464748127}
   - component: {fileID: 2379010054492409092}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Obi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2289,7 +2468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6122843067512375114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FloatingSkul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2371,7 +2550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2608501106575013145, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2379,7 +2558,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 93a286a42db765b46b5ca34de4c58d5d, type: 2}
     - target: {fileID: 5588623127559862446, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2448,7 +2627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2608501106575013145, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2456,7 +2635,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 93a286a42db765b46b5ca34de4c58d5d, type: 2}
     - target: {fileID: 5588623127559862446, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2525,7 +2704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2608501106575013145, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2533,7 +2712,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 93a286a42db765b46b5ca34de4c58d5d, type: 2}
     - target: {fileID: 5588623127559862446, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2602,7 +2781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2608501106575013145, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2610,7 +2789,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 93a286a42db765b46b5ca34de4c58d5d, type: 2}
     - target: {fileID: 5588623127559862446, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2679,7 +2858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2608501106575013145, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2687,7 +2866,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 93a286a42db765b46b5ca34de4c58d5d, type: 2}
     - target: {fileID: 5588623127559862446, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2756,7 +2935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2608501106575013145, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2764,7 +2943,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 93a286a42db765b46b5ca34de4c58d5d, type: 2}
     - target: {fileID: 5588623127559862446, guid: 3ea9aa6eefb1bc1408c9e36b0f1baeb1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
