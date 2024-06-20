@@ -145,8 +145,6 @@ public class SoundManager : MonoBehaviour
 
         if (_lastPlayedKey == key)
         {
-            // 마지막 재생된 사운드 키와 현재 요청된 사운드 키가 같으면 반
-            //근데 이렇게되면 마지막 사운드가 저장되어 한사이클 끝나면 리셋해줘여
             return;
         }
 
@@ -163,7 +161,4 @@ public class SoundManager : MonoBehaviour
         _lastPlayedKey = key; // 마지막 재생된 사운드 키 업데이트
     }
 
-
-
-    //각 객체가 사운드 소스를 가져가서 사운드가 한사이클돌면 다시 시작하게 하는건 어떨까?
 }

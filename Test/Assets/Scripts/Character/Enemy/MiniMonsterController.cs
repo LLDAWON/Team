@@ -140,7 +140,7 @@ public class MiniMonsterController : EnemyController
 
         float _time = 0.0f;
 
-        while (_time < 2.0f)
+        while (_time < 1.0f)
         {
             _time += _desolveSpeed * Time.deltaTime;
 
@@ -152,7 +152,7 @@ public class MiniMonsterController : EnemyController
 
             yield return null;
         }
-        if (_time > 2.0f)
+        if (_time > 1.0f)
         {
             foreach (Renderer renderer in _renderers)
             {

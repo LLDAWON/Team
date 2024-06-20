@@ -67,7 +67,6 @@ public class MoveableCharactorController : MonoBehaviour
 
         Vector3 pos = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad),
             0, Mathf.Cos(angle * Mathf.Deg2Rad));
-        //Vector3 pos = enemy.transform.forward * enemy.GetCharacterData().DetectRange;
 
         Handles.DrawSolidArc(transform.position, Vector3.up, pos, _angleRange * 2.0f, _characterData.DetectRange);
     }

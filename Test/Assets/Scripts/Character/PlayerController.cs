@@ -9,9 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MoveableCharactorController
 {
-    //플레이어가 손전등가지고 있으니 옵저버 써서 
-     
-
     private Vector2 _mouseValue;
 
     private float _curStemina = 0.0f;
@@ -22,7 +19,6 @@ public class PlayerController : MoveableCharactorController
     [SerializeField]
     private GameObject _phone;
 
-    /// ///////////////////////////////////////////////////////////////////////////////////////
     /// ///////////////////////////////////////////////////////////////////////////////////////
     // 플레이어의 정보 추출해주는 부분
 
@@ -52,6 +48,7 @@ public class PlayerController : MoveableCharactorController
 
     //플레이어 이동상태
     private bool _isMove = false;
+    private bool _isInTollet = false;
     public bool GetIsPlayerMove() { return _isMove; }
     private bool _event = false;
     public void SetIsEventCamera(bool isEvent) { _event = isEvent; }
@@ -62,7 +59,6 @@ public class PlayerController : MoveableCharactorController
     private AudioSource _heartBeatSound;
     public AudioSource GetHeartBeatSound() { return _heartBeatSound; }
 
-    /// ///////////////////////////////////////////////////////////////////////////////////////
     /// ///////////////////////////////////////////////////////////////////////////////////////
 
     private Transform _rotateObj;
@@ -116,7 +112,15 @@ public class PlayerController : MoveableCharactorController
 
         if (SceneManager.GetActiveScene().name == "VentScene")
         {
-            _isPlayerVant = true;
+            if(_isInTollet)
+            {
+                _isPlayerVant = false;
+            }
+            else
+            {
+                _isPlayerVant = true;
+            }
+
         }
         Light _flashLight = _flash.GetComponentInChildren<Flashlight>().lightSource;
         _isFlashLight = _flashLight.enabled;
@@ -151,7 +155,14 @@ public class PlayerController : MoveableCharactorController
 
         if (SceneManager.GetActiveScene().name == "VentScene")
         {
-            _moveSpeed = _characterData.CrawlingSpeed;
+            if (_isInTollet)
+            {
+                _moveSpeed = _characterData.WalkSpeed;
+            }
+            else
+            {
+                _moveSpeed = _characterData.CrawlingSpeed;
+            }
         }
         else
         {
@@ -271,7 +282,12 @@ public class PlayerController : MoveableCharactorController
             //닿았을때 호출 잘된다.
         }
 
-    }
+         if (collision.gameObject.CompareTag("CollisionBox"))
+        {
+            _isInTollet = true;
+        }
+
+}
 
     public void UseDrink(float value)
     {
@@ -284,12 +300,8 @@ public class PlayerController : MoveableCharactorController
     {
 
         _isLightOn = !_isLightOn;
-
         _hand.SetActive(_isLightOn);
-        
-        //GameObject _phone = _hand.transform.Find("PlayerIPHONE").gameObject;
         _flash.SetActive(_isLightOn);
-        //_phone.SetActive(false);
         Animator animator = _hand.GetComponent<Animator>();
         animator.SetBool("IsFlash", _isLightOn);
 
@@ -297,15 +309,10 @@ public class PlayerController : MoveableCharactorController
     private void UsePhone()
     {
         _isPhoneOn = !_isPhoneOn;
-
         _hand.SetActive(_isPhoneOn);
-        //GameObject _flash = _hand.transform.Find("Flashlight").gameObject;
-        
-        //_flash.SetActive(false);
         _phone.SetActive(_isPhoneOn);
         Animator animator = _hand.GetComponent<Animator>();
         animator.SetBool("IsPhone", _isPhoneOn);
-
     }
 
 
@@ -333,8 +340,6 @@ public class PlayerController : MoveableCharactorController
     private void SettingCursor()
     {
         Vector3 pos = new Vector3(960, 540, 0);
-
-        //cursorTexture = Resources.Load("Textures/UI/Cursur")as Texture2D;
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, Camera.main.WorldToScreenPoint(pos), CursorMode.ForceSoftware);
         Cursor.lockState = CursorLockMode.Locked;
@@ -349,12 +354,8 @@ public class PlayerController : MoveableCharactorController
 
     private void PlayerDie()
     {
-        //SaveManager.Instance.JsonLoad();
-        //SaveManager.Instance.JsonSave();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         UIManager.Instance.White.SetActive(false);
         Observer.OnNoneEvents[10]();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        //SceneManager.LoadScene(0);
     }
 }

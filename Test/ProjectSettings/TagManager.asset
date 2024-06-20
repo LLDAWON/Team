@@ -61,6 +61,7 @@ TagManager:
   - Hint4
   - Cal
   - 3ChangeScene
+  - CollisionBox
   layers:
   - Default
   - TransparentFX

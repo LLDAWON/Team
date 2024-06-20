@@ -103,8 +103,6 @@ public class MonsterManager : Singleton<MonsterManager>
         _spawnedMonsters.Add(monster, spawnedMonster);
         _spawnMonsters.Add(spawnedMonster);
         _curEnemy = spawnedMonster;
-        //CameraManager.Instance.ShakeCamera(10.0f, 3.0f);
-        //UIManager.Instance.SetText(8);
     }
 
     public void DestroyMonster(string monster)

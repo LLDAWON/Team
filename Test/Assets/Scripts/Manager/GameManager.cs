@@ -57,9 +57,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject); // 이 오브젝트를 씬 전환 시 파괴되지 않도록 설정
-        //Initialize(); // 초기에 awkae할 애들        
 
-        //SoundManager.Instance.Play2D("BG", true);
     }
 
     private void Start()
@@ -83,7 +81,7 @@ public class GameManager : MonoBehaviour
         BalerinaBGSound();
         if (Input.GetKeyDown(KeyCode.V))
         {
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(3);
         }
 
         if (Input.GetKeyDown(KeyCode.K))

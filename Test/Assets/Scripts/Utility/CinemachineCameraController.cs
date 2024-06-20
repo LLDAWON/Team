@@ -24,9 +24,6 @@ public class CinemachineCameraController : MonoBehaviour
 
     private void Start()
     {
-
-        //_monsters = MonsterManager.Instance.GetSpawnMonster();
-
         _player = GameManager.Instance.GetPlayer();
         _playerController = _player.GetComponent<PlayerController>();
         PlayerFollowCam();
@@ -57,21 +54,6 @@ public class CinemachineCameraController : MonoBehaviour
         }
 
 
-        //foreach (GameObject monster in _monsters)
-        //{
-        //    if (monster.GetComponent<MiniMonsterController>().GetEnemyCurState() == EnemyController.EnemyState.Attack)
-        //    {
-        //            PlayerDieCam(monster);
-        //            return;
-        //    }
-        //}
-
-        //if (_player.GetComponent<PlayerController>().GetIsPlayerDie() == false)
-        //{
-        //    PlayerFollowCam();
-        //}
-
-
     }
 
     private void PlayerFollowCam()
@@ -79,7 +61,6 @@ public class CinemachineCameraController : MonoBehaviour
 
         _virtualCamera.Follow = _player.transform.GetChild(0).transform;
         _virtualCamera.LookAt = _player.transform.GetChild(0).transform.GetChild(0).transform;
-        //StopCoroutine("MoveToCameraForCutScene");
     }
 
     public void PlayerDieCam(GameObject attackingMonster)
@@ -109,7 +90,6 @@ public class CinemachineCameraController : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-
         // 끝난다음에 다시 플레이어 로 이동
 
         Invoke("PlayerFollowCam", 6);

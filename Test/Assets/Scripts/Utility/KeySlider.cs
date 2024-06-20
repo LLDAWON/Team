@@ -53,6 +53,7 @@ public class KeySlider : MonoBehaviour
             {
                 UIManager.Instance.SetText(19);
                 SceneManager.LoadScene(3);
+                StartCoroutine(UIManager.Instance.EscapeTime());
             }
             else if (gameObject.CompareTag("Cal"))
             {

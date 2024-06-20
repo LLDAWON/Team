@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
 
     private int _maxCandle;
     private int _curCandle;
+    private float _escapeTime = 180.0f;
 
     public void AddCandle()
     {
@@ -178,7 +179,28 @@ public class UIManager : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     // 텍스트 설정
+=======
+    public IEnumerator EscapeTime()
+    {
+        while (_escapeTime > 0.0f)
+        {
+
+            int minute=(int)_escapeTime/60;
+            int second = (int)_escapeTime%60;
+            _escapeTime -= Time.deltaTime;
+            _candleCount.text = minute.ToString() + " : " + second.ToString();
+
+
+            yield return null;
+        }
+        _candleCount.gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
+
+>>>>>>> Stashed changes
     public void SetText(int key)
     {
         _textData = DataManager.Instance.GetTextData(key);
