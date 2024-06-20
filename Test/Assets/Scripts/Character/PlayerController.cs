@@ -45,6 +45,7 @@ public class PlayerController : MoveableCharactorController
     //플레이어 죽음상태
     private bool _isDie = false;
     public bool GetIsPlayerDie() { return _isDie; }
+    public void SetIsPlayerDie(bool _isdie) { _isDie = _isdie; }
 
     //플레이어 이동상태
     private bool _isMove = false;
@@ -96,7 +97,8 @@ public class PlayerController : MoveableCharactorController
     {
         if (_isDie)
         {
-            
+            UIManager.Instance.White.SetActive(true);
+            Invoke("PlayerDie", 2.0f);
             _hand.SetActive(false);
             return;
         }
@@ -339,5 +341,11 @@ public class PlayerController : MoveableCharactorController
         _prfSteminaBar = GameObject.Find("SteminaBar");
         _curSteminaBar = _prfSteminaBar.transform.GetChild(0).GetComponent<Image>();
         _curStemina = _characterData.Stemina;
+    }
+
+    private void PlayerDie()
+    {
+        SaveManager.Instance.JsonLoad();
+
     }
 }

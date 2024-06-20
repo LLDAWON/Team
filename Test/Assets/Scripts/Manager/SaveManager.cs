@@ -41,6 +41,12 @@ public class SaveManager : Singleton<SaveManager>
                 }
             }
         }
+
+        UIManager.Instance.White.SetActive(false);
+        PlayerController playerController = GameManager.Instance.GetPlayer().GetComponent<PlayerController>();
+        //playerController.GetHand().SetActive(true);
+        playerController.SetIsPlayerDie(false); 
+        Observer.OnNoneEvents[10]();
     }
 
     public bool GetData()

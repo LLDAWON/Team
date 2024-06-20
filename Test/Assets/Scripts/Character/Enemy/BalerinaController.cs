@@ -119,8 +119,9 @@ public class BalerinaController : EnemyController
        // 원그리는거 멈춰주기
         _lineRenderer.enabled = false;
         //움직이지 않게 해주고 속도 0 애니메이션 속도0 멈추게하기
+       
         //발레리나 옮겨주기
-        Invoke("TeleportBalerina", 1.0f);
+        //Invoke("TeleportBalerina", 1.0f);
 
         SetState(0);
 
