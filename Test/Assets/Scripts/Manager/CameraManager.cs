@@ -53,8 +53,9 @@ public class CameraManager : MonoBehaviour
         StartCoroutine(ShakeCoroutine(duration, magnitude));
     }
 
-    private IEnumerator ShakeCoroutine(float duration, float magnitude)
+    private IEnumerator ShakeCoroutine(float magnitude, float duration)
     {
+        GameManager.Instance.GetPlayer().GetComponent<PlayerController>().SetIsEventCamera(true);
         float elapsed = 0f;
 
         while (elapsed < duration)
@@ -69,8 +70,9 @@ public class CameraManager : MonoBehaviour
 
         _virtualCamera.transform.position = initialPosition;
         _virtualCamera.transform.rotation = initialRotation;
-    }
+        GameManager.Instance.GetPlayer().GetComponent<PlayerController>().SetIsEventCamera(false);
 
+    }
     public void ShakeCamera(float intensity, float duration)
     {
 
