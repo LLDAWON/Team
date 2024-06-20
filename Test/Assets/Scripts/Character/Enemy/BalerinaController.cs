@@ -80,6 +80,7 @@ public class BalerinaController : EnemyController
     // 춤을 시작하는 함수
     private void StartDance()
     {
+      
         //음악 켜주고
         //balletMusic.Play();
 
@@ -113,6 +114,7 @@ public class BalerinaController : EnemyController
     }
     private void StopDance()
     {
+       
         // 현재 애니메이션 상태 저장
         _currentAnimatorState = _animator.GetCurrentAnimatorStateInfo(0);
         _savedAnimationHash = _currentAnimatorState.fullPathHash;
@@ -142,7 +144,12 @@ public class BalerinaController : EnemyController
     }
     private void TeleportBalerina()
     {
-
+        if (Vector3.Distance(transform.position, _target.position) <= _circleRadius)
+        {
+            _spotLight.SetActive(true);
+            SetState(1);
+            return;
+        }
         //_spawnedMannequins[randomManequinIndex].transform.position = transform.position;
         //_spawnedMannequins[randomManequinIndex].transform.rotation = transform.rotation;
         float randomX = 0;

@@ -90,13 +90,7 @@ public class EnemyController : MoveableCharactorController
     CheckFirstMeetPlayer();
     if (!_isFirstMeet)
         return;
-    //캐비넷같이 숨을수 있는곳 들어갔을때는 인식못하게 조절하기위해 숨으면 순찰
-    bool _playerHide = _target.GetComponent<PlayerController>().GetIsPlayerHide();
-        if (_playerHide)
-        {
-            SetState(0);
-            return;
-        }
+    
 
         // 부채꼴 판별 관련 코드
         Vector3 targetDirection = _target.transform.position - transform.position;
@@ -125,6 +119,7 @@ public class EnemyController : MoveableCharactorController
                 _isInCircularSector = true;
                 if (_rayzorHitPlayer)
                 {
+                   
                     _isPlayerDetected = true;
                 }
             }
@@ -134,12 +129,23 @@ public class EnemyController : MoveableCharactorController
             }
         }
 
-        if (_isPlayerDetected)
-            {
-                SetState(1);
-                _animator.SetBool("IsTrace", true);
 
+
+        if (_isPlayerDetected)
+        {
+            if (_target.GetComponent<PlayerController>().GetIsPhoneLight())
+            {
+                _enemyState = EnemyState.Stop;
             }
+            else
+            {
+                _enemyState = EnemyState.Trace;
+
+                _animator.SetBool("IsTrace", true);
+            }
+
+
+        }
         else
         {
             if (targetDirection.magnitude > _characterData.DetectRange)
@@ -150,8 +156,16 @@ public class EnemyController : MoveableCharactorController
         }
             else
             {
-                SetState(1);
-                _animator.SetBool("IsTrace", true);
+                if (_target.GetComponent<PlayerController>().GetIsPhoneLight())
+                {
+                    _enemyState = EnemyState.Stop;
+                }
+                else
+                {
+                    _enemyState = EnemyState.Trace;
+
+                    _animator.SetBool("IsTrace", true);
+                }
             }
         }
       

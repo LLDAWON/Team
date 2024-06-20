@@ -38,9 +38,12 @@ public class PlayerController : MoveableCharactorController
     private bool _isLightOn = false;
     private bool _isFlashLight = false;
     public bool GetIsFlashLight() { return _isFlashLight; }
+
     //핸드폰
     private bool _isPhoneOn = false;
     public bool GetIsPhoneOn() { return _isPhoneOn; }
+    private bool _isPhoneLight = false;
+    public bool GetIsPhoneLight() { return _phone.GetComponent<Phone>().IsPlaying(); }
 
     //플레이어 죽음상태
     private bool _isDie = false;
