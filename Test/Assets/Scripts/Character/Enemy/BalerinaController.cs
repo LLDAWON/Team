@@ -21,7 +21,7 @@ public class BalerinaController : EnemyController
     //private LineRenderer _lineRenderer;
     //private int _numSegments = 100; // 원을 그릴 때 사용할 세그먼트 수
     private float _circleRadius; // 원의 반지름
-    private float _circleGrowthRate; // 원이 증가하는 속도
+    private float _circleGrowthRate = 2.0f; // 원이 증가하는 속도
     private Material _floorMaterial;
 
 
@@ -33,7 +33,7 @@ public class BalerinaController : EnemyController
         //원관련
         _floorMaterial = Resources.Load<Material>("Materials/Floor/Floor");
         _circleRadius = 0f;
-        _circleGrowthRate = 2.0f; // 원이 증가하는 속도 설정
+        //_circleGrowthRate = 2.0f; // 원이 증가하는 속도 설정
         //CircleSetting();
     }
     protected override void Start()
@@ -170,12 +170,11 @@ public class BalerinaController : EnemyController
     }
     private IEnumerator GrowCircle()
     {
-        float time = 0.0f;
-        time+= Time.deltaTime;
-        while (time>3.0f)
+        float time = 0.0f;        
+        while (time < 3.0f)
         {
-            time -= 3.0f;
-            _circleRadius = 0f;
+            time += Time.deltaTime;
+            //_circleRadius = 0f;
             _circleRadius += _circleGrowthRate * Time.deltaTime;
 
             yield return null;
@@ -188,9 +187,9 @@ public class BalerinaController : EnemyController
         if (_enemyState == EnemyState.Attack)
             return;
 
-        _floorMaterial.SetVector("WorldPos", transform.position);
-        _floorMaterial.SetFloat("Range", _circleRadius);
-        _floorMaterial.SetColor("Color", Color.red);
+        _floorMaterial.SetVector("_WorldPos", transform.position);
+        _floorMaterial.SetFloat("_Range", _circleRadius);
+        _floorMaterial.SetColor("_Color", Color.red);
 
         // 플레이어가 원 안에 있는지 확인
         //if (Vector3.Distance(transform.position, _target.position) <= _circleRadius)
