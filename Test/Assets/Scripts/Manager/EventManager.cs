@@ -174,5 +174,10 @@ public class EventManager : MonoBehaviour
             SceneManager.LoadScene(2); // 씬 변경
             UIManager.Instance.SetText(1); // UI 텍스트 설정
         }
+        if(collision.collider.CompareTag("EndingScene"))
+        {
+            SceneManager.LoadScene(6);
+            SoundManager.Instance.Stop3D("BallerinaBG");
+        }
     }
 }

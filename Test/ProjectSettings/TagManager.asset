@@ -62,6 +62,7 @@ TagManager:
   - Cal
   - 3ChangeScene
   - CollisionBox
+  - EndingScene
   layers:
   - Default
   - TransparentFX
