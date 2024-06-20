@@ -97,6 +97,7 @@ public class PlayerController : MoveableCharactorController
     {
         if (_isDie)
         {
+            _isDie = false;
             UIManager.Instance.White.SetActive(true);
             Invoke("PlayerDie", 2.0f);
             _hand.SetActive(false);
@@ -345,7 +346,12 @@ public class PlayerController : MoveableCharactorController
 
     private void PlayerDie()
     {
-        SaveManager.Instance.JsonLoad();
-
+        //SaveManager.Instance.JsonLoad();
+        //SaveManager.Instance.JsonSave();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        UIManager.Instance.White.SetActive(false);
+        Observer.OnNoneEvents[10]();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(0);
     }
 }

@@ -72,7 +72,7 @@ public class EnemyController : MoveableCharactorController
    
     protected override void Update()
     {
-        SoundController();
+        //SoundController();
         CheckPath();
         StateUpdate();
         EnemyAiPattern();
@@ -211,6 +211,9 @@ public class EnemyController : MoveableCharactorController
                     }
                     _isAttack = true;
                     Debug.Log("공격중");
+
+                    _enemyState = EnemyState.None;
+                    StopAllCoroutines();
                 }
                 break;
             case EnemyState.Stop:
@@ -285,19 +288,19 @@ public class EnemyController : MoveableCharactorController
 
     protected void SoundController()
     {
-        Vector3 targetDirection = _target.transform.position - transform.position;
-        targetDirection.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
-
-        //사운드 추가
-        if (targetDirection.magnitude < _target.GetComponent<PlayerController>().GetCharacterData().DetectRange)
-        {
-            //심장소리 넣어주고
-            SoundManager.Instance.SameStateJustOnePlay3D("Heart", transform, true, 1.0f);
-        }
-        else
-        {
-            SoundManager.Instance.Stop3D("Heart");
-        }
+        //Vector3 targetDirection = _target.transform.position - transform.position;
+        //targetDirection.y = 0; // y 축 이동을 방지하여 평면 이동만 가능하게 함
+        //
+        ////사운드 추가
+        //if (targetDirection.magnitude < _target.GetComponent<PlayerController>().GetCharacterData().DetectRange)
+        //{
+        //    //심장소리 넣어주고
+        //    SoundManager.Instance.SameStateJustOnePlay3D("Heart", transform, true, 1.0f);
+        //}
+        //else
+        //{
+        //    SoundManager.Instance.Stop3D("Heart");
+        //}
 
     }
 

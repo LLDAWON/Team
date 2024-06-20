@@ -148,8 +148,10 @@ public class DarkMonsterController : EnemyController
                     Observer.OnTargetEvents[1](gameObject);
                     SoundManager.Instance.Stop3D("DarkTrace");
                     SoundManager.Instance.SameStateJustOnePlay3D("DarkAttak", transform, false, 1.0f);
-                }
-               
+
+                    _enemyState = EnemyState.None;
+                    StopAllCoroutines();
+                }               
                 break;
             case EnemyState.Die:
                 {
