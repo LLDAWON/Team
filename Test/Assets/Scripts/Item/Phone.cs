@@ -9,6 +9,16 @@ public class Phone : MonoBehaviour
     private readonly int _dataKey = 102;
     private Light _light;
 
+    public bool IsPlaying()
+    {
+        if(_light.enabled)
+        {
+            return true;
+        }
+        else 
+        { return false; }
+    }
+
     private void Awake()
     {
         _data = DataManager.Instance.GetItemData(_dataKey);
