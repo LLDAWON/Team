@@ -6,84 +6,97 @@ using UnityEngine.UI;
 
 public class EventManager : MonoBehaviour
 {
-    private EventData _eventData;
-    private string _eventKey;
-    private List<int> _preEventKey = new List<int>();
-    private Vector3 _size;
-    private Collider _collider;
-    private RaycastHit hit;
-  
+    private EventData _eventData; // 이벤트 데이터 저장
+    private string _eventKey; // 현재 이벤트 키 저장
+    private List<int> _preEventKey = new List<int>(); // 이전 이벤트 키 목록
+    private Vector3 _size; // 콜라이더의 크기
+    private Collider _collider; // 콜라이더 컴포넌트
+    private RaycastHit hit; // 레이캐스트 히트 정보 저장
+
     public int CurKey
-    { get { return _eventData.Key; } }
+    {
+        get { return _eventData.Key; } // 현재 이벤트 키 반환
+    }
 
     public void SetKey(int key)
     {
-        _eventData.Key = key;
+        _eventData.Key = key; // 이벤트 키 설정
     }
 
     [SerializeField]
-    private LayerMask _layerMask;
-    
+    private LayerMask _layerMask; // 레이어 마스크 설정 (Inspector에서 설정 가능)
+
+    private Sprite _hitCursorSprite;
+    private Sprite _defaultCursorSprite;
 
     private void Awake()
     {
-        _collider = GetComponent<Collider>();
-        _size = _collider.bounds.size*0.5f;
+        _collider = GetComponent<Collider>(); // 콜라이더 컴포넌트 가져오기
+        _size = _collider.bounds.size * 0.5f; // 콜라이더 크기의 절반 설정
+
+        // 커서 스프라이트 미리 로드
+        _hitCursorSprite = Resources.Load<Sprite>("Textures/UI/HitCursor");
+        _defaultCursorSprite = Resources.Load<Sprite>("Textures/UI/Cursur");
     }
+
+
 
     private void Update()
     {
         CheckCollision();
+
     }
 
     private void CheckCollision()
     {
-        Vector3 pos = transform.GetChild(0).transform.GetChild(0).transform.position;
-        Vector3 dir = pos - transform.GetChild(0).transform.position;
+        if (Camera.main == null) return;
+        Transform childTransform = transform.GetChild(0).transform.GetChild(0).transform;
+        Vector3 pos = childTransform.position; // 자식 객체의 위치 가져오기
+        Vector3 origin = Camera.main.transform.position; // 레이의 시작점: 카메라의 위치
+        Vector3 dir = pos - childTransform.parent.position; // 레이의 방향 계산
 
-        Debug.DrawRay(pos, dir*2f, Color.red);
+        Debug.DrawRay(origin, dir * 1.5f, Color.red, 2.0f); // 디버그 레이 그리기
 
-        if (Physics.Raycast(pos, dir, out hit, 2.0f, _layerMask))
+        if (Physics.Raycast(origin, dir, out hit, 1.5f, _layerMask))
         {
-            _eventData = DataManager.Instance.GetEventData(hit.collider.tag);
+            _eventData = DataManager.Instance.GetEventData(hit.collider.tag); // 히트된 객체의 태그로 이벤트 데이터 가져오기
 
             if (_eventData.EventTag == "None")
-                return;
+                return; // 이벤트 태그가 "None"이면 반환
 
-            if(CheckPreEvent())
+            if (CheckPreEvent())
             {
-                UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/HitCursor") as Sprite;
+                UIManager.Instance.GetCursor.GetComponent<Image>().sprite = _hitCursorSprite; // 커서 이미지 변경
 
                 if (_eventData.Type == 2)
                 {
-                    UIManager.Instance.KeySlider.gameObject.SetActive(true);
+                    UIManager.Instance.SetText(17); // UI 텍스트 설정
+                    UIManager.Instance.KeySlider.gameObject.SetActive(true); // 키 슬라이더 활성화
                     GameObject obj = hit.collider.gameObject;
 
-                    UIManager.Instance.KeySlider.OnPressKey(obj);
+                    UIManager.Instance.KeySlider.OnPressKey(obj); // 키 슬라이더에 객체 전달
 
                     return;
                 }
 
+                UIManager.Instance.SetText(5); // UI 텍스트 설정
+
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    OnKeyDown();
+                    OnKeyDown(); // F 키가 눌리면 OnKeyDown 호출
                     return;
                 }
             }
         }
         else
         {
-            UIManager.Instance.KeySlider.gameObject.SetActive(false);
-            UIManager.Instance.GetCursor.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/UI/Cursur") as Sprite;
-            //_eventKey = null;
+            UIManager.Instance.KeySlider.gameObject.SetActive(false); // 키 슬라이더 비활성화
+            UIManager.Instance.GetCursor.GetComponent<Image>().sprite = _defaultCursorSprite; // 기본 커서 이미지로 변경
         }
-         
-
     }
+
     private void OnKeyDown()
     {
-        _eventKey = hit.collider.tag;
-
         SendText();
 
         if (_eventData.Type == 1)
@@ -94,9 +107,8 @@ public class EventManager : MonoBehaviour
                 SoundManager.Instance.Play3D("Door", hit.transform.position, false);
                 return;
             }
-            
-            SoundManager.Instance.Play3D(hit.collider.tag, hit.transform.position, false);
 
+            SoundManager.Instance.Play3D(hit.collider.tag, hit.transform.position, false);
         }
         else if (_eventData.Type == 0)
         {
@@ -105,80 +117,62 @@ public class EventManager : MonoBehaviour
             hit.collider.gameObject.SetActive(false);
         }
     }
+
     private bool CheckPreEvent()
     {
         if (_eventData.Condition > 0)
         {
-            foreach(int i in _preEventKey)
-            {
-                if (_eventData.Condition == i)
-                {
-                    return true;
-                }
-            }
+            return _preEventKey.Contains(_eventData.Condition);
         }
         else
         {
             return true;
         }
-        return false;
     }
 
     private void SendText()
     {
-        if(_eventData.GetItemKey > 0)
+        if (_eventData.GetItemKey > 0)
         {
-            ItemManager.Instance.GetItem(_eventData.GetItemKey);
-            ConditionText(_eventData.GetItemKey);
+            ItemManager.Instance.GetItem(_eventData.GetItemKey); // 아이템 획득
+            ConditionText(_eventData.GetItemKey); // 조건에 따른 텍스트 설정
         }
 
-        UIManager.Instance.SetText(_eventData.TextDataKey);
+        UIManager.Instance.SetText(_eventData.TextDataKey); // UI 텍스트 설정
 
-        _preEventKey.Add(_eventData.Key);
-        _eventKey = null;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(transform.position, _size*2);
+        _preEventKey.Add(_eventData.Key); // 이전 이벤트 키 목록에 추가
     }
 
     private void ConditionText(int key)
     {
-        ItemData data = DataManager.Instance.GetItemData(key);
+        ItemData data = DataManager.Instance.GetItemData(key); // 아이템 데이터 가져오기
 
-        if(data.Type == 4)
+        if (data.Type == 4)
         {
-            UIManager.Instance.SetText(_eventData.TextDataKey - 1);
-            return;
+            UIManager.Instance.SetText(_eventData.TextDataKey - 1); // 특정 조건에 따른 텍스트 설정
         }
     }
 
     public void CallEvent(string key)
     {
-        _eventData = DataManager.Instance.GetEventData(key);
-        _eventKey = key;
+        _eventData = DataManager.Instance.GetEventData(key); // 이벤트 데이터 가져오기
+        _eventKey = key; // 이벤트 키 설정
 
-        SendText();
-    }
-
-    public void LoadEvent(int key)
-    {
-
+        SendText(); // 텍스트 전송
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("4ChangeScene"))
+        if (collision.collider.CompareTag("4ChangeScene"))
         {
-            SceneManager.LoadScene(1);
-            UIManager.Instance.CandleUI.gameObject.SetActive(true);
-            UIManager.Instance.StartCoroutine("Candle");
+            SceneManager.LoadScene(1); // 씬 변경
+            UIManager.Instance.CandleUI.gameObject.SetActive(true); // UI 활성화
+            UIManager.Instance.StartCoroutine("Candle"); // 코루틴 시작
         }
         if (collision.collider.CompareTag("3ChangeScene"))
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(2); // 씬 변경
+            UIManager.Instance.SetText(1); // UI 텍스트 설정
         }
     }
 }

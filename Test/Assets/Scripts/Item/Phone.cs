@@ -11,6 +11,9 @@ public class Phone : MonoBehaviour
 
     public bool IsPlaying()
     {
+        if (_light == null)
+            return false;
+
         if(_light.enabled)
         {
             return true;
