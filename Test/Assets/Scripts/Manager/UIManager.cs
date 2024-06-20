@@ -179,9 +179,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
-    // 텍스트 설정
-=======
     public IEnumerator EscapeTime()
     {
         while (_escapeTime > 0.0f)
@@ -200,7 +197,6 @@ public class UIManager : MonoBehaviour
 
     }
 
->>>>>>> Stashed changes
     public void SetText(int key)
     {
         _textData = DataManager.Instance.GetTextData(key);
