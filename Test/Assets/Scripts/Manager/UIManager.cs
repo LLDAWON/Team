@@ -117,6 +117,9 @@ public class UIManager : MonoBehaviour
     {
         while (true)
         {
+            if (SceneManager.GetActiveScene().name == "TitleScene")
+                break;
+
             // 인벤토리 토글
             if (Input.GetKeyDown(KeyCode.I))
             {
@@ -183,7 +186,6 @@ public class UIManager : MonoBehaviour
     {
         while (_escapeTime > 0.0f)
         {
-
             int minute=(int)_escapeTime/60;
             int second = (int)_escapeTime%60;
             _escapeTime -= Time.deltaTime;

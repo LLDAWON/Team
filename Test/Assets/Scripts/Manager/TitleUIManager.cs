@@ -38,6 +38,9 @@ public class TitleUIManager : MonoBehaviour
         {
             _loadData.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.gray;
         }
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void PlayStart()

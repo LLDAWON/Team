@@ -48,11 +48,13 @@ public class KeySlider : MonoBehaviour
             else if (gameObject.CompareTag("BookCase"))
             {
                 ObjectManager.Instance.BookCase();
+
             }
             else if (gameObject.CompareTag("Vent"))
             {
                 UIManager.Instance.SetText(19);
                 SceneManager.LoadScene(3);
+                UIManager.Instance.CandleUI.gameObject.SetActive(true);
                 StartCoroutine(UIManager.Instance.EscapeTime());
             }
             else if (gameObject.CompareTag("Cal"))
