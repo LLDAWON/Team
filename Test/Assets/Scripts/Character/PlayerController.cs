@@ -84,8 +84,6 @@ public class PlayerController : MoveableCharactorController
 
         SettingCursor();
 
-        //사운드
-        SettingSound();
 
         //옵저버패턴
         SetObserverPattern();
@@ -94,6 +92,8 @@ public class PlayerController : MoveableCharactorController
     private void Start()
     {
         SettingStemina();
+        //사운드
+        SettingSound();
     }
 
     protected override void Update()

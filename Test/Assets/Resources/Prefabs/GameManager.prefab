@@ -164,6 +164,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: eec1794930ee08147a1ff2feaf9b2778, type: 3}
   - key: HalfStemina
     clip: {fileID: 8300000, guid: 323110b94ff699a48b97cd9494eb339e, type: 3}
+  - key: Teacer_trace
+    clip: {fileID: 8300000, guid: 5e1586c7d8c7e1b4bb42058a1b452c02, type: 3}
+  - key: Follow_Trace
+    clip: {fileID: 8300000, guid: 37ecf5ee004511341a9312dc8f74cfe3, type: 3}
+  - key: Mini_Trace
+    clip: {fileID: 8300000, guid: 2ca908f937607fc4c9f7d21ed30cf078, type: 3}
+  - key: BallerinaBG
+    clip: {fileID: 8300000, guid: 3d993bdf313e0a349bd63ae32fb44a3c, type: 3}
 --- !u!82 &1081806756670225033
 AudioSource:
   m_ObjectHideFlags: 0

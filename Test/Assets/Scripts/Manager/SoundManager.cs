@@ -66,6 +66,17 @@ public class SoundManager : MonoBehaviour
         _audioSource.Play();
         _audioSource.loop = isLoop;
     }
+    public void Change2D(string key, bool isLoop)
+    {
+        _audioSource.Stop();
+        _audioSource.clip = clips[key];
+        _audioSource.Play();
+        _audioSource.loop = isLoop;
+    }
+    public void Stop2D(string key)
+    {
+        _audioSource.Stop();
+    }
 
     //고정되어있는 정적 물체에 달기
     public void Play3D(string key, Vector3 pos, bool isLoop)

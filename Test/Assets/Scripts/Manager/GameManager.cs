@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     public Vector3 _savePoint;
     public int _curEvent;
+
+    bool _is2FloorScene = false;
     public GameObject GetPlayer()
     { 
         if(_player == null)
@@ -69,7 +71,6 @@ public class GameManager : MonoBehaviour
     private void Initialize()
     {
         
-        //_playerSpawnPosition = GameObject.Find("PlayerSpawn").transform.position;
 
         _monsterManager = MonsterManager.Instance;
         _eventManager = _player.GetComponent<EventManager>();
@@ -78,11 +79,11 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-         Floor5MonsterSpawn();
-
+        Floor5MonsterSpawn();
+        BalerinaBGSound();
         if (Input.GetKeyDown(KeyCode.V))
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -112,12 +113,14 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void MiniMonsterSpawn()
+    private void BalerinaBGSound()
     {
-        if (!_isSpawning)
+        if (!_is2FloorScene && SceneManager.GetActiveScene().name ==SceneManager.GetSceneByBuildIndex(4).name)
         {
-            
-            _isSpawning = true;
+            SoundManager.Instance.Change2D("BallerinaBG", true);
+            Debug.Log("백조의호수");
+            _is2FloorScene = true;
+
         }
 
     }

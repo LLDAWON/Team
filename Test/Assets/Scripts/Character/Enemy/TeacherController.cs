@@ -82,6 +82,8 @@ public class TeacherController : EnemyController
                     _animator.speed = 2.0f;
                     _navigation.SetDestination(_target.position);
                     _navigation.speed = _characterData.RunSpeed;
+                    SoundManager.Instance.SameStateJustOnePlay3D("Teacer_trace", transform, true, 1.0f);
+                    _target.GetComponent<PlayerController>().GetHeartBeatSound().volume = 1.0f;
 
                     CameraManager.Instance.StartVignette();
                 }
@@ -107,6 +109,8 @@ public class TeacherController : EnemyController
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
                     _animator.speed = 0.0f;
+                    _target.GetComponent<PlayerController>().GetHeartBeatSound().volume = 0.0f;
+                    SoundManager.Instance.Stop3D("Teacer_trace");
                 }
                 break;
             case EnemyState.None:

@@ -198,6 +198,7 @@ public class EnemyController : MoveableCharactorController
                     _navigation.SetDestination(_destPos);
                     _navigation.speed = _characterData.WalkSpeed;
                     CameraManager.Instance.StopVignette();
+                    SoundManager.Instance.Stop3D("Follow_Trace");
 
                 }
                 break;
@@ -206,6 +207,8 @@ public class EnemyController : MoveableCharactorController
                     _animator.speed = 2.0f;
                     _navigation.SetDestination(_target.position);
                     _navigation.speed = _characterData.RunSpeed;
+                    SoundManager.Instance.SameStateJustOnePlay3D("Follow_Trace", transform, true, 1.0f);
+                    _target.GetComponent<PlayerController>().GetHeartBeatSound().volume = 1.0f;
 
                     CameraManager.Instance.StartVignette();
                 }
@@ -219,12 +222,14 @@ public class EnemyController : MoveableCharactorController
                     {
                         _animator.SetTrigger("Attack");
 
-                        SoundManager.Instance.SameStateJustOnePlay3D("FollowAttack", transform, false, 2.0f); 
                         Observer.OnTargetEvents[1](gameObject);
                         Debug.Log(_isAttack);
                     }
                     _isAttack = true;
                     Debug.Log("°ø°ÝÁß");
+                    _target.GetComponent<PlayerController>().GetHeartBeatSound().volume = 0.0f;
+                    SoundManager.Instance.SameStateJustOnePlay3D("FollowAttack", transform, false, 1.0f);
+                    SoundManager.Instance.Stop3D("Follow_Trace");
 
                     _enemyState = EnemyState.None;
                     StopAllCoroutines();
@@ -235,6 +240,7 @@ public class EnemyController : MoveableCharactorController
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
                     _animator.speed = 0.0f;
+                    SoundManager.Instance.Stop3D("Follow_Trace");
                 }
                 break;
             case EnemyState.None:
@@ -248,6 +254,7 @@ public class EnemyController : MoveableCharactorController
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
                     Debug.Log("Á×À½");
+                    SoundManager.Instance.Stop3D("FollowAttack");
                     gameObject.SetActive(false);
                 }
                 break;

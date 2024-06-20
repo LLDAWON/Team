@@ -5,6 +5,7 @@ using UnityEngine;
 public class MiniMonsterController : EnemyController
 {
     private bool _isMeet = false;
+    private bool _isDie =false;
     //디졸브 상태값
     protected float _desolveSpeed = 0.3f;
 
@@ -19,6 +20,8 @@ public class MiniMonsterController : EnemyController
     {
         //공격상태일때 빠꾸
         if (_enemyState == EnemyState.Attack)
+            return;
+        if (_isDie)
             return;
 
         //플레이어가 죽으면 되돌리기
@@ -38,6 +41,8 @@ public class MiniMonsterController : EnemyController
         //감지범위안에 들어왔을때
         if (_inPlayerSight.magnitude <= _detectRange)
         {
+
+            _target.GetComponent<PlayerController>().GetHeartBeatSound().volume = 1.0f;
             float dot = Vector3.Dot(_inPlayerSight.normalized, playerController.transform.forward);
 
             float theta = Mathf.Acos(dot);
@@ -70,6 +75,7 @@ public class MiniMonsterController : EnemyController
         else
         {
             SetState(1);
+            _target.GetComponent<PlayerController>().GetHeartBeatSound().volume = 0.0f;
         }
 
 
@@ -94,6 +100,7 @@ public class MiniMonsterController : EnemyController
                     _isAttack = true;
 
                     _animator.SetTrigger("Attack");
+                    SoundManager.Instance.Stop3D("Mini_Trace");
                     Debug.Log("EnemyState.Attack");
 
                     Observer.OnTargetEvents[1](gameObject);
@@ -104,7 +111,10 @@ public class MiniMonsterController : EnemyController
                 {
                     _navigation.velocity = Vector3.zero;
                     _navigation.speed = 0;
+                    _isDie = true;
                     Debug.Log("죽음");
+                    SoundManager.Instance.Stop3D("Mini_Trace"); 
+                    _collider.enabled = false;
                     DesolveAndTeleport();
                 }
                 break;
@@ -154,9 +164,11 @@ public class MiniMonsterController : EnemyController
             }
 
             int random = Random.Range(0, 4);
+            _collider.enabled = true;
+            _isDie = false;
+            _isMeet = false;
             transform.position = pathes[random];
             SetState((int)EnemyState.Trace);
-            _isMeet = false;
 
         }
     }

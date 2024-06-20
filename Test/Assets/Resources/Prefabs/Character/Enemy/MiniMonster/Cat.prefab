@@ -93,15 +93,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3805db0642503b542a9cfdde00d2f80a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.7104015
+      value: 2.596
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3805db0642503b542a9cfdde00d2f80a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 13.444
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3805db0642503b542a9cfdde00d2f80a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.110758
+      value: -0.301
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3805db0642503b542a9cfdde00d2f80a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -741,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6898781599802223574, guid: 3805db0642503b542a9cfdde00d2f80a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6898781599802223574, guid: 3805db0642503b542a9cfdde00d2f80a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -935,10 +935,10 @@ MonoBehaviour:
   _characterKey: 504
   _velocity: {x: 0, y: 0, z: 0}
   pathes:
-  - {x: 15, y: 1.366424, z: 10}
-  - {x: 10, y: 1.366424, z: 10}
-  - {x: 10, y: 1.366424, z: -6}
-  - {x: 15, y: 1.366424, z: -6}
+  - {x: -2.91, y: 13.481, z: 10.201}
+  - {x: -8.08, y: 13.481, z: -1.94}
+  - {x: -5.26, y: 13.481, z: 0.54}
+  - {x: 2.672, y: 13.53, z: -0.336}
 --- !u!54 &6406080451775152505
 Rigidbody:
   m_ObjectHideFlags: 0

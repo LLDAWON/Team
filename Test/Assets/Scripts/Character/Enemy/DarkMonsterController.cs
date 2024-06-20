@@ -89,6 +89,8 @@ public class DarkMonsterController : EnemyController
         //감지범위안에 들어왔을때
         if (_inPlayerSight.magnitude <= _detectRange )
         {
+
+            _target.GetComponent<PlayerController>().GetHeartBeatSound().volume = 1.0f;
             float dot = Vector3.Dot(_inPlayerSight.normalized, playerController.transform.forward);
 
             float theta = Mathf.Acos(dot);
@@ -117,7 +119,9 @@ public class DarkMonsterController : EnemyController
         // 감지범위 밖일때도 추적해오자
         else
         {
+
             SetState(1);
+            _target.GetComponent<PlayerController>().GetHeartBeatSound().volume = 0.0f;
         }
 
 
