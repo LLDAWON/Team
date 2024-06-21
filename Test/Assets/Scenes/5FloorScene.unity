@@ -690,6 +690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 5278407579347522290, guid: cfa2d566e705b164e988dc40fbb85654, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5389425819547497388, guid: cfa2d566e705b164e988dc40fbb85654, type: 3}
       propertyPath: m_Layer
       value: 0
