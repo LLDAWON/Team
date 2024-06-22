@@ -55,9 +55,9 @@ public class EventManager : MonoBehaviour
         Vector3 origin = Camera.main.transform.position; // 레이의 시작점: 카메라의 위치
         Vector3 dir = pos - childTransform.parent.position; // 레이의 방향 계산
 
-        Debug.DrawRay(origin, dir * 1.5f, Color.red, 2.0f); // 디버그 레이 그리기
+        Debug.DrawRay(origin, dir * 2.0f, Color.red, 2.0f); // 디버그 레이 그리기
 
-        if (Physics.Raycast(origin, dir, out hit, 1.5f, _layerMask))
+        if (Physics.Raycast(origin, dir, out hit, 2.0f, _layerMask))
         {
             _eventData = DataManager.Instance.GetEventData(hit.collider.tag); // 히트된 객체의 태그로 이벤트 데이터 가져오기
 

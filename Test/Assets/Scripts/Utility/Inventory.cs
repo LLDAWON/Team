@@ -58,7 +58,6 @@ public class Inventory : MonoBehaviour
             if (slot.IsSet() && slot.Count() <= 0)
             {
                 slot.SetIsItem(false);
-                slot.transform.GetChild(0).gameObject.SetActive(false);
                 _items.Remove(slot.SlotData().Name);
                 return;
             }

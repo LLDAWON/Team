@@ -246,6 +246,10 @@ MonoBehaviour:
   _playStart: {fileID: 812171508}
   _loadData: {fileID: 1956985512}
   _setting: {fileID: 213179498}
+  _buttons:
+  - {fileID: 812171508}
+  - {fileID: 1956985512}
+  - {fileID: 213179498}
   _soundSetting: {fileID: 1178857190}
   _audioSource: {fileID: 1494082728}
 --- !u!1 &203844586

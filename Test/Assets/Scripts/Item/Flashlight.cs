@@ -13,13 +13,14 @@ public class Flashlight : MonoBehaviour
     private float _usedValue = 35.0f;
     private readonly int _dataKey = 101;
     private bool _enabled = true;
+    private AudioSource _audioSource;
 
 
     private void Awake()
     {
         _data = DataManager.Instance.GetItemData(_dataKey);
         _maxValue = _data.Value;
-
+        _audioSource = GetComponent<AudioSource>();
         Observer.OnEvents.Add(301, ChargeBattery);
     }
     void Update()
@@ -28,6 +29,7 @@ public class Flashlight : MonoBehaviour
         {
             lightSource.enabled = !lightSource.enabled;
             UIManager.Instance.Battery.SetActive(lightSource.enabled);
+            _audioSource.Play();                 
         }
 
         Battery();

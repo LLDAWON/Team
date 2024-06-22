@@ -8,7 +8,7 @@ public class Phone : MonoBehaviour
 
     private readonly int _dataKey = 102;
     private Light _light;
-
+    private AudioSource _audioSource;
     public bool IsPlaying()
     {
         if (_light == null)
@@ -27,6 +27,7 @@ public class Phone : MonoBehaviour
         _data = DataManager.Instance.GetItemData(_dataKey);
        _light = transform.GetChild(0).GetComponent<Light>();
         _light.enabled = false;
+        _audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -40,6 +41,7 @@ public class Phone : MonoBehaviour
     private void OnFlash()
     {
         _light.enabled = true;
+        _audioSource.Play();
         Invoke("DiableFlash", 0.5f);
     }
 
