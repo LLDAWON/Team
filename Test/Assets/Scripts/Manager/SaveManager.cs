@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Unity.Collections;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class SaveData
@@ -10,7 +11,7 @@ public class SaveData
     public List<int> itemList = new List<int>();
    
     public Vector3 savePoint;
-    public int curEvent;
+    public int curScene;
 }
 
 
@@ -32,8 +33,7 @@ public class SaveManager : Singleton<SaveManager>
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
             if (saveData != null)
             {
-                GameManager.Instance.GetPlayer().transform.position = saveData.savePoint;
-                //GameManager.Instance.GetPlayer().GetComponent<EventManager>().SetKey(saveData.curEvent);
+                SceneManager.LoadScene(saveData.curScene);
 
                 foreach(int data in saveData.itemList)
                 {
@@ -42,12 +42,6 @@ public class SaveManager : Singleton<SaveManager>
                 }
             }
         }
-
-        UIManager.Instance.White.SetActive(false);
-        PlayerController playerController = GameManager.Instance.GetPlayer().GetComponent<PlayerController>();
-        //playerController.GetHand().SetActive(true);
-        playerController.SetIsPlayerDie(false); 
-        Observer.OnNoneEvents[10]();
     }
 
     public bool GetData()
@@ -59,7 +53,7 @@ public class SaveManager : Singleton<SaveManager>
     {
         SaveData saveData = new SaveData();
         saveData.savePoint = savePoint;
-        saveData.curEvent = curEvent;
+        saveData.curScene = curEvent;
         saveData.itemList = data;
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(path, json);

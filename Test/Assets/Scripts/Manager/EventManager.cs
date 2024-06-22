@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class EventManager : MonoBehaviour
 {
+    [SerializeField]
+    private LayerMask _layerMask; // 레이어 마스크 설정 (Inspector에서 설정 가능)
+
+    private Sprite _hitCursorSprite;
+    private Sprite _defaultCursorSprite;
+    private List<int> _preEvents = new();
     private EventData _eventData; // 이벤트 데이터 저장
-    private string _eventKey; // 현재 이벤트 키 저장
-    private List<int> _preEventKey = new List<int>(); // 이전 이벤트 키 목록
-    private Vector3 _size; // 콜라이더의 크기
-    private Collider _collider; // 콜라이더 컴포넌트
     private RaycastHit hit; // 레이캐스트 히트 정보 저장
 
     public int CurKey
@@ -23,17 +25,9 @@ public class EventManager : MonoBehaviour
         _eventData.Key = key; // 이벤트 키 설정
     }
 
-    [SerializeField]
-    private LayerMask _layerMask; // 레이어 마스크 설정 (Inspector에서 설정 가능)
-
-    private Sprite _hitCursorSprite;
-    private Sprite _defaultCursorSprite;
 
     private void Awake()
     {
-        _collider = GetComponent<Collider>(); // 콜라이더 컴포넌트 가져오기
-        _size = _collider.bounds.size * 0.5f; // 콜라이더 크기의 절반 설정
-
         // 커서 스프라이트 미리 로드
         _hitCursorSprite = Resources.Load<Sprite>("Textures/UI/HitCursor");
         _defaultCursorSprite = Resources.Load<Sprite>("Textures/UI/Cursur");
@@ -122,7 +116,7 @@ public class EventManager : MonoBehaviour
     {
         if (_eventData.Condition > 0)
         {
-            return _preEventKey.Contains(_eventData.Condition);
+            return _preEvents.Contains(_eventData.Condition);
         }
         else
         {
@@ -140,7 +134,7 @@ public class EventManager : MonoBehaviour
 
         UIManager.Instance.SetText(_eventData.TextDataKey); // UI 텍스트 설정
 
-        _preEventKey.Add(_eventData.Key); // 이전 이벤트 키 목록에 추가
+        _preEvents.Add(_eventData.Key); // 이전 이벤트 키 목록에 추가
     }
 
     private void ConditionText(int key)
@@ -156,7 +150,6 @@ public class EventManager : MonoBehaviour
     public void CallEvent(string key)
     {
         _eventData = DataManager.Instance.GetEventData(key); // 이벤트 데이터 가져오기
-        _eventKey = key; // 이벤트 키 설정
 
         SendText(); // 텍스트 전송
     }

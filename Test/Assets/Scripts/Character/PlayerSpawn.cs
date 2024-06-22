@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class PlayerSpawn : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PlayerSpawn : MonoBehaviour
 
         EventManager _eventManager = player.GetComponent<EventManager>();
         List<int> item = UIManager.Instance.GetInventory.SaveItem;
-        SaveManager.Instance.JsonSave(transform.position, _eventManager.CurKey, item);
+        SaveManager.Instance.JsonSave(transform.position, SceneManager.GetActiveScene().buildIndex, item);
 
     }
 }

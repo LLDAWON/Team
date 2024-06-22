@@ -19,6 +19,7 @@ public class EndingUI : MonoBehaviour
 
         _main.gameObject.SetActive(false);
         _end.gameObject.SetActive(false);
+        SoundManager.Instance.Stop3D("BallerinaBG");
     }
 
     private void Update()
