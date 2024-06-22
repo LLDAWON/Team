@@ -29,6 +29,10 @@ public class UIManager : MonoBehaviour
     private bool _inventoryOpen = false;
     private bool _miniMapOpen = false;
     private bool _uiOpen = false;
+
+    public void SetUIOpne(bool uiOpen)
+    { _uiOpen = uiOpen; }
+
     private List<int> _preTxTKey = new List<int>();
 
     private TextData _textData;
@@ -110,6 +114,14 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(CheckInputs()); // 입력 체크 코루틴 시작
+
+        if (SceneManager.GetActiveScene().name == "VentScene")
+        {
+            UIManager.Instance.CandleUI.gameObject.SetActive(true);
+            StartCoroutine("EscapeTime");
+
+            UIManager.Instance.SetText(19);
+        }
     }
 
     // 매 프레임마다 입력을 체크하는 코루틴

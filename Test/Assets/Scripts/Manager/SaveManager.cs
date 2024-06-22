@@ -33,7 +33,8 @@ public class SaveManager : Singleton<SaveManager>
             if (saveData != null)
             {
                 GameManager.Instance.GetPlayer().transform.position = saveData.savePoint;
-                GameManager.Instance.GetPlayer().GetComponent<EventManager>().SetKey(saveData.curEvent);
+                //GameManager.Instance.GetPlayer().GetComponent<EventManager>().SetKey(saveData.curEvent);
+
                 foreach(int data in saveData.itemList)
                 {
                     ItemData itemdata = DataManager.Instance.GetItemData(data);

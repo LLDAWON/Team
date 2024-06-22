@@ -60,7 +60,7 @@ public class KeySlider : MonoBehaviour
             else if (gameObject.CompareTag("Cal"))
             {
                 UIManager.Instance.VentUI.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
+                UIManager.Instance.SetUIOpne(true);
             }
         }
     }

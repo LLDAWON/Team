@@ -2747,7 +2747,7 @@ RectTransform:
   m_GameObject: {fileID: 2009146223013828125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.02, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3372452174464684820}
@@ -5205,7 +5205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7582218108083049269
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6016,7 +6016,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 270.48535, w: 0}
+  m_margin: {x: -86.44174, y: -92.49005, z: -108.867004, w: -43.900085}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8903,7 +8903,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -124}
-  m_SizeDelta: {x: 1920, y: 1920}
+  m_SizeDelta: {x: 1550, y: 1500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6604901028213681186
 CanvasRenderer:
@@ -12232,7 +12232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6554528684793227706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13789,7 +13789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5451146567109607719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14334,7 +14334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4adb668371d91fe429d4b370a7526b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hintPanel: {fileID: 0}
+  _hintPanel: {fileID: 2009146223013828125}
   _cursor: {fileID: 5935346466496949773}
   _miniMap: {fileID: 3702718676232688938}
   _setting: {fileID: 691142102898474965}

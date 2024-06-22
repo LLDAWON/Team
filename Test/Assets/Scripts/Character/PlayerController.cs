@@ -281,13 +281,15 @@ public class PlayerController : MoveableCharactorController
             _hand.SetActive(false);
             //닿았을때 호출 잘된다.
         }
+    }
 
-         if (collision.gameObject.CompareTag("CollisionBox"))
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("CollisionBox"))
         {
             _isInTollet = true;
         }
-
-}
+    }
 
     public void UseDrink(float value)
     {

@@ -32,7 +32,6 @@ public struct EventData
     public int EventCount;
     public int TextDataKey;
     public int GetItemKey;
-    public int ItemKey;
     public int Type;
 }
 
@@ -168,8 +167,7 @@ public class DataManager : Singleton<DataManager>
             eventData.EventCount = int.Parse(data[3]);
             eventData.TextDataKey = int.Parse(data[4]);
             eventData.GetItemKey = int.Parse(data[5]);
-            eventData.ItemKey = int.Parse(data[6]);
-            eventData.Type = int.Parse(data[7]);
+            eventData.Type = int.Parse(data[6]);
 
             eventDatas.Add(eventData.EventTag, eventData);
         }
