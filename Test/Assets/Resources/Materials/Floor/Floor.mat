@@ -16,7 +16,6 @@ Material:
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   - _PARALLAXMAP
-  - _SPECULAR_SETUP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -118,8 +117,9 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.0118
+    - _QueueControl: 0
     - _QueueOffset: 0
-    - _Range: 6.0137258
+    - _Range: 6.0250177
     - _ReceiveShadows: 1
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
@@ -135,7 +135,7 @@ Material:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WorldPos: {r: 45.516617, g: -18.366667, b: -104.04386, a: 0}
+    - _WorldPos: {r: 18.283882, g: -18.366667, b: -138.33072, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4568545609881927582
 MonoBehaviour:
