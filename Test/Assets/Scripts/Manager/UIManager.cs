@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject _miniMap;
     [SerializeField]
+    private GameObject _miniMapPlayerIcon;
+    [SerializeField]
     private GameObject _setting;
     [SerializeField]
     private GameObject _white;
@@ -109,6 +111,7 @@ public class UIManager : MonoBehaviour
         _candleCount.gameObject.SetActive(false);
         _ventEventUI.SetActive(false);
         _miniMap.SetActive(false);
+        _miniMapPlayerIcon.SetActive(false);    
     }
 
     private void Start()
@@ -161,6 +164,7 @@ public class UIManager : MonoBehaviour
 
                 _miniMapOpen = !_miniMapOpen;
                 _miniMap.SetActive(_miniMapOpen);
+                _miniMapPlayerIcon.SetActive(_miniMapOpen);
                 _uiOpen = _miniMapOpen;
             }
 

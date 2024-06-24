@@ -8,36 +8,38 @@ public class PlayerDirection : MonoBehaviour
     public RectTransform directionIconRectTransform;
     public Camera miniMapCamera; 
     private Transform playerTransform; 
-    private RectTransform playerIconRectTransform;
-
-    [SerializeField]
+    
+    //[SerializeField]
     private Vector3 _offset;
+    private float movementRatioX = 11f;
+    private float movementRatioY = -13f;
+
 
     void Start()
     {
-        playerIconRectTransform = GetComponent<RectTransform>();
+        directionIconRectTransform = GetComponent<RectTransform>();
         playerTransform = GameManager.Instance.GetPlayer().transform;
 
         Vector3 miniMapPos = miniMapCamera.WorldToViewportPoint(playerTransform.position);
 
-        playerIconRectTransform.localPosition = miniMapPos + _offset;
+        _offset= new Vector3(-96.6f, 155f, 0f);
+
+
+        //directionIconRectTransform.localPosition = _offset;
+
     }
 
     void Update()
     {
-        //Vector3 miniMapPos = miniMapCamera.WorldToViewportPoint(playerTransform.position);
 
-        /*        miniMapPos.x *= miniMapRectTransform.rect.width;
-                miniMapPos.y *= miniMapRectTransform.rect.height;*/
+        //Vector2 worldPos = new Vector2(playerTransform.position.z * 30f, playerTransform.position.x * 7f);
+       
+        float playerMovementZ = playerTransform.position.z * movementRatioX;
+        float PlayerMovementX = playerTransform.position.x * movementRatioY;
 
-        Vector2 worldPos = new Vector2(transform.position.x, transform.position.z) * 4;
-        //Vector2 offset = ;
-        //
+        Vector3 currentPosition = new Vector3(playerMovementZ, PlayerMovementX, 0f);
         
-
-
-
-        //playerIconRectTransform.localPosition = miniMapPos + _offset;
+        directionIconRectTransform.localPosition = currentPosition +_offset; 
 
         if (directionIconRectTransform != null)
         {
