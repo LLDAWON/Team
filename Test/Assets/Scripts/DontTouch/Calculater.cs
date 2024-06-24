@@ -155,8 +155,12 @@ public class Calculater : MonoBehaviour
         gameObject.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
+        SoundManager.Instance.Init();
         SceneManager.LoadScene(4);
-        UIManager.Instance.SetText(22);
+        UIManager.Instance.SetText(23);
+
+        UIManager.Instance.CandleUI.gameObject.SetActive(true); // UI 활성화
+        UIManager.Instance.StartCoroutine("EscapeBGTime"); // 코루틴 시작
     }
 }
 

@@ -24,7 +24,8 @@ public class Inventory : MonoBehaviour
     public void AddItem(ItemData itemdata)
     {
         _saveItem.Add(itemdata.Key);
-        if (CheckRedundancyItem(itemdata.Name))
+
+        if (_items.ContainsKey(itemdata.Name))
         {
             _items[itemdata.Name].AddItem();
             return;

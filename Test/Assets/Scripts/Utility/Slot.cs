@@ -69,15 +69,16 @@ public class Slot : MonoBehaviour
     {   
         _count--;
         _image.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = _count.ToString();
+
         if (_data.Type == 3)
         {
             Observer.OnEvents[_data.Key](_data.Value);
         }
-
         else if (_data.Type == 1) 
         {
             Observer.OnNoneEvents[_data.Key]();     
         }
+
         if (_count == 0)
         {
             _image.sprite = null;

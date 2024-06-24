@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestAnimation : MonoBehaviour
+public class ObjectAnimation : MonoBehaviour
 {
     private Animation _animation;
     private bool _isOpen;

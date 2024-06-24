@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         {
             _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
             _player = Instantiate(_playerprefab, transform);
+
             UIManager.Instance.SetText(1);
             UIManager.Instance.SetText(2);
             CameraManager.Instance.StartFuzziness();

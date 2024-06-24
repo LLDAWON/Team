@@ -47,7 +47,7 @@ public class Sound : MonoBehaviour
     public void Play(AudioClip clip, Transform parent, bool isLoop,float speed)
     {
         _currentKey = clip.name;
-        transform.SetParent(parent);
+        transform.parent = parent;
         transform.localPosition = Vector3.zero;
         _audioSource.clip = clip;
         _audioSource.loop = isLoop;

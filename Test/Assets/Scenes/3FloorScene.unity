@@ -311,14 +311,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 13924533068643618, guid: 340f5e29fda98b64789340452b84a89f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 13924533068643618, guid: 340f5e29fda98b64789340452b84a89f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -30.689
-      objectReference: {fileID: 0}
     - target: {fileID: 2282966567504737097, guid: 340f5e29fda98b64789340452b84a89f, type: 3}
       propertyPath: m_Name
       value: Library
@@ -424,6 +416,10 @@ PrefabInstance:
     - target: {fileID: 8870593518401209354, guid: 1ba3c74c6f78ae948a62b9fa38135bb7, type: 3}
       propertyPath: m_Name
       value: Teacher
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870593518401209354, guid: 1ba3c74c6f78ae948a62b9fa38135bb7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

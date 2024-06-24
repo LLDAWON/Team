@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.UI.Image;
 
 public class EventManager : MonoBehaviour
 {
@@ -44,14 +45,11 @@ public class EventManager : MonoBehaviour
     private void CheckCollision()
     {
         if (Camera.main == null) return;
-        Transform childTransform = transform.GetChild(0).transform.GetChild(0).transform;
-        Vector3 pos = childTransform.position; // 자식 객체의 위치 가져오기
-        Vector3 origin = Camera.main.transform.position; // 레이의 시작점: 카메라의 위치
-        Vector3 dir = pos - childTransform.parent.position; // 레이의 방향 계산
 
-        Debug.DrawRay(origin, dir * 2.0f, Color.red, 2.0f); // 디버그 레이 그리기
+        Vector3 center = new Vector3(UnityEngine.Screen.width * 0.5f, UnityEngine.Screen.height * 0.5f, 0);
+        Ray dir = Camera.main.ScreenPointToRay(center);
 
-        if (Physics.Raycast(origin, dir, out hit, 2.0f, _layerMask))
+        if (Physics.Raycast(dir, out hit, 2.0f, _layerMask))
         {
             _eventData = DataManager.Instance.GetEventData(hit.collider.tag); // 히트된 객체의 태그로 이벤트 데이터 가져오기
 
@@ -87,6 +85,9 @@ public class EventManager : MonoBehaviour
             UIManager.Instance.KeySlider.gameObject.SetActive(false); // 키 슬라이더 비활성화
             UIManager.Instance.GetCursor.GetComponent<Image>().sprite = _defaultCursorSprite; // 기본 커서 이미지로 변경
         }
+
+        Debug.DrawRay(dir.origin, dir.direction*2.0f, Color.red, 2.0f); // 디버그 레이 그리기
+
     }
 
     private void OnKeyDown()
@@ -95,7 +96,7 @@ public class EventManager : MonoBehaviour
 
         if (_eventData.Type == 1)
         {
-            hit.collider.GetComponent<TestAnimation>().PlayAnimation();
+            hit.collider.GetComponent<ObjectAnimation>().PlayAnimation();
             if (hit.collider.CompareTag("ClassDoor1"))
             {
                 SoundManager.Instance.Play3D("Door", hit.transform.position, false);
@@ -158,19 +159,23 @@ public class EventManager : MonoBehaviour
     {
         if (collision.collider.CompareTag("4ChangeScene"))
         {
+            SoundManager.Instance.Init();
             SceneManager.LoadScene(1); // 씬 변경
             UIManager.Instance.CandleUI.gameObject.SetActive(true); // UI 활성화
             UIManager.Instance.StartCoroutine("Candle"); // 코루틴 시작
         }
         if (collision.collider.CompareTag("3ChangeScene"))
         {
+            SoundManager.Instance.Init();
             SceneManager.LoadScene(2); // 씬 변경
             UIManager.Instance.SetText(1); // UI 텍스트 설정
         }
         if(collision.collider.CompareTag("EndingScene"))
         {
+            SoundManager.Instance.Init();
             SceneManager.LoadScene(6);
-            SoundManager.Instance.Stop3D("BallerinaBG");
+            SoundManager.Instance.Stop2D("BallerinaBG");
         }
     }
+
 }

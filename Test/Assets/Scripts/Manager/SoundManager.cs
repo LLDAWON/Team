@@ -161,4 +161,11 @@ public class SoundManager : MonoBehaviour
         _lastPlayedKey = key; // 마지막 재생된 사운드 키 업데이트
     }
 
+    public void Init()
+    {
+        foreach (Sound audioObject in _audioObjects)
+        {
+            audioObject.transform.parent = transform;
+        }
+    }
 }

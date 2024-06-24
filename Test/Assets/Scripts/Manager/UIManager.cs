@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,6 +26,10 @@ public class UIManager : MonoBehaviour
     private GameObject _setting;
     [SerializeField]
     private GameObject _white;
+    [SerializeField]
+    private GameObject _endingObj;
+    [SerializeField]
+    private GameObject _noObj;
 
     private GameObject _4Door;
 
@@ -117,14 +122,8 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(CheckInputs()); // 입력 체크 코루틴 시작
-
-        if (SceneManager.GetActiveScene().name == "VentScene")
-        {
-            UIManager.Instance.CandleUI.gameObject.SetActive(true);
-            StartCoroutine("EscapeTime");
-
-            UIManager.Instance.SetText(19);
-        }
+        _candleCount.gameObject.SetActive(true);
+        StartCoroutine(EscapeBGTime());
     }
 
     // 매 프레임마다 입력을 체크하는 코루틴
@@ -200,6 +199,8 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator EscapeTime()
     {
+        _escapeTime = 180.0f;
+
         while (_escapeTime > 0.0f)
         {
             int minute=(int)_escapeTime/60;
@@ -210,9 +211,29 @@ public class UIManager : MonoBehaviour
 
             yield return null;
         }
-        _candleCount.gameObject.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
+        if(SceneManager.GetActiveScene().name == "VentScene")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    public IEnumerator EscapeBGTime()
+    {
+        _escapeTime = 75.0f;
+
+        while (_escapeTime > 0.0f)
+        {
+            int minute = (int)_escapeTime / 60;
+            int second = (int)_escapeTime % 60;
+            _escapeTime -= Time.deltaTime;
+            _candleCount.text = minute.ToString() + " : " + second.ToString();
+
+
+            yield return null;
+        }
+        _noObj.SetActive(false);
+        _endingObj.transform.GetChild(0).GetComponent<Light>().enabled = true;
     }
 
     public void SetText(int key)

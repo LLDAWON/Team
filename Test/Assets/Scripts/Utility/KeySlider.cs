@@ -52,15 +52,16 @@ public class KeySlider : MonoBehaviour
             }
             else if (gameObject.CompareTag("Vent"))
             {
-                UIManager.Instance.SetText(19);
+                SoundManager.Instance.Init();
+                UIManager.Instance.SetText(20);
                 SceneManager.LoadScene(3);
-                UIManager.Instance.CandleUI.gameObject.SetActive(true);
-                StartCoroutine(UIManager.Instance.EscapeTime());
+                UIManager.Instance.CandleUI.gameObject.SetActive(true); // UI 활성화
+                UIManager.Instance.StartCoroutine("EscapeTime"); // 코루틴 시작
             }
             else if (gameObject.CompareTag("Cal"))
             {
                 UIManager.Instance.VentUI.SetActive(true);
-                UIManager.Instance.SetUIOpne(true);
+                UIManager.Instance.SetUIOpne(true);                
             }
         }
     }

@@ -57,18 +57,18 @@ public class MoveableCharactorController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Handles.color = new Color(1, 1, 1, 0.2f);
-
-        Handles.DrawSolidDisc(transform.position, Vector3.up, _characterData.DetectRange);
-
-        Handles.color = new Color(0, 1, 0, 0.2f);
-
-        float angle = transform.eulerAngles.y - _angleRange;
-
-        Vector3 pos = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad),
-            0, Mathf.Cos(angle * Mathf.Deg2Rad));
-
-        Handles.DrawSolidArc(transform.position, Vector3.up, pos, _angleRange * 2.0f, _characterData.DetectRange);
+        //Handles.color = new Color(1, 1, 1, 0.2f);
+        //
+        //Handles.DrawSolidDisc(transform.position, Vector3.up, _characterData.DetectRange);
+        //
+        //Handles.color = new Color(0, 1, 0, 0.2f);
+        //
+        //float angle = transform.eulerAngles.y - _angleRange;
+        //
+        //Vector3 pos = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad),
+        //    0, Mathf.Cos(angle * Mathf.Deg2Rad));
+        //
+        //Handles.DrawSolidArc(transform.position, Vector3.up, pos, _angleRange * 2.0f, _characterData.DetectRange);
     }
 
 }

@@ -82,7 +82,6 @@ public class MiniMonsterController : EnemyController
     }
     protected override void EnemyAiPattern()
     {
-
         switch (_enemyState)
         {
             case EnemyState.Trace:
@@ -90,6 +89,7 @@ public class MiniMonsterController : EnemyController
                     _animator.speed = 1.0f;
                     _navigation.SetDestination(_target.position);
                     _navigation.speed = _characterData.RunSpeed;
+                    SoundManager.Instance.SameStateJustOnePlay3D("Mini_Trace", transform, true, 1.0f );
                 }
                 break;
             case EnemyState.Attack:
