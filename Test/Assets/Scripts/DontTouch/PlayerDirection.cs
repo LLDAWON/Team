@@ -9,10 +9,10 @@ public class PlayerDirection : MonoBehaviour
     public Camera miniMapCamera; 
     private Transform playerTransform; 
     
-    //[SerializeField]
+    [SerializeField]
     private Vector3 _offset;
     private float movementRatioX = 11f;
-    private float movementRatioY = -13f;
+    private float movementRatioY = -14.5f;
 
 
     void Start()
@@ -22,7 +22,7 @@ public class PlayerDirection : MonoBehaviour
 
         Vector3 miniMapPos = miniMapCamera.WorldToViewportPoint(playerTransform.position);
 
-        _offset= new Vector3(-96.6f, 155f, 0f);
+        _offset= new Vector3(-96.6f, 215f, 0f);
 
 
         //directionIconRectTransform.localPosition = _offset;

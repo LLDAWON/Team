@@ -34,12 +34,15 @@ public class LibraryMove : MonoBehaviour
             }
 
             bool collisionDetected = false;
+
+
             yield return StartCoroutine(CheckCollision(newRotation, (result) => collisionDetected = result));
 
             if (!collisionDetected)
             {
                 yield return StartCoroutine(MoveTo(newRotation));
             }
+
             _moveInterval = Random.Range(5, 10.0f);
             yield return new WaitForSeconds(_moveInterval);
         }
@@ -97,9 +100,9 @@ public class LibraryMove : MonoBehaviour
         while (elapsedTime < rotateTime)
         {
             float t = elapsedTime / rotateTime;
-
+            // tempCollider를 구형 선형 보간을 이용하여 회전
             tempCollider.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
- 
+            // tempCollider의 현재 위치와 회전을 기준으로 박스 영역 안에 있는 다른 Collider들을 검출
             Collider[] hitColliders = Physics.OverlapBox(tempCollider.bounds.center, tempCollider.size / 2, tempCollider.transform.rotation, _obstacleMask);
             foreach (Collider collider in hitColliders)
             {
@@ -109,6 +112,10 @@ public class LibraryMove : MonoBehaviour
                     break;
                 }
             }
+          
+         
+
+
             if (collisionDetected)
             {
                 break;

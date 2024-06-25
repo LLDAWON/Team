@@ -60,14 +60,15 @@ public class CameraManager : MonoBehaviour
 
         while (elapsed < duration)
         {
-
+            //초기위치에 이 값을 magnitude로 스케일링하여 더해줌으로써 카메라 위치를 랜덤하게 변형
             _virtualCamera.transform.position = initialPosition + Random.insideUnitSphere * magnitude;
+            // 'initialRotation.eulerAngles'에 'Random.insideUnitSphere' * 'magnitude'를 더하여 새로운 회전 값을 생성
             _virtualCamera.transform.rotation = Quaternion.Euler(initialRotation.eulerAngles + Random.insideUnitSphere * magnitude);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
-
+       
         _virtualCamera.transform.position = initialPosition;
         _virtualCamera.transform.rotation = initialRotation;
         GameManager.Instance.GetPlayer().GetComponent<PlayerController>().SetIsEventCamera(false);

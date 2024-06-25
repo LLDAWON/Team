@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 public class SaveData
 {
     public List<int> itemList = new List<int>();
-   
     public Vector3 savePoint;
     public int curScene;
 }
