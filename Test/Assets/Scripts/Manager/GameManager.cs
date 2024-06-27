@@ -1,11 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using UnityEditor.Rendering;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.PlayerSettings;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,15 +33,14 @@ public class GameManager : MonoBehaviour
     { 
         if(_player == null)
         {
-            _playerprefab = Resources.Load<GameObject>("Prefabs/Character/Player/Player");
-            _player = Instantiate(_playerprefab, transform);
+            return null;
 
-            UIManager.Instance.SetText(1);
-            UIManager.Instance.SetText(2);
-            CameraManager.Instance.StartFuzziness();
+           // UIManager.Instance.SetText(1);
+           // UIManager.Instance.SetText(2);
+           // CameraManager.Instance.StartFuzziness();
         }
 
-        return _player; 
+        return NetWork.Instance.player;
     }
 
 
@@ -57,6 +52,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        _player = NetWork.Instance.player;
         DontDestroyOnLoad(gameObject); // 이 오브젝트를 씬 전환 시 파괴되지 않도록 설정
 
     }
@@ -69,8 +65,6 @@ public class GameManager : MonoBehaviour
 
     private void Initialize()
     {
-        
-
         _monsterManager = MonsterManager.Instance;
         _eventManager = _player.GetComponent<EventManager>();
         _curEvent = _eventManager.CurKey;

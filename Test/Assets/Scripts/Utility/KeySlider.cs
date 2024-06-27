@@ -54,7 +54,7 @@ public class KeySlider : MonoBehaviour
             {
                 SoundManager.Instance.Init();
                 UIManager.Instance.SetText(20);
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene("VentScene");
                 UIManager.Instance.CandleUI.gameObject.SetActive(true); // UI 활성화
                 UIManager.Instance.StartCoroutine("EscapeTime"); // 코루틴 시작
             }

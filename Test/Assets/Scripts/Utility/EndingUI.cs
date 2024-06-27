@@ -38,7 +38,7 @@ public class EndingUI : MonoBehaviour
 
     private void MainButton()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene("TitleScene");
     }
 
     private void EndButton()

@@ -156,7 +156,7 @@ public class Calculater : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         SoundManager.Instance.Init();
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("2FloorScene");
         UIManager.Instance.SetText(23);
 
         UIManager.Instance.CandleUI.gameObject.SetActive(true); // UI È°¼ºÈ­

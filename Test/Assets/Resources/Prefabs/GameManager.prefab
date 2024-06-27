@@ -14561,6 +14561,7 @@ MonoBehaviour:
   miniMapRectTransform: {fileID: 4085313562568342825}
   directionIconRectTransform: {fileID: 4098264258081329581}
   miniMapCamera: {fileID: 3310150106015736}
+  _offset: {x: 0, y: 0, z: 0}
 --- !u!1 &8931232251252660629
 GameObject:
   m_ObjectHideFlags: 0

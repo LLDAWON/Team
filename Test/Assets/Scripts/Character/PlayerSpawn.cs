@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +16,7 @@ public class PlayerSpawn : MonoBehaviour
     }
     void Start()
     {
-        GameObject player = GameManager.Instance.GetPlayer();
+        GameObject player = NetWork.Instance.player;
 
         player.transform.position = transform.position;
 

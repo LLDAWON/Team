@@ -53,6 +53,8 @@ public class PlayerController : MoveableCharactorController
     private bool _event = false;
     public void SetIsEventCamera(bool isEvent) { _event = isEvent; }
 
+    private bool _isStart = false;
+
     ////플레이어 사운드 관리
     private AudioSource _steminaSound;
     private AudioSource _stepSound;
@@ -75,6 +77,7 @@ public class PlayerController : MoveableCharactorController
     protected override void Awake()
     {
         base.Awake();
+
         _rotateObj = transform.GetChild(0);
         _hand = transform.GetChild(0).transform.GetChild(1).gameObject;
 
@@ -83,10 +86,15 @@ public class PlayerController : MoveableCharactorController
 
         //옵저버패턴
         SetObserverPattern();
+
+        DontDestroyOnLoad(this);
     }
 
     private void Start()
     {
+        if (GameManager.Instance == null)
+            return;
+
         SettingStemina();
         //사운드
         SettingSound();
@@ -94,6 +102,18 @@ public class PlayerController : MoveableCharactorController
 
     protected override void Update()
     {
+        if (UIManager.Instance == null)
+            return;
+
+        if(!_isStart)
+        {
+            SettingStemina();
+            //사운드
+            SettingSound();
+            _isStart = true;
+        }
+
+
         if (_isDie)
         {
             _isDie = false;

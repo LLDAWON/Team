@@ -40,7 +40,6 @@ public class TitleUIManager : MonoBehaviour
         _buttons[1].onClick.AddListener(() => LoadData());
         _buttons[2].onClick.AddListener(() => Setting());
 
-
     }
 
     private void Start()
@@ -61,6 +60,9 @@ public class TitleUIManager : MonoBehaviour
 
     private void Update()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;   
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             _soundSetting.SetActive(false);

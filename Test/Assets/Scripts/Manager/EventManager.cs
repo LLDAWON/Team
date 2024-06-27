@@ -38,6 +38,9 @@ public class EventManager : MonoBehaviour
 
     private void Update()
     {
+        if (UIManager.Instance == null)
+            return;
+
         CheckCollision();
 
     }
@@ -160,20 +163,20 @@ public class EventManager : MonoBehaviour
         if (collision.collider.CompareTag("4ChangeScene"))
         {
             SoundManager.Instance.Init();
-            SceneManager.LoadScene(1); // 씬 변경
+            SceneManager.LoadScene("4FloorScene"); // 씬 변경
             UIManager.Instance.CandleUI.gameObject.SetActive(true); // UI 활성화
             UIManager.Instance.StartCoroutine("Candle"); // 코루틴 시작
         }
         if (collision.collider.CompareTag("3ChangeScene"))
         {
             SoundManager.Instance.Init();
-            SceneManager.LoadScene(2); // 씬 변경
+            SceneManager.LoadScene("3FloorScene"); // 씬 변경
             UIManager.Instance.SetText(1); // UI 텍스트 설정
         }
         if(collision.collider.CompareTag("EndingScene"))
         {
             SoundManager.Instance.Init();
-            SceneManager.LoadScene(6);
+            SceneManager.LoadScene("EndingScene");
             SoundManager.Instance.Stop2D("BallerinaBG");
         }
     }

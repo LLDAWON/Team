@@ -24,7 +24,7 @@ public class CinemachineCameraController : MonoBehaviour
 
     private void Start()
     {
-        _player = GameManager.Instance.GetPlayer();
+        _player = NetWork.Instance.player;
         _playerController = _player.GetComponent<PlayerController>();
         PlayerFollowCam();
 
