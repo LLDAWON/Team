@@ -122,8 +122,6 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(CheckInputs()); // 입력 체크 코루틴 시작
-        _candleCount.gameObject.SetActive(true);
-        StartCoroutine(EscapeBGTime());
     }
 
     // 매 프레임마다 입력을 체크하는 코루틴

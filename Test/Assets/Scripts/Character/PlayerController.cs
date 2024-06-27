@@ -110,6 +110,12 @@ public class PlayerController : MoveableCharactorController
             SettingStemina();
             //»ç¿îµå
             SettingSound();
+
+            if (pv.IsMine)
+            {
+                CinemachineCameraController.Instance.Target(this.gameObject);
+            }
+
             _isStart = true;
         }
 

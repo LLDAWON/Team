@@ -10,7 +10,7 @@ public class NetWork : MonoBehaviourPunCallbacks
     public static NetWork Instance;
     public GameObject player;
     private List<string>_nickName = new List<string>();
-
+    private PhotonView _pv;
 
     private void Awake()
     {
@@ -18,7 +18,7 @@ public class NetWork : MonoBehaviourPunCallbacks
 
         Screen.SetResolution(1920,1080, false);
         PhotonNetwork.ConnectUsingSettings();
-
+        _pv = GetComponent<PhotonView>();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -43,11 +43,26 @@ public class NetWork : MonoBehaviourPunCallbacks
     
     public override void OnJoinedRoom()
     {
+        string _masterNickName;
+        _masterNickName = LobbyScripts.instance._nickName.text;
         player = PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
-        Debug.Log("방참가성공");
+        Debug.Log("방참가성공"+ _masterNickName);
+
+        _pv.RPC("NickNameView", RpcTarget.All);
     }
 
-    
+    [PunRPC]
+    private void NickNameView()
+    {
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            string name = PhotonNetwork.PlayerList[i].NickName;
+            LobbyScripts.instance._players.gameObject.SetActive(true);
+            LobbyScripts.instance._players.text = name + "입장하셨습니다.";
+        }
+    }
+
+
     public override void OnJoinedLobby()
     {
         base.OnJoinedLobby();
@@ -70,12 +85,12 @@ public class NetWork : MonoBehaviourPunCallbacks
     {
 
         base.OnCreatedRoom();
-
+        
         string _masterNickName;
         _masterNickName = LobbyScripts.instance._nickName.text;
 
         PhotonNetwork.CreateRoom(_masterNickName, new RoomOptions { MaxPlayers = 4 }, null);
-
+        Debug.Log("방생성성공" + _masterNickName);
     }
 
 

@@ -16,7 +16,7 @@ public class LobbyScripts : MonoBehaviourPunCallbacks
     public Button _logInButton;
 
     public TextMeshProUGUI _roomName;
-
+    public TextMeshProUGUI _players;
 
     public static LobbyScripts instance;
 
@@ -37,27 +37,26 @@ public class LobbyScripts : MonoBehaviourPunCallbacks
     public void OnClickCreateBtn()
     {
         PhotonNetwork.CreateRoom(_nickName.text, new RoomOptions { MaxPlayers = 4 }, null);
-        
-        Debug.Log("방생성성공");
     }
 
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        base.OnCreateRoomFailed(returnCode, message);
+    }
     public void OnClickJoinBtn()
     {
-        
-
-        for( int i = 0; i<PhotonNetwork.PlayerList.Length; i++ )
-        {
-            string name = PhotonNetwork.PlayerList[i].NickName;
-            print(name);
-        }
-
-
-        _roomName.gameObject.SetActive(true);
-
-
-        // 방이름 입력하는 패널 뜨고 입력버튼 누르면 밑에 함수 발동
-        // PhotonNetwork.JoinRoom(_roomName.text,null);
+        _roomName.transform.parent.transform.parent.gameObject.SetActive(true);
     }
+
+    public void Room()
+    {
+        if (_roomName.text.Length == 0) return;
+
+        PhotonNetwork.JoinRoom(_roomName.text, null);
+
+        print(_roomName.text);
+    }
+
 
     public void OnCreateNickNameBtn()
     {

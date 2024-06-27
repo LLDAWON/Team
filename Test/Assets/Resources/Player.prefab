@@ -451,6 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7ff8511db12ca4db580c52491640c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pv: {fileID: 3757685247275617332}
   _characterKey: 101
   _velocity: {x: 0, y: 0, z: 0}
   _flash: {fileID: 1056240008503105525}

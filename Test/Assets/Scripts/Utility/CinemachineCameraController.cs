@@ -5,7 +5,13 @@ using Cinemachine;
 
 public class CinemachineCameraController : MonoBehaviour
 {
+    public static CinemachineCameraController Instance;
+
     private GameObject _player;
+
+    public void Target(GameObject gameObject)
+    { _player = gameObject; }
+
     private PlayerController _playerController;
     private CinemachineVirtualCamera _virtualCamera;
 
@@ -14,6 +20,7 @@ public class CinemachineCameraController : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         _virtualCamera = GetComponent<CinemachineVirtualCamera>();
 
         Observer.OnTargetEvents.Add(1, PlayerDieCam);
@@ -24,15 +31,21 @@ public class CinemachineCameraController : MonoBehaviour
 
     private void Start()
     {
-        _player = NetWork.Instance.player;
-        _playerController = _player.GetComponent<PlayerController>();
-        PlayerFollowCam();
+        if (_player == null) return;
+
+     
 
     }
 
     private void Update()
     {
-        if(_playerController.GetIsPlayerVant() ==true )
+        if (_player == null) return;
+
+        _playerController = _player.GetComponent<PlayerController>();
+
+        PlayerFollowCam();
+
+        if (_playerController.GetIsPlayerVant() ==true )
         {
             if(!_isFirstTime)
             {
@@ -58,7 +71,6 @@ public class CinemachineCameraController : MonoBehaviour
 
     private void PlayerFollowCam()
     {
-
         _virtualCamera.Follow = _player.transform.GetChild(0).transform;
         _virtualCamera.LookAt = _player.transform.GetChild(0).transform.GetChild(0).transform;
     }

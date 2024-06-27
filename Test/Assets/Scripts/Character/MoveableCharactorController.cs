@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Photon.Pun;
 
-public class MoveableCharactorController : MonoBehaviour
+public class MoveableCharactorController : MonoBehaviourPunCallbacks
 {
+    public PhotonView pv;
 
     [SerializeField]
     protected int _characterKey;
