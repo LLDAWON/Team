@@ -19,6 +19,11 @@ public class LobbyScripts : MonoBehaviourPunCallbacks
 
     public static LobbyScripts instance;
 
+
+
+    [SerializeField] GameObject roomLists;
+    Dictionary<string, RoomInfo> dicRoomInfo = new Dictionary<string, RoomInfo>();
+
     private void Awake()
     {
         instance = this;
@@ -26,15 +31,19 @@ public class LobbyScripts : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        // Initially disable the buttons
         _createRoomBtn.interactable = false;
         _joinRoomBtn.interactable = false;
+
     }
 
     // Enable/disable buttons based on nickname input
     public void OnNickNameChanged()
     {
         bool isNickNameEntered = !string.IsNullOrEmpty(_nickName.text);
+        _createRoomBtn.gameObject.SetActive(isNickNameEntered);
+        _joinRoomBtn.gameObject.SetActive(isNickNameEntered);
+        _nickName.gameObject.SetActive(!isNickNameEntered);
+        _roomName.gameObject.SetActive(!isNickNameEntered);
         _createRoomBtn.interactable = isNickNameEntered;
         _joinRoomBtn.interactable = isNickNameEntered;
         _logInButton.interactable = isNickNameEntered;
@@ -66,7 +75,7 @@ public class LobbyScripts : MonoBehaviourPunCallbacks
     public void OnCreateNickNameBtn()
     {
         PhotonNetwork.NickName = _nickName.text;
-        PhotonNetwork.JoinLobby();
+        //PhotonNetwork.JoinLobby();
     }
 
     public void PlayGameBtn()
@@ -74,4 +83,9 @@ public class LobbyScripts : MonoBehaviourPunCallbacks
         SceneManager.LoadScene("5FloorScene");
     }
 
+    public void JoinLobbyBtn()
+    {
+        PhotonNetwork.JoinLobby();
+    }
+    
 }
