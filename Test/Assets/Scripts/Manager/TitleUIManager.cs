@@ -23,6 +23,9 @@ public class TitleUIManager : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
 
+    [SerializeField]
+    private GameObject _lobby;
+
 
     private void Awake()
     {
@@ -72,12 +75,7 @@ public class TitleUIManager : MonoBehaviour
 
     private void PlayStart()
     {
-        //SceneManager.LoadScene("5FloorScene");
-        PhotonNetwork.LoadLevel("5FloorScene");
-        //로비 ui켜주고 
-        //닉네임 입력하고 버튼 누르면 닉네임 등록되는거
-        //f로비 스크립트 > creat > photonnetwork.creaetroom("자기 닉네임", ~~);
-        //ㅓjoinroom > 방이름 필요함 > 이걸 입력받을 input>photonnetwork.joinroom():  
+        _lobby.SetActive(true);
         _buttons[0].GetComponent<AudioSource>().Play();
     }
 

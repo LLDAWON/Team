@@ -11,6 +11,8 @@ public class EndingUI : MonoBehaviour
     private Button _main;
     [SerializeField]
     private Button _end;
+    [SerializeField]
+    private ClearTimeUI _clearTimeUI;
 
     private void Awake()
     {
@@ -20,6 +22,16 @@ public class EndingUI : MonoBehaviour
         _main.gameObject.SetActive(false);
         _end.gameObject.SetActive(false);
         SoundManager.Instance.Stop3D("BallerinaBG");
+    }
+
+    private void Start()
+    {
+        NetWork timeTracker = FindObjectOfType<NetWork>();
+
+        if (timeTracker != null)
+        {
+            timeTracker.OnEndingSceneEntered();
+        }
     }
 
     private void Update()
@@ -33,6 +45,7 @@ public class EndingUI : MonoBehaviour
             transform.position = pos;
             _main.gameObject.SetActive(true);
             _end.gameObject.SetActive(true);
+            Invoke("EndCredit", 2.0f);
         }
     }
 
@@ -44,6 +57,11 @@ public class EndingUI : MonoBehaviour
     private void EndButton()
     {
         Application.Quit();
-       // Destroy(gameObject);
+    }
+
+    private void EndCredit()
+    {
+        gameObject.SetActive(false);
+        _clearTimeUI.GetClearTime();
     }
 }

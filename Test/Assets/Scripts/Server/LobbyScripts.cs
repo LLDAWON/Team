@@ -5,17 +5,16 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LobbyScripts : MonoBehaviourPunCallbacks
 {
-
     public GameObject _LobbyPanel;
     public Button _createRoomBtn;
     public Button _joinRoomBtn;
-    public TextMeshProUGUI _nickName;
+    public TMP_InputField _nickName;
     public Button _logInButton;
-
-    public TextMeshProUGUI _roomName;
+    public TMP_InputField _roomName;
     public TextMeshProUGUI _players;
 
     public static LobbyScripts instance;
@@ -23,17 +22,25 @@ public class LobbyScripts : MonoBehaviourPunCallbacks
     private void Awake()
     {
         instance = this;
-
     }
+
     private void Start()
     {
-
-        Screen.SetResolution(960, 540, false);
-        PhotonNetwork.ConnectUsingSettings();
+        // Initially disable the buttons
+        _createRoomBtn.interactable = false;
+        _joinRoomBtn.interactable = false;
     }
 
-    //规积己
+    // Enable/disable buttons based on nickname input
+    public void OnNickNameChanged()
+    {
+        bool isNickNameEntered = !string.IsNullOrEmpty(_nickName.text);
+        _createRoomBtn.interactable = isNickNameEntered;
+        _joinRoomBtn.interactable = isNickNameEntered;
+        _logInButton.interactable = isNickNameEntered;
+    }
 
+    // 规积己
     public void OnClickCreateBtn()
     {
         PhotonNetwork.CreateRoom(_nickName.text, new RoomOptions { MaxPlayers = 4 }, null);
@@ -43,67 +50,28 @@ public class LobbyScripts : MonoBehaviourPunCallbacks
     {
         base.OnCreateRoomFailed(returnCode, message);
     }
+
     public void OnClickJoinBtn()
     {
-        _roomName.transform.parent.transform.parent.gameObject.SetActive(true);
+        _roomName.gameObject.SetActive(true);
     }
 
     public void Room()
     {
         if (_roomName.text.Length == 0) return;
-
         PhotonNetwork.JoinRoom(_roomName.text, null);
-
         print(_roomName.text);
     }
 
-
     public void OnCreateNickNameBtn()
     {
-        //if (string.IsNullOrEmpty(_nickName.text))
-        //    return;
-
         PhotonNetwork.NickName = _nickName.text;
         PhotonNetwork.JoinLobby();
     }
 
-
-
-
-    //private void OnNickNameChange(string s)
-    //{
-    //    _logInButton.interactable = s.Length > 0; 
-
-    //    if (string.IsNullOrEmpty(_nickName.text)) 
-    //        return;
-    //    PhotonNetwork.NickName = _nickName.text;
-    //}
-
-    //public override void OnJoinedLobby()
-    //{
-
-    //    base.OnJoinedLobby();
-
-    //    PhotonNetwork.LoadLevel("Lobby");
-
-    //    Debug.Log("肺厚柳涝己傍");
-
-    //}
-
-    //public void OnClickConnect()
-    //{
-    //    // 付胶磐 辑滚 立加 夸没
-    //    PhotonNetwork.ConnectUsingSettings();
-
-    //}
-
-    //public override void OnCreatedRoom()
-    //{
-    //    base.OnCreatedRoom();
-    //    PhotonNetwork.CreateRoom("Room", new RoomOptions { MaxPlayers = 4 }, null);
-    //    PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 4 }, null);
-    //}
-
-
+    public void PlayGameBtn()
+    {
+        SceneManager.LoadScene("5FloorScene");
+    }
 
 }

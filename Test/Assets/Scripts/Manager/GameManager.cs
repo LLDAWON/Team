@@ -61,6 +61,13 @@ public class GameManager : MonoBehaviour
     {
         Initialize();
         SoundManager.Instance.Play2D("BG", true);
+
+        NetWork timeTracker = FindObjectOfType<NetWork>();
+        //5층 시작 시 타이머 시작
+        if (timeTracker != null)
+        {
+            timeTracker.StartTiming();
+        }
     }
 
     private void Initialize()
@@ -76,7 +83,7 @@ public class GameManager : MonoBehaviour
         BalerinaBGSound();
         if (Input.GetKeyDown(KeyCode.V))
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene("EndingScene");
         }
 
         if (Input.GetKeyDown(KeyCode.K))
