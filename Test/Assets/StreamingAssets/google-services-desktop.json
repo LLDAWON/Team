@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1068889510091",
+    "firebase_url": "https://rpgproject-21eae-default-rtdb.firebaseio.com",
+    "project_id": "rpgproject-21eae",
+    "storage_bucket": "rpgproject-21eae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068889510091:android:cc1280fa6e88a84b980b4e",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.RPGProject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFMOLWjT7hvSNtcYRNq0ZxwTLdunEMamY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

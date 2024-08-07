@@ -20,11 +20,12 @@ public class NetWork : MonoBehaviourPunCallbacks
     private void Awake()
     {
         Instance = this; // 싱글톤 인스턴스 설정
-
+        
         Screen.SetResolution(1920, 1080, false); // 화면 해상도 설정
         PhotonNetwork.ConnectUsingSettings(); // Photon 서버 연결
         _pv = GetComponent<PhotonView>(); // PhotonView 컴포넌트 가져오기
         DontDestroyOnLoad(gameObject); // 씬 로드 시 오브젝트 파괴 방지
+        
     }
 
     // 타이밍 시작
@@ -71,6 +72,10 @@ public class NetWork : MonoBehaviourPunCallbacks
             string playerName = PhotonNetwork.NickName; // 플레이어 닉네임 가져오기
             ExitGames.Client.Photon.Hashtable playerTime = new ExitGames.Client.Photon.Hashtable { { playerName, totalTime } }; // 클리어 타임을 커스텀 속성에 저장
             PhotonNetwork.CurrentRoom.SetCustomProperties(playerTime); // 커스텀 속성 저장
+
+            FirebaseManager.instance.SaveClearTime(playerName, totalTime);
+
+
             Destroy(player); // 플레이어 오브젝트 파괴
         }
     }
@@ -119,9 +124,6 @@ public class NetWork : MonoBehaviourPunCallbacks
             LobbyScripts.instance._players.text = name + "님이 입장하셨습니다.";
         }
     }
-
-
-
     public override void OnDisconnected(DisconnectCause cause)
     {
         PhotonNetwork.ConnectUsingSettings(); // 서버 재연결
